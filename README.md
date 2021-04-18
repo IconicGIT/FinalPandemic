@@ -1,7 +1,7 @@
 # FINAL PANDEMIC – PROJECT I: MERCS
 
 GitHub project link: https://github.com/IconicGIT/FinalPandemic
-<p>&nbsp;</p>
+
 ## Team Members
 
 - Code: **Alexandre Carreras** [[ _TheGewehr_ ](https://github.com/TheGewehr)]:
@@ -15,9 +15,9 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
 
 - Management: **Brandon Arandia** [[ _IconicGIT_ ](https://github.com/IconicGIT)]:
   - Main Responsible of Final Pandemic's Mercs Team Management.
-<p>&nbsp;</p>
+
 ## Mercs game decription
-<p>&nbsp;</p>
+
 ## Game controls
-<p>&nbsp;</p>
+
 ## Additional comments
