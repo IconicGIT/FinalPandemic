@@ -18,6 +18,15 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
 
 ## Mercs game decription
 
+Marx is a top-down run and gun arcade game, that consists in a marked path where you are able to move freely around the four directions, shooting the enemies, trying not to get reached by their weapons. In each level you will be able to use different vehicles to finally reach the final boss who will decide if you pass to the next level.
+
 ## Game controls
 
+The game controls used to play the game are:
+- Movement controls: Using the four arrows you are able to move up[↑], down[↓], left[→], and right[←]. Also with the combination of two directions you can move in the diagonal formed by them.
+- Attack controls: To attack the enemies you can use your gun pressing [S] to shoot.
+
+
 ## Additional comments
+
+No additional comments...
