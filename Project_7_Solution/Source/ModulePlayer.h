@@ -5,6 +5,8 @@
 #include "Animation.h"
 #include "p2Point.h"
 
+#define PLAYER_LIFE 10
+
 struct SDL_Texture;
 struct Collider;
 
@@ -47,29 +49,48 @@ public:
 	Animation* currentAnimation = nullptr;
 
 	// A set of animations
-	Animation idleAnim;
-	Animation deadAnim;
 
+	// Idle Animations
+	Animation upIdleAnim;
+	Animation upRightIdleAnim;
+	Animation rightIdleAnim;
+	Animation downRightIdleAnim;
+	Animation downIdleAnim;
+	Animation downLeftIdleAnim;
+	Animation upLeftIdleAnim;
+	Animation leftIdleAnim;
+	
+	// Move Animations
 	Animation upAnim;
 	Animation downAnim;
 	Animation leftAnim;
 	Animation rightAnim;
-
 	Animation downRightAnim;
 	Animation upRightAnim;
 	Animation downLeftAnim;
 	Animation upLeftAnim;
 
-	//Animation damaged;
+	// Damage Animations
+	Animation  bulletHitAnim; // Blinking
+	Animation  explosionHitAnim; // Character fly
+
+	// Death Animations
+	Animation  deathUpLeftAnim;
+	Animation  deathUpRightAnim;
+	Animation  deathDownLeftAnim;
+	Animation  deathDownRightAnim;
+
+
 
 	// The player's collider
 	Collider* collider = nullptr;
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
+	int playerLife = PLAYER_LIFE;
 
 	// A countdown to when the player gets destroyed. After a while, the game exits
-	uint destroyedCountdown = 120;
+	uint exitCountdown = 120;
 
 	// Sound effects indices
 	uint laserFx = 0;
