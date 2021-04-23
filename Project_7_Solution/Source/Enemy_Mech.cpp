@@ -17,8 +17,8 @@ Enemy_Mech::Enemy_Mech(int x, int y) : Enemy(x, y)
 	back.speed = 0.1f;
 	//back.pingpong = true;
 
-	//path.PushBack({-0.3f, 0.0f}, 150, &front);
-	//path.PushBack({1.2f, 0.0f}, 150, &back);
+	path.PushBack({-0.3f, 0.0f}, 150, &front);
+	path.PushBack({1.2f, 0.0f}, 150, &back);
 
 	collider = App->collisions->AddCollider({0, 0, 24, 24}, Collider::Type::ENEMY, (Module*)App->enemies);
 }

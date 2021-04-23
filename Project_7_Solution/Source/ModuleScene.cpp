@@ -6,6 +6,14 @@
 #include "ModuleAudio.h"
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
+#include "ModulePlayer.h"
+#include "Globals.h"
+#include "ModuleInput.h"
+#include "SDL/include/SDL_scancode.h"
+
+
+#define CAMERA_X_MARGIN 25
+#define CAMERA_Y_MARGIN 50
 
 ModuleScene::ModuleScene()
 {
@@ -25,7 +33,7 @@ bool ModuleScene::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/background.png");
-	App->audio->PlayMusic("Assets/stage1.ogg", 1.0f);
+	//App->audio->PlayMusic("Assets/stage1.ogg", 1.0f);
 
 	//Bottomside collider
 	App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
@@ -35,6 +43,8 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
 
 	// Enemies ---
+
+	
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 600, 80);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 625, 80);
 	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 640, 80);
@@ -60,7 +70,21 @@ bool ModuleScene::Start()
 
 update_status ModuleScene::Update()
 {
-	App->render->camera.x += 3;
+	//App->render->camera.x += 3;
+
+
+	//if (App->player->position.x < (App->render->camera.x + CAMERA_X_MARGIN)) {
+	//
+	//	App->render->camera.x -= 10; //App->player->speed;
+	//	
+	//
+	//} else if ((App->player->position.x + App->player->collider->rect.w) > (App->render->camera.x + App->render->camera.w - CAMERA_X_MARGIN)) {
+	//
+	//	App->render->camera.x += 10; // App->player->speed * 3;
+	//}
+
+	//render camera area
+	App->render->DrawQuad(App->render->camera, 0, 255, 255, 100);
 
 	return update_status::UPDATE_CONTINUE;
 }

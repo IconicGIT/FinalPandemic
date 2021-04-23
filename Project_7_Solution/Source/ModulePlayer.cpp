@@ -293,13 +293,13 @@ update_status ModulePlayer::Update()
 	}
 
 	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
+		|| App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
 	{
 		downRightIdleAnim.Reset();
 		currentAnimation = &downRightIdleAnim;
 	}
 
-	if ( App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
 	{
 		rightIdleAnim.Reset();
 		currentAnimation = &rightIdleAnim;
@@ -371,7 +371,7 @@ update_status ModulePlayer::PostUpdate()
 	if (destroyed != true)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect);
+		App->render->Blit(texture, position.x, position.y, &rect,0);
 	}
 
 	return update_status::UPDATE_CONTINUE;
