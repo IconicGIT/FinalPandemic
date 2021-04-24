@@ -13,47 +13,79 @@
 
 ModulePlayer::ModulePlayer()
 {
+
+	/* animation
+
+		-> for each key detected, lastKey == that key
+	
+		if (rightKey == leftKey == upKey == downKey == IDLE) -> no keys are pressed
+		{
+			if (lastKey == rightKey && currentAnim != rightIdle)
+				currentAnim = rightIdle
+
+			if (lastKey == upKey && currentAnim != rightIdle)
+				currentAnim = upIdle
+
+			if (lastKey == downKey && currentAnim != rightIdle)
+				currentAnim = downIdle
+
+			if (lastKey == leftKey && currentAnim != rightIdle)
+				currentAnim = leftIdle
+		}
+	*/
+
+
+
+
 	// idle animations - just one sprite
 
+	// animation idle up
 	upIdleAnim.PushBack({ 147, 8, 21, 41 });
 	upIdleAnim.PushBack({ 178, 8, 22, 42 });
 	upIdleAnim.loop = true;
 	upIdleAnim.speed = 0.1f;
 
-	upRightIdleAnim.PushBack({ 66, 1, 32, 14 });
-	upRightIdleAnim.PushBack({ 66, 1, 32, 14 });
-	upRightIdleAnim.loop = true;
-	upRightIdleAnim.speed = 0.1f;
+
+	//////////////////////////////////////////////////
+	
+	// there are no sprites for up-right idle, either stays idle-up or idle-right
+
+	//upRightIdleAnim.PushBack({ 66, 1, 32, 14 });
+	//upRightIdleAnim.PushBack({ 66, 1, 32, 14 });
+	//upRightIdleAnim.loop = true;
+	//upRightIdleAnim.speed = 0.1f;
 
 	rightIdleAnim.PushBack({ 66, 1, 32, 14 });
 	rightIdleAnim.PushBack({ 66, 1, 32, 14 });
 	rightIdleAnim.loop = true;
 	rightIdleAnim.speed = 0.1f;
 
-	downRightIdleAnim.PushBack({ 66, 1, 32, 14 });
-	downRightIdleAnim.PushBack({ 66, 1, 32, 14 });
-	downRightIdleAnim.loop = true;
-	downRightIdleAnim.speed = 0.1f;
+	//////////////////////////////////////////////////
+
+	//downRightIdleAnim.PushBack({ 66, 1, 32, 14 });
+	//downRightIdleAnim.PushBack({ 66, 1, 32, 14 });
+	//downRightIdleAnim.loop = true;
+	//downRightIdleAnim.speed = 0.1f;
 
 	downIdleAnim.PushBack({ 66, 1, 32, 14 });
 	downIdleAnim.PushBack({ 66, 1, 32, 14 });
 	downIdleAnim.loop = true;
 	downIdleAnim.speed = 0.1f;
 
-	downLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
-	downLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
-	downLeftIdleAnim.loop = true;
-	downLeftIdleAnim.speed = 0.1f;
+	//downLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
+	//downLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
+	//downLeftIdleAnim.loop = true;
+	//downLeftIdleAnim.speed = 0.1f;
 
 	leftIdleAnim.PushBack({ 66, 1, 32, 14 });
 	leftIdleAnim.PushBack({ 66, 1, 32, 14 });
 	leftIdleAnim.loop = true;
 	leftIdleAnim.speed = 0.1f;
 
-	upLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
-	upLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
-	upLeftIdleAnim.loop = true;
-	upLeftIdleAnim.speed = 0.1f;
+	//upLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
+	//upLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
+	//upLeftIdleAnim.loop = true;
+	//upLeftIdleAnim.speed = 0.1f;
 
 
 	// Hit Animations
