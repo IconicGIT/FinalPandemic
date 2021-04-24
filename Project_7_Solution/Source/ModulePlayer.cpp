@@ -340,6 +340,11 @@ update_status ModulePlayer::Update()
 
 	// Hit Animations  // Need enemy Particles or Player Life lower
 
+	//if (ModulePlayer::OnCollision(Collider * Collider::Type::PLAYER, Collider * Collider::Type::ENEMY_SHOT))
+	//{
+	//
+	//}
+
 	// Death Animations
 
 	if (destroyed == true)
