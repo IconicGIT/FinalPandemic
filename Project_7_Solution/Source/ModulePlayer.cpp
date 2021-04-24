@@ -15,8 +15,8 @@ ModulePlayer::ModulePlayer()
 {
 	// idle animations - just one sprite
 
-	upIdleAnim.PushBack({ 66, 1, 32, 14 });
-	upIdleAnim.PushBack({ 66, 1, 32, 14 });
+	upIdleAnim.PushBack({ 147, 8, 21, 41 });
+	upIdleAnim.PushBack({ 178, 8, 22, 42 });
 	upIdleAnim.loop = true;
 	upIdleAnim.speed = 0.1f;
 
@@ -158,7 +158,7 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
-	texture = App->textures->Load("Assets/ship.png");
+	texture = App->textures->Load("Assets/character_sprites.png");
 	currentAnimation = &downIdleAnim;
 
 	laserFx = App->audio->LoadFx("Assets/laser.wav");
