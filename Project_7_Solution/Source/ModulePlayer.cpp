@@ -45,63 +45,92 @@ ModulePlayer::ModulePlayer()
 	upIdleAnim.loop = true;
 	upIdleAnim.speed = 0.1f;
 
+	// animation idle up-left
+	upLeftIdleAnim.PushBack({ 143, 58, 32, 14 });
+	upLeftIdleAnim.PushBack({ 173, 58, 20, 38 });
+	upLeftIdleAnim.loop = true;
+	upLeftIdleAnim.speed = 0.1f;
 
-	//////////////////////////////////////////////////
+	//animation idle left
+	leftIdleAnim.PushBack({ 141, 102, 23, 41 });
+	leftIdleAnim.PushBack({ 171, 102, 21, 40 });
+	leftIdleAnim.loop = true;
+	leftIdleAnim.speed = 0.1f;
 	
-	// there are no sprites for up-right idle, either stays idle-up or idle-right
+	//animation idle down-left
+	downLeftIdleAnim.PushBack({ 138, 149, 20, 41 });
+	downLeftIdleAnim.PushBack({ 172, 149, 27, 43 });
+	downLeftIdleAnim.loop = true;
+	downLeftIdleAnim.speed = 0.1f;
 
-	//upRightIdleAnim.PushBack({ 66, 1, 32, 14 });
-	//upRightIdleAnim.PushBack({ 66, 1, 32, 14 });
-	//upRightIdleAnim.loop = true;
-	//upRightIdleAnim.speed = 0.1f;
-
-	rightIdleAnim.PushBack({ 66, 1, 32, 14 });
-	rightIdleAnim.PushBack({ 66, 1, 32, 14 });
-	rightIdleAnim.loop = true;
-	rightIdleAnim.speed = 0.1f;
-
-	//////////////////////////////////////////////////
-
-	//downRightIdleAnim.PushBack({ 66, 1, 32, 14 });
-	//downRightIdleAnim.PushBack({ 66, 1, 32, 14 });
-	//downRightIdleAnim.loop = true;
-	//downRightIdleAnim.speed = 0.1f;
-
-	downIdleAnim.PushBack({ 66, 1, 32, 14 });
-	downIdleAnim.PushBack({ 66, 1, 32, 14 });
+	//animation idle down
+	downIdleAnim.PushBack({ 143, 196, 24, 42 });
+	downIdleAnim.PushBack({ 177, 194, 24, 43 });
 	downIdleAnim.loop = true;
 	downIdleAnim.speed = 0.1f;
 
-	//downLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
-	//downLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
-	//downLeftIdleAnim.loop = true;
-	//downLeftIdleAnim.speed = 0.1f;
+	//animation idle down-right
+	downRightIdleAnim.PushBack({ 142,239, 20, 42 });
+	downRightIdleAnim.PushBack({ 175, 239, 20, 42 });
+	downRightIdleAnim.loop = true;
+	downRightIdleAnim.speed = 0.1f;
 
-	leftIdleAnim.PushBack({ 66, 1, 32, 14 });
-	leftIdleAnim.PushBack({ 66, 1, 32, 14 });
-	leftIdleAnim.loop = true;
-	leftIdleAnim.speed = 0.1f;
+	//animation idle right 
+	rightIdleAnim.PushBack({ 144, 286, 24, 41 });
+	rightIdleAnim.PushBack({ 177, 287, 24, 41 });
+	rightIdleAnim.loop = true;
+	rightIdleAnim.speed = 0.1f;
 
-	//upLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
-	//upLeftIdleAnim.PushBack({ 66, 1, 32, 14 });
-	//upLeftIdleAnim.loop = true;
-	//upLeftIdleAnim.speed = 0.1f;
+	//animation idle up-right
+	upRightIdleAnim.PushBack({ 137, 334, 24, 40 });
+	upRightIdleAnim.PushBack({ 173, 334, 24, 40 });
+	upRightIdleAnim.loop = true;
+	upRightIdleAnim.speed = 0.1f;
+
+
+	
+
+
+
+	
+
+	
+
+	// 456, 436, 24, 39 hit from down
+	// 420, 437, 23, 40 hit from left
+	// 425, 393, 22, 40 hit from up
+	// 457, 393, 23, 40 hit from right
 
 
 	// Hit Animations
 	
-	bulletHitAnim.PushBack({ 66, 1, 32, 14 });
-	bulletHitAnim.PushBack({ 66, 1, 32, 14 });
-	upLeftIdleAnim.loop = false;
-	upLeftIdleAnim.speed = 0.1f;
+	//up
+	hitFromUpAnim.PushBack({ 425, 393, 22, 40 });
+	hitFromUpAnim.loop = false;
+	hitFromUpAnim.speed = 0.1f;
 
-	explosionHitAnim.PushBack({ 66, 1, 32, 14 });
-	explosionHitAnim.PushBack({ 66, 1, 32, 14 });
-	upLeftIdleAnim.loop = false;
-	upLeftIdleAnim.speed = 0.1f;
+	//left
+	hitFromLeftAnim.PushBack({ 420, 437, 23, 40 });
+	hitFromLeftAnim.loop = false;
+	hitFromLeftAnim.speed = 0.1f;
+
+	//down
+	hitFromDownAnim.PushBack({ 456, 436, 24, 39 });
+	hitFromDownAnim.loop = false;
+	hitFromDownAnim.speed = 0.1f;
+
+	//right
+	hitFromRightAnim.PushBack({ 457, 393, 23, 40 });
+	hitFromRightAnim.loop = false;
+	hitFromRightAnim.speed = 0.1f;
+
+	//rolling when damaged
+	rollAnim.PushBack({ 150, 384, 27, 26 });
+	rollAnim.PushBack({ 181, 382, 29, 27 });
+	rollAnim.loop = false;
+	rollAnim.speed = 0.1f;
 
 	// Death Animations 
-
 	deathUpLeftAnim.PushBack({ 66, 1, 32, 14 });
 	deathUpLeftAnim.PushBack({ 66, 1, 32, 14 });
 	deathUpLeftAnim.loop = false;
@@ -112,12 +141,10 @@ ModulePlayer::ModulePlayer()
 	deathUpRightAnim.loop = false;
 	deathUpRightAnim.speed = 0.1f;
 
-
 	deathDownLeftAnim.PushBack({ 66, 1, 32, 14 });
 	deathDownLeftAnim.PushBack({ 66, 1, 32, 14 });
 	deathDownLeftAnim.loop = false;
 	deathDownLeftAnim.speed = 0.1f;
-
 
 	deathDownRightAnim.PushBack({ 66, 1, 32, 14 });
 	deathDownRightAnim.PushBack({ 66, 1, 32, 14 });
