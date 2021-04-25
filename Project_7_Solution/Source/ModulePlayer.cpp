@@ -9,6 +9,7 @@
 #include "ModuleCollisions.h"
 
 #include "SDL/include/SDL_scancode.h"
+#include <math.h>
 
 
 ModulePlayer::ModulePlayer()
@@ -39,53 +40,55 @@ ModulePlayer::ModulePlayer()
 
 	// idle animations - just one sprite
 
+	float idleSpeed = 0.01f;
+
 	// animation idle up
 	upIdleAnim.PushBack({ 147, 8, 21, 41 });
 	upIdleAnim.PushBack({ 178, 8, 22, 42 });
 	upIdleAnim.loop = true;
-	upIdleAnim.speed = 0.1f;
+	upIdleAnim.speed = idleSpeed;
 
 	// animation idle up-left
 	upLeftIdleAnim.PushBack({ 143, 58, 32, 14 });
 	upLeftIdleAnim.PushBack({ 173, 58, 20, 38 });
 	upLeftIdleAnim.loop = true;
-	upLeftIdleAnim.speed = 0.1f;
+	upLeftIdleAnim.speed = idleSpeed;
 
 	//animation idle left
 	leftIdleAnim.PushBack({ 141, 102, 23, 41 });
 	leftIdleAnim.PushBack({ 171, 102, 21, 40 });
 	leftIdleAnim.loop = true;
-	leftIdleAnim.speed = 0.1f;
+	leftIdleAnim.speed = idleSpeed;
 	
 	//animation idle down-left
 	downLeftIdleAnim.PushBack({ 138, 149, 20, 41 });
 	downLeftIdleAnim.PushBack({ 172, 149, 27, 43 });
 	downLeftIdleAnim.loop = true;
-	downLeftIdleAnim.speed = 0.1f;
+	downLeftIdleAnim.speed = idleSpeed;
 
 	//animation idle down
 	downIdleAnim.PushBack({ 143, 196, 24, 42 });
 	downIdleAnim.PushBack({ 177, 194, 24, 43 });
 	downIdleAnim.loop = true;
-	downIdleAnim.speed = 0.1f;
+	downIdleAnim.speed = idleSpeed;
 
 	//animation idle down-right
 	downRightIdleAnim.PushBack({ 142,239, 20, 42 });
 	downRightIdleAnim.PushBack({ 175, 239, 20, 42 });
 	downRightIdleAnim.loop = true;
-	downRightIdleAnim.speed = 0.1f;
+	downRightIdleAnim.speed = idleSpeed;
 
 	//animation idle right 
 	rightIdleAnim.PushBack({ 144, 286, 24, 41 });
 	rightIdleAnim.PushBack({ 177, 287, 24, 41 });
 	rightIdleAnim.loop = true;
-	rightIdleAnim.speed = 0.1f;
+	rightIdleAnim.speed = idleSpeed;
 
 	//animation idle up-right
 	upRightIdleAnim.PushBack({ 137, 334, 24, 40 });
 	upRightIdleAnim.PushBack({ 173, 334, 24, 40 });
 	upRightIdleAnim.loop = true;
-	upRightIdleAnim.speed = 0.1f;
+	upRightIdleAnim.speed = idleSpeed;
 
 
 	// 456, 436, 24, 39 hit from down
@@ -251,7 +254,8 @@ update_status ModulePlayer::Update()
 
 
 	// Move the player in all posible direction 
-
+	// 
+	//AXIS MOVEMENT
 	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
 	{
 		position.x -= speed;
@@ -274,17 +278,6 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
-	{
-		position.y += speed;
-
-		if (currentAnimation != &downAnim)
-		{
-			downAnim.Reset();
-			currentAnimation = &downAnim;
-		}
-	}
-
 	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
 	{
 		position.y -= speed;
@@ -296,22 +289,24 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
 	{
-		position.y -= speed;
-		position.x += speed;
+		position.y += speed;
 
-		if (currentAnimation != &upRightAnim)
+		if (currentAnimation != &downAnim)
 		{
-			upRightAnim.Reset();
-			currentAnimation = &upRightAnim;
+			downAnim.Reset();
+			currentAnimation = &downAnim;
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	//DIAGONAL AXIS MOVEMENT
+	int diagonalSpeed = speed / sqrt(2);
+
+	if ((App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT) && (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT))
 	{
-		position.y -= speed;
-		position.x -= speed;
+		position.x -= diagonalSpeed;
+		position.y -= diagonalSpeed;
 
 		if (currentAnimation != &upLeftAnim)
 		{
@@ -320,29 +315,89 @@ update_status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-	{
-		position.y += speed;
-		position.x -= speed;
 
-		if (currentAnimation != &downLeftAnim)
-		{
-			downLeftAnim.Reset();
-			currentAnimation = &downLeftAnim;
-		}
-	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	{
-		position.y += speed;
-		position.x += speed;
 
-		if (currentAnimation != &downRightAnim)
-		{
-			downRightAnim.Reset();
-			currentAnimation = &downRightAnim;
-		}
-	}
+	//if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	//{
+	//	position.x += speed;
+	//
+	//	if (currentAnimation != &rightAnim)
+	//	{
+	//		rightAnim.Reset();
+	//		currentAnimation = &rightAnim;
+	//	}
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	//{
+	//	position.y += speed;
+	//
+	//	if (currentAnimation != &downAnim)
+	//	{
+	//		downAnim.Reset();
+	//		currentAnimation = &downAnim;
+	//	}
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+	//{
+	//	position.y -= speed;
+	//
+	//	if (currentAnimation != &upAnim)
+	//	{
+	//		upAnim.Reset();
+	//		currentAnimation = &upAnim;
+	//	}
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	//{
+	//	position.y -= speed;
+	//	position.x += speed;
+	//
+	//	if (currentAnimation != &upRightAnim)
+	//	{
+	//		upRightAnim.Reset();
+	//		currentAnimation = &upRightAnim;
+	//	}
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	//{
+	//	position.y -= speed;
+	//	position.x -= speed;
+	//
+	//	if (currentAnimation != &upLeftAnim)
+	//	{
+	//		upLeftAnim.Reset();
+	//		currentAnimation = &upLeftAnim;
+	//	}
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	//{
+	//	position.y += speed;
+	//	position.x -= speed;
+	//
+	//	if (currentAnimation != &downLeftAnim)
+	//	{
+	//		downLeftAnim.Reset();
+	//		currentAnimation = &downLeftAnim;
+	//	}
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	//{
+	//	position.y += speed;
+	//	position.x += speed;
+	//
+	//	if (currentAnimation != &downRightAnim)
+	//	{
+	//		downRightAnim.Reset();
+	//		currentAnimation = &downRightAnim;
+	//	}
+	//}
 
 
 
@@ -356,57 +411,91 @@ update_status ModulePlayer::Update()
 
 	// Idle Animations 
 
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE)
-	{
-		downIdleAnim.Reset();
-		currentAnimation = &downIdleAnim;
-	}
-
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-		|| App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
-	{
-		downRightIdleAnim.Reset();
-		currentAnimation = &downRightIdleAnim;
-	}
-
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
-	{
-		rightIdleAnim.Reset();
-		currentAnimation = &rightIdleAnim;
-	}
-
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
-	{
-		upRightIdleAnim.Reset();
-		currentAnimation = &upRightIdleAnim;
-	}
-
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)
-	{
-		upIdleAnim.Reset();
-		currentAnimation = &upIdleAnim;
-	}
-
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
-	{
-		upLeftIdleAnim.Reset();
-		currentAnimation = &upLeftIdleAnim;
-	}
-
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
+	//AXIS MOVEMENT
+	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_UP)
 	{
 		leftIdleAnim.Reset();
 		currentAnimation = &leftIdleAnim;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
+	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_UP)
 	{
-		downLeftIdleAnim.Reset();
-		currentAnimation = &downLeftIdleAnim;
+		rightIdleAnim.Reset();
+		currentAnimation = &rightIdleAnim;
 	}
+
+	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_UP)
+	{
+		upIdleAnim.Reset();
+		currentAnimation = &upIdleAnim;
+	}
+
+	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_UP)
+	{
+		downIdleAnim.Reset();
+		currentAnimation = &downIdleAnim;
+	}
+	 //DIAGONAL AXIS MOVEMENT
+	
+	 //up left
+	if ((App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_UP) && (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_UP))
+	{
+		upLeftIdleAnim.Reset();
+		currentAnimation = &upLeftIdleAnim;
+	}
+
+
+	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE)
+	//{
+	//	downIdleAnim.Reset();
+	//	currentAnimation = &downIdleAnim;
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
+	//	|| App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
+	//{
+	//	downRightIdleAnim.Reset();
+	//	currentAnimation = &downRightIdleAnim;
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
+	//{
+	//	rightIdleAnim.Reset();
+	//	currentAnimation = &rightIdleAnim;
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+	//	&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
+	//{
+	//	upRightIdleAnim.Reset();
+	//	currentAnimation = &upRightIdleAnim;
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)
+	//{
+	//	upIdleAnim.Reset();
+	//	currentAnimation = &upIdleAnim;
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
+	//	&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
+	//{
+	//	upLeftIdleAnim.Reset();
+	//	currentAnimation = &upLeftIdleAnim;
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
+	//{
+	//	leftIdleAnim.Reset();
+	//	currentAnimation = &leftIdleAnim;
+	//}
+	//
+	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
+	//	&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
+	//{
+	//	downLeftIdleAnim.Reset();
+	//	currentAnimation = &downLeftIdleAnim;
+	//}
 
 	// Hit Animations  // Need enemy Particles or Player Life lower
 
