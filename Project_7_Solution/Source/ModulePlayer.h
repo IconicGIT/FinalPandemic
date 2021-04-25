@@ -71,14 +71,18 @@ public:
 	Animation upLeftAnim;
 
 	// Damage Animations
-	Animation  bulletHitAnim; // Blinking
-	Animation  explosionHitAnim; // Character fly
+	Animation  hitFromUpAnim;
+	Animation  hitFromLeftAnim;
+	Animation  hitFromDownAnim;
+	Animation  hitFromRightAnim;
+
+	Animation  rollAnim; // Character fly
 
 	// Death Animations
-	Animation  deathUpLeftAnim;
-	Animation  deathUpRightAnim;
-	Animation  deathDownLeftAnim;
-	Animation  deathDownRightAnim;
+	Animation  deathFromLeftAnim;
+	Animation  deathFromRightAnim;
+	Animation  deathFromUpAnim;
+	Animation  deathFromDownAnim;
 
 
 

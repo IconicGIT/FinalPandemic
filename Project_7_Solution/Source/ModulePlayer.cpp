@@ -88,14 +88,6 @@ ModulePlayer::ModulePlayer()
 	upRightIdleAnim.speed = 0.1f;
 
 
-	
-
-
-
-	
-
-	
-
 	// 456, 436, 24, 39 hit from down
 	// 420, 437, 23, 40 hit from left
 	// 425, 393, 22, 40 hit from up
@@ -104,25 +96,25 @@ ModulePlayer::ModulePlayer()
 
 	// Hit Animations
 	
-	//up
-	hitFromUpAnim.PushBack({ 425, 393, 22, 40 });
-	hitFromUpAnim.loop = false;
-	hitFromUpAnim.speed = 0.1f;
+		//up
+		hitFromUpAnim.PushBack({ 425, 393, 22, 40 });
+		hitFromUpAnim.loop = false;
+		hitFromUpAnim.speed = 0.1f;
 
-	//left
-	hitFromLeftAnim.PushBack({ 420, 437, 23, 40 });
-	hitFromLeftAnim.loop = false;
-	hitFromLeftAnim.speed = 0.1f;
+		//left
+		hitFromLeftAnim.PushBack({ 420, 437, 23, 40 });
+		hitFromLeftAnim.loop = false;
+		hitFromLeftAnim.speed = 0.1f;
 
-	//down
-	hitFromDownAnim.PushBack({ 456, 436, 24, 39 });
-	hitFromDownAnim.loop = false;
-	hitFromDownAnim.speed = 0.1f;
+		//down
+		hitFromDownAnim.PushBack({ 456, 436, 24, 39 });
+		hitFromDownAnim.loop = false;
+		hitFromDownAnim.speed = 0.1f;
 
-	//right
-	hitFromRightAnim.PushBack({ 457, 393, 23, 40 });
-	hitFromRightAnim.loop = false;
-	hitFromRightAnim.speed = 0.1f;
+		//right
+		hitFromRightAnim.PushBack({ 457, 393, 23, 40 });
+		hitFromRightAnim.loop = false;
+		hitFromRightAnim.speed = 0.1f;
 
 	//rolling when damaged
 	rollAnim.PushBack({ 150, 384, 27, 26 });
@@ -130,77 +122,96 @@ ModulePlayer::ModulePlayer()
 	rollAnim.loop = false;
 	rollAnim.speed = 0.1f;
 
-	// Death Animations 
-	deathUpLeftAnim.PushBack({ 66, 1, 32, 14 });
-	deathUpLeftAnim.PushBack({ 66, 1, 32, 14 });
-	deathUpLeftAnim.loop = false;
-	deathUpLeftAnim.speed = 0.1f;
+	// Death Animations
 
-	deathUpRightAnim.PushBack({ 66, 1, 32, 14 });
-	deathUpRightAnim.PushBack({ 66, 1, 32, 14 });
-	deathUpRightAnim.loop = false;
-	deathUpRightAnim.speed = 0.1f;
+	deathFromLeftAnim.PushBack({ 216, 448, 24, 35 });
+	deathFromLeftAnim.PushBack({ 245, 450, 23, 35 });
+	deathFromLeftAnim.PushBack({ 272, 452, 31, 35 });
+	deathFromLeftAnim.PushBack({ 305, 457, 37, 31 });
+	deathFromLeftAnim.loop = false;
+	deathFromLeftAnim.speed = 0.2f;
 
-	deathDownLeftAnim.PushBack({ 66, 1, 32, 14 });
-	deathDownLeftAnim.PushBack({ 66, 1, 32, 14 });
-	deathDownLeftAnim.loop = false;
-	deathDownLeftAnim.speed = 0.1f;
+	deathFromRightAnim.PushBack({ 10, 397, 26, 41 });
+	deathFromRightAnim.PushBack({ 41, 394, 26, 41 });
+	deathFromRightAnim.PushBack({ 73, 392, 28, 41 });
+	deathFromRightAnim.PushBack({ 111, 383, 35, 51 });
+	deathFromRightAnim.loop = false;
+	deathFromRightAnim.speed = 0.2f;
 
-	deathDownRightAnim.PushBack({ 66, 1, 32, 14 });
-	deathDownRightAnim.PushBack({ 66, 1, 32, 14 });
-	deathDownRightAnim.loop = false;
-	deathDownRightAnim.speed = 0.1f;
+	deathFromUpAnim.PushBack({ 5, 443, 23, 38 });
+	deathFromUpAnim.PushBack({ 36, 440, 48, 41 });
+	deathFromUpAnim.PushBack({ 87, 437, 30, 41 });
+	deathFromUpAnim.PushBack({ 125, 437, 30, 41 });
+	deathFromUpAnim.loop = false;
+	deathFromUpAnim.speed = 0.2f;
+
+	deathFromDownAnim.PushBack({ 212, 394, 28, 45 });
+	deathFromDownAnim.PushBack({ 247, 396, 43, 47 });
+	deathFromDownAnim.PushBack({ 294, 405, 22, 37 });
+	deathFromDownAnim.PushBack({ 321, 406, 27, 26 });
+	deathFromDownAnim.PushBack({ 359, 396, 40, 46 });
+	deathFromDownAnim.loop = false;
+	deathFromDownAnim.speed = 0.05f;
 
 
 
 	// Move Animations
 
-	upAnim.PushBack({ 100, 1, 32, 14 });
-	upAnim.PushBack({ 132, 0, 32, 14 });
+	upAnim.PushBack({ 12, 7, 13, 42 });
+	upAnim.PushBack({ 44, 7, 13, 42 });
+	upAnim.PushBack({ 76, 7, 13, 42 });
+	upAnim.PushBack({ 108, 7, 13, 42 });
 	upAnim.loop = true;
 	upAnim.speed = 0.1f;
 
-
-	downAnim.PushBack({ 33, 1, 32, 14 });
-	downAnim.PushBack({ 0, 1, 32, 14 });
-	downAnim.loop = true;
-	downAnim.speed = 0.1f;
-
+	upLeftAnim.PushBack({ 8, 54, 26, 42 });
+	upLeftAnim.PushBack({ 39, 54, 26, 42 });
+	upLeftAnim.PushBack({ 70, 54, 26, 42 });
+	upLeftAnim.PushBack({ 103, 54, 26, 42 });
+	upLeftAnim.loop = true;
+	upLeftAnim.speed = 0.1f;
 	
-	leftAnim.PushBack({ 33, 1, 32, 14 });
-	leftAnim.PushBack({ 0, 1, 32, 14 });
+	leftAnim.PushBack({ 6, 103, 31, 41 });
+	leftAnim.PushBack({ 39, 103, 31, 41 });
+	leftAnim.PushBack({ 72, 103, 31, 41 });
+	leftAnim.PushBack({ 103, 103, 31, 41 });
 	leftAnim.loop = true;
 	leftAnim.speed = 0.1f;
 
-	
-	rightAnim.PushBack({ 33, 1, 32, 14 });
-	rightAnim.PushBack({ 0, 1, 32, 14 });
-	rightAnim.loop = true;
-	rightAnim.speed = 0.1f;
-
-	
-	upLeftAnim.PushBack({ 33, 1, 32, 14 });
-	upLeftAnim.PushBack({ 0, 1, 32, 14 });
-	upLeftAnim.loop = true;
-	upLeftAnim.speed = 0.1f;
-
-	
-	upRightAnim.PushBack({ 33, 1, 32, 14 });
-	upRightAnim.PushBack({ 0, 1, 32, 14 });
-	upRightAnim.loop = true;
-	upRightAnim.speed = 0.1f;
-
-	
-	downLeftAnim.PushBack({ 33, 1, 32, 14 });
-	downLeftAnim.PushBack({ 0, 1, 32, 14 });
+	downLeftAnim.PushBack({ 11, 149, 25, 39 });
+	downLeftAnim.PushBack({ 44, 149, 25, 39 });
+	downLeftAnim.PushBack({ 77, 149, 25, 39 });
+	downLeftAnim.PushBack({ 108, 149, 25, 39 });
 	downLeftAnim.loop = true;
 	downLeftAnim.speed = 0.1f;
 
+	downAnim.PushBack({ 17, 194, 17, 40 });
+	downAnim.PushBack({ 49, 194, 17, 40 });
+	downAnim.PushBack({ 80, 194, 17, 40 });
+	downAnim.PushBack({ 113, 194, 17, 40 });
+	downAnim.loop = true;
+	downAnim.speed = 0.1f;
 	
-	downRightAnim.PushBack({ 33, 1, 32, 14 });
-	downRightAnim.PushBack({ 0, 1, 32, 14 });
+	downRightAnim.PushBack({ 12, 240, 25, 39 });
+	downRightAnim.PushBack({ 44, 240, 25, 39 });
+	downRightAnim.PushBack({ 72, 240, 25, 39 });
+	downRightAnim.PushBack({ 108, 240, 25, 39 });
 	downRightAnim.loop = true;
 	downRightAnim.speed = 0.1f;
+
+	rightAnim.PushBack({ 8, 285, 31, 38 });
+	rightAnim.PushBack({ 43, 285, 27, 41 });
+	rightAnim.PushBack({ 71, 285, 30, 36 });
+	rightAnim.PushBack({ 108, 285, 26, 36 });
+	rightAnim.loop = true;
+	rightAnim.speed = 0.1f;
+
+	upRightAnim.PushBack({ 8, 332, 26, 42 });
+	upRightAnim.PushBack({ 40, 332, 26, 42 });
+	upRightAnim.PushBack({ 68, 332, 26, 42 });
+	upRightAnim.PushBack({ 103, 332, 26, 42 });
+	upRightAnim.loop = true;
+	upRightAnim.speed = 0.1f;
 
 	
 
