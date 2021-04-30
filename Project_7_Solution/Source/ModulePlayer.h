@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "ModuleInput.h"
 
 #define PLAYER_LIFE 10
 
@@ -39,7 +40,8 @@ public:
 	iPoint position;
 
 	// The speed in which we move the player (pixels per frame)
-	int speed = 1;
+	int speed = 2;
+	int diagonalSpeed = 1;
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
@@ -100,6 +102,18 @@ public:
 	uint laserFx = 0;
 	uint explosionFx = 0;
 
+	uint score = 000;
+	int scoreFont = -1;
+	char scoreText[10] = { "\0" };
+
+	//player keys
+	KEY_STATE keyUp;
+	KEY_STATE keyLeft;
+	KEY_STATE keyDown;
+	KEY_STATE keyRight;
+
+	KEY_STATE lastHorizontalKey;
+	KEY_STATE lastVerticalKey;
 };
 
 #endif //!__MODULE_PLAYER_H__

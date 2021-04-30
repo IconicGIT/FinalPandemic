@@ -9,6 +9,7 @@
 #include "ModulePlayer.h"
 #include "Globals.h"
 #include "ModuleInput.h"
+#include "ModuleFonts.h"
 #include "SDL/include/SDL_scancode.h"
 
 
@@ -99,7 +100,7 @@ UpdateResult ModuleScene::Update()
 
 	//render camera area
 	App->render->DrawQuad(App->render->camera, 0, 255, 255, 100);
-
+	App->fonts->BlitText(0, 0, App->player->scoreFont, App->player->scoreText);
 	return UpdateResult::UPDATE_CONTINUE;
 }
 

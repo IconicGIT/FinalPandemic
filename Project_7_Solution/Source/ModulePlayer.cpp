@@ -8,6 +8,8 @@
 #include "ModuleAudio.h"
 #include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
+#include "ModuleFonts.h"
+
 
 #include "SDL/include/SDL_scancode.h"
 #include <math.h>
@@ -243,7 +245,17 @@ bool ModulePlayer::Start()
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
 
+	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
+	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
+	scoreFont = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable,2);
+
 	return ret;
+
+	
+	
+	
+	
+
 }
 
 UpdateResult ModulePlayer::Update()
@@ -253,11 +265,23 @@ UpdateResult ModulePlayer::Update()
 	//App->player->position.x += 0;
 	////////////////////////////////////////////////////////
 
+	keyUp    = App->input->keys[SDL_SCANCODE_W];
+	keyLeft  = App->input->keys[SDL_SCANCODE_A];
+	keyDown  = App->input->keys[SDL_SCANCODE_S];
+	keyRight = App->input->keys[SDL_SCANCODE_D];
+
+
+
+
+
 
 	// Move the player in all posible direction 
 	// 
 	//AXIS MOVEMENT
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
+	if ((keyUp == KEY_STATE::KEY_IDLE)
+		&& (keyLeft == KEY_STATE::KEY_REPEAT)
+		&& (keyDown == KEY_STATE::KEY_IDLE)
+		&& (keyRight == KEY_STATE::KEY_IDLE))
 	{
 		position.x -= speed;
 
@@ -266,9 +290,14 @@ UpdateResult ModulePlayer::Update()
 			leftAnim.Reset();
 			currentAnimation = &leftAnim;
 		}
+		lastHorizontalKey = keyLeft;
+		lastVerticalKey = KEY_STATE::KEY_IDLE;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
+	if ((keyUp == KEY_STATE::KEY_IDLE)
+		&& (keyLeft == KEY_STATE::KEY_IDLE)
+		&& (keyDown == KEY_STATE::KEY_IDLE)
+		&& (keyRight == KEY_STATE::KEY_REPEAT))
 	{
 		position.x += speed;
 
@@ -277,9 +306,14 @@ UpdateResult ModulePlayer::Update()
 			rightAnim.Reset();
 			currentAnimation = &rightAnim;
 		}
+		lastHorizontalKey = keyRight;
+		lastVerticalKey = KEY_STATE::KEY_IDLE;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
+	if ((keyUp == KEY_STATE::KEY_REPEAT)
+		&& (keyLeft == KEY_STATE::KEY_IDLE)
+		&& (keyDown == KEY_STATE::KEY_IDLE)
+		&& (keyRight == KEY_STATE::KEY_IDLE))
 	{
 		position.y -= speed;
 
@@ -288,9 +322,14 @@ UpdateResult ModulePlayer::Update()
 			upAnim.Reset();
 			currentAnimation = &upAnim;
 		}
+		lastHorizontalKey = KEY_STATE::KEY_IDLE;
+		lastVerticalKey = keyUp;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
+	if ((keyUp == KEY_STATE::KEY_IDLE)
+		&& (keyLeft == KEY_STATE::KEY_IDLE)
+		&& (keyDown == KEY_STATE::KEY_REPEAT)
+		&& (keyRight == KEY_STATE::KEY_IDLE))
 	{
 		position.y += speed;
 
@@ -299,12 +338,17 @@ UpdateResult ModulePlayer::Update()
 			downAnim.Reset();
 			currentAnimation = &downAnim;
 		}
+		lastHorizontalKey = KEY_STATE::KEY_IDLE;
+		lastVerticalKey = keyDown;
 	}
 
 	//DIAGONAL AXIS MOVEMENT
-	int diagonalSpeed = speed / sqrt(2);
-
-	if ((App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT) && (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT))
+	
+	//up-left
+	if ((keyUp == KEY_STATE::KEY_REPEAT) 
+		&& (keyLeft == KEY_STATE::KEY_REPEAT)
+		&& (keyDown == KEY_STATE::KEY_IDLE)
+		&& (keyRight == KEY_STATE::KEY_IDLE))
 	{
 		position.x -= diagonalSpeed;
 		position.y -= diagonalSpeed;
@@ -314,6 +358,62 @@ UpdateResult ModulePlayer::Update()
 			upLeftAnim.Reset();
 			currentAnimation = &upLeftAnim;
 		}
+		lastHorizontalKey = keyLeft;
+		lastVerticalKey = keyUp;
+	}
+
+	//down-left
+	if ((keyUp == KEY_STATE::KEY_IDLE)
+		&& (keyLeft == KEY_STATE::KEY_REPEAT)
+		&& (keyDown == KEY_STATE::KEY_REPEAT)
+		&& (keyRight == KEY_STATE::KEY_IDLE))
+	{
+		position.x -= diagonalSpeed;
+		position.y += diagonalSpeed;
+
+		if (currentAnimation != &downLeftAnim)
+		{
+			downLeftAnim.Reset();
+			currentAnimation = &downLeftAnim;
+		}
+		lastHorizontalKey = keyLeft;
+		lastVerticalKey = keyDown;
+	}
+
+	//down-right
+	if ((keyUp == KEY_STATE::KEY_IDLE)
+		&& (keyLeft == KEY_STATE::KEY_IDLE)
+		&& (keyDown == KEY_STATE::KEY_REPEAT)
+		&& (keyRight == KEY_STATE::KEY_REPEAT))
+	{
+		position.x += diagonalSpeed;
+		position.y += diagonalSpeed;
+
+		if (currentAnimation != &downRightAnim)
+		{
+			downRightAnim.Reset();
+			currentAnimation = &downRightAnim;
+		}
+		lastHorizontalKey = keyRight;
+		lastVerticalKey = keyDown;
+	}
+
+	//up-right
+	if ((keyUp == KEY_STATE::KEY_REPEAT)
+		&& (keyLeft == KEY_STATE::KEY_IDLE)
+		&& (keyDown == KEY_STATE::KEY_IDLE)
+		&& (keyRight == KEY_STATE::KEY_REPEAT))
+	{
+		position.x += diagonalSpeed;
+		position.y -= diagonalSpeed;
+
+		if (currentAnimation != &upRightAnim)
+		{
+			upRightAnim.Reset();
+			currentAnimation = &upRightAnim;
+		}
+		lastHorizontalKey = keyRight;
+		lastVerticalKey = keyUp;
 	}
 
 
@@ -413,25 +513,41 @@ UpdateResult ModulePlayer::Update()
 	// Idle Animations 
 
 	//AXIS MOVEMENT
-	if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_UP)
+	if (   !(keyUp == KEY_STATE::KEY_REPEAT)
+		&& (keyLeft == KEY_STATE::KEY_IDLE)
+		&& !(keyDown == KEY_STATE::KEY_REPEAT)
+		&& !(keyRight == KEY_STATE::KEY_REPEAT)
+		)
 	{
 		leftIdleAnim.Reset();
 		currentAnimation = &leftIdleAnim;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_UP)
+	if (   !(keyUp == KEY_STATE::KEY_REPEAT)
+		&& !(keyLeft == KEY_STATE::KEY_REPEAT)
+		&& !(keyDown == KEY_STATE::KEY_REPEAT)
+		&& (keyRight == KEY_STATE::KEY_IDLE)
+		)
 	{
 		rightIdleAnim.Reset();
 		currentAnimation = &rightIdleAnim;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_UP)
+	if (   (keyUp == KEY_STATE::KEY_IDLE)
+		&& !(keyLeft == KEY_STATE::KEY_REPEAT)
+		&& !(keyDown == KEY_STATE::KEY_REPEAT)
+		&& !(keyRight == KEY_STATE::KEY_REPEAT)
+		)
 	{
 		upIdleAnim.Reset();
 		currentAnimation = &upIdleAnim;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_UP)
+	if (   !(keyUp == KEY_STATE::KEY_REPEAT)
+		&& !(keyLeft == KEY_STATE::KEY_REPEAT)
+		&& (keyDown == KEY_STATE::KEY_IDLE)
+		&& !(keyRight == KEY_STATE::KEY_REPEAT)
+		)
 	{
 		downIdleAnim.Reset();
 		currentAnimation = &downIdleAnim;
@@ -538,6 +654,8 @@ UpdateResult ModulePlayer::PostUpdate()
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		App->render->Blit(texture, position.x, position.y, &rect,0);
 	}
+
+	App->fonts->BlitText(20, 20,scoreFont, "Test Text");
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
