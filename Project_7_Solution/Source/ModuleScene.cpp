@@ -46,24 +46,11 @@ bool ModuleScene::Start()
 	// Enemies ---
 
 	
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 600, 80);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 625, 80);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 640, 80);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 665, 80);
+	//App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 600, 80);
 
-	// TODO 1: Add a new wave of red birds
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 735, 120);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 750, 120);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 775, 120);
-	App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 790, 120);
 
-	// TODO 2: Add a new wave of brown cookies
-	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 830, 100);
-	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 850, 100);
-	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 870, 100);
-	App->enemies->AddEnemy(ENEMY_TYPE::BROWNSHIP, 890, 100);
-
-	App->enemies->AddEnemy(ENEMY_TYPE::MECH, 900, 195);
+	App->render->camera.x = 475 * SCREEN_SIZE;
+	App->render->camera.y = 1156 * SCREEN_SIZE;
 
 	if (App->player->IsEnabled() == 0)
 	{

@@ -1,6 +1,7 @@
 #ifndef __MODULE_PLAYER_H__
 #define __MODULE_PLAYER_H__
 
+#include "Application.h"
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
@@ -39,6 +40,13 @@ public:
 	// Position of the player in the map
 	iPoint position;
 
+	//Camera
+	SDL_Rect camera;
+
+	//Margin of movement
+	int horizontalMargin = 150;
+	int verticalMargin = 200;
+	
 	// The speed in which we move the player (pixels per frame)
 	int speed = 2;
 	int diagonalSpeed = 1;

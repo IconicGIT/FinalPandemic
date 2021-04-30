@@ -1,5 +1,6 @@
 #include "ModulePlayer.h"
 
+#include "Globals.h"
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
@@ -240,8 +241,10 @@ bool ModulePlayer::Start()
 	laserFx = App->audio->LoadFx("Assets/laser.wav");
 	explosionFx = App->audio->LoadFx("Assets/explosion.wav");
 
-	position.x = 150;
-	position.y = 120;
+
+
+	position.x = 550;
+	position.y = 1400;
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
 
@@ -422,7 +425,27 @@ UpdateResult ModulePlayer::Update()
 		lastDirection = 8;
 	}
 
+	if (App->render->camera.x > 475 * SCREEN_SIZE && App->render->camera.y < 1156 * SCREEN_SIZE) {
 
+		if (lastDirection % 2 == 0)
+		{
+			if (position.x < (App->render->camera.x / SCREEN_SIZE + horizontalMargin)) App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
+			if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)) App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+			if (position.y < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
+		}
+		else
+		{
+			if (position.x < (App->render->camera.x / SCREEN_SIZE + horizontalMargin)) App->render->camera.x -= speed * SCREEN_SIZE;
+			if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)) App->render->camera.x += speed * SCREEN_SIZE;
+			if (position.y < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speed * SCREEN_SIZE;
+		}
+	}
+	else {
+		App->render->camera.x = 475 * SCREEN_SIZE;
+		App->render->camera.y = 1156 * SCREEN_SIZE;
+	}
+
+	//if (App->input->keys[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT) App->render->camera.x += speed;
 
 
 	//if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
@@ -585,9 +608,6 @@ UpdateResult ModulePlayer::Update()
 				currentAnimation = &upIdleAnim;
 			}
 
-
-			
-
 			break;
 
 		case 2:
@@ -740,7 +760,7 @@ UpdateResult ModulePlayer::PostUpdate()
 	if (destroyed != true)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect,0);
+		App->render->Blit(texture, position.x, position.y, &rect,1);
 	}
 
 	App->fonts->BlitText(20, 20,scoreFont,"test text");
