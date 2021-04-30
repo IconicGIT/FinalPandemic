@@ -24,6 +24,7 @@ bool ModuleParticles::Start()
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/particles.png");
 
+
 	// Explosion particle
 	explosion.anim.PushBack({274, 296, 33, 30});
 	explosion.anim.PushBack({313, 296, 33, 30});
@@ -39,6 +40,13 @@ bool ModuleParticles::Start()
 	laser.speed.x = 5;
 	laser.lifetime = 180;
 	laser.anim.speed = 0.2f;
+
+	PlayerBullet.anim.PushBack({ 232, 103, 16, 12 });
+	PlayerBullet.anim.PushBack({ 249, 103, 16, 12 });
+	PlayerBullet.speed.x = 5;
+	PlayerBullet.speed.y = 5;
+	PlayerBullet.lifetime = 180;
+	PlayerBullet.anim.speed = 0.2f;
 
 	return true;
 }
@@ -109,7 +117,7 @@ UpdateResult ModuleParticles::PostUpdate()
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
-void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType, uint delay)
+void ModuleParticles::AddParticle(const Particle& particle, int id, int x, int y, int direction, Collider::Type colliderType, uint delay)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
@@ -121,6 +129,8 @@ void ModuleParticles::AddParticle(const Particle& particle, int x, int y, Collid
 			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
 			p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
 			p->position.y = y;
+			p->direction = direction;
+			p->id = id;
 
 			//Adding the particle's collider
 			if (colliderType != Collider::Type::NONE)

@@ -24,6 +24,13 @@ public:
 	bool Update();
 
 public:
+
+	//Bullet ID
+	int id;
+
+	//direction
+	int direction;
+
 	// Defines the position in the screen
 	iPoint position;
 
