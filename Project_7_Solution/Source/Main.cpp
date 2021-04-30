@@ -52,14 +52,14 @@ int main(int argc, char* argv[])
 
 			case main_states::MAIN_UPDATE:
 			{
-				update_status status = App->Update();
+				UpdateResult status = App->Update();
 
-				if (status == update_status::UPDATE_ERROR)
+				if (status == UpdateResult::UPDATE_ERROR)
 				{
 					LOG("Application Update exits with error -----\n");
 					state = main_states::MAIN_EXIT;
 				}
-				else if (status == update_status::UPDATE_STOP)
+				else if (status == UpdateResult::UPDATE_STOP)
 				{
 					state = main_states::MAIN_FINISH;
 				}

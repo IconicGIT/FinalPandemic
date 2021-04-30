@@ -3,7 +3,7 @@
 
 #include "Globals.h"
 
-#define NUM_MODULES 10
+#define NUM_MODULES 12
 
 class Module;
 class ModuleWindow;
@@ -11,9 +11,11 @@ class ModuleInput;
 class ModuleTextures;
 class ModuleAudio;
 class ModulePlayer;
+class SceneIntro;
 class ModuleScene;
 class ModuleParticles;
 class ModuleCollisions;
+class ModuleFadeToBlack;
 class ModuleEnemies;
 class ModuleRender;
 
@@ -32,7 +34,7 @@ public:
 	bool Init();
 
 	//Updates all modules (PreUpdate, Update and PostUpdate)
-	update_status Update();
+	UpdateResult Update();
 
 	//Releases all the application data
 	bool CleanUp();
@@ -48,10 +50,13 @@ public:
 	ModuleAudio* audio = nullptr;
 
 	ModulePlayer* player = nullptr;
+
+	SceneIntro* sceneIntro = nullptr;
 	ModuleScene* scene = nullptr;
 	ModuleEnemies* enemies = nullptr;
 	ModuleParticles* particles = nullptr;
 
+	ModuleFadeToBlack* fade = nullptr;
 	ModuleCollisions* collisions = nullptr;
 
 	ModuleRender* render = nullptr;

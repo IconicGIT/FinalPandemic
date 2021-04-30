@@ -14,7 +14,7 @@
 #define SPAWN_MARGIN 50
 
 
-ModuleEnemies::ModuleEnemies()
+ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 {
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 		enemies[i] = nullptr;
@@ -33,7 +33,7 @@ bool ModuleEnemies::Start()
 	return true;
 }
 
-update_status ModuleEnemies::Update()
+UpdateResult ModuleEnemies::Update()
 {
 	HandleEnemiesSpawn();
 
@@ -45,10 +45,10 @@ update_status ModuleEnemies::Update()
 
 	HandleEnemiesDespawn();
 
-	return update_status::UPDATE_CONTINUE;
+	return UpdateResult::UPDATE_CONTINUE;
 }
 
-update_status ModuleEnemies::PostUpdate()
+UpdateResult ModuleEnemies::PostUpdate()
 {
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
@@ -56,7 +56,7 @@ update_status ModuleEnemies::PostUpdate()
 			enemies[i]->Draw();
 	}
 
-	return update_status::UPDATE_CONTINUE;
+	return UpdateResult::UPDATE_CONTINUE;
 }
 
 // Called before quitting

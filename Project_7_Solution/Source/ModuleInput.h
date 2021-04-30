@@ -4,6 +4,8 @@
 #include "Module.h"
 #include "Globals.h"
 
+#include "SDL/include/SDL_scancode.h"
+
 #define MAX_KEYS 256
 
 enum KEY_STATE
@@ -18,7 +20,7 @@ class ModuleInput : public Module
 {
 public:
 	// Constructor
-	ModuleInput();
+	ModuleInput(bool startEnabled);
 
 	// Destructor
 	~ModuleInput();
@@ -29,7 +31,7 @@ public:
 
 	// Called at the beginning of the application loop
 	// Updates all input data received from SDL
-	update_status PreUpdate() override;
+	UpdateResult PreUpdate() override;
 
 	// Called on application exit.
 	// Uninitializes the SDL system for input detection

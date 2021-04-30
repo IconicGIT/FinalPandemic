@@ -6,13 +6,14 @@
 #include "ModuleRender.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
 
 #include "SDL/include/SDL_scancode.h"
 #include <math.h>
 
 
-ModulePlayer::ModulePlayer()
+ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 
 	/* animation
@@ -245,7 +246,7 @@ bool ModulePlayer::Start()
 	return ret;
 }
 
-update_status ModulePlayer::Update()
+UpdateResult ModulePlayer::Update()
 {
 	////////////////////////////////////////////////////////
 	// Moving the player with the camera scroll
@@ -522,15 +523,15 @@ update_status ModulePlayer::Update()
 	{
 		exitCountdown--;
 		if (exitCountdown <= 0)
-			return update_status::UPDATE_STOP;
+			return UpdateResult::UPDATE_STOP;
 	}
 	
 	////////////////////////////////////////////
 	
-	return update_status::UPDATE_CONTINUE;
+	return UpdateResult::UPDATE_CONTINUE;
 }
 
-update_status ModulePlayer::PostUpdate()
+UpdateResult ModulePlayer::PostUpdate()
 {
 	if (destroyed != true)
 	{
@@ -538,7 +539,7 @@ update_status ModulePlayer::PostUpdate()
 		App->render->Blit(texture, position.x, position.y, &rect,0);
 	}
 
-	return update_status::UPDATE_CONTINUE;
+	return UpdateResult::UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)

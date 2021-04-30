@@ -15,7 +15,7 @@
 #define CAMERA_X_MARGIN 25
 #define CAMERA_Y_MARGIN 50
 
-ModuleScene::ModuleScene()
+ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled)
 {
 
 }
@@ -64,11 +64,25 @@ bool ModuleScene::Start()
 
 	App->enemies->AddEnemy(ENEMY_TYPE::MECH, 900, 195);
 
+	if (App->player->IsEnabled() == 0)
+	{
+		App->player->Enable();
+	}
+
+	if (App->enemies->IsEnabled() == 0)
+	{
+		App->enemies->Enable();
+	}
+
+	if (App->collisions->IsEnabled() == 0)
+	{
+		App->collisions->Enable();
+	}
 
 	return ret;
 }
 
-update_status ModuleScene::Update()
+UpdateResult ModuleScene::Update()
 {
 	//App->render->camera.x += 3;
 
@@ -86,14 +100,14 @@ update_status ModuleScene::Update()
 	//render camera area
 	App->render->DrawQuad(App->render->camera, 0, 255, 255, 100);
 
-	return update_status::UPDATE_CONTINUE;
+	return UpdateResult::UPDATE_CONTINUE;
 }
 
 // Update: draw background
-update_status ModuleScene::PostUpdate()
+UpdateResult ModuleScene::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
-	return update_status::UPDATE_CONTINUE;
+	return UpdateResult::UPDATE_CONTINUE;
 }
