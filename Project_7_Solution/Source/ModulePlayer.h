@@ -114,6 +114,7 @@ public:
 
 	KEY_STATE lastHorizontalKey;
 	KEY_STATE lastVerticalKey;
+	int lastDirection;
 };
 
 #endif //!__MODULE_PLAYER_H__

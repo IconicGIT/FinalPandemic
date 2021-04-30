@@ -52,7 +52,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	upIdleAnim.speed = idleSpeed;
 
 	// animation idle up-left
-	upLeftIdleAnim.PushBack({ 143, 58, 32, 14 });
+	upLeftIdleAnim.PushBack({ 143, 58, 22, 38 });
 	upLeftIdleAnim.PushBack({ 173, 58, 20, 38 });
 	upLeftIdleAnim.loop = true;
 	upLeftIdleAnim.speed = idleSpeed;
@@ -270,14 +270,22 @@ UpdateResult ModulePlayer::Update()
 	keyDown  = App->input->keys[SDL_SCANCODE_S];
 	keyRight = App->input->keys[SDL_SCANCODE_D];
 
-
-
-
-
+	// lastDirection
+	// 
+	//	1 = up
+	//	2 = up-left
+	//  3 = left
+	//  4 = down-left
+	//  5 = down
+	//  6 = down-right
+	//  7 = right
+	// 	8 = up-right
+	//
 
 	// Move the player in all posible direction 
 	// 
 	//AXIS MOVEMENT
+	//left
 	if ((keyUp == KEY_STATE::KEY_IDLE)
 		&& (keyLeft == KEY_STATE::KEY_REPEAT)
 		&& (keyDown == KEY_STATE::KEY_IDLE)
@@ -290,10 +298,11 @@ UpdateResult ModulePlayer::Update()
 			leftAnim.Reset();
 			currentAnimation = &leftAnim;
 		}
-		lastHorizontalKey = keyLeft;
-		lastVerticalKey = KEY_STATE::KEY_IDLE;
+		
+		lastDirection = 3;
 	}
 
+	//right
 	if ((keyUp == KEY_STATE::KEY_IDLE)
 		&& (keyLeft == KEY_STATE::KEY_IDLE)
 		&& (keyDown == KEY_STATE::KEY_IDLE)
@@ -306,10 +315,10 @@ UpdateResult ModulePlayer::Update()
 			rightAnim.Reset();
 			currentAnimation = &rightAnim;
 		}
-		lastHorizontalKey = keyRight;
-		lastVerticalKey = KEY_STATE::KEY_IDLE;
+		lastDirection = 7;
 	}
 
+	//Up
 	if ((keyUp == KEY_STATE::KEY_REPEAT)
 		&& (keyLeft == KEY_STATE::KEY_IDLE)
 		&& (keyDown == KEY_STATE::KEY_IDLE)
@@ -322,10 +331,10 @@ UpdateResult ModulePlayer::Update()
 			upAnim.Reset();
 			currentAnimation = &upAnim;
 		}
-		lastHorizontalKey = KEY_STATE::KEY_IDLE;
-		lastVerticalKey = keyUp;
+		lastDirection = 1;
 	}
 
+	//Down
 	if ((keyUp == KEY_STATE::KEY_IDLE)
 		&& (keyLeft == KEY_STATE::KEY_IDLE)
 		&& (keyDown == KEY_STATE::KEY_REPEAT)
@@ -338,8 +347,7 @@ UpdateResult ModulePlayer::Update()
 			downAnim.Reset();
 			currentAnimation = &downAnim;
 		}
-		lastHorizontalKey = KEY_STATE::KEY_IDLE;
-		lastVerticalKey = keyDown;
+		lastDirection = 5;
 	}
 
 	//DIAGONAL AXIS MOVEMENT
@@ -358,8 +366,7 @@ UpdateResult ModulePlayer::Update()
 			upLeftAnim.Reset();
 			currentAnimation = &upLeftAnim;
 		}
-		lastHorizontalKey = keyLeft;
-		lastVerticalKey = keyUp;
+		lastDirection = 2;
 	}
 
 	//down-left
@@ -376,8 +383,8 @@ UpdateResult ModulePlayer::Update()
 			downLeftAnim.Reset();
 			currentAnimation = &downLeftAnim;
 		}
-		lastHorizontalKey = keyLeft;
-		lastVerticalKey = keyDown;
+
+		lastDirection = 4;
 	}
 
 	//down-right
@@ -394,8 +401,8 @@ UpdateResult ModulePlayer::Update()
 			downRightAnim.Reset();
 			currentAnimation = &downRightAnim;
 		}
-		lastHorizontalKey = keyRight;
-		lastVerticalKey = keyDown;
+
+		lastDirection = 6;
 	}
 
 	//up-right
@@ -412,8 +419,7 @@ UpdateResult ModulePlayer::Update()
 			upRightAnim.Reset();
 			currentAnimation = &upRightAnim;
 		}
-		lastHorizontalKey = keyRight;
-		lastVerticalKey = keyUp;
+		lastDirection = 8;
 	}
 
 
@@ -513,54 +519,142 @@ UpdateResult ModulePlayer::Update()
 	// Idle Animations 
 
 	//AXIS MOVEMENT
-	if (   !(keyUp == KEY_STATE::KEY_REPEAT)
-		&& (keyLeft == KEY_STATE::KEY_IDLE)
-		&& !(keyDown == KEY_STATE::KEY_REPEAT)
-		&& !(keyRight == KEY_STATE::KEY_REPEAT)
-		)
-	{
-		leftIdleAnim.Reset();
-		currentAnimation = &leftIdleAnim;
-	}
-
-	if (   !(keyUp == KEY_STATE::KEY_REPEAT)
-		&& !(keyLeft == KEY_STATE::KEY_REPEAT)
-		&& !(keyDown == KEY_STATE::KEY_REPEAT)
-		&& (keyRight == KEY_STATE::KEY_IDLE)
-		)
-	{
-		rightIdleAnim.Reset();
-		currentAnimation = &rightIdleAnim;
-	}
-
-	if (   (keyUp == KEY_STATE::KEY_IDLE)
-		&& !(keyLeft == KEY_STATE::KEY_REPEAT)
-		&& !(keyDown == KEY_STATE::KEY_REPEAT)
-		&& !(keyRight == KEY_STATE::KEY_REPEAT)
-		)
-	{
-		upIdleAnim.Reset();
-		currentAnimation = &upIdleAnim;
-	}
-
-	if (   !(keyUp == KEY_STATE::KEY_REPEAT)
-		&& !(keyLeft == KEY_STATE::KEY_REPEAT)
-		&& (keyDown == KEY_STATE::KEY_IDLE)
-		&& !(keyRight == KEY_STATE::KEY_REPEAT)
-		)
-	{
-		downIdleAnim.Reset();
-		currentAnimation = &downIdleAnim;
-	}
+	
+	////left
+	//if (   (keyUp == KEY_STATE::KEY_IDLE)
+	//	&& (keyLeft == KEY_STATE::KEY_IDLE)
+	//	&& (keyDown == KEY_STATE::KEY_IDLE)
+	//	&& (keyRight == KEY_STATE::KEY_IDLE)
+	//	&& (lastDirection == 3)
+	//	)
+	//{
+	//	leftIdleAnim.Reset();
+	//	currentAnimation = &leftIdleAnim;
+	//}
+	//
+	////right
+	//if (   (keyUp == KEY_STATE::KEY_IDLE)
+	//	&& (keyLeft == KEY_STATE::KEY_IDLE)
+	//	&& (keyDown == KEY_STATE::KEY_IDLE)
+	//	&& (keyRight == KEY_STATE::KEY_IDLE)
+	//	&& (lastDirection = 7)
+	//	)
+	//{
+	//	rightIdleAnim.Reset();
+	//	currentAnimation = &rightIdleAnim;
+	//}
+	//
+	////up
+	//if (   (keyUp == KEY_STATE::KEY_IDLE)
+	//	&& (keyLeft == KEY_STATE::KEY_IDLE)
+	//	&& (keyDown == KEY_STATE::KEY_IDLE)
+	//	&& (keyRight == KEY_STATE::KEY_IDLE)
+	//	&& (lastDirection == 1)
+	//	)
+	//{
+	//	upIdleAnim.Reset();
+	//	currentAnimation = &upIdleAnim;
+	//}
+	//
+	////down
+	//if (   (keyUp == KEY_STATE::KEY_IDLE)
+	//	&& (keyLeft == KEY_STATE::KEY_IDLE)
+	//	&& (keyDown == KEY_STATE::KEY_IDLE)
+	//	&& (keyRight == KEY_STATE::KEY_IDLE)
+	//	&& (lastDirection == 5)
+	//	)
+	//{
+	//	downIdleAnim.Reset();
+	//	currentAnimation = &downIdleAnim;
+	//}
 	 //DIAGONAL AXIS MOVEMENT
 	
 	 //up left
-	if ((App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_UP) && (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_UP))
-	{
-		upLeftIdleAnim.Reset();
-		currentAnimation = &upLeftIdleAnim;
-	}
+	//if ((App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_UP) && (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_UP))
+	//{
+	//	upLeftIdleAnim.Reset();
+	//	currentAnimation = &upLeftIdleAnim;
+	//}
 
+	if ((keyUp == KEY_STATE::KEY_IDLE)
+		&& (keyLeft == KEY_STATE::KEY_IDLE)
+		&& (keyDown == KEY_STATE::KEY_IDLE)
+		&& (keyRight == KEY_STATE::KEY_IDLE)
+		) {
+
+		switch (lastDirection) {
+
+		case 1:
+
+			if (currentAnimation != &upIdleAnim) {
+				upIdleAnim.Reset();
+				currentAnimation = &upIdleAnim;
+			}
+
+
+			
+
+			break;
+
+		case 2:
+			if (currentAnimation != &upLeftIdleAnim) {
+				upLeftIdleAnim.Reset();
+				currentAnimation = &upLeftIdleAnim;
+			}
+			break;
+
+		case 3:
+			if (currentAnimation != &leftIdleAnim) {
+				leftIdleAnim.Reset();
+				currentAnimation = &leftIdleAnim;
+			}
+			break;
+
+		case 4:
+			if (currentAnimation != &downLeftIdleAnim) {
+
+				downLeftIdleAnim.Reset();
+				currentAnimation = &downLeftIdleAnim;
+			}
+			break;
+
+		case 5:
+			if (currentAnimation != &downIdleAnim) {
+
+				downIdleAnim.Reset();
+				currentAnimation = &downIdleAnim;
+			}
+			break;
+
+		case 6:
+			if (currentAnimation != &downRightIdleAnim) {
+
+				downRightIdleAnim.Reset();
+				currentAnimation = &downRightIdleAnim;
+			}
+			break;
+
+		case 7:
+			if (currentAnimation != &rightIdleAnim) {
+
+				rightIdleAnim.Reset();
+				currentAnimation = &rightIdleAnim;
+			}
+			break;
+
+		case 8:
+
+			if (currentAnimation != &upRightIdleAnim) {
+
+				upRightIdleAnim.Reset();
+				currentAnimation = &upRightIdleAnim;
+			}
+			break;
+
+		}
+
+
+	}
 
 	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE)
 	//{
@@ -655,7 +749,7 @@ UpdateResult ModulePlayer::PostUpdate()
 		App->render->Blit(texture, position.x, position.y, &rect,0);
 	}
 
-	App->fonts->BlitText(20, 20,scoreFont, "Test Text");
+	App->fonts->BlitText(20, 20,scoreFont, " test  text");
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
