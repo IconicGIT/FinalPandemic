@@ -33,7 +33,7 @@ public:
 
 public:
 	// The current position in the world
-	iPoint position;
+	fPoint position;
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
@@ -49,7 +49,7 @@ protected:
 	Collider* collider = nullptr;
 
 	// Original spawn position. Stored for movement calculations
-	iPoint spawnPos;
+	fPoint spawnPos;
 };
 
 #endif // __ENEMY_H__

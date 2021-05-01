@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModulePlayer.h"
 
 Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {
@@ -10,23 +11,26 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	float shootAnimSpeed = 0.01f;
 	float grenadeAnimSpeed = 0.01f;
 
-	downIdleAnim.PushBack({5,72,21,22});
+	downIdleAnim.PushBack({0,0,210,220});
 	downIdleAnim.PushBack({ 5,72,21,22 });
 	downIdleAnim.loop = true;
 	downIdleAnim.speed = idleAnimSpeed;
 
 	
 	currentAnim = &downIdleAnim;
-	
+	collider = App->collisions->AddCollider({0, 0, 24, 24}, Collider::Type::ENEMY, (Module*)App->enemies);
+
 	// TODO 3: Have the Brown Cookies describe a path in the screen
 	/////////////////////////////////////////////////////////////
-	path.PushBack({-1.0f, -0.5f}, 100);
-	path.PushBack({-1.0f, 0.5f}, 80);
-	path.PushBack({-1.0f, 1.0f}, 80);
+	float distanceX = GetDistanceX(position.x, App->player->position.x);
+	float distanceY = GetDistanceY(position.y, App->player->position.y);
 
+
+
+	path.PushBack({-1.0f, -0.5f}, 100); // x movement, y movement, frames de
+	path.PushBack({-1.0f, 0.5f}, 100);
+	path.PushBack({-1.0f, 1.0f}, 100);	
 	
-	
-	collider = App->collisions->AddCollider({0, 0, 24, 24}, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
 void Enemy_Soldier::Update()
