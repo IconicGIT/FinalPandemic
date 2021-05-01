@@ -3,21 +3,35 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 
-Enemy_BrownShip::Enemy_BrownShip(int x, int y) : Enemy(x, y)
+Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {
-	fly.PushBack({5,72,21,22});
-	currentAnim = &fly;
+	float idleAnimSpeed = 0.01f;
+	float runAminSpeed = 0.01f;
+	float shootAnimSpeed = 0.01f;
+	float grenadeAnimSpeed = 0.01f;
+
+	downIdleAnim.PushBack({5,72,21,22});
+	downIdleAnim.PushBack({ 5,72,21,22 });
+	downIdleAnim.loop = true;
+	downIdleAnim.speed = idleAnimSpeed;
+
+	
+	currentAnim = &downIdleAnim;
 	
 	// TODO 3: Have the Brown Cookies describe a path in the screen
+	/////////////////////////////////////////////////////////////
 	path.PushBack({-1.0f, -0.5f}, 100);
 	path.PushBack({-1.0f, 0.5f}, 80);
 	path.PushBack({-1.0f, 1.0f}, 80);
+
+	
 	
 	collider = App->collisions->AddCollider({0, 0, 24, 24}, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
-void Enemy_BrownShip::Update()
+void Enemy_Soldier::Update()
 {
+	////////////////////////////////////////////////////
 	path.Update();
 	position = spawnPos + path.GetRelativePosition();
 
