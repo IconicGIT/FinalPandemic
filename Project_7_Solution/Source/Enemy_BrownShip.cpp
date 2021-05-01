@@ -11,8 +11,8 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	float shootAnimSpeed = 0.01f;
 	float grenadeAnimSpeed = 0.01f;
 
-	downIdleAnim.PushBack({0,0,210,220});
-	downIdleAnim.PushBack({ 5,72,21,22 });
+	downIdleAnim.PushBack({ 5,72,21,22});
+	downIdleAnim.PushBack({ 5,100,21,22 });
 	downIdleAnim.loop = true;
 	downIdleAnim.speed = idleAnimSpeed;
 
@@ -24,12 +24,16 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	/////////////////////////////////////////////////////////////
 	float distanceX = GetDistanceX(position.x, App->player->position.x);
 	float distanceY = GetDistanceY(position.y, App->player->position.y);
+	float distanceXY = distanceX + distanceY;
 
+	float resultX = distanceX / distanceXY;
+	float resultY = distanceY / distanceXY;
 
 
 	path.PushBack({-1.0f, -0.5f}, 100); // x movement, y movement, frames de
-	path.PushBack({-1.0f, 0.5f}, 100);
-	path.PushBack({-1.0f, 1.0f}, 100);	
+	path.PushBack({1.0f, 0.5f}, 100);
+	path.PushBack({ resultX, resultY }, 100);
+	path.PushBack({ resultX, resultY }, 100);
 	
 }
 
