@@ -23,9 +23,9 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 
 	// TODO 3: Have the Brown Cookies describe a path in the screen
 	/////////////////////////////////////////////////////////////
-	float distanceX = GetDistanceX(position.x, 500.0f);
-	float distanceY = GetDistanceY(position.y, 1300.0f);
-	float distanceXY = sqrt(pow(distanceX + distanceY, 2));
+	float distanceX = GetDistanceX(position.x, App->player->position.x);
+	float distanceY = GetDistanceY(position.y, App->player->position.y);
+	float distanceXY = fabs(distanceX + distanceY);
 
 	float resultX = distanceX / distanceXY;
 	float resultY = distanceY / distanceXY;
