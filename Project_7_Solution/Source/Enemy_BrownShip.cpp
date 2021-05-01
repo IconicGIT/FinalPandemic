@@ -3,6 +3,7 @@
 #include "Application.h"
 #include "ModuleCollisions.h"
 #include "ModulePlayer.h"
+#include <math.h>
 
 Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {
@@ -22,16 +23,16 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 
 	// TODO 3: Have the Brown Cookies describe a path in the screen
 	/////////////////////////////////////////////////////////////
-	float distanceX = GetDistanceX(position.x, App->player->position.x);
-	float distanceY = GetDistanceY(position.y, App->player->position.y);
-	float distanceXY = distanceX + distanceY;
+	float distanceX = GetDistanceX(position.x, 500.0f);
+	float distanceY = GetDistanceY(position.y, 1300.0f);
+	float distanceXY = sqrt(pow(distanceX + distanceY, 2));
 
 	float resultX = distanceX / distanceXY;
 	float resultY = distanceY / distanceXY;
 
-
-	path.PushBack({-1.0f, -0.5f}, 100); // x movement, y movement, frames de
-	path.PushBack({1.0f, 0.5f}, 100);
+	//sqrt(pow(distanceXY,2))
+	//path.PushBack({-1.0f, -0.5f}, 100); // x movement, y movement, frames de
+	path.PushBack({0.0f, 0.0f}, 100);
 	path.PushBack({ resultX, resultY }, 100);
 	path.PushBack({ resultX, resultY }, 100);
 	
