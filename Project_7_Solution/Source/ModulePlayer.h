@@ -38,7 +38,12 @@ public:
 
 public:
 	// Position of the player in the map
-	iPoint position;
+	fPoint position;
+
+	fPoint GetPlayerPosition() const {
+
+		return position;
+	}
 
 	//Camera
 	SDL_Rect camera;

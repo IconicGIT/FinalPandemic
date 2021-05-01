@@ -243,10 +243,12 @@ bool ModulePlayer::Start()
 
 
 
-	position.x = 550;
-	position.y = 1400;
+	position.x = 550.0f;
+	position.y = 1400.0f;
 
-	collider = App->collisions->AddCollider({ position.x, position.y, 32, 16 }, Collider::Type::PLAYER, this);
+	lastDirection = 5;
+
+	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 32, 16 }, Collider::Type::PLAYER, this);
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
@@ -425,26 +427,47 @@ UpdateResult ModulePlayer::Update()
 		lastDirection = 8;
 	}
 
-	if (App->render->camera.x > 475 * SCREEN_SIZE && App->render->camera.y < 1156 * SCREEN_SIZE) {
+	if (App->render->camera.x > 475 * SCREEN_SIZE) {
 
 		if (lastDirection % 2 == 0)
 		{
-			if (position.x < (App->render->camera.x / SCREEN_SIZE + horizontalMargin)) App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
-			if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)) App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
-			if (position.y < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
+			if (position.x <= (App->render->camera.x / SCREEN_SIZE + horizontalMargin)
+				&& (App->render->camera.x / SCREEN_SIZE - diagonalSpeed > 475)) App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
+
+			if ((position.x + 26) >= (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
+				&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)) App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+
+
+			else
+			{
+				if (position.x <= (App->render->camera.x / SCREEN_SIZE + horizontalMargin)
+					&& ((App->render->camera.x / SCREEN_SIZE - diagonalSpeed > 475))) App->render->camera.x -= speed * SCREEN_SIZE;
+
+				if ((position.x + 26) >= (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
+					&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)) App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+			}
+		}
+	}
+
+	if (App->render->camera.y < 1156 * SCREEN_SIZE) {
+
+		if (lastDirection % 2 == 0)
+		{
+			if (position.y <= (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
 		}
 		else
 		{
-			if (position.x < (App->render->camera.x / SCREEN_SIZE + horizontalMargin)) App->render->camera.x -= speed * SCREEN_SIZE;
-			if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)) App->render->camera.x += speed * SCREEN_SIZE;
 			if (position.y < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speed * SCREEN_SIZE;
 		}
 	}
-	else {
-		App->render->camera.x = 475 * SCREEN_SIZE;
-		App->render->camera.y = 1156 * SCREEN_SIZE;
-	}
 
+
+
+	//else {
+	//	App->render->camera.x = 475 * SCREEN_SIZE;
+	//	App->render->camera.y = 1156 * SCREEN_SIZE;
+	//}
+	
 	//if (App->input->keys[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT) App->render->camera.x += speed;
 
 
