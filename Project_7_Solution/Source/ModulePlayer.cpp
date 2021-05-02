@@ -487,13 +487,13 @@ UpdateResult ModulePlayer::Update()
 
 				if (lastDirection % 2 != 0)
 				{
-					if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+					if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
 						App->render->camera.x += speed * SCREEN_SIZE;
 					}
 				}
 				else
 				{
-					if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+					if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
 						App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
 					}
 				}
@@ -544,94 +544,7 @@ UpdateResult ModulePlayer::Update()
 
 
 
-	//else {
-	//	App->render->camera.x = 475 * SCREEN_SIZE;
-	//	App->render->camera.y = 1156 * SCREEN_SIZE;
-	//}
 	
-	//if (App->input->keys[SDL_SCANCODE_R] == KEY_STATE::KEY_REPEAT) App->render->camera.x += speed;
-
-
-	//if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	//{
-	//	position.x += speed;
-	//
-	//	if (currentAnimation != &rightAnim)
-	//	{
-	//		rightAnim.Reset();
-	//		currentAnimation = &rightAnim;
-	//	}
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT)
-	//{
-	//	position.y += speed;
-	//
-	//	if (currentAnimation != &downAnim)
-	//	{
-	//		downAnim.Reset();
-	//		currentAnimation = &downAnim;
-	//	}
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT)
-	//{
-	//	position.y -= speed;
-	//
-	//	if (currentAnimation != &upAnim)
-	//	{
-	//		upAnim.Reset();
-	//		currentAnimation = &upAnim;
-	//	}
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	//{
-	//	position.y -= speed;
-	//	position.x += speed;
-	//
-	//	if (currentAnimation != &upRightAnim)
-	//	{
-	//		upRightAnim.Reset();
-	//		currentAnimation = &upRightAnim;
-	//	}
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-	//{
-	//	position.y -= speed;
-	//	position.x -= speed;
-	//
-	//	if (currentAnimation != &upLeftAnim)
-	//	{
-	//		upLeftAnim.Reset();
-	//		currentAnimation = &upLeftAnim;
-	//	}
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_REPEAT)
-	//{
-	//	position.y += speed;
-	//	position.x -= speed;
-	//
-	//	if (currentAnimation != &downLeftAnim)
-	//	{
-	//		downLeftAnim.Reset();
-	//		currentAnimation = &downLeftAnim;
-	//	}
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_REPEAT && App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_REPEAT)
-	//{
-	//	position.y += speed;
-	//	position.x += speed;
-	//
-	//	if (currentAnimation != &downRightAnim)
-	//	{
-	//		downRightAnim.Reset();
-	//		currentAnimation = &downRightAnim;
-	//	}
-	//}
 
 
 
@@ -647,53 +560,7 @@ UpdateResult ModulePlayer::Update()
 
 	//AXIS MOVEMENT
 	
-	////left
-	//if (   (keyUp == KEY_STATE::KEY_IDLE)
-	//	&& (keyLeft == KEY_STATE::KEY_IDLE)
-	//	&& (keyDown == KEY_STATE::KEY_IDLE)
-	//	&& (keyRight == KEY_STATE::KEY_IDLE)
-	//	&& (lastDirection == 3)
-	//	)
-	//{
-	//	leftIdleAnim.Reset();
-	//	currentAnimation = &leftIdleAnim;
-	//}
-	//
-	////right
-	//if (   (keyUp == KEY_STATE::KEY_IDLE)
-	//	&& (keyLeft == KEY_STATE::KEY_IDLE)
-	//	&& (keyDown == KEY_STATE::KEY_IDLE)
-	//	&& (keyRight == KEY_STATE::KEY_IDLE)
-	//	&& (lastDirection = 7)
-	//	)
-	//{
-	//	rightIdleAnim.Reset();
-	//	currentAnimation = &rightIdleAnim;
-	//}
-	//
-	////up
-	//if (   (keyUp == KEY_STATE::KEY_IDLE)
-	//	&& (keyLeft == KEY_STATE::KEY_IDLE)
-	//	&& (keyDown == KEY_STATE::KEY_IDLE)
-	//	&& (keyRight == KEY_STATE::KEY_IDLE)
-	//	&& (lastDirection == 1)
-	//	)
-	//{
-	//	upIdleAnim.Reset();
-	//	currentAnimation = &upIdleAnim;
-	//}
-	//
-	////down
-	//if (   (keyUp == KEY_STATE::KEY_IDLE)
-	//	&& (keyLeft == KEY_STATE::KEY_IDLE)
-	//	&& (keyDown == KEY_STATE::KEY_IDLE)
-	//	&& (keyRight == KEY_STATE::KEY_IDLE)
-	//	&& (lastDirection == 5)
-	//	)
-	//{
-	//	downIdleAnim.Reset();
-	//	currentAnimation = &downIdleAnim;
-	//}
+	
 	 //DIAGONAL AXIS MOVEMENT
 
 
@@ -774,70 +641,81 @@ UpdateResult ModulePlayer::Update()
 
 	}
 
-	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE)
-	//{
-	//	downIdleAnim.Reset();
-	//	currentAnimation = &downIdleAnim;
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-	//	|| App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
-	//{
-	//	downRightIdleAnim.Reset();
-	//	currentAnimation = &downRightIdleAnim;
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
-	//{
-	//	rightIdleAnim.Reset();
-	//	currentAnimation = &rightIdleAnim;
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
-	//	&& App->input->keys[SDL_SCANCODE_D] == KEY_STATE::KEY_IDLE)
-	//{
-	//	upRightIdleAnim.Reset();
-	//	currentAnimation = &upRightIdleAnim;
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE)
-	//{
-	//	upIdleAnim.Reset();
-	//	currentAnimation = &upIdleAnim;
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_W] == KEY_STATE::KEY_IDLE
-	//	&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
-	//{
-	//	upLeftIdleAnim.Reset();
-	//	currentAnimation = &upLeftIdleAnim;
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
-	//{
-	//	leftIdleAnim.Reset();
-	//	currentAnimation = &leftIdleAnim;
-	//}
-	//
-	//if (App->input->keys[SDL_SCANCODE_S] == KEY_STATE::KEY_IDLE
-	//	&& App->input->keys[SDL_SCANCODE_A] == KEY_STATE::KEY_IDLE)
-	//{
-	//	downLeftIdleAnim.Reset();
-	//	currentAnimation = &downLeftIdleAnim;
-	//}
-
-	// Hit Animations  // Need enemy Particles or Player Life lower
-
-	//if (ModulePlayer::OnCollision(Collider * Collider::Type::PLAYER, Collider * Collider::Type::ENEMY_SHOT))
-	//{
-	//
-	//}
+	
 
 	// Death Animations
 
 	if (destroyed == true)
 	{
-		// Diferentes orientaciones de la animacion de muerte.
+		switch (lastDirection)
+		{
+		case 1:
+			if (currentAnimation != &deathFromUpAnim) {
+
+				deathFromUpAnim.Reset();
+				currentAnimation = &deathFromUpAnim;
+			}
+			
+			break;
+
+		case 2:
+			if (currentAnimation != &deathFromUpAnim) {
+
+				deathFromUpAnim.Reset();
+				currentAnimation = &deathFromUpAnim;
+			}
+			break;
+
+		case 3:
+			if (currentAnimation != &deathFromLeftAnim) {
+
+				deathFromLeftAnim.Reset();
+				currentAnimation = &deathFromLeftAnim;
+			}
+			break;
+
+		case 4:
+			if (currentAnimation != &deathFromLeftAnim) {
+
+				deathFromLeftAnim.Reset();
+				currentAnimation = &deathFromLeftAnim;
+			}
+			break;
+
+		case 5:
+			if (currentAnimation != &deathFromDownAnim) {
+
+				deathFromDownAnim.Reset();
+				currentAnimation = &deathFromDownAnim;
+			}
+			break;
+
+		case 6:
+			if (currentAnimation != &deathFromDownAnim) {
+
+				deathFromDownAnim.Reset();
+				currentAnimation = &deathFromDownAnim;
+			}
+			break;
+
+		case 7:
+			if (currentAnimation != &deathFromRightAnim) {
+
+				deathFromRightAnim.Reset();
+				currentAnimation = &deathFromRightAnim;
+			}
+			break;
+
+		case 8:
+			if (currentAnimation != &deathFromRightAnim) {
+
+				deathFromRightAnim.Reset();
+				currentAnimation = &deathFromRightAnim;
+			}
+			break;
+
+
+		}
 	}
 
 
