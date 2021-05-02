@@ -11,7 +11,7 @@
 #include "Enemy_BrownShip.h"
 #include "Enemy_Mech.h"
 
-#define SPAWN_MARGIN 50
+#define SPAWN_MARGIN 300
 
 
 ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
@@ -122,13 +122,24 @@ void ModuleEnemies::HandleEnemiesDespawn()
 		if (enemies[i] != nullptr)
 		{
 			// Delete the enemy when it has reached the end of the screen
-			if (enemies[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN)
-			{
-				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
+			//if (enemies[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN)
+			//{
+			//	LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
+			//
+			//	delete enemies[i];
+			//	enemies[i] = nullptr;
+			//}
 
+			if (enemies[i]->timeAlive <= 0 && enemies[i]->inmortal == false) {
+			
+			
+				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
+			
 				delete enemies[i];
 				enemies[i] = nullptr;
+			
 			}
+
 		}
 	}
 }
@@ -163,13 +174,13 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
 	for(uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
-		{
-			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
-
-			delete enemies[i];
-			enemies[i] = nullptr;
-			break;
-		}
+		//if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+		//{
+		//	enemies[i]->OnCollision(c2); //Notify the enemy of a collision
+		//
+		//	delete enemies[i];
+		//	enemies[i] = nullptr;
+		//	break;
+		//}
 	}
 }

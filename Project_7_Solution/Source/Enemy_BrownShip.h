@@ -15,30 +15,28 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
-	float GetDistanceX(float enemyPosX, float playerPosX)
-	{
-		return playerPosX - enemyPosX;
-	}
+	float GetDistanceX(float enemyPosX, float playerPosX);
 
-	float GetDistanceY(float enemyPosY, float playerPosY)
-	{
-		return playerPosY - enemyPosY;
-	}
+	float GetDistanceY(float enemyPosY, float playerPosY);
 
-	float RealDistancePlayerEnemy(float x, float y)
-	{
-		float result = 0.0f;
-		float X, Y, Z;
+	float RealDistancePlayerEnemy(float x, float y);
 
-		X = x * x;
-		Y = y * y;
+	fPoint playerPosition;
 
-		Z = X + Y;
+	float distanceX;
+	float distanceY;
+	float distanceXY;
 
-		result = sqrt(Z);
+	float resultX;
+	float resultY;
+	int   counter;
 
-		return result;
-	}
+	float realDistance;
+
+	float pushTimer = 0;
+	float pushTimerReference = 400;
+
+	
 
 private:
 	// A set of steps that define the position in the screen

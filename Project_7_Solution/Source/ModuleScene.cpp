@@ -37,11 +37,16 @@ bool ModuleScene::Start()
 	//App->audio->PlayMusic("Assets/stage_1.ogg", 1.0f);
 
 	//Bottomside collider
-	App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 475, 1534, 608, 15 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 475, -15, 768, 15 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1083, 398, 160, 15 }, Collider::Type::WALL);
+
+	App->collisions->AddCollider({ 460, 0, 15, 1534 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1083, 398, 15, 1136 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1243, 0, 15, 398 }, Collider::Type::WALL);
 
 	//First two columns colliders
-	App->collisions->AddCollider({ 1375, 0, 111, 96 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
+
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
@@ -98,6 +103,7 @@ UpdateResult ModuleScene::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
+	App->collisions->DebugDraw();
 
 	return UpdateResult::UPDATE_CONTINUE;
 }

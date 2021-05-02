@@ -41,6 +41,10 @@ public:
 	// Sound fx when destroyed
 	int destroyedFx = 0;
 
+	bool inmortal = false;
+
+	int timeAlive;
+
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
@@ -50,6 +54,8 @@ protected:
 
 	// Original spawn position. Stored for movement calculations
 	fPoint spawnPos;
+
+	
 };
 
 #endif // __ENEMY_H__

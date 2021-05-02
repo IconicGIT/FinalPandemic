@@ -26,52 +26,57 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	// TODO 3: Have the Brown Cookies describe a path in the screen
 	/////////////////////////////////////////////////////////////
 	
-	fPoint playerPosition = App->player->GetPlayerPosition();
-	
+	playerPosition = App->player->GetPlayerPosition();	
 
-	float distanceX = 0.0f;
-	float distanceY = 0.0f;
-	float distanceXY = 0.0f;
+	distanceX = 0.0f;
+	distanceY = 0.0f;
+	distanceXY = 0.0f;
 
-	float resultX = 0.0f;
-	float resultY = 0.0f;
-	int counter = 0;
+	resultX = 0.0f;
+	resultY = 0.0f;
+	counter = 0;
 
-	float realDistance = 0.0f;
+	realDistance = 0.0f;
+
+	timeAlive = 1000;
+	inmortal = true;
+
+	pushTimerReference = 200.0f;
+	pushTimer = pushTimerReference;
 
 	//sqrt(pow(distanceXY,2))
 	//path.PushBack({-1.0f, -0.5f}, 100); // x movement, y movement, frames de
 	//path.PushBack({0.0f, 0.0f}, 100);
 
 	//
-	playerPosition = App->player->GetPlayerPosition();
-
-	distanceX = GetDistanceX(position.x, playerPosition.x);
-	distanceY = GetDistanceY(position.y, playerPosition.y);
-
-	if (distanceY == 0.0000000f)
-	{
-		distanceY = 0.000001f;
-	}
-	if(distanceX == 0.0000000f)
-	{
-		distanceX = 0.000001f;
-	}
-
-	distanceXY = fabs(distanceX + distanceY);
-
-	resultX = (distanceX / distanceXY)*1;                            // It updates? but does the player position update?
-	resultY = (distanceY / distanceXY)*1;
-
-	realDistance = RealDistancePlayerEnemy(distanceX, distanceY);
-	///
-	if (counter == 0)
-	{
-		path.PushBack({ 0.0f, 0.0f }, 100);
-	}
-
-	path.PushBack({ resultX, resultY }, 100);	
-	path.PushBack({ 0.0f, 0.0f }, 10);
+	//playerPosition = App->player->GetPlayerPosition();
+	//
+	//distanceX = GetDistanceX(position.x, playerPosition.x);
+	//distanceY = GetDistanceY(position.y, playerPosition.y);
+	//
+	//if (distanceY == 0.0000000f)
+	//{
+	//	distanceY = 0.000001f;
+	//}
+	//if(distanceX == 0.0000000f)
+	//{
+	//	distanceX = 0.000001f;
+	//}
+	//
+	//distanceXY = fabs(distanceX + distanceY);
+	//
+	//resultX = (distanceX / distanceXY)*1;                            // It updates? but does the player position update?
+	//resultY = (distanceY / distanceXY)*1;
+	//
+	//realDistance = RealDistancePlayerEnemy(distanceX, distanceY);
+	/////
+	//if (counter == 0)
+	//{
+	//	path.PushBack({ 0.0f, 0.0f }, 100);
+	//}
+	//
+	//path.PushBack({ resultX, resultY }, 100);	
+	//path.PushBack({ 0.0f, 0.0f }, 10);
 
 	for (int i = 4; i >= 0; i--)
 	{
@@ -88,7 +93,75 @@ void Enemy_Soldier::Update()
 	path.Update();
 	position = spawnPos + path.GetRelativePosition();
 
+
+	pushTimer--;
+	if (pushTimer <= 0) {
+
+		playerPosition = App->player->GetPlayerPosition();
+
+		distanceX = GetDistanceX(position.x, playerPosition.x);
+		distanceY = GetDistanceY(position.y, playerPosition.y);
+
+		if (distanceY == 0.0000000f)
+		{
+			distanceY = 0.000001f;
+		}
+		if (distanceX == 0.0000000f)
+		{
+			distanceX = 0.000001f;
+		}
+
+		distanceXY = fabs(distanceX + distanceY);
+
+		resultX = (distanceX / distanceXY) * 1;                            // It updates? but does the player position update?
+		resultY = (distanceY / distanceXY) * 1;
+
+		realDistance = RealDistancePlayerEnemy(distanceX, distanceY);
+		///
+		//if (counter == 0)
+		//{
+		//	path.PushBack({ 0.0f, 0.0f }, 100);
+		//}
+
+		//path.PushBack({ resultX, resultY }, 100);
+		//path.PushBack({ 0.0f, 0.0f }, 100);
+
+		pushTimer = pushTimerReference;
+
+	}
+
+
+
+
+
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
+}
+
+float Enemy_Soldier::GetDistanceX(float enemyPosX, float playerPosX)
+{
+	return playerPosX - enemyPosX;
+
+}
+
+float Enemy_Soldier::GetDistanceY(float enemyPosY, float playerPosY)
+{
+	return playerPosY - enemyPosY;
+
+}
+
+float Enemy_Soldier::RealDistancePlayerEnemy(float x, float y)
+{
+	float result = 0.0f;
+	float X, Y, Z;
+
+	X = x * x;
+	Y = y * y;
+
+	Z = X + Y;
+
+	result = sqrt(Z);
+
+	return result;
 }

@@ -454,29 +454,39 @@ UpdateResult ModulePlayer::Update()
 
 	if (keyRight == KEY_STATE::KEY_REPEAT) {
 
-		if (App->render->camera.x / SCREEN_SIZE < 1242) {
+		
 
 			if (lastDirection % 2 == 0)
 			{
+				if ((App->render->camera.x / SCREEN_SIZE + diagonalSpeed) < 1242) {
 
-				if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + horizontalMargin)
-					) App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
-				//&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)
+					if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + horizontalMargin)
+						) App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+					//&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)
+				}
+				else {
+					while (App->render->camera.x / SCREEN_SIZE != 1242) {
+						App->render->camera.x++;
+					}
+				}
 			}
 			else
 			{
+				if ((App->render->camera.x / SCREEN_SIZE + speed) < 1242) {
 
-				if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
-					) App->render->camera.x += speed * SCREEN_SIZE;
-				//&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)
+					if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
+						) App->render->camera.x += speed * SCREEN_SIZE;
+					//&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)
+				}
+				else {
+					while (App->render->camera.x / SCREEN_SIZE != 1242) {
+						App->render->camera.x++;
+					}
+				}
 			}
 
-		}
-		else {
-			while (App->render->camera.x / SCREEN_SIZE != 1242) {
-				App->render->camera.x += SCREEN_SIZE;
-			}
-		}
+		
+		
 	}
 
 	
@@ -835,8 +845,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		//App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, Collider::Type::NONE, 28);
 		//App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
 
-		App->audio->PlayFx(explosionFx);
+		//App->audio->PlayFx(explosionFx);
 
-		destroyed = true;
+		//destroyed = true;
 	}
 }
