@@ -453,43 +453,52 @@ UpdateResult ModulePlayer::Update()
 	//}
 
 	if (keyRight == KEY_STATE::KEY_REPEAT) {
-
 		
 
-			if (lastDirection % 2 == 0)
-			{
-				if ((App->render->camera.x / SCREEN_SIZE + diagonalSpeed) < 1242) {
+		if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 1083)
+		{
 
-					if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + horizontalMargin)
-						) App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
-					//&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)
+			if (lastDirection % 2 != 0)
+			{
+				if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+					App->render->camera.x += speed * SCREEN_SIZE;
 				}
-				else {
-					while (App->render->camera.x / SCREEN_SIZE != 1242) {
-						App->render->camera.x++;
-					}
+			}
+			else 
+			{
+				if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+					App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+				}
+			}
+			
+		}
+
+	}
+
+	if (keyLeft == KEY_STATE::KEY_REPEAT) {
+
+
+		if (App->render->camera.x / SCREEN_SIZE - speed > 474)
+		{
+
+			if (lastDirection % 2 != 0)
+			{
+				if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+					App->render->camera.x -= speed * SCREEN_SIZE;
 				}
 			}
 			else
 			{
-				if ((App->render->camera.x / SCREEN_SIZE + speed) < 1242) {
-
-					if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
-						) App->render->camera.x += speed * SCREEN_SIZE;
-					//&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)
-				}
-				else {
-					while (App->render->camera.x / SCREEN_SIZE != 1242) {
-						App->render->camera.x++;
-					}
+				if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+					App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
 				}
 			}
 
-		
-		
+		}
+
 	}
 
-	
+	//474
 
 	if (App->render->camera.y <= 1156 * SCREEN_SIZE) {
 
