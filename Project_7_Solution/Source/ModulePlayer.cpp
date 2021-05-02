@@ -65,7 +65,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	leftIdleAnim.speed = idleSpeed;
 	
 	//animation idle down-left
-	downLeftIdleAnim.PushBack({ 138, 149, 20, 41 });
+	downLeftIdleAnim.PushBack({ 138, 149, 30, 41 });
 	downLeftIdleAnim.PushBack({ 172, 149, 27, 43 });
 	downLeftIdleAnim.loop = true;
 	downLeftIdleAnim.speed = idleSpeed;
@@ -427,29 +427,61 @@ UpdateResult ModulePlayer::Update()
 		lastDirection = 8;
 	}
 
-	if (App->render->camera.x > 475 * SCREEN_SIZE) {
+	//if (keyLeft == KEY_STATE::KEY_REPEAT) {
+	//
+	//	if (App->render->camera.x / SCREEN_SIZE > 475) {
+	//
+	//		if (lastDirection % 2 == 0)
+	//		{
+	//			if (position.x < (App->render->camera.x / SCREEN_SIZE + horizontalMargin)
+	//				&& ((App->render->camera.x / SCREEN_SIZE - diagonalSpeed > 475))) App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
+	//
+	//		}
+	//		else
+	//		{
+	//			if (position.x < (App->render->camera.x / SCREEN_SIZE + horizontalMargin)
+	//				&& ((App->render->camera.x / SCREEN_SIZE - speed > 475))) App->render->camera.x -= speed * SCREEN_SIZE;
+	//
+	//		}
+	//
+	//	}
+	//	else {
+	//		while (App->render->camera.x / SCREEN_SIZE != 475) {
+	//			App->render->camera.x--;
+	//		}
+	//	}
+	//}
 
-		if (lastDirection % 2 == 0)
-		{
-			if (position.x <= (App->render->camera.x / SCREEN_SIZE + horizontalMargin)
-				&& (App->render->camera.x / SCREEN_SIZE - diagonalSpeed > 475)) App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
+	if (keyRight == KEY_STATE::KEY_REPEAT) {
 
-			if ((position.x + 26) >= (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
-				&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)) App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+		if (App->render->camera.x / SCREEN_SIZE < 1242) {
 
+			if (lastDirection % 2 == 0)
+			{
 
+				if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + horizontalMargin)
+					) App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+				//&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)
+			}
 			else
 			{
-				if (position.x <= (App->render->camera.x / SCREEN_SIZE + horizontalMargin)
-					&& ((App->render->camera.x / SCREEN_SIZE - diagonalSpeed > 475))) App->render->camera.x -= speed * SCREEN_SIZE;
 
-				if ((position.x + 26) >= (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
-					&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)) App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+				if ((position.x + 26) > (App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin)
+					) App->render->camera.x += speed * SCREEN_SIZE;
+				//&& (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + diagonalSpeed < 220)
+			}
+
+		}
+		else {
+			while (App->render->camera.x / SCREEN_SIZE != 1242) {
+				App->render->camera.x += SCREEN_SIZE;
 			}
 		}
 	}
 
-	if (App->render->camera.y < 1156 * SCREEN_SIZE) {
+	
+
+	if (App->render->camera.y <= 1156 * SCREEN_SIZE) {
 
 		if (lastDirection % 2 == 0)
 		{
@@ -460,6 +492,8 @@ UpdateResult ModulePlayer::Update()
 			if (position.y < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speed * SCREEN_SIZE;
 		}
 	}
+
+	
 
 
 
