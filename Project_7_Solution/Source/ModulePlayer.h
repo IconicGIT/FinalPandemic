@@ -50,7 +50,7 @@ public:
 
 	//Margin of movement
 	int horizontalMargin = 45;
-	int verticalMargin = 250;
+	int verticalMargin = 175;
 	
 	// The speed in which we move the player (pixels per frame)
 	int speed = 2;

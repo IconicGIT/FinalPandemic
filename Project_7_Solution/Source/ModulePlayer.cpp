@@ -45,6 +45,9 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	// idle animations - just one sprite
 
 	float idleSpeed = 0.01f;
+	float animSpeed = 0.15f;
+	float hitSpeed = 0.1f;
+	float deathSpeed = 0.1f;
 
 	// animation idle up
 	upIdleAnim.PushBack({ 147, 8, 21, 41 });
@@ -106,28 +109,28 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 		//up
 		hitFromUpAnim.PushBack({ 425, 393, 22, 40 });
 		hitFromUpAnim.loop = false;
-		hitFromUpAnim.speed = 0.1f;
+		hitFromUpAnim.speed = hitSpeed;
 
 		//left
 		hitFromLeftAnim.PushBack({ 420, 437, 23, 40 });
 		hitFromLeftAnim.loop = false;
-		hitFromLeftAnim.speed = 0.1f;
+		hitFromLeftAnim.speed = hitSpeed;
 
 		//down
 		hitFromDownAnim.PushBack({ 456, 436, 24, 39 });
 		hitFromDownAnim.loop = false;
-		hitFromDownAnim.speed = 0.1f;
+		hitFromDownAnim.speed = hitSpeed;
 
 		//right
 		hitFromRightAnim.PushBack({ 457, 393, 23, 40 });
 		hitFromRightAnim.loop = false;
-		hitFromRightAnim.speed = 0.1f;
+		hitFromRightAnim.speed = hitSpeed;
 
 	//rolling when damaged
 	rollAnim.PushBack({ 150, 384, 27, 26 });
 	rollAnim.PushBack({ 181, 382, 29, 27 });
 	rollAnim.loop = false;
-	rollAnim.speed = 0.1f;
+	rollAnim.speed = hitSpeed;
 
 	// Death Animations
 
@@ -136,21 +139,21 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	deathFromLeftAnim.PushBack({ 272, 452, 31, 35 });
 	deathFromLeftAnim.PushBack({ 305, 457, 37, 31 });
 	deathFromLeftAnim.loop = false;
-	deathFromLeftAnim.speed = 0.2f;
+	deathFromLeftAnim.speed = deathSpeed;
 
 	deathFromRightAnim.PushBack({ 10, 397, 26, 41 });
 	deathFromRightAnim.PushBack({ 41, 394, 26, 41 });
 	deathFromRightAnim.PushBack({ 73, 392, 28, 41 });
 	deathFromRightAnim.PushBack({ 111, 383, 35, 51 });
 	deathFromRightAnim.loop = false;
-	deathFromRightAnim.speed = 0.2f;
+	deathFromRightAnim.speed = deathSpeed;
 
 	deathFromUpAnim.PushBack({ 5, 443, 23, 38 });
 	deathFromUpAnim.PushBack({ 36, 440, 48, 41 });
 	deathFromUpAnim.PushBack({ 87, 437, 30, 41 });
 	deathFromUpAnim.PushBack({ 125, 437, 30, 41 });
 	deathFromUpAnim.loop = false;
-	deathFromUpAnim.speed = 0.2f;
+	deathFromUpAnim.speed = deathSpeed;
 
 	deathFromDownAnim.PushBack({ 212, 394, 28, 45 });
 	deathFromDownAnim.PushBack({ 247, 396, 43, 47 });
@@ -158,7 +161,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	deathFromDownAnim.PushBack({ 321, 406, 27, 26 });
 	deathFromDownAnim.PushBack({ 359, 396, 40, 46 });
 	deathFromDownAnim.loop = false;
-	deathFromDownAnim.speed = 0.05f;
+	deathFromDownAnim.speed = deathSpeed;
 
 
 
@@ -169,56 +172,56 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	upAnim.PushBack({ 76, 7, 13, 42 });
 	upAnim.PushBack({ 108, 7, 13, 42 });
 	upAnim.loop = true;
-	upAnim.speed = 0.1f;
+	upAnim.speed = animSpeed;
 
 	upLeftAnim.PushBack({ 8, 54, 26, 42 });
 	upLeftAnim.PushBack({ 39, 54, 26, 42 });
 	upLeftAnim.PushBack({ 70, 54, 26, 42 });
 	upLeftAnim.PushBack({ 103, 54, 26, 42 });
 	upLeftAnim.loop = true;
-	upLeftAnim.speed = 0.1f;
+	upLeftAnim.speed = animSpeed;
 	
 	leftAnim.PushBack({ 6, 103, 31, 41 });
 	leftAnim.PushBack({ 39, 103, 31, 41 });
 	leftAnim.PushBack({ 72, 103, 31, 41 });
 	leftAnim.PushBack({ 103, 103, 31, 41 });
 	leftAnim.loop = true;
-	leftAnim.speed = 0.1f;
+	leftAnim.speed = animSpeed;
 
 	downLeftAnim.PushBack({ 11, 149, 25, 39 });
 	downLeftAnim.PushBack({ 44, 149, 25, 39 });
 	downLeftAnim.PushBack({ 77, 149, 25, 39 });
 	downLeftAnim.PushBack({ 108, 149, 25, 39 });
 	downLeftAnim.loop = true;
-	downLeftAnim.speed = 0.1f;
+	downLeftAnim.speed = animSpeed;
 
 	downAnim.PushBack({ 17, 194, 17, 40 });
 	downAnim.PushBack({ 49, 194, 17, 40 });
 	downAnim.PushBack({ 80, 194, 17, 40 });
 	downAnim.PushBack({ 113, 194, 17, 40 });
 	downAnim.loop = true;
-	downAnim.speed = 0.1f;
+	downAnim.speed = animSpeed;
 	
 	downRightAnim.PushBack({ 12, 240, 25, 39 });
 	downRightAnim.PushBack({ 44, 240, 25, 39 });
 	downRightAnim.PushBack({ 72, 240, 25, 39 });
 	downRightAnim.PushBack({ 108, 240, 25, 39 });
 	downRightAnim.loop = true;
-	downRightAnim.speed = 0.1f;
+	downRightAnim.speed = animSpeed;
 
 	rightAnim.PushBack({ 8, 285, 31, 38 });
 	rightAnim.PushBack({ 43, 285, 27, 41 });
 	rightAnim.PushBack({ 71, 285, 30, 36 });
 	rightAnim.PushBack({ 108, 285, 26, 36 });
 	rightAnim.loop = true;
-	rightAnim.speed = 0.1f;
+	rightAnim.speed = animSpeed;
 
 	upRightAnim.PushBack({ 8, 332, 26, 42 });
 	upRightAnim.PushBack({ 40, 332, 26, 42 });
 	upRightAnim.PushBack({ 68, 332, 26, 42 });
 	upRightAnim.PushBack({ 103, 332, 26, 42 });
 	upRightAnim.loop = true;
-	upRightAnim.speed = 0.1f;
+	upRightAnim.speed = animSpeed;
 
 	
 
@@ -235,11 +238,11 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
-	texture = App->textures->Load("Assets/character_sprites.png");
+	texture = App->textures->Load("Assets/Sprites/character_sprites.png");
 	currentAnimation = &downIdleAnim;
 
-	laserFx = App->audio->LoadFx("Assets/laser.wav");
-	explosionFx = App->audio->LoadFx("Assets/explosion.wav");
+	laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
+	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 
 
@@ -454,23 +457,48 @@ UpdateResult ModulePlayer::Update()
 
 	if (keyRight == KEY_STATE::KEY_REPEAT) {
 		
+		if (App->render->camera.y + App->render->camera.h > 397) {
 
-		if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 1083)
+
+			if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 1083)
+			{
+
+				if (lastDirection % 2 != 0)
+				{
+					if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+						App->render->camera.x += speed * SCREEN_SIZE;
+					}
+				}
+				else
+				{
+					if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+						App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+					}
+				}
+
+			}
+
+		}
+		else 
 		{
 
-			if (lastDirection % 2 != 0)
+			if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 1242)
 			{
-				if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
-					App->render->camera.x += speed * SCREEN_SIZE;
+
+				if (lastDirection % 2 != 0)
+				{
+					if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+						App->render->camera.x += speed * SCREEN_SIZE;
+					}
 				}
-			}
-			else 
-			{
-				if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
-					App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+				else
+				{
+					if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+						App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+					}
 				}
+
 			}
-			
 		}
 
 	}

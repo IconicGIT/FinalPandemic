@@ -33,10 +33,10 @@ bool ModuleScene::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/background.png");
+	bgTexture = App->textures->Load("Assets/Sprites/background.png");
 	//App->audio->PlayMusic("Assets/stage_1.ogg", 1.0f);
 
-	tTexture = App->textures->Load("Assets/MovingAndChagingTiles.png");
+	tTexture = App->textures->Load("Assets/Sprites/moving_and_chaging_tiles.png");
 
 	//Bottomside collider
 	App->collisions->AddCollider({ 475, 1534, 608, 15 }, Collider::Type::WALL);
