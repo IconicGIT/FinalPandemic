@@ -44,7 +44,7 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({ 1375, 145, 111, 96 }, Collider::Type::WALL);
 
 	// Enemies ---
-	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 550, 1360);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
 	
 
 	

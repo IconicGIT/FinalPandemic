@@ -29,18 +29,26 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	fPoint playerPosiytion = App->player->GetPlayerPosition();
 	
 
-	float distanceX = GetDistanceX(position.x, playerPosiytion.x);
-	float distanceY = GetDistanceY(position.y, playerPosiytion.y);
-	float distanceXY = fabs(distanceX + distanceY);
+	float distanceX = 0.0f;
+	float distanceY = 0.0f;
+	float distanceXY = 0.0f;
 
-	float resultX = (distanceX / distanceXY);
-	float resultY = distanceY / distanceXY;
+	float resultX = 0.0f;
+	float resultY = 0.0f;
 
 	//sqrt(pow(distanceXY,2))
 	//path.PushBack({-1.0f, -0.5f}, 100); // x movement, y movement, frames de
 	//path.PushBack({0.0f, 0.0f}, 100);
 
 
+	distanceX = GetDistanceX(position.x, playerPosiytion.x);
+	distanceY = GetDistanceY(position.y, playerPosiytion.y);
+	distanceXY = fabs(distanceX + distanceY);
+
+	resultX = (distanceX / distanceXY);
+	resultY = (distanceY / distanceXY);
+
+	////////////////////////////////////////////////////////////////
 	path.PushBack({ resultX, resultY }, 100);
 	path.PushBack({ resultX, resultY }, 100);
 	path.PushBack({ 0.0f, 0.0f }, 100);
@@ -61,11 +69,6 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	path.PushBack({ 0.0f, 0.0f }, 100);
 
 
-	for (int i = 4; i >= 0; i--)
-	{
-		App->particles->AddParticle(App->particles->EnemyBullet, 0, position.x, position.y, 1, Collider::Type::ENEMY_SHOT);
-		App->audio->PlayFx(laserFx);
-	}
 	
 
 }
