@@ -26,7 +26,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	// TODO 3: Have the Brown Cookies describe a path in the screen
 	/////////////////////////////////////////////////////////////
 	
-	fPoint playerPosiytion = App->player->GetPlayerPosition();
+	fPoint playerPosition = App->player->GetPlayerPosition();
 	
 
 	float distanceX = 0.0f;
@@ -35,42 +35,51 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 
 	float resultX = 0.0f;
 	float resultY = 0.0f;
+	int counter = 0;
+
+	float realDistance = 0.0f;
 
 	//sqrt(pow(distanceXY,2))
 	//path.PushBack({-1.0f, -0.5f}, 100); // x movement, y movement, frames de
 	//path.PushBack({0.0f, 0.0f}, 100);
 
+	//
+	playerPosition = App->player->GetPlayerPosition();
 
-	distanceX = GetDistanceX(position.x, playerPosiytion.x);
-	distanceY = GetDistanceY(position.y, playerPosiytion.y);
+	distanceX = GetDistanceX(position.x, playerPosition.x);
+	distanceY = GetDistanceY(position.y, playerPosition.y);
+
+	if (distanceY == 0.0000000f)
+	{
+		distanceY = 0.000001f;
+	}
+	if(distanceX == 0.0000000f)
+	{
+		distanceX = 0.000001f;
+	}
+
 	distanceXY = fabs(distanceX + distanceY);
 
-	resultX = (distanceX / distanceXY);
-	resultY = (distanceY / distanceXY);
+	resultX = (distanceX / distanceXY)*1;                            // It updates? but does the player position update?
+	resultY = (distanceY / distanceXY)*1;
 
-	////////////////////////////////////////////////////////////////
-	path.PushBack({ resultX, resultY }, 100);
-	path.PushBack({ resultX, resultY }, 100);
-	path.PushBack({ 0.0f, 0.0f }, 100);
+	realDistance = RealDistancePlayerEnemy(distanceX, distanceY);
+	///
+	if (counter == 0)
+	{
+		path.PushBack({ 0.0f, 0.0f }, 100);
+	}
+
+	path.PushBack({ resultX, resultY }, 100);	
+	path.PushBack({ 0.0f, 0.0f }, 10);
+
 	for (int i = 4; i >= 0; i--)
 	{
 		App->particles->AddParticle(App->particles->EnemyBullet, 0, position.x, position.y, 1, Collider::Type::ENEMY_SHOT);
 		App->audio->PlayFx(laserFx);
 	}
-	path.PushBack({ 0.0f, 0.0f }, 100);
-	path.PushBack({ -resultX, -resultY }, 100);
-	path.PushBack({ -resultX, -resultY }, 100);
-	path.PushBack({ 0.0f, 0.0f }, 100);
-	for (int i = 4; i >= 0; i--)
-	{
-		App->particles->AddParticle(App->particles->EnemyBullet, 0, position.x, position.y, 1, Collider::Type::ENEMY_SHOT);
-		App->audio->PlayFx(laserFx);
-	}
-	path.PushBack({ 0.0f, 0.0f }, 100);
-
-
 	
-
+	counter++;
 }
 
 void Enemy_Soldier::Update()
