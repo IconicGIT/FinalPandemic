@@ -4,6 +4,8 @@
 #include "ModuleCollisions.h"
 #include "ModulePlayer.h"
 #include <math.h>
+#include "ModuleParticles.h"
+#include "ModuleAudio.h"
 
 Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {
@@ -23,19 +25,49 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 
 	// TODO 3: Have the Brown Cookies describe a path in the screen
 	/////////////////////////////////////////////////////////////
-	float distanceX = GetDistanceX(position.x, App->player->position.x);
-	float distanceY = GetDistanceY(position.y, App->player->position.y);
+	
+	fPoint playerPosiytion = App->player->GetPlayerPosition();
+	
+
+	float distanceX = GetDistanceX(position.x, playerPosiytion.x);
+	float distanceY = GetDistanceY(position.y, playerPosiytion.y);
 	float distanceXY = fabs(distanceX + distanceY);
 
-	float resultX = distanceX / distanceXY;
+	float resultX = (distanceX / distanceXY);
 	float resultY = distanceY / distanceXY;
 
 	//sqrt(pow(distanceXY,2))
 	//path.PushBack({-1.0f, -0.5f}, 100); // x movement, y movement, frames de
-	path.PushBack({0.0f, 0.0f}, 100);
+	//path.PushBack({0.0f, 0.0f}, 100);
+
+
 	path.PushBack({ resultX, resultY }, 100);
 	path.PushBack({ resultX, resultY }, 100);
+	path.PushBack({ 0.0f, 0.0f }, 100);
+	for (int i = 4; i >= 0; i--)
+	{
+		App->particles->AddParticle(App->particles->EnemyBullet, 0, position.x, position.y, 1, Collider::Type::ENEMY_SHOT);
+		App->audio->PlayFx(laserFx);
+	}
+	path.PushBack({ 0.0f, 0.0f }, 100);
+	path.PushBack({ -resultX, -resultY }, 100);
+	path.PushBack({ -resultX, -resultY }, 100);
+	path.PushBack({ 0.0f, 0.0f }, 100);
+	for (int i = 4; i >= 0; i--)
+	{
+		App->particles->AddParticle(App->particles->EnemyBullet, 0, position.x, position.y, 1, Collider::Type::ENEMY_SHOT);
+		App->audio->PlayFx(laserFx);
+	}
+	path.PushBack({ 0.0f, 0.0f }, 100);
+
+
+	for (int i = 4; i >= 0; i--)
+	{
+		App->particles->AddParticle(App->particles->EnemyBullet, 0, position.x, position.y, 1, Collider::Type::ENEMY_SHOT);
+		App->audio->PlayFx(laserFx);
+	}
 	
+
 }
 
 void Enemy_Soldier::Update()

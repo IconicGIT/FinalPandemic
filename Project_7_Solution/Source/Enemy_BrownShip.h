@@ -74,6 +74,9 @@ private:
 	Animation downRightDeath;
 	Animation downLeftDeath;
 	
+
+	uint laserFx = 0;
+	uint explosionFx = 0;
 };
 
 #endif // __ENEMY_BROWNSHIP_H__

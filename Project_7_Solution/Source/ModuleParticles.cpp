@@ -48,6 +48,13 @@ bool ModuleParticles::Start()
 	PlayerBullet.lifetime = 180;
 	PlayerBullet.anim.speed = 0.2f;
 
+	EnemyBullet.anim.PushBack({ 232, 103, 16, 12 });
+	EnemyBullet.anim.PushBack({ 249, 103, 16, 12 });
+	EnemyBullet.speed.x = 5;
+	EnemyBullet.speed.y = 5;
+	EnemyBullet.lifetime = 180;
+	EnemyBullet.anim.speed = 0.2f;
+
 	return true;
 }
 

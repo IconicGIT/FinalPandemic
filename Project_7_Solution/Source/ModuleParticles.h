@@ -62,6 +62,7 @@ public:
 	//Template particle for a laser
 	Particle laser;
 	Particle PlayerBullet;
+	Particle EnemyBullet;
 };
 
 #endif // !__MODULEPARTICLES_H__
