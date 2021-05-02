@@ -36,6 +36,8 @@ bool ModuleScene::Start()
 	bgTexture = App->textures->Load("Assets/background.png");
 	//App->audio->PlayMusic("Assets/stage_1.ogg", 1.0f);
 
+	tTexture = App->textures->Load("Assets/MovingAndChagingTiles.png");
+
 	//Bottomside collider
 	App->collisions->AddCollider({ 475, 1534, 608, 15 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 475, -15, 768, 15 }, Collider::Type::WALL);
@@ -103,6 +105,27 @@ UpdateResult ModuleScene::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
+
+	SDL_Rect btree;
+	btree.x = 417;
+	btree.y = 294;
+	btree.w = 89;
+	btree.h = 160;
+
+	App->render->Blit(tTexture, 813, 910, &btree);
+	App->render->Blit(tTexture, 877, 926, &btree);
+	App->render->Blit(tTexture, 845, 958, &btree);
+	App->render->Blit(tTexture, 813, 974, &btree);
+	App->render->Blit(tTexture, 781, 974, &btree);
+
+	SDL_Rect brock;
+	brock.x = 284;
+	brock.y = 7;
+	brock.w = 127;
+	brock.h = 213;
+
+	App->render->Blit(tTexture, 768, 487, &brock);
+
 	App->collisions->DebugDraw();
 
 	return UpdateResult::UPDATE_CONTINUE;
