@@ -18,7 +18,7 @@ enum class ENEMY_TYPE
 	SOLDIER,
 	MECH,
 };
-
+//cscscscscsscs
 struct EnemySpawnpoint
 {
 	ENEMY_TYPE type = ENEMY_TYPE::NO_TYPE;
