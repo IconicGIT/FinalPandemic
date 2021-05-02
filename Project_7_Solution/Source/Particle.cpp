@@ -1,6 +1,8 @@
 #include "Particle.h"
 
 #include "Collider.h"
+#include "Enemy_BrownShip.h"
+#include "Application.h"
 
 Particle::Particle()
 {
@@ -111,6 +113,30 @@ bool Particle::Update()
 			}
 
 			break;
+
+		case 1: // Enemy Bullet
+
+			if (direction == 1)
+			{
+				counter = 0;
+				_speedy = 0.0f;
+				_speedx = 0.0f;
+
+				if (counter == 0)
+				{
+					//_speedy = speed.y * App->enemies->ENEMY_SOLDIER->resultY;
+					//_speedx = speed.x * App->enemies->ENEMY_SOLDIER->resultX;
+
+					counter++;
+				}
+				else
+				{
+					position.y += _speedy;
+					position.x += _speedx;
+				}
+				
+			}
+
 
 		}
 

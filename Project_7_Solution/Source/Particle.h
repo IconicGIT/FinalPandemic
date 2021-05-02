@@ -29,7 +29,8 @@ public:
 	int id;
 
 	//direction
-	int direction;
+	
+	int  direction;
 
 	// Defines the position in the screen
 	iPoint position;
@@ -53,6 +54,10 @@ public:
 
 	// The particle's collider
 	Collider* collider = nullptr;
+
+	int counter ;
+	float _speedy ;
+	float _speedx ;
 };
 
 #endif //__PARTICLE_H__
