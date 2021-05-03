@@ -36,6 +36,8 @@ public:
 	float pushTimer = 0;
 	float pushTimerReference = 400;
 
+	float soldierSpeed;
+
 	
 
 private:
@@ -71,7 +73,10 @@ private:
 	Animation upLeftDeath;
 	Animation downRightDeath;
 	Animation downLeftDeath;
-	
+
+	// Grenade Animation
+
+	Animation grenadeAnim;
 
 	uint laserFx = 0;
 	uint explosionFx = 0;

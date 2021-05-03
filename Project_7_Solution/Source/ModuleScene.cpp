@@ -51,7 +51,7 @@ bool ModuleScene::Start()
 
 
 	// Enemies ---
-	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
 	
 
 	
