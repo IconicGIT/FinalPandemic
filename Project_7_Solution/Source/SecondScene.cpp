@@ -25,12 +25,12 @@ bool SecondScene::Start()
 
 	bool ret = true;
 
-	bTexture = App->textures->Load("Assets/Sprites/background_scene2.png");
+	bTexture = App->textures->Load("Assets/Sprites/Scene2.png");
 	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
 
-	App->collisions->AddCollider({ 0, 391, 224, 1 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 0, 781, 224, 1 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 0, 1170, 224, 1 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, 384, 224, 1 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, 768, 224, 1 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, 1152, 224, 1 }, Collider::Type::WALL);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
