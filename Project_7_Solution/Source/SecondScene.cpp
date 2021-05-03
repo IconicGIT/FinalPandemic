@@ -42,7 +42,7 @@ UpdateResult SecondScene::Update()
 {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->render->camera.y += 4;
+		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
 	}
 
 	return UpdateResult::UPDATE_CONTINUE;
