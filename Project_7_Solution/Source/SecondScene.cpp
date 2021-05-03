@@ -49,10 +49,10 @@ UpdateResult SecondScene::PostUpdate()
 	SDL_Rect bhouse;
 	bhouse.x = 0;
 	bhouse.y = 0;
-	bhouse.w = 484;
-	bhouse.h = 845;
+	bhouse.w = 363;
+	bhouse.h = 634;
 
-	App->render->Blit(bTexture, 0, 0, NULL);
+	App->render->Blit(bTexture, 0, 0, &bhouse);
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
