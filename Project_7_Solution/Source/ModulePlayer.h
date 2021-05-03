@@ -50,7 +50,7 @@ public:
 
 	//Margin of movement
 	int horizontalMargin = 45;
-	int verticalMargin = 175;
+	int verticalMargin = 200;
 	
 	// The speed in which we move the player (pixels per frame)
 	int speed = 2;
@@ -102,20 +102,27 @@ public:
 
 
 	// The player's collider
-	Collider* collider = nullptr;
+	Collider* hitBox = nullptr;
+	Collider* collBox = nullptr;
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
 	int playerLife = PLAYER_LIFE;
-	int playerWidth = 23;
-	int playerHeight = 23;
+	int playerWidth = 25;
+	int playerHeight = 45;
+
+	SDL_Rect wallArr[100] = { 0 };
+	int maxColliders = 0;
 
 	// A countdown to when the player gets destroyed. After a while, the game exits
 	uint exitCountdown = 120;
 
 	// Sound effects indices
 	uint laserFx = 0;
-	uint explosionFx = 0;
+	uint damageFx = 0;
+	uint deathFx = 0;
+	uint bombFx = 0;
+	
 
 	uint score = 000;
 	int scoreFont = -1;

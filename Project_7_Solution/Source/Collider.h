@@ -11,7 +11,8 @@ struct Collider
 	{
 		NONE = -1,
 		WALL,
-		PLAYER,
+		PLAYER_HITBOX,
+		PLAYER_COLLBOX,
 		ENEMY,
 		PLAYER_SHOT,
 		ENEMY_SHOT,

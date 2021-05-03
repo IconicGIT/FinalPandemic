@@ -238,11 +238,13 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
+	//Add textures -> remember unload
 	texture = App->textures->Load("Assets/Sprites/character_sprites.png");
 	currentAnimation = &downIdleAnim;
 
+	//Add audio -> remember unload
 	laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
-	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+	bombFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 
 
@@ -251,18 +253,16 @@ bool ModulePlayer::Start()
 
 	lastDirection = 5;
 
-	collider = App->collisions->AddCollider({ (int)position.x, (int)position.y, 32, 16 }, Collider::Type::PLAYER, this);
+	//collBox = App->collisions->AddCollider({ (int)position.x, (int)position.y, playerWidth, playerHeight }, Collider::Type::PLAYER_COLLBOX, this);
+	hitBox = App->collisions->AddCollider({ (int)position.x, (int)position.y + 15, 25, 25}, Collider::Type::PLAYER_HITBOX, this);
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	scoreFont = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable,2);
 
-	return ret;
 
 	
-	
-	
-	
+	return ret;
 
 }
 
@@ -272,6 +272,30 @@ UpdateResult ModulePlayer::Update()
 	// Moving the player with the camera scroll
 	//App->player->position.x += 0;
 	////////////////////////////////////////////////////////
+
+	if (maxColliders == 0) maxColliders = App->collisions->GetMaxColliders();
+
+	LOG("getting wall colliders: ")
+
+		//for (int i = 0; i < maxColliders; i++)
+		//{
+		//
+		//	LOG("getting wall colliderssss: ")
+		//	if (App->collisions->colliders[i] != NULL 
+		//		&& App->collisions->colliders[i]->type == Collider::Type::WALL
+		//		&& wallArr[i].w != 0)
+		//	{
+		//	
+		//		wallArr[i] = App->collisions->colliders[i]->rect;
+		//		//LOG("collider i% x: i%", i, wallArr[i].x);
+		//	
+		//	}
+		//	else {
+		//	
+		//		wallArr[i] = { -1,-1,-1,-1 };
+		//	
+		//	}
+		//}
 
 	keyUp    = App->input->keys[SDL_SCANCODE_W];
 	keyLeft  = App->input->keys[SDL_SCANCODE_A];
@@ -294,12 +318,22 @@ UpdateResult ModulePlayer::Update()
 	// 
 	//AXIS MOVEMENT
 	//left
+
 	if ((keyUp == KEY_STATE::KEY_IDLE)
 		&& (keyLeft == KEY_STATE::KEY_REPEAT)
 		&& (keyDown == KEY_STATE::KEY_IDLE)
 		&& (keyRight == KEY_STATE::KEY_IDLE))
 	{
-		position.x -= speed;
+		bool move = true;
+
+		for (int i = 0; i < 100; i++) 
+		{
+			if (position.x - speed < wallArr[i].x + wallArr[i].w) {
+				move = false;
+			}
+			
+		}
+		if (move) position.x -= speed;
 
 		if (currentAnimation != &leftAnim)
 		{
@@ -457,7 +491,7 @@ UpdateResult ModulePlayer::Update()
 
 	if (keyRight == KEY_STATE::KEY_REPEAT) {
 		
-		if (App->render->camera.y + App->render->camera.h > 397) {
+		if (App->render->camera.y + App->render->camera.h > 500) {
 
 
 			if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 1083)
@@ -465,13 +499,13 @@ UpdateResult ModulePlayer::Update()
 
 				if (lastDirection % 2 != 0)
 				{
-					if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+					if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
 						App->render->camera.x += speed * SCREEN_SIZE;
 					}
 				}
 				else
 				{
-					if (position.x + 23 > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+					if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
 						App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
 					}
 				}
@@ -721,7 +755,8 @@ UpdateResult ModulePlayer::Update()
 
 	
 	////////////////////////////////////////////
-	collider->SetPos(position.x, position.y);
+	hitBox->SetPos(position.x, position.y);
+	//collBox->SetPos(position.x, position.y);
 
 	currentAnimation->Update();
 
@@ -745,14 +780,14 @@ UpdateResult ModulePlayer::PostUpdate()
 		App->render->Blit(texture, position.x, position.y, &rect,1);
 	}
 
-	App->fonts->BlitText(20, 20,scoreFont,"test text");
+	App->fonts->BlitText(20, 20,scoreFont,scoreText);
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == collider && destroyed == false)
+	if (c1 == hitBox && destroyed == false)
 	{
 		//App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
 		//App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE, 14);

@@ -12,31 +12,31 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 		colliders[i] = nullptr;
 
 	matrix[Collider::Type::WALL][Collider::Type::WALL] = false;
-	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::WALL][Collider::Type::PLAYER_HITBOX] = true;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER_SHOT] = true;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY_SHOT] = true;
 
-	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
-	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
-	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY] = true;
-	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER_SHOT] = false;
-	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_SHOT] = true;
+	matrix[Collider::Type::PLAYER_HITBOX][Collider::Type::WALL] = true;
+	matrix[Collider::Type::PLAYER_HITBOX][Collider::Type::PLAYER_HITBOX] = false;
+	matrix[Collider::Type::PLAYER_HITBOX][Collider::Type::ENEMY] = true;
+	matrix[Collider::Type::PLAYER_HITBOX][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::PLAYER_HITBOX][Collider::Type::ENEMY_SHOT] = true;
 
 	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = true;
-	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_HITBOX] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_SHOT] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_SHOT] = false;
 
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WALL] = true;
-	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER_HITBOX] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY_SHOT] = false;
 
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WALL] = true;
-	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER_HITBOX] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_SHOT] = false;
@@ -121,23 +121,26 @@ void ModuleCollisions::DebugDraw()
 		switch(colliders[i]->type)
 		{
 			case Collider::Type::NONE: // white
-			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
-			break;
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
+				break;
 			case Collider::Type::WALL: // blue
-			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
-			break;
-			case Collider::Type::PLAYER: // green
-			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
-			break;
+				App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
+				break;
+			case Collider::Type::PLAYER_HITBOX: // green
+				App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
+				break;
+			case Collider::Type::PLAYER_COLLBOX: // green
+				App->render->DrawQuad(colliders[i]->rect, 255, 0, 255, alpha);
+				break;
 			case Collider::Type::ENEMY: // red
-			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
-			break;
+				App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
+				break;
 			case Collider::Type::PLAYER_SHOT: // yellow
-			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
-			break;
+				App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
+				break;
 			case Collider::Type::ENEMY_SHOT: // magenta
-			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
-			break;
+				App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+				break;
 		}
 	}
 }
@@ -173,4 +176,8 @@ Collider* ModuleCollisions::AddCollider(SDL_Rect rect, Collider::Type type, Modu
 	}
 
 	return ret;
+}
+
+int ModuleCollisions::GetMaxColliders() const {
+	return MAX_COLLIDERS;
 }

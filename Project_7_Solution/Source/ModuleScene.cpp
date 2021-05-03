@@ -47,11 +47,11 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({ 1083, 398, 15, 1136 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 1243, 0, 15, 398 }, Collider::Type::WALL);
 
-	//First two columns colliders
+	App->collisions->AddCollider({ 550, 1400, 15, 15 }, Collider::Type::WALL);
 
 
 	// Enemies ---
-	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
+	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
 	
 
 	
