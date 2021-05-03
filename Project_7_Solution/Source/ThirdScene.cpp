@@ -50,7 +50,7 @@ UpdateResult ThirdScene::PostUpdate()
 	bcoin.x = 0;
 	bcoin.y = 0;
 	bcoin.w = 224;
-	bcoin.h = 224;
+	bcoin.h = 384;
 
 	App->render->Blit(bTexture, 0, 0, &bcoin);
 
