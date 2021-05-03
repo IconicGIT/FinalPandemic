@@ -4,4 +4,8 @@
     <LocalDebuggerWorkingDirectory>$(SolutionDir)/Project_7_Solution/Game</LocalDebuggerWorkingDirectory>
     <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LocalDebuggerWorkingDirectory>$(SolutionDir)/Project_7_Solution/Game</LocalDebuggerWorkingDirectory>
+    <DebuggerFlavor>WindowsLocalDebugger</DebuggerFlavor>
+  </PropertyGroup>
 </Project>
