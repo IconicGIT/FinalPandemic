@@ -30,6 +30,7 @@ bool SecondScene::Start()
 
 	App->collisions->AddCollider({ 0, 391, 224, 1 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, 781, 224, 1 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, 1170, 224, 1 }, Collider::Type::WALL);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
