@@ -33,7 +33,7 @@ bool ModuleScene::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Sprites/background.png");
+	bgTexture = App->textures->Load("Assets/Sprites/background_ingame.png");
 	//App->audio->PlayMusic("Assets/stage_1.ogg", 1.0f);
 
 	tTexture = App->textures->Load("Assets/Sprites/moving_and_chaging_tiles.png");
