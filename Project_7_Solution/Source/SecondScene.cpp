@@ -24,7 +24,7 @@ bool SecondScene::Start()
 
 	bool ret = true;
 
-	bTexture = App->textures->Load("Assets/Sprites/back_scene2.png");
+	bTexture = App->textures->Load("Assets/Sprites/background_scene2.png");
 	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
 
 	App->render->camera.x = 0;
@@ -49,10 +49,10 @@ UpdateResult SecondScene::PostUpdate()
 	SDL_Rect bhouse;
 	bhouse.x = 0;
 	bhouse.y = 0;
-	bhouse.w = 363;
-	bhouse.h = 634;
+	bhouse.w = 224;
+	bhouse.h = 391;
 
-	App->render->Blit(bTexture, 0, 0, &bhouse);
+	App->render->Blit(bTexture, 0, 0, NULL);
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
