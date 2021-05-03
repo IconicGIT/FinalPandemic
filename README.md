@@ -16,9 +16,9 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
 - Management: **Brandon Arandia** [[ _IconicGIT_ ](https://github.com/IconicGIT)]:
   - Main Responsible of Final Pandemic's Mercs Team Management.
 
-## Mercs game decription
+## Mercs game description
 
-Marx is a top-down run and gun arcade game, that consists in a marked path where you are able to move freely around the four directions, shooting the enemies, trying not to get reached by their weapons. In each level you will be able to use different vehicles to finally reach the final boss who will decide if you pass to the next level.
+Mercs is a top-down run and gun arcade game, that consists in a marked path where you are able to move freely around the four directions, shooting the enemies, trying not to get reached by their weapons. In each level you will be able to use different vehicles to finally reach the final boss who will decide if you pass to the next level.
 
 ## Game controls
 
