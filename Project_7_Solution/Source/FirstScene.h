@@ -29,11 +29,30 @@ public:
 	// Performs the render call of all the parts of the scene's background
 	UpdateResult PostUpdate() override;
 
-	int counter = 5;
+	int counter = 1;
 
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* hTexture = nullptr;
+	SDL_Texture* text1 = nullptr;
+	SDL_Texture* text2 = nullptr;
+	SDL_Texture* text3 = nullptr;
+	SDL_Texture* text4 = nullptr;
+	SDL_Texture* text5 = nullptr;
+
+	SDL_Rect textBlack;
+
+
+	float blackAlpha;
+	float blackMultiplier;
+	float angle;
+	bool fade;
+	
+	int timerReference;
+	int timer;
+
+	
+
 };
 
 #endif	// __FIRSTSCENE_H__
