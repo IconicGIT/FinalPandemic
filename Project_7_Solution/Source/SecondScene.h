@@ -31,7 +31,7 @@ public:
 
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* hTexture = nullptr;
+	SDL_Texture* bTexture = nullptr;
 };
 
 #endif	// __SECONDSCENE_H__
