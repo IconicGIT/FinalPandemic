@@ -1,19 +1,19 @@
-#ifndef __SCENEINTRO_H__
-#define __SCENEINTRO_H__
+#ifndef __SECONDSCENE_H__
+#define __SECONDSCENE_H__
 
 #include "Module.h"
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class SceneIntro : public Module
+class SecondScene : public Module
 {
 public:
 	// Constructor
-	SceneIntro(bool startEnabled);
+	SecondScene(bool startEnabled);
 
 	// Destructor
-	~SceneIntro();
+	~SecondScene();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -34,4 +34,4 @@ public:
 	SDL_Texture* hTexture = nullptr;
 };
 
-#endif	// __SCENEINTRO_H__
+#endif	// __SECONDSCENE_H__

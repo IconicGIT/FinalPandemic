@@ -37,7 +37,7 @@ UpdateResult FirstScene::Update()
 {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
+		App->fade->FadeToBlack(this, (Module*)App->secondScene, 90);
 	}
 
 	return UpdateResult::UPDATE_CONTINUE;

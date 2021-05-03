@@ -12,7 +12,7 @@ class ModuleTextures;
 class ModuleAudio;
 class ModulePlayer;
 class FirstScene;
-class SceneIntro;
+class SecondScene;
 class ModuleScene;
 class ModuleParticles;
 class ModuleCollisions;
@@ -54,7 +54,7 @@ public:
 	ModulePlayer* player = nullptr;
 
 	FirstScene* firstScene = nullptr;
-	SceneIntro* sceneIntro = nullptr;
+	SecondScene* secondScene = nullptr;
 	ModuleScene* scene = nullptr;
 	ModuleEnemies* enemies = nullptr;
 	ModuleParticles* particles = nullptr;

@@ -7,7 +7,7 @@
 #include "ModuleAudio.h"
 #include "ModulePlayer.h"
 #include "FirstScene.h"
-#include "SceneIntro.h"
+#include "SecondScene.h"
 #include "ModuleScene.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
@@ -28,7 +28,7 @@ Application::Application()
 	modules[3] = audio = new ModuleAudio(true);
 
 	modules[4] = firstScene = new FirstScene(true);
-	modules[5] = sceneIntro = new SceneIntro(false);
+	modules[5] = secondScene = new SecondScene(false);
 	modules[6] = scene = new ModuleScene(false);		//Gameplay scene starts disabled
 	modules[7] = player = new ModulePlayer(false);	//Player starts disabled
 	modules[8] = particles = new ModuleParticles(true);

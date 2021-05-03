@@ -1,4 +1,4 @@
-#include "SceneIntro.h"
+#include "SecondScene.h"
 
 #include "Application.h"
 #include "ModuleTextures.h"
@@ -7,18 +7,18 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 
-SceneIntro::SceneIntro(bool startEnabled) : Module(startEnabled)
+SecondScene::SecondScene(bool startEnabled) : Module(startEnabled)
 {
 
 }
 
-SceneIntro::~SceneIntro()
+SecondScene::~SecondScene()
 {
 
 }
 
 // Load assets
-bool SceneIntro::Start()
+bool SecondScene::Start()
 {
 	LOG("Loading background assets");
 
@@ -33,7 +33,7 @@ bool SceneIntro::Start()
 	return ret;
 }
 
-UpdateResult SceneIntro::Update()
+UpdateResult SecondScene::Update()
 {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
@@ -43,7 +43,7 @@ UpdateResult SceneIntro::Update()
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
-UpdateResult SceneIntro::PostUpdate()
+UpdateResult SecondScene::PostUpdate()
 {
 	// Draw everything
 	SDL_Rect bhouse;
@@ -57,7 +57,7 @@ UpdateResult SceneIntro::PostUpdate()
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
-bool SceneIntro::CleanUp() {
+bool SecondScene::CleanUp() {
 
 	//SDL_free(bgTexture);
 
