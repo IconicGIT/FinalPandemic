@@ -24,7 +24,7 @@ bool FirstScene::Start()
 
 	bool ret = true;
 
-	hTexture = App->textures->Load("Assets/Sprites/house2.png");
+	hTexture = App->textures->Load("Assets/Sprites/house.png");
 	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
 
 	App->render->camera.x = 0;
