@@ -59,7 +59,7 @@ bool ModuleScene::Start()
 
 
 	App->render->camera.x = 475 * SCREEN_SIZE;
-	App->render->camera.y = 1156 * SCREEN_SIZE;
+	App->render->camera.y = 1149 * SCREEN_SIZE;
 
 	if (App->player->IsEnabled() == 0)
 	{

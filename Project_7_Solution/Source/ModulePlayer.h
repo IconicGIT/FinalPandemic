@@ -103,7 +103,15 @@ public:
 
 	// The player's collider
 	Collider* hitBox = nullptr;
-	Collider* collBox = nullptr;
+
+	Collider* colBoxUp = nullptr;
+	Collider* colBoxUpLeft = nullptr;
+	Collider* colBoxLeft = nullptr;
+	Collider* colBoxDownLeft = nullptr;
+	Collider* colBoxDown = nullptr;
+	Collider* colBoxDownRight = nullptr;
+	Collider* colBoxRight = nullptr;
+	Collider* colBoxUpRight = nullptr;
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;

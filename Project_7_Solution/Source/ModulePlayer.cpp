@@ -254,7 +254,18 @@ bool ModulePlayer::Start()
 	lastDirection = 5;
 
 	//collBox = App->collisions->AddCollider({ (int)position.x, (int)position.y, playerWidth, playerHeight }, Collider::Type::PLAYER_COLLBOX, this);
-	hitBox = App->collisions->AddCollider({ (int)position.x, (int)position.y + 15, 25, 25}, Collider::Type::PLAYER_HITBOX, this);
+	//hitBox = App->collisions->AddCollider({ (int)position.x, (int)position.y + 15, 25, 25}, Collider::Type::PLAYER_HITBOX, this);
+	hitBox = App->collisions->AddCollider({ (int)position.x, (int)position.y, playerWidth, playerHeight }, Collider::Type::PLAYER_HITBOX, this);
+
+	colBoxUp		= App->collisions->AddCollider({ (int)position.x, (int)position.y - speed, playerWidth, speed }, Collider::Type::PLAYER_COLLBOX, this);
+	colBoxUpLeft	= App->collisions->AddCollider({ (int)position.x - diagonalSpeed, (int)position.y - diagonalSpeed, diagonalSpeed, diagonalSpeed }, Collider::Type::PLAYER_COLLBOX, this);
+	colBoxLeft		= App->collisions->AddCollider({ (int)position.x - speed, (int)position.y, speed, playerHeight }, Collider::Type::PLAYER_COLLBOX, this);
+	colBoxDownLeft	= App->collisions->AddCollider({ (int)position.x - diagonalSpeed, (int)position.y + playerHeight + diagonalSpeed, diagonalSpeed, diagonalSpeed }, Collider::Type::PLAYER_COLLBOX, this);
+	colBoxDown		= App->collisions->AddCollider({ (int)position.x, (int)position.y + playerHeight, playerWidth, speed }, Collider::Type::PLAYER_COLLBOX, this);
+	colBoxDownRight = App->collisions->AddCollider({ (int)position.x + playerWidth, (int)position.y + playerHeight, diagonalSpeed, diagonalSpeed }, Collider::Type::PLAYER_COLLBOX, this);
+	colBoxRight		= App->collisions->AddCollider({ (int)position.x + playerWidth, (int)position.y, speed, playerHeight }, Collider::Type::PLAYER_COLLBOX, this);
+	colBoxUpRight	= App->collisions->AddCollider({ (int)position.x, (int)position.y - diagonalSpeed, diagonalSpeed, diagonalSpeed }, Collider::Type::PLAYER_COLLBOX, this);
+
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
@@ -756,7 +767,15 @@ UpdateResult ModulePlayer::Update()
 	
 	////////////////////////////////////////////
 	hitBox->SetPos(position.x, position.y);
-	//collBox->SetPos(position.x, position.y);
+	
+	colBoxUp		->SetPos(position.x, position.y - speed);
+	colBoxUpLeft	->SetPos(position.x - diagonalSpeed, position.y - diagonalSpeed);
+	colBoxLeft		->SetPos(position.x - speed, position.y);
+	colBoxDownLeft	->SetPos(position.x - diagonalSpeed, position.y + playerHeight);
+	colBoxDown		->SetPos(position.x, position.y + playerHeight);
+	colBoxDownRight	->SetPos(position.x + playerWidth, position.y + playerHeight);
+	colBoxRight		->SetPos(position.x + playerWidth, position.y);
+	colBoxUpRight	->SetPos(position.x + playerWidth, position.y - diagonalSpeed);
 
 	currentAnimation->Update();
 
@@ -789,14 +808,12 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1 == hitBox && destroyed == false)
 	{
-		//App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
-		//App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE, 14);
-		//App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, Collider::Type::NONE, 40);
-		//App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, Collider::Type::NONE, 28);
-		//App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
-
-		//App->audio->PlayFx(explosionFx);
-
-		//destroyed = true;
+		
 	}
+
+	
 }
+
+
+
+
