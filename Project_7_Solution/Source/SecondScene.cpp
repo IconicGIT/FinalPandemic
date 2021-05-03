@@ -4,6 +4,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
+#include "ModuleCollisions.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
 
@@ -27,6 +28,9 @@ bool SecondScene::Start()
 	bTexture = App->textures->Load("Assets/Sprites/background_scene2.png");
 	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
 
+	App->collisions->AddCollider({ 0, 391, 224, 1 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 0, 781, 224, 1 }, Collider::Type::WALL);
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
@@ -37,22 +41,19 @@ UpdateResult SecondScene::Update()
 {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
+		App->render->camera.y += 4;
 	}
-	
+
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
 UpdateResult SecondScene::PostUpdate()
 {
 	// Draw everything
-	SDL_Rect bhouse;
-	bhouse.x = 0;
-	bhouse.y = 0;
-	bhouse.w = 224;
-	bhouse.h = 391;
 
 	App->render->Blit(bTexture, 0, 0, NULL);
+
+	App->collisions->DebugDraw();
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
