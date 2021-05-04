@@ -243,8 +243,8 @@ bool ModulePlayer::Start()
 	currentAnimation = &downIdleAnim;
 
 	//Add audio -> remember unload
-	laserFx = App->audio->LoadFx("Assets/Fx/GunShot1.wav");
-	bombFx = App->audio->LoadFx("Assets/Fx/Explosion02.wav");
+	laserFx = App->audio->LoadFx("Assets/Fx/gun_shot.wav");
+	bombFx = App->audio->LoadFx("Assets/Fx/explosion_02.wav");
 
 
 

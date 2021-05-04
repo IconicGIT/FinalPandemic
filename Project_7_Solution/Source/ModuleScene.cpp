@@ -117,7 +117,7 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({ 563, 526, 102, 32 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 611, 446, 102, 32 }, Collider::Type::WALL);
 
-	App->audio->PlayMusic("Assets/Music/Mission1.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/mission_1.ogg", 1.0f);
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);

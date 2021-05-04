@@ -27,7 +27,7 @@ bool FrontPage::Start()
 
 	bTexture = App->textures->Load("Assets/Sprites/front_page.png");
 	//bMusic = Mix_LoadMUS("Assets/Music/Opening.ogg");
-	App->audio->PlayMusic("Assets/Music/Opening.ogg");
+	App->audio->PlayMusic("Assets/Music/opening.ogg");
 
 
 
