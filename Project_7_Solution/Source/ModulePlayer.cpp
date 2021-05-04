@@ -870,7 +870,7 @@ UpdateResult ModulePlayer::Update()
 
 	
 	////////////////////////////////////////////
-	hitBox->SetPos(position.x, position.y + 30);
+	hitBox->SetPos(position.x, position.y + playerHeightOffset);
 	
 	colBoxUp		->SetPos(position.x, position.y - speed + playerHeightOffset);
 	colBoxUpLeft	->SetPos(position.x - diagonalSpeed, position.y - diagonalSpeed + playerHeightOffset);
@@ -885,8 +885,8 @@ UpdateResult ModulePlayer::Update()
 
 	if (destroyed)
 	{
-		exitCountdown--;
-		if (exitCountdown <= 0)
+		//exitCountdown--;
+		//if (exitCountdown <= 0)
 			return UpdateResult::UPDATE_STOP;
 	}
 	
@@ -900,7 +900,7 @@ UpdateResult ModulePlayer::PostUpdate()
 	if (destroyed != true)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x + 4, position.y, &rect,1);
+		App->render->Blit(texture, position.x + PlayerWidthOffset, position.y, &rect,1);
 	}
 
 	App->fonts->BlitText(20, 20,scoreFont,scoreText);
