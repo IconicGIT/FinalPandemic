@@ -14,6 +14,7 @@
 
 #include "SDL/include/SDL_scancode.h"
 #include <math.h>
+#include <stdio.h>
 
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
@@ -902,9 +903,11 @@ UpdateResult ModulePlayer::PostUpdate()
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		App->render->Blit(texture, position.x, position.y, &rect,1);
 	}
+	
+	sprintf_s(scoreText, 10, "%i", score);
 
-	App->fonts->BlitText(20, 20,scoreFont,scoreText);
-
+	App->fonts->BlitText(40, 0,scoreFont, scoreText);
+	//App->fonts->BlitText(60, 20, scoreFont, "texto de ejemplo");
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
