@@ -25,7 +25,7 @@ bool FrontPage::Start()
 	bool ret = true;
 
 	bTexture = App->textures->Load("Assets/Sprites/front_page.png");
-	App->audio->PlayMusic("Assets/Music/Mission1.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/Opening.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
