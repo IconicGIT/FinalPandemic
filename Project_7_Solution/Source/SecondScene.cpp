@@ -35,20 +35,29 @@ bool SecondScene::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
+	timer = timerReference;
+
 	return ret;
 }
 
 UpdateResult SecondScene::Update()
 {
+
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->thirdScene, 90);
+		App->fade->FadeToBlack(this, (Module*)App->thirdScene, 30);
 	}
 
-	if (timer == timerReference) 
+	if (timer <= 0) 
 	{
-		timer = 0;
+		timer = timerReference;
+		speed = 6;
+		frames = 128;
 	}
+
+	timer--;
+	LOG("timer: %i", frames);
+	Movement(speed, frames);
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
@@ -71,7 +80,7 @@ bool SecondScene::CleanUp() {
 	return true;
 }
 
-void movement(int speed, int frames)
+void SecondScene::Movement(int &speed, int &frames)
 {
 	if (frames > 0)
 	{
@@ -80,7 +89,7 @@ void movement(int speed, int frames)
 	}
 	else
 	{
-		frames = 0;
+		
 		speed = 0;
 	}
 }

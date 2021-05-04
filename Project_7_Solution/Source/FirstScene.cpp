@@ -1,5 +1,4 @@
 #include "FirstScene.h"
-
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
@@ -52,6 +51,7 @@ bool FirstScene::Start()
 
 UpdateResult FirstScene::Update()
 {
+
 	if ((App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN))
 	{
 		App->fade->FadeToBlack(this, (Module*)App->secondScene, 30);
