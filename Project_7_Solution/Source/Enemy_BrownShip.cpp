@@ -9,14 +9,16 @@
 
 Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {
-	float idleAnimSpeed = 0.01f;
-	float runAminSpeed = 0.01f;
-	float deathAnimSpeed = 0.01f;
-	float grenadeAnimSpeed = 0.01f;
+	float idleAnimSpeed = 0.05f;
+	float runAminSpeed = 0.05f;
+	float deathAnimSpeed = 0.05f;
+	float grenadeAnimSpeed = 0.05f;
+
+	soldierDirection = spawnPos;
 
 	// idle animations
 
-	downIdleAnim.PushBack({ 116,362,26,40});
+	downIdleAnim.PushBack({ 116,362,26,40 });
 	downIdleAnim.PushBack({ 116,362,26,40 });
 	downIdleAnim.loop = true;
 	downIdleAnim.speed = idleAnimSpeed;
@@ -203,6 +205,10 @@ void Enemy_Soldier::Update()
 {
 	////////////////////////////////////////////////////
 	path.Update();
+
+	soldierDirection.x += resultX;
+	soldierDirection.y += resultY;
+
 	position = spawnPos + path.GetRelativePosition();
 
 

@@ -38,6 +38,8 @@ public:
 
 	float soldierSpeed;
 
+	fPoint soldierDirection;
+
 	
 
 private:
