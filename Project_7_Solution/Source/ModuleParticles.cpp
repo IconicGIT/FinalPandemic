@@ -5,6 +5,7 @@
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
+#include "Collider.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -22,7 +23,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	texture = App->textures->Load("Assets/Sprites/particles.png");
+	texture = App->textures->Load("Assets/Sprites/items_and_particles.png");
 
 
 	// Explosion particle
@@ -41,12 +42,26 @@ bool ModuleParticles::Start()
 	laser.lifetime = 180;
 	laser.anim.speed = 0.2f;
 
-	PlayerBullet.anim.PushBack({ 232, 103, 16, 12 });
-	PlayerBullet.anim.PushBack({ 249, 103, 16, 12 });
-	PlayerBullet.speed.x = 5;
-	PlayerBullet.speed.y = 5;
-	PlayerBullet.lifetime = 180;
-	PlayerBullet.anim.speed = 0.2f;
+	PlayerBullet1[0].anim.PushBack({ 6, 175, 3, 8 });
+	PlayerBullet1[1].anim.PushBack({ 17, 199, 6, 6 });
+	PlayerBullet1[2].anim.PushBack({ 5, 200, 8, 3 });
+	PlayerBullet1[3].anim.PushBack({ 25, 187, 6, 6 });
+	PlayerBullet1[4].anim.PushBack({ 16, 187, 3, 8 });
+	PlayerBullet1[5].anim.PushBack({ 7, 187, 6, 6 });
+	PlayerBullet1[6].anim.PushBack({ 26, 176, 8, 3 });
+	PlayerBullet1[7].anim.PushBack({ 16, 175, 6, 6 });
+
+	for (int i = 0; i < 8; i++) 
+	{
+		PlayerBullet1[i].speed.x = 10;
+		PlayerBullet1[i].speed.y = 10;
+		PlayerBullet1[i].lifetime = 180;
+		PlayerBullet1[i].anim.speed = 0;
+		PlayerBullet1[i].anim.loop = false;
+	}
+
+
+	
 
 	EnemyBullet.anim.PushBack({ 232, 103, 16, 12 });
 	EnemyBullet.anim.PushBack({ 249, 103, 16, 12 });
@@ -80,10 +95,20 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		// Always destroy particles that collide
-		if (particles[i] != nullptr && particles[i]->collider == c1)
+		if (particles[i] != nullptr && c2->type == Collider::WALL )
 		{
 			delete particles[i];
 			particles[i] = nullptr;
+			break;
+		}
+
+		if (particles[i] != nullptr && c2->type == Collider::ENEMY)
+		{
+			delete particles[i];
+			particles[i] = nullptr;
+			//Cause damage to enemy;
+			//
+			//
 			break;
 		}
 	}

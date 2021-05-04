@@ -284,29 +284,9 @@ UpdateResult ModulePlayer::Update()
 	//App->player->position.x += 0;
 	////////////////////////////////////////////////////////
 
-	if (maxColliders == 0) maxColliders = App->collisions->GetMaxColliders();
+	
 
-	LOG("getting wall colliders: ")
-
-		//for (int i = 0; i < maxColliders; i++)
-		//{
-		//
-		//	LOG("getting wall colliderssss: ")
-		//	if (App->collisions->colliders[i] != NULL 
-		//		&& App->collisions->colliders[i]->type == Collider::Type::WALL
-		//		&& wallArr[i].w != 0)
-		//	{
-		//	
-		//		wallArr[i] = App->collisions->colliders[i]->rect;
-		//		//LOG("collider i% x: i%", i, wallArr[i].x);
-		//	
-		//	}
-		//	else {
-		//	
-		//		wallArr[i] = { -1,-1,-1,-1 };
-		//	
-		//	}
-		//}
+	LOG("col %i: ", collisionID);
 
 	keyUp    = App->input->keys[SDL_SCANCODE_W];
 	keyLeft  = App->input->keys[SDL_SCANCODE_A];
@@ -335,24 +315,20 @@ UpdateResult ModulePlayer::Update()
 		&& (keyDown == KEY_STATE::KEY_IDLE)
 		&& (keyRight == KEY_STATE::KEY_IDLE))
 	{
-		bool move = true;
+		lastDirection = 3;
 
-		for (int i = 0; i < 100; i++) 
+		if (collisionID != lastDirection)
 		{
-			if (position.x - speed < wallArr[i].x + wallArr[i].w) {
-				move = false;
-			}
-			
+			position.x -= speed;
+			SetAnimation(leftAnim);
+			collisionID = 0;
 		}
-		if (move) position.x -= speed;
-
-		if (currentAnimation != &leftAnim)
-		{
-			leftAnim.Reset();
-			currentAnimation = &leftAnim;
+		else {
+			SetAnimation(leftIdleAnim);
 		}
 		
-		lastDirection = 3;
+		
+
 	}
 
 	//right
@@ -361,14 +337,20 @@ UpdateResult ModulePlayer::Update()
 		&& (keyDown == KEY_STATE::KEY_IDLE)
 		&& (keyRight == KEY_STATE::KEY_REPEAT))
 	{
-		position.x += speed;
-
-		if (currentAnimation != &rightAnim)
-		{
-			rightAnim.Reset();
-			currentAnimation = &rightAnim;
-		}
 		lastDirection = 7;
+		
+
+		
+
+		if (collisionID != lastDirection)
+		{
+			position.x += speed;
+			SetAnimation(rightAnim);
+			collisionID = 0;
+		}
+		else {
+			SetAnimation(rightIdleAnim);
+		}
 	}
 
 	//Up
@@ -377,14 +359,18 @@ UpdateResult ModulePlayer::Update()
 		&& (keyDown == KEY_STATE::KEY_IDLE)
 		&& (keyRight == KEY_STATE::KEY_IDLE))
 	{
-		position.y -= speed;
-
-		if (currentAnimation != &upAnim)
-		{
-			upAnim.Reset();
-			currentAnimation = &upAnim;
-		}
 		lastDirection = 1;
+		
+		if (collisionID != lastDirection)
+		{
+			SetAnimation(upAnim);
+			position.y -= speed;
+			collisionID = 0;
+		}
+		else {
+			SetAnimation(upIdleAnim);
+		}
+		
 	}
 
 	//Down
@@ -393,14 +379,20 @@ UpdateResult ModulePlayer::Update()
 		&& (keyDown == KEY_STATE::KEY_REPEAT)
 		&& (keyRight == KEY_STATE::KEY_IDLE))
 	{
-		position.y += speed;
-
-		if (currentAnimation != &downAnim)
-		{
-			downAnim.Reset();
-			currentAnimation = &downAnim;
-		}
 		lastDirection = 5;
+		
+		if (collisionID != lastDirection)
+		{
+			SetAnimation(downAnim);
+
+			position.y += speed;
+			collisionID = 0;
+		}
+		else {
+			SetAnimation(downIdleAnim);
+		}
+
+		
 	}
 
 	//DIAGONAL AXIS MOVEMENT
@@ -411,15 +403,20 @@ UpdateResult ModulePlayer::Update()
 		&& (keyDown == KEY_STATE::KEY_IDLE)
 		&& (keyRight == KEY_STATE::KEY_IDLE))
 	{
-		position.x -= diagonalSpeed;
-		position.y -= diagonalSpeed;
-
-		if (currentAnimation != &upLeftAnim)
-		{
-			upLeftAnim.Reset();
-			currentAnimation = &upLeftAnim;
-		}
 		lastDirection = 2;
+		
+		if (collisionID != lastDirection && collisionID != lastDirection + 1 && collisionID != lastDirection - 1)
+		{
+			SetAnimation(upLeftAnim);
+
+			position.x -= diagonalSpeed;
+			position.y -= diagonalSpeed;
+			collisionID = 0;
+		}
+		else {
+			SetAnimation(upLeftIdleAnim);
+		}
+		
 	}
 
 	//down-left
@@ -428,16 +425,19 @@ UpdateResult ModulePlayer::Update()
 		&& (keyDown == KEY_STATE::KEY_REPEAT)
 		&& (keyRight == KEY_STATE::KEY_IDLE))
 	{
-		position.x -= diagonalSpeed;
-		position.y += diagonalSpeed;
-
-		if (currentAnimation != &downLeftAnim)
-		{
-			downLeftAnim.Reset();
-			currentAnimation = &downLeftAnim;
-		}
-
 		lastDirection = 4;
+		
+		if (collisionID != lastDirection && collisionID != lastDirection - 1 && collisionID != lastDirection + 1)
+		{
+			SetAnimation(downLeftAnim);
+
+			position.x -= diagonalSpeed;
+			position.y += diagonalSpeed;
+			collisionID = 0;
+		}
+		else {
+			SetAnimation(downLeftIdleAnim);
+		}
 	}
 
 	//down-right
@@ -446,16 +446,19 @@ UpdateResult ModulePlayer::Update()
 		&& (keyDown == KEY_STATE::KEY_REPEAT)
 		&& (keyRight == KEY_STATE::KEY_REPEAT))
 	{
-		position.x += diagonalSpeed;
-		position.y += diagonalSpeed;
-
-		if (currentAnimation != &downRightAnim)
-		{
-			downRightAnim.Reset();
-			currentAnimation = &downRightAnim;
-		}
-
 		lastDirection = 6;
+		
+		if (collisionID != lastDirection && collisionID != lastDirection - 1 && collisionID != lastDirection + 1)
+		{
+			SetAnimation(downRightAnim);
+
+			position.x += diagonalSpeed;
+			position.y += diagonalSpeed;
+			collisionID = 0;
+		}
+		else {
+			SetAnimation(downRightIdleAnim);
+		}
 	}
 
 	//up-right
@@ -464,41 +467,24 @@ UpdateResult ModulePlayer::Update()
 		&& (keyDown == KEY_STATE::KEY_IDLE)
 		&& (keyRight == KEY_STATE::KEY_REPEAT))
 	{
-		position.x += diagonalSpeed;
-		position.y -= diagonalSpeed;
-
-		if (currentAnimation != &upRightAnim)
-		{
-			upRightAnim.Reset();
-			currentAnimation = &upRightAnim;
-		}
 		lastDirection = 8;
+
+		
+		if (collisionID != lastDirection && collisionID != lastDirection - 1 && collisionID != 1)
+		{
+			SetAnimation(upRightAnim);
+
+			position.x += diagonalSpeed;
+			position.y -= diagonalSpeed;
+			collisionID = 0;
+		}
+		else {
+			SetAnimation(upRightIdleAnim);
+		}
+
+		
 	}
 
-	//if (keyLeft == KEY_STATE::KEY_REPEAT) {
-	//
-	//	if (App->render->camera.x / SCREEN_SIZE > 475) {
-	//
-	//		if (lastDirection % 2 == 0)
-	//		{
-	//			if (position.x < (App->render->camera.x / SCREEN_SIZE + horizontalMargin)
-	//				&& ((App->render->camera.x / SCREEN_SIZE - diagonalSpeed > 475))) App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
-	//
-	//		}
-	//		else
-	//		{
-	//			if (position.x < (App->render->camera.x / SCREEN_SIZE + horizontalMargin)
-	//				&& ((App->render->camera.x / SCREEN_SIZE - speed > 475))) App->render->camera.x -= speed * SCREEN_SIZE;
-	//
-	//		}
-	//
-	//	}
-	//	else {
-	//		while (App->render->camera.x / SCREEN_SIZE != 475) {
-	//			App->render->camera.x--;
-	//		}
-	//	}
-	//}
 
 	if (keyRight == KEY_STATE::KEY_REPEAT) {
 		
@@ -596,8 +582,14 @@ UpdateResult ModulePlayer::Update()
 	////////////////////////////////////////////////
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->PlayerBullet,0, position.x, position.y,lastDirection, Collider::Type::PLAYER_SHOT);
-		App->audio->PlayFx(laserFx);
+		App->particles->AddParticle(App->particles->PlayerBullet1[lastDirection - 1],0, position.x, position.y,lastDirection, Collider::Type::PLAYER_SHOT);
+		//App->audio->PlayFx(laserFx);
+	}
+	if (App->input->keys[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN)
+	{
+		destroyed = true;
+		//App->particles->AddParticle(App->particles->PlayerBullet1[lastDirection - 1], 0, position.x, position.y, lastDirection, Collider::Type::PLAYER_SHOT);
+		//App->audio->PlayFx(laserFx);
 	}
 	////////////////////////////////////////////////
 
@@ -619,66 +611,44 @@ UpdateResult ModulePlayer::Update()
 
 		case 1:
 
-			if (currentAnimation != &upIdleAnim) {
-				upIdleAnim.Reset();
-				currentAnimation = &upIdleAnim;
-			}
-
+			
+			SetAnimation(upIdleAnim);
 			break;
 
 		case 2:
-			if (currentAnimation != &upLeftIdleAnim) {
-				upLeftIdleAnim.Reset();
-				currentAnimation = &upLeftIdleAnim;
-			}
+			
+			SetAnimation(upLeftIdleAnim);
 			break;
 
 		case 3:
-			if (currentAnimation != &leftIdleAnim) {
-				leftIdleAnim.Reset();
-				currentAnimation = &leftIdleAnim;
-			}
+			
+			SetAnimation(leftIdleAnim);
 			break;
 
 		case 4:
-			if (currentAnimation != &downLeftIdleAnim) {
-
-				downLeftIdleAnim.Reset();
-				currentAnimation = &downLeftIdleAnim;
-			}
+			
+			SetAnimation(downLeftIdleAnim);
 			break;
 
 		case 5:
-			if (currentAnimation != &downIdleAnim) {
-
-				downIdleAnim.Reset();
-				currentAnimation = &downIdleAnim;
-			}
+			
+			SetAnimation(downIdleAnim);
 			break;
 
 		case 6:
-			if (currentAnimation != &downRightIdleAnim) {
-
-				downRightIdleAnim.Reset();
-				currentAnimation = &downRightIdleAnim;
-			}
+			
+			SetAnimation(downRightIdleAnim);
 			break;
 
 		case 7:
-			if (currentAnimation != &rightIdleAnim) {
-
-				rightIdleAnim.Reset();
-				currentAnimation = &rightIdleAnim;
-			}
+			
+			SetAnimation(rightIdleAnim);
 			break;
 
 		case 8:
 
-			if (currentAnimation != &upRightIdleAnim) {
-
-				upRightIdleAnim.Reset();
-				currentAnimation = &upRightIdleAnim;
-			}
+			
+			SetAnimation(upRightIdleAnim);
 			break;
 
 		}
@@ -695,68 +665,43 @@ UpdateResult ModulePlayer::Update()
 		switch (lastDirection)
 		{
 		case 1:
-			if (currentAnimation != &deathFromUpAnim) {
-
-				deathFromUpAnim.Reset();
-				currentAnimation = &deathFromUpAnim;
-			}
 			
+			SetAnimation(deathFromUpAnim);
 			break;
 
 		case 2:
-			if (currentAnimation != &deathFromUpAnim) {
-
-				deathFromUpAnim.Reset();
-				currentAnimation = &deathFromUpAnim;
-			}
+			
+			SetAnimation(deathFromUpAnim);
 			break;
 
 		case 3:
-			if (currentAnimation != &deathFromLeftAnim) {
-
-				deathFromLeftAnim.Reset();
-				currentAnimation = &deathFromLeftAnim;
-			}
+			
+			SetAnimation(deathFromLeftAnim);
 			break;
 
 		case 4:
-			if (currentAnimation != &deathFromLeftAnim) {
-
-				deathFromLeftAnim.Reset();
-				currentAnimation = &deathFromLeftAnim;
-			}
+			
+			SetAnimation(deathFromLeftAnim);
 			break;
 
 		case 5:
-			if (currentAnimation != &deathFromDownAnim) {
-
-				deathFromDownAnim.Reset();
-				currentAnimation = &deathFromDownAnim;
-			}
+			
+			SetAnimation(deathFromDownAnim);
 			break;
 
 		case 6:
-			if (currentAnimation != &deathFromDownAnim) {
-
-				deathFromDownAnim.Reset();
-				currentAnimation = &deathFromDownAnim;
-			}
+			
+			SetAnimation(deathFromDownAnim);
 			break;
 
 		case 7:
-			if (currentAnimation != &deathFromRightAnim) {
-
-				deathFromRightAnim.Reset();
-				currentAnimation = &deathFromRightAnim;
-			}
+			
+			SetAnimation(deathFromRightAnim);
 			break;
 
 		case 8:
-			if (currentAnimation != &deathFromRightAnim) {
-
-				deathFromRightAnim.Reset();
-				currentAnimation = &deathFromRightAnim;
-			}
+			
+			SetAnimation(deathFromRightAnim);
 			break;
 
 
@@ -806,14 +751,101 @@ UpdateResult ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	if (c1 == hitBox && destroyed == false)
-	{
+	bool col = false;
+
+	//AXIAL
+	if (c1 == colBoxUp && c2->type == Collider::WALL) {
+
+		
+		if (!col) {
+			collisionID = 1;
+			col = true;
+		}
 		
 	}
 
+
+
+	if (c1 == colBoxLeft && c2->type == Collider::WALL) {
+
+		if (!col) {
+			collisionID = 3;
+			col = true;
+		}
+
+	}
+
+
+
+	if (c1 == colBoxDown && c2->type == Collider::WALL) {
+
+		if (!col) {
+			collisionID = 5;
+			col = true;
+		}
+
+	}
+
+
+	if (c1 == colBoxRight && c2->type == Collider::WALL) {
+
+		if (!col) {
+			collisionID = 7;
+			col = true;
+		}
+
+	}
+
+
+
+	//DIAGONAL
+	if (c1 == colBoxUpLeft && c2->type == Collider::WALL) {
+
+		if (!col) {
+			collisionID = 2;
+			col = true;
+		}
+
+	}
+
+	if (c1 == colBoxDownLeft && c2->type == Collider::WALL) {
+
+		if (!col) {
+			collisionID = 4;
+			col = true;
+		}
+
+	}
+
+
+	if (c1 == colBoxDownRight && c2->type == Collider::WALL) {
+
+		if (!col) {
+			collisionID = 6;
+			col = true;
+		}
+
+	}
+
+	if (c1 == colBoxUpRight && c2->type == Collider::WALL) {
+
+		if (!col) {
+			collisionID = 8;
+			col = true;
+		}
+
+	}
 	
 }
+void ModulePlayer::SetAnimation(Animation &toChange) {
 
+	if (currentAnimation != &toChange) {
+
+		toChange.Reset();
+		currentAnimation = &toChange;
+	}
+
+}
 
 
 

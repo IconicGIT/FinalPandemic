@@ -99,6 +99,7 @@ public:
 	Animation  deathFromUpAnim;
 	Animation  deathFromDownAnim;
 
+	void SetAnimation(Animation &toChange);
 
 
 	// The player's collider
@@ -113,14 +114,14 @@ public:
 	Collider* colBoxRight = nullptr;
 	Collider* colBoxUpRight = nullptr;
 
+	int collisionID = 0;
+
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
 	int playerLife = PLAYER_LIFE;
 	int playerWidth = 25;
 	int playerHeight = 45;
 
-	SDL_Rect wallArr[100] = { 0 };
-	int maxColliders = 0;
 
 	// A countdown to when the player gets destroyed. After a while, the game exits
 	uint exitCountdown = 120;
