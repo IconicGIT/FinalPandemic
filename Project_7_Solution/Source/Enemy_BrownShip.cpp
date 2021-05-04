@@ -18,108 +18,108 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 
 	// idle animations
 
-	downIdleAnim.PushBack({ 116,362,26,40 });
-	downIdleAnim.PushBack({ 116,362,26,40 });
+	downIdleAnim.PushBack({ 115,362,26,40 });
+	downIdleAnim.PushBack({ 115,362,26,40 });
 	downIdleAnim.loop = true;
 	downIdleAnim.speed = idleAnimSpeed;
 
-	downRightIdleAnim.PushBack({ 116,405,26,40 });
-	downRightIdleAnim.PushBack({ 116,405,26,40 });
+	downRightIdleAnim.PushBack({ 115,405,26,40 });
+	downRightIdleAnim.PushBack({ 115,405,26,40 });
 	downRightIdleAnim.loop = true;
 	downRightIdleAnim.speed = idleAnimSpeed;
 
-	downLeftIdleAnim.PushBack({ 116,315,26,40 });
-	downLeftIdleAnim.PushBack({ 116,315,26,40 });
+	downLeftIdleAnim.PushBack({ 115,315,26,40 });
+	downLeftIdleAnim.PushBack({ 115,315,26,40 });
 	downLeftIdleAnim.loop = true;
 	downLeftIdleAnim.speed = idleAnimSpeed;
 
-	rightIdleAnim.PushBack({ 116,450,26,40 });
-	rightIdleAnim.PushBack({ 116,450,26,40 });
+	rightIdleAnim.PushBack({ 115,450,26,40 });
+	rightIdleAnim.PushBack({ 115,450,26,40 });
 	rightIdleAnim.loop = true;
 	rightIdleAnim.speed = idleAnimSpeed;
 
-	upRightIdleAnim.PushBack({ 116,598,26,40 });
-	upRightIdleAnim.PushBack({ 116,598,26,40 });
+	upRightIdleAnim.PushBack({ 115,598,26,40 });
+	upRightIdleAnim.PushBack({ 115,598,26,40 });
 	upRightIdleAnim.loop = true;
 	upRightIdleAnim.speed = idleAnimSpeed;
 
-	upIdleAnim.PushBack({ 116,549,26,40 });
-	upIdleAnim.PushBack({ 116,549,26,40 });
+	upIdleAnim.PushBack({ 115,549,26,40 });
+	upIdleAnim.PushBack({ 115,549,26,40 });
 	upIdleAnim.loop = true;
 	upIdleAnim.speed = idleAnimSpeed;
 
-	upLeftIdleAnim.PushBack({ 116,649,26,40 });
-	upLeftIdleAnim.PushBack({ 116,649,26,40 });
+	upLeftIdleAnim.PushBack({ 115,649,26,40 });
+	upLeftIdleAnim.PushBack({ 115,649,26,40 });
 	upLeftIdleAnim.loop = true;
 	upLeftIdleAnim.speed = idleAnimSpeed;
 
-	leftIdleAnim.PushBack({ 116,497,26,40 });
-	leftIdleAnim.PushBack({ 116,497,26,40 });
+	leftIdleAnim.PushBack({ 115,497,26,40 });
+	leftIdleAnim.PushBack({ 115,497,26,40 });
 	leftIdleAnim.loop = true;
 	leftIdleAnim.speed = idleAnimSpeed;
 
 	// moove animations
 
-	downAnim.PushBack({ 116,362,26,40 });
-	downAnim.PushBack({ 100,362,26,40 });
-	downAnim.PushBack({ 58,362,26,40 });
+	downAnim.PushBack({ 115,362,26,40 });
+	downAnim.PushBack({ 75,362,26,40 });
+	downAnim.PushBack({ 35,362,26,40 });
 	downAnim.loop = true;
 	downAnim.speed = runAminSpeed;
 
-	downRightAnim.PushBack({ 116,405,26,40 });
-	downRightAnim.PushBack({ 100,405,26,40 });
-	downRightAnim.PushBack({ 58,405,26,40 });
-	downRightAnim.PushBack({ 16,405,26,40 });
+	downRightAnim.PushBack({ 115,405,26,40 });
+	downRightAnim.PushBack({ 75,405,26,40 });
+	downRightAnim.PushBack({ 35,405,26,40 });
+	downRightAnim.PushBack({ 7,405,26,40 });
 	downRightAnim.loop = true;
 	downRightAnim.speed = runAminSpeed;
 
-	downLeftAnim.PushBack({ 116,315,26,40 });
-	downLeftAnim.PushBack({ 100,315,26,40 });
-	downLeftAnim.PushBack({ 58,405,26,40 });
-	downLeftAnim.PushBack({ 16,405,26,40 });
+	downLeftAnim.PushBack({ 115,315,26,40 });
+	downLeftAnim.PushBack({ 75,315,26,40 });
+	downLeftAnim.PushBack({ 35,405,26,40 });
+	downLeftAnim.PushBack({ 7,405,26,40 });
 	downLeftAnim.loop = true;
 	downLeftAnim.speed = runAminSpeed;
 
 
-	rightAnim.PushBack({ 100,450,26,40 });
-	rightAnim.PushBack({ 116,405,26,40 });
-	rightAnim.PushBack({ 100,405,26,40 });
-	rightAnim.PushBack({ 58,405,26,40 });
-	rightAnim.PushBack({ 16,405,26,40 });
+	rightAnim.PushBack({ 75,450,26,40 });
+	rightAnim.PushBack({ 115,405,26,40 });
+	rightAnim.PushBack({ 75,405,26,40 });
+	rightAnim.PushBack({ 35,405,26,40 });
+	rightAnim.PushBack({ 7,405,26,40 });
 	rightAnim.loop = true;
 	rightAnim.speed = runAminSpeed;
 
-	upRightAnim.PushBack({ 116,598,26,40 });
-	upRightAnim.PushBack({ 100,598,26,40 });
-	upRightAnim.PushBack({ 58,598,26,40 });
+	upRightAnim.PushBack({ 115,598,26,40 });
+	upRightAnim.PushBack({ 75,598,26,40 });
+	upRightAnim.PushBack({ 35,598,26,40 });
 	upRightAnim.loop = true;
 	upRightAnim.speed = runAminSpeed;
 
-	upAnim.PushBack({ 116,549,26,40 });
-	upAnim.PushBack({ 100,549,26,40 });
-	upAnim.PushBack({ 58,549,26,40 });
+	upAnim.PushBack({ 115,549,26,40 });
+	upAnim.PushBack({ 75,549,26,40 });
+	upAnim.PushBack({ 35,549,26,40 });
 	upAnim.loop = true;
 	upAnim.speed = runAminSpeed;
 
-	upLeftAnim.PushBack({ 116,649,26,40 });
-	upLeftAnim.PushBack({ 100,649,26,40 });
-	upLeftAnim.PushBack({ 58,649,26,40 });
+	upLeftAnim.PushBack({ 115,649,26,40 });
+	upLeftAnim.PushBack({ 75,649,26,40 });
+	upLeftAnim.PushBack({ 35,649,26,40 });
 	upLeftAnim.loop = true;
 	upLeftAnim.speed = runAminSpeed;
 
-	leftAnim.PushBack({ 100,497,26,40 });
-	leftAnim.PushBack({ 116,497,26,40 });
-	leftAnim.PushBack({ 100,497,26,40 });
-	leftAnim.PushBack({ 58,497,26,40 });
+	leftAnim.PushBack({ 75,497,26,40 });
+	leftAnim.PushBack({ 115,497,26,40 });
+	leftAnim.PushBack({ 75,497,26,40 });
+	leftAnim.PushBack({ 35,497,26,40 });
 	leftAnim.loop = true;
 	leftAnim.speed = runAminSpeed;
 
 	// grenade animation
 
-	leftAnim.PushBack({ 200,317,34,43 });
-	leftAnim.PushBack({ 243,317,34,43 });
-	leftAnim.loop = false;
-	leftAnim.speed = grenadeAnimSpeed;
+	grenadeAnim.PushBack({ 200,317,34,43 });
+	grenadeAnim.PushBack({ 243,317,34,43 });
+	grenadeAnim.loop = false;
+	grenadeAnim.speed = grenadeAnimSpeed;
 
 	// Death animation
 
