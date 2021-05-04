@@ -16,6 +16,8 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
 - Management: **Brandon Arandia** [[ _IconicGIT_ ](https://github.com/IconicGIT)]:
   - Main Responsible of Final Pandemic's Mercs Team Management.
 
++Even if the members are in charge of their labors, each team member will perform other member labors as a form of develop efficiency and mastery in different areas and abilities.
+
 ## Mercs game description
 
 Mercs is a top-down run and gun arcade game, that consists in a marked path where you are able to move freely around the four directions, shooting the enemies, trying not to get reached by their weapons. In each level you will be able to use different vehicles to finally reach the final boss who will decide if you pass to the next level.
@@ -23,8 +25,8 @@ Mercs is a top-down run and gun arcade game, that consists in a marked path wher
 ## Game controls
 
 The game controls used to play the game are:
-- Movement controls: Using the four arrows you are able to move up[↑], down[↓], left[→], and right[←]. Also with the combination of two directions you can move in the diagonal formed by them.
-- Attack controls: To attack the enemies you can use your gun pressing [S] to shoot.
+- Movement controls: Use the –W, A, S, D– keys to move in 8 directions
+- Attack controls: To attack the enemies you can use your gun pressing –SPACE– to shoot.
 
 
 ## Additional comments
