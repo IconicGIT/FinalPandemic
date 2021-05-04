@@ -32,6 +32,11 @@ public:
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bTexture = nullptr;
+
+	int timer;
+	int timerReference;
+
+	void movement(int speed, int frames);
 };
 
 #endif	// __SECONDSCENE_H__

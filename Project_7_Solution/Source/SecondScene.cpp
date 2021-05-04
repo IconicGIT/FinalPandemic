@@ -45,6 +45,11 @@ UpdateResult SecondScene::Update()
 		App->fade->FadeToBlack(this, (Module*)App->thirdScene, 90);
 	}
 
+	if (timer == timerReference) 
+	{
+		timer = 0;
+	}
+
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
@@ -64,4 +69,18 @@ bool SecondScene::CleanUp() {
 	//SDL_free(bgTexture);
 
 	return true;
+}
+
+void movement(int speed, int frames)
+{
+	if (frames > 0)
+	{
+		App->render->camera.y += speed;
+		frames--;
+	}
+	else
+	{
+		frames = 0;
+		speed = 0;
+	}
 }
