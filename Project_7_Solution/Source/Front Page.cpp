@@ -50,8 +50,8 @@ UpdateResult FrontPage::PostUpdate()
 	SDL_Rect bfront;
 	bfront.x = 0;
 	bfront.y = 0;
-	bfront.w = 224;
-	bfront.h = 384;
+	bfront.w = 448;
+	bfront.h = 768;
 
 	App->render->Blit(bTexture, 0, 0, &bfront);
 
