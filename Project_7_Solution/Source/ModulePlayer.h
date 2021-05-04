@@ -129,8 +129,10 @@ public:
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
 	int playerLife = PLAYER_LIFE;
-	int playerWidth = 25;
-	int playerHeight = 45;
+	int playerWidth = 24;
+	int playerHeight = 16;
+	int playerHeightOffset = 30;
+	int PlayerWidthOffset = 2;
 
 
 	// A countdown to when the player gets destroyed. After a while, the game exits

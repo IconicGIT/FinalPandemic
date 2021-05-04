@@ -41,23 +41,24 @@ bool ModuleParticles::Start()
 	laser.speed.x = 5;
 	laser.lifetime = 180;
 	laser.anim.speed = 0.2f;
+	
 
-	PlayerBullet1[0].anim.PushBack({ 6, 175, 3, 8 });
-	PlayerBullet1[1].anim.PushBack({ 17, 199, 6, 6 });
-	PlayerBullet1[2].anim.PushBack({ 5, 200, 8, 3 });
-	PlayerBullet1[3].anim.PushBack({ 25, 187, 6, 6 });
-	PlayerBullet1[4].anim.PushBack({ 16, 187, 3, 8 });
-	PlayerBullet1[5].anim.PushBack({ 7, 187, 6, 6 });
-	PlayerBullet1[6].anim.PushBack({ 26, 176, 8, 3 });
-	PlayerBullet1[7].anim.PushBack({ 16, 175, 6, 6 });
+	playerBullet1[0].anim.PushBack({ 6, 175, 3, 8 });
+	playerBullet1[1].anim.PushBack({ 17, 199, 6, 6 });
+	playerBullet1[2].anim.PushBack({ 5, 200, 8, 3 });
+	playerBullet1[3].anim.PushBack({ 25, 187, 6, 6 });
+	playerBullet1[4].anim.PushBack({ 16, 187, 3, 8 });
+	playerBullet1[5].anim.PushBack({ 7, 187, 6, 6 });
+	playerBullet1[6].anim.PushBack({ 26, 176, 8, 3 });
+	playerBullet1[7].anim.PushBack({ 16, 175, 6, 6 });
 
 	for (int i = 0; i < 8; i++) 
 	{
-		PlayerBullet1[i].speed.x = 10;
-		PlayerBullet1[i].speed.y = 10;
-		PlayerBullet1[i].lifetime = 180;
-		PlayerBullet1[i].anim.speed = 0;
-		PlayerBullet1[i].anim.loop = false;
+		playerBullet1[i].speed.x = 6;
+		playerBullet1[i].speed.y = 6;
+		playerBullet1[i].lifetime = 180;
+		playerBullet1[i].anim.speed = 0;
+		playerBullet1[i].anim.loop = false;
 	}
 
 
@@ -69,7 +70,8 @@ bool ModuleParticles::Start()
 	EnemyBullet.speed.y = 5;
 	EnemyBullet.lifetime = 180;
 	EnemyBullet.anim.speed = 0.2f;
-
+	
+	
 	return true;
 }
 

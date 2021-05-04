@@ -62,7 +62,7 @@ public:
 
 	//Template particle for a laser
 	Particle laser;
-	Particle PlayerBullet1[8];
+	Particle playerBullet1[8];
 
 
 

@@ -14,7 +14,6 @@
 
 #include "SDL/include/SDL_scancode.h"
 #include <math.h>
-#include <stdio.h>
 
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
@@ -244,19 +243,19 @@ bool ModulePlayer::Start()
 	currentAnimation = &downIdleAnim;
 
 	//Add audio -> remember unload
-	laserFx = App->audio->LoadFx("Assets/Fx/GunShot01.wav");
+	laserFx = App->audio->LoadFx("Assets/Fx/GunShot1.wav");
 	bombFx = App->audio->LoadFx("Assets/Fx/Explosion02.wav");
 
 
 
-	position.x = 550.0f;
-	position.y = 1400.0f;
+	position.x = 550;
+	position.y = 1400;
 
 	lastDirection = 5;
 
 	//collBox = App->collisions->AddCollider({ (int)position.x, (int)position.y, playerWidth, playerHeight }, Collider::Type::PLAYER_COLLBOX, this);
 	//hitBox = App->collisions->AddCollider({ (int)position.x, (int)position.y + 15, 25, 25}, Collider::Type::PLAYER_HITBOX, this);
-	hitBox = App->collisions->AddCollider({ (int)position.x, (int)position.y, playerWidth, playerHeight }, Collider::Type::PLAYER_HITBOX, this);
+	hitBox = App->collisions->AddCollider({ (int)position.x, (int)position.y + 30, playerWidth, playerHeight }, Collider::Type::PLAYER_HITBOX, this);
 
 	colBoxUp		= App->collisions->AddCollider({ (int)position.x, (int)position.y - speed, playerWidth, speed }, Collider::Type::PLAYER_COLLBOX, this);
 	colBoxUpLeft	= App->collisions->AddCollider({ (int)position.x - diagonalSpeed, (int)position.y - diagonalSpeed, diagonalSpeed, diagonalSpeed }, Collider::Type::PLAYER_COLLBOX, this);
@@ -295,12 +294,6 @@ UpdateResult ModulePlayer::Update()
 	//colUpRight = false;
 
 	//LOG("col %i: ", collisionID);
-
-	for (int a = 0; a < 8; a++) {
-	
-		LOG("col %i state: %i", a, colCheck[a]);
-	
-	}
 
 	keyUp    = App->input->keys[SDL_SCANCODE_W];
 	keyLeft  = App->input->keys[SDL_SCANCODE_A];
@@ -748,13 +741,53 @@ UpdateResult ModulePlayer::Update()
 	////////////////////////////////////////////////
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->PlayerBullet1[lastDirection - 1],0, position.x, position.y,lastDirection, Collider::Type::PLAYER_SHOT);
-		//App->audio->PlayFx(laserFx);
+		int posOffsetX = 0;
+		int posOffsetY = 0;
+
+		switch (lastDirection) {
+		case 1:
+			posOffsetX = 13;
+			
+			break;
+		case 2:
+			posOffsetX = 4;
+			posOffsetY = 1;
+			break;
+		case 3:
+			posOffsetX = 0;
+			posOffsetY = 9;
+			break;
+		case 4:
+			posOffsetX = PlayerWidthOffset;
+			posOffsetY = 16;
+			break;
+		case 5:
+			posOffsetX = 7;
+			posOffsetY = 24;
+			break;
+		case 6:
+			posOffsetX = 17;
+			posOffsetY = 18;
+			break;
+		case 7:
+			posOffsetX = 19;
+			posOffsetY = 11;
+			break;
+		case 8:
+			posOffsetX = 20;
+			posOffsetY = 4;
+			break;
+		}
+		App->particles->AddParticle(App->particles->playerBullet1[lastDirection - 1], 0, position.x + posOffsetX, position.y + posOffsetY, lastDirection, Collider::Type::PLAYER_SHOT);
+
+		
+		
+		App->audio->PlayFx(laserFx);
 	}
 	if (App->input->keys[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN)
 	{
 		destroyed = true;
-		//App->particles->AddParticle(App->particles->PlayerBullet1[lastDirection - 1], 0, position.x, position.y, lastDirection, Collider::Type::PLAYER_SHOT);
+		//App->particles->AddParticle(App->particles->playerBullet1[lastDirection - 1], 0, position.x, position.y, lastDirection, Collider::Type::PLAYER_SHOT);
 		//App->audio->PlayFx(laserFx);
 	}
 	////////////////////////////////////////////////
@@ -871,23 +904,23 @@ UpdateResult ModulePlayer::Update()
 
 	
 	////////////////////////////////////////////
-	hitBox->SetPos(position.x, position.y);
+	hitBox->SetPos(position.x, position.y + playerHeightOffset);
 	
-	colBoxUp		->SetPos(position.x, position.y - speed);
-	colBoxUpLeft	->SetPos(position.x - diagonalSpeed, position.y - diagonalSpeed);
-	colBoxLeft		->SetPos(position.x - speed, position.y);
-	colBoxDownLeft	->SetPos(position.x - diagonalSpeed, position.y + playerHeight);
-	colBoxDown		->SetPos(position.x, position.y + playerHeight);
-	colBoxDownRight	->SetPos(position.x + playerWidth, position.y + playerHeight);
-	colBoxRight		->SetPos(position.x + playerWidth, position.y);
-	colBoxUpRight	->SetPos(position.x + playerWidth, position.y - diagonalSpeed);
+	colBoxUp		->SetPos(position.x, position.y - speed + playerHeightOffset);
+	colBoxUpLeft	->SetPos(position.x - diagonalSpeed, position.y - diagonalSpeed + playerHeightOffset);
+	colBoxLeft		->SetPos(position.x - speed, position.y + playerHeightOffset);
+	colBoxDownLeft	->SetPos(position.x - diagonalSpeed, position.y + playerHeight + playerHeightOffset);
+	colBoxDown		->SetPos(position.x, position.y + playerHeight + playerHeightOffset);
+	colBoxDownRight	->SetPos(position.x + playerWidth, position.y + playerHeight + playerHeightOffset);
+	colBoxRight		->SetPos(position.x + playerWidth, position.y + playerHeightOffset);
+	colBoxUpRight	->SetPos(position.x + playerWidth, position.y - diagonalSpeed + playerHeightOffset);
 
 	currentAnimation->Update();
 
 	if (destroyed)
 	{
-		exitCountdown--;
-		if (exitCountdown <= 0)
+		//exitCountdown--;
+		//if (exitCountdown <= 0)
 			return UpdateResult::UPDATE_STOP;
 	}
 	
@@ -901,13 +934,11 @@ UpdateResult ModulePlayer::PostUpdate()
 	if (destroyed != true)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect,1);
+		App->render->Blit(texture, position.x + PlayerWidthOffset, position.y, &rect,1);
 	}
-	
-	sprintf_s(scoreText, 10, "%i", score);
 
-	App->fonts->BlitText(40, 0,scoreFont, scoreText);
-	//App->fonts->BlitText(60, 20, scoreFont, "texto de ejemplo");
+	App->fonts->BlitText(20, 20,scoreFont,scoreText);
+
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
