@@ -41,6 +41,7 @@ bool ModuleParticles::Start()
 	laser.speed.x = 5;
 	laser.lifetime = 180;
 	laser.anim.speed = 0.2f;
+	
 
 	PlayerBullet1[0].anim.PushBack({ 6, 175, 3, 8 });
 	PlayerBullet1[1].anim.PushBack({ 17, 199, 6, 6 });
@@ -69,7 +70,8 @@ bool ModuleParticles::Start()
 	EnemyBullet.speed.y = 5;
 	EnemyBullet.lifetime = 180;
 	EnemyBullet.anim.speed = 0.2f;
-
+	
+	
 	return true;
 }
 
