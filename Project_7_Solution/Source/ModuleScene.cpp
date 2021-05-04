@@ -47,8 +47,6 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({ 1083, 398, 15, 1136 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 1243, 0, 15, 398 }, Collider::Type::WALL);
 
-	App->collisions->AddCollider({ 550, 1200, 100, 50 }, Collider::Type::WALL);
-
 	App->collisions->AddCollider({ 1003, 164, 282, 42 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 877, 197, 145, 42 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 755, 181, 125, 44 }, Collider::Type::WALL);
@@ -77,7 +75,7 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({ 793, 1011, 40, 74 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 706, 1078, 86, 51 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 675, 1110, 40, 34 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 686, 1164, 102, 33 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 585, 1132, 102, 33 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 525, 1166, 86, 25 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 484, 1193, 56, 24 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 462, 1215, 36, 276 }, Collider::Type::WALL);
