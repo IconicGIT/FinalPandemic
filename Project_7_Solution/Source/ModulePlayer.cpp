@@ -14,7 +14,6 @@
 
 #include "SDL/include/SDL_scancode.h"
 #include <math.h>
-#include <stdio.h>
 
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
@@ -249,14 +248,14 @@ bool ModulePlayer::Start()
 
 
 
-	position.x = 550.0f;
-	position.y = 1400.0f;
+	position.x = 550;
+	position.y = 1400;
 
 	lastDirection = 5;
 
 	//collBox = App->collisions->AddCollider({ (int)position.x, (int)position.y, playerWidth, playerHeight }, Collider::Type::PLAYER_COLLBOX, this);
 	//hitBox = App->collisions->AddCollider({ (int)position.x, (int)position.y + 15, 25, 25}, Collider::Type::PLAYER_HITBOX, this);
-	hitBox = App->collisions->AddCollider({ (int)position.x, (int)position.y, playerWidth, playerHeight }, Collider::Type::PLAYER_HITBOX, this);
+	hitBox = App->collisions->AddCollider({ (int)position.x, (int)position.y + 30, playerWidth, playerHeight }, Collider::Type::PLAYER_HITBOX, this);
 
 	colBoxUp		= App->collisions->AddCollider({ (int)position.x, (int)position.y - speed, playerWidth, speed }, Collider::Type::PLAYER_COLLBOX, this);
 	colBoxUpLeft	= App->collisions->AddCollider({ (int)position.x - diagonalSpeed, (int)position.y - diagonalSpeed, diagonalSpeed, diagonalSpeed }, Collider::Type::PLAYER_COLLBOX, this);
@@ -871,16 +870,16 @@ UpdateResult ModulePlayer::Update()
 
 	
 	////////////////////////////////////////////
-	hitBox->SetPos(position.x, position.y);
+	hitBox->SetPos(position.x, position.y + 30);
 	
-	colBoxUp		->SetPos(position.x, position.y - speed);
-	colBoxUpLeft	->SetPos(position.x - diagonalSpeed, position.y - diagonalSpeed);
-	colBoxLeft		->SetPos(position.x - speed, position.y);
-	colBoxDownLeft	->SetPos(position.x - diagonalSpeed, position.y + playerHeight);
-	colBoxDown		->SetPos(position.x, position.y + playerHeight);
-	colBoxDownRight	->SetPos(position.x + playerWidth, position.y + playerHeight);
-	colBoxRight		->SetPos(position.x + playerWidth, position.y);
-	colBoxUpRight	->SetPos(position.x + playerWidth, position.y - diagonalSpeed);
+	colBoxUp		->SetPos(position.x, position.y - speed + playerHeightOffset);
+	colBoxUpLeft	->SetPos(position.x - diagonalSpeed, position.y - diagonalSpeed + playerHeightOffset);
+	colBoxLeft		->SetPos(position.x - speed, position.y + playerHeightOffset);
+	colBoxDownLeft	->SetPos(position.x - diagonalSpeed, position.y + playerHeight + playerHeightOffset);
+	colBoxDown		->SetPos(position.x, position.y + playerHeight + playerHeightOffset);
+	colBoxDownRight	->SetPos(position.x + playerWidth, position.y + playerHeight + playerHeightOffset);
+	colBoxRight		->SetPos(position.x + playerWidth, position.y + playerHeightOffset);
+	colBoxUpRight	->SetPos(position.x + playerWidth, position.y - diagonalSpeed + playerHeightOffset);
 
 	currentAnimation->Update();
 
@@ -901,13 +900,11 @@ UpdateResult ModulePlayer::PostUpdate()
 	if (destroyed != true)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect,1);
+		App->render->Blit(texture, position.x + 4, position.y, &rect,1);
 	}
-	
-	sprintf_s(scoreText, 10, "%i", score);
 
-	App->fonts->BlitText(40, 0,scoreFont, scoreText);
-	//App->fonts->BlitText(60, 20, scoreFont, "texto de ejemplo");
+	App->fonts->BlitText(20, 20,scoreFont,scoreText);
+
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
