@@ -28,9 +28,9 @@ bool SecondScene::Start()
 	bTexture = App->textures->Load("Assets/Sprites/scene2.png");
 	App->audio->PlayMusic("", 1.0f); //Change
 
-	App->collisions->AddCollider({ 0, 384, 224, 1 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 0, 768, 224, 1 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 0, 1152, 224, 1 }, Collider::Type::WALL);
+	//App->collisions->AddCollider({ 0, 384, 224, 1 }, Collider::Type::WALL);
+	//App->collisions->AddCollider({ 0, 768, 224, 1 }, Collider::Type::WALL);
+	//App->collisions->AddCollider({ 0, 1152, 224, 1 }, Collider::Type::WALL);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
