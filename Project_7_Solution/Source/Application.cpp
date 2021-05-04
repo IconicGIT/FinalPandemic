@@ -30,7 +30,7 @@ Application::Application()
 	modules[3] = audio = new ModuleAudio(true);
 
 	modules[4] = frontPage = new FrontPage(true);
-	modules[5] = firstScene = new FirstScene(true);
+	modules[5] = firstScene = new FirstScene(false);
 	modules[6] = secondScene = new SecondScene(false);
 	modules[7] = thirdScene = new ThirdScene(false);
 	modules[8] = scene = new ModuleScene(false);								//Gameplay scene starts disabled

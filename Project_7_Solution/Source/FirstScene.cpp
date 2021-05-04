@@ -54,7 +54,7 @@ UpdateResult FirstScene::Update()
 {
 	if ((App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN))
 	{
-		App->fade->FadeToBlack(this, (Module*)App->scene, 30);
+		App->fade->FadeToBlack(this, (Module*)App->secondScene, 30);
 	}
 
 

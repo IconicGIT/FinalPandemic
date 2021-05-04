@@ -37,7 +37,7 @@ UpdateResult FrontPage::Update()
 {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
+		App->fade->FadeToBlack(this, (Module*)App->firstScene, 90);
 	}
 
 	return UpdateResult::UPDATE_CONTINUE;
@@ -47,7 +47,13 @@ UpdateResult FrontPage::PostUpdate()
 {
 	// Draw everything
 
-	App->render->Blit(bTexture, 0, 0, NULL);
+	SDL_Rect bfront;
+	bfront.x = 0;
+	bfront.y = 0;
+	bfront.w = 448;
+	bfront.h = 768;
+
+	App->render->Blit(bTexture, 0, 0, &bfront);
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
