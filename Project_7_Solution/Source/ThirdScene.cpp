@@ -25,7 +25,7 @@ bool ThirdScene::Start()
 	bool ret = true;
 
 	bTexture = App->textures->Load("Assets/Sprites/background_scene3.png");
-	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/Mission1.ogg", 1.0f);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;

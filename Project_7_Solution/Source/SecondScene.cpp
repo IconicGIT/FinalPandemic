@@ -26,7 +26,7 @@ bool SecondScene::Start()
 	bool ret = true;
 
 	bTexture = App->textures->Load("Assets/Sprites/Scene2.png");
-	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
+	App->audio->PlayMusic("", 1.0f); //Change
 
 	App->collisions->AddCollider({ 0, 384, 224, 1 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 0, 768, 224, 1 }, Collider::Type::WALL);

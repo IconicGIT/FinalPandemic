@@ -31,7 +31,7 @@ bool FirstScene::Start()
 	text3 = App->textures->Load("Assets/Sprites/text3.png");
 	text4 = App->textures->Load("Assets/Sprites/text4.png");
 	text5 = App->textures->Load("Assets/Sprites/text5.png");
-	App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
+	App->audio->PlayMusic("", 1.0f); 
 
 	
 	
