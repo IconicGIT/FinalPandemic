@@ -1,6 +1,7 @@
 #include "ModuleScene.h"
 
 #include "Application.h"
+#include "Globals.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
@@ -11,6 +12,7 @@
 #include "ModuleInput.h"
 #include "ModuleFonts.h"
 #include "SDL/include/SDL_scancode.h"
+#include "SDL/include/SDL_timer.h"
 
 
 #define CAMERA_X_MARGIN 25
@@ -37,6 +39,11 @@ bool ModuleScene::Start()
 	//App->audio->PlayMusic("Assets/stage_1.ogg", 1.0f);
 
 	tTexture = App->textures->Load("Assets/Sprites/moving_and_chaging_tiles.png");
+
+	////
+	startTime = SDL_GetTicks();
+	counterMusic = 0;
+	repetition = 1;
 
 	//Bottomside collider
 	App->collisions->AddCollider({ 475, 1534, 608, 15 }, Collider::Type::WALL);
@@ -79,7 +86,7 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({ 525, 1166, 86, 25 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 484, 1193, 56, 24 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 462, 1215, 36, 276 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 479, 1478, 399, 70 }, Collider::Type::WALL);
+	bottomCol =  App->collisions->AddCollider({ 479, 1478, 800, 70 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 867, 1278, 73, 219 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 819, 1254, 62, 31 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 773, 1239, 55, 21 }, Collider::Type::WALL);
@@ -112,6 +119,7 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({ 851, 265, 166, 32 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 1000, 285, 71, 45 }, Collider::Type::WALL);
 	App->collisions->AddCollider({1055, 328, 202, 82 }, Collider::Type::WALL);
+	App->collisions->AddCollider({ 1242, 208, 16, 128 }, Collider::Type::WALL);
 
 	App->collisions->AddCollider({ 691, 574, 102, 32 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 563, 526, 102, 32 }, Collider::Type::WALL);
@@ -163,7 +171,24 @@ UpdateResult ModuleScene::Update()
 	//	App->render->camera.x += 10; // App->player->speed * 3;
 	//}
 
-	//render camera area
+	currentTime = SDL_GetTicks();
+	elapsedTime = (currentTime - startTime) / 1000.0;
+
+
+
+	if (counterMusic < 1 * repetition)
+	{
+		if (elapsedTime > 92 * repetition)
+		{
+			App->audio->PlayMusic("Assets/Music/Mission_1_repeat.ogg", 1.0f);
+			counterMusic++;
+			repetition++;
+		}
+	}
+
+
+	//render camera aread
+	bottomCol->SetPos(479, 1480 - (1534 - App->render->camera.y / SCREEN_SIZE) + 384 - 8);
 	App->render->DrawQuad(App->render->camera, 0, 255, 255, 100);
 	App->fonts->BlitText(0, 0, App->player->scoreFont, App->player->scoreText);
 	return UpdateResult::UPDATE_CONTINUE;
@@ -194,8 +219,6 @@ UpdateResult ModuleScene::PostUpdate()
 	brock.h = 213;
 
 	App->render->Blit(tTexture, 768, 487, &brock);
-
-	App->collisions->DebugDraw();
 
 	return UpdateResult::UPDATE_CONTINUE;
 }

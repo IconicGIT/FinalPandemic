@@ -32,9 +32,21 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* tTexture = nullptr;
+
+	Collider* bottomCol;
 	
 	// The sprite rectangle for the ground
 	SDL_Texture* starsTexture = nullptr;
+
+
+
+	uint32_t startTime;
+
+	uint32_t currentTime;
+	int counterMusic;
+	int repetition;
+
+	double elapsedTime; // Convert to seconds.
 };
 
 #endif

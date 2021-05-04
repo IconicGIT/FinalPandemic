@@ -34,12 +34,16 @@ public:
 	SDL_Texture* bTexture = nullptr;
 
 	int timer;
-	int timerReference = 700;
+	int timerReference = 400;
 	int speed = 0;
 	int frames = 0;
-	int counter = 4;
+	int counter = 0;
+
+	
 
 	void Movement(int &speed, int &frames);
+
+
 };
 
 #endif	// __SECONDSCENE_H__

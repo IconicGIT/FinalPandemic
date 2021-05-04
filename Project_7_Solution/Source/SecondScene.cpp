@@ -50,13 +50,21 @@ UpdateResult SecondScene::Update()
 
 	if (timer <= 0) 
 	{
-		timer = timerReference;
-		speed = 6;
-		frames = 128;
+		if (counter < 2) {
+			timerReference = 500;
+			timer = timerReference;
+			speed = 6;
+			frames = 128;
+			counter++;
+		}
+		else {
+
+			App->fade->FadeToBlack(this, (Module*)App->thirdScene, 90);
+
+		}
 	}
 
 	timer--;
-	LOG("timer: %i", frames);
 	Movement(speed, frames);
 
 	return UpdateResult::UPDATE_CONTINUE;
