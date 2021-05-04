@@ -195,7 +195,7 @@
     <ClCompile Include="ThirdScene.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
-    <ClCompile Include="Front Page.cpp">
+    <ClCompile Include="FrontPage.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>

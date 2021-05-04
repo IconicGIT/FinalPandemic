@@ -117,7 +117,7 @@
     <ClCompile Include="Enemy_Mech.cpp" />
     <ClCompile Include="Enemy_RedBird.cpp" />
     <ClCompile Include="FirstScene.cpp" />
-    <ClCompile Include="Front Page.cpp" />
+    <ClCompile Include="FrontPage.cpp" />
     <ClCompile Include="Globals.cpp" />
     <ClCompile Include="ModuleAudio.cpp" />
     <ClCompile Include="ModuleCollisions.cpp" />

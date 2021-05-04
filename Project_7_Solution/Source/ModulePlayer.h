@@ -101,7 +101,6 @@ public:
 
 	void SetAnimation(Animation &toChange);
 
-
 	// The player's collider
 	Collider* hitBox = nullptr;
 
@@ -114,7 +113,18 @@ public:
 	Collider* colBoxRight = nullptr;
 	Collider* colBoxUpRight = nullptr;
 
-	int collisionID = 0;
+	int collisionID;
+
+	bool colUp = false;
+	bool colUpLeft = false;
+	bool colLeft = false;
+	bool colDownLeft = false;
+	bool colDown = false;
+	bool colDownRight = false;
+	bool colRight = false;
+	bool colUpRight = false;
+
+	bool colCheck[8] = { false };
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;

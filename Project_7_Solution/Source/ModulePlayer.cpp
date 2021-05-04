@@ -284,9 +284,22 @@ UpdateResult ModulePlayer::Update()
 	//App->player->position.x += 0;
 	////////////////////////////////////////////////////////
 
-	
+	//colUp = false;
+	//colUpLeft = false;
+	//colLeft = false;
+	//colDownLeft = false;
+	//colDown = false;
+	//colDownRight = false;
+	//colRight = false;
+	//colUpRight = false;
 
-	LOG("col %i: ", collisionID);
+	//LOG("col %i: ", collisionID);
+
+	for (int a = 0; a < 8; a++) {
+	
+		LOG("col %i state: %i", a, colCheck[a]);
+	
+	}
 
 	keyUp    = App->input->keys[SDL_SCANCODE_W];
 	keyLeft  = App->input->keys[SDL_SCANCODE_A];
@@ -317,11 +330,11 @@ UpdateResult ModulePlayer::Update()
 	{
 		lastDirection = 3;
 
-		if (collisionID != lastDirection)
+		if (!colCheck[2])
 		{
 			position.x -= speed;
 			SetAnimation(leftAnim);
-			collisionID = 0;
+			colCheck[2] = false;
 		}
 		else {
 			SetAnimation(leftIdleAnim);
@@ -342,11 +355,11 @@ UpdateResult ModulePlayer::Update()
 
 		
 
-		if (collisionID != lastDirection)
+		if (!colCheck[6])
 		{
 			position.x += speed;
 			SetAnimation(rightAnim);
-			collisionID = 0;
+			colCheck[5] = false;
 		}
 		else {
 			SetAnimation(rightIdleAnim);
@@ -361,11 +374,11 @@ UpdateResult ModulePlayer::Update()
 	{
 		lastDirection = 1;
 		
-		if (collisionID != lastDirection)
+		if (!colCheck[0])
 		{
 			SetAnimation(upAnim);
 			position.y -= speed;
-			collisionID = 0;
+			colCheck[0] = false;
 		}
 		else {
 			SetAnimation(upIdleAnim);
@@ -381,12 +394,12 @@ UpdateResult ModulePlayer::Update()
 	{
 		lastDirection = 5;
 		
-		if (collisionID != lastDirection)
+		if (!colCheck[4])
 		{
 			SetAnimation(downAnim);
 
 			position.y += speed;
-			collisionID = 0;
+			colCheck[4] = false;
 		}
 		else {
 			SetAnimation(downIdleAnim);
@@ -405,18 +418,57 @@ UpdateResult ModulePlayer::Update()
 	{
 		lastDirection = 2;
 		
-		if (collisionID != lastDirection && collisionID != lastDirection + 1 && collisionID != lastDirection - 1)
+		//if (!colCheck[1] && !colCheck[2] && !colCheck[0])
+		//{
+		//	SetAnimation(upLeftAnim);
+		//
+		//	position.x -= diagonalSpeed;
+		//	position.y -= diagonalSpeed;
+		//	colCheck[1] = false;
+		//}
+		//else {
+		//	SetAnimation(upLeftIdleAnim);
+		//}
+		
+		if (!colCheck[1] && !colCheck[2] && !colCheck[0])
 		{
 			SetAnimation(upLeftAnim);
 
 			position.x -= diagonalSpeed;
 			position.y -= diagonalSpeed;
-			collisionID = 0;
+			colCheck[1] = false;
+			colCheck[2] = false;
+			colCheck[0] = false;
 		}
-		else {
+		else
+		{
+
+			if (!colCheck[1])
+			{
+
+				if (!colCheck[2]) {
+					SetAnimation(leftAnim);
+					position.x -= speed;
+					colCheck[1] = false;
+					colCheck[2] = false;
+
+				}
+				if (!colCheck[0])
+				{
+					SetAnimation(upAnim);
+					position.y -= speed;
+					colCheck[1] = false;
+					colCheck[0] = false;
+
+				}
+
+			}
+		}
+		if (colCheck[1] && colCheck[2] && colCheck[0])
+		{
 			SetAnimation(upLeftIdleAnim);
 		}
-		
+
 	}
 
 	//down-left
@@ -427,15 +479,42 @@ UpdateResult ModulePlayer::Update()
 	{
 		lastDirection = 4;
 		
-		if (collisionID != lastDirection && collisionID != lastDirection - 1 && collisionID != lastDirection + 1)
+		if (!colCheck[3] && !colCheck[2] && !colCheck[4])
 		{
 			SetAnimation(downLeftAnim);
-
+		
 			position.x -= diagonalSpeed;
 			position.y += diagonalSpeed;
-			collisionID = 0;
+			colCheck[3] = false;
+			colCheck[2] = false;
+			colCheck[4] = false;
 		}
-		else {
+		else 
+		{
+
+			if (!colCheck[3]) 
+			{
+
+				if (!colCheck[2]) {
+					SetAnimation(leftAnim);
+					position.x -= speed;
+					colCheck[3] = false;
+					colCheck[2] = false;
+
+				}
+				if (!colCheck[4]) 
+				{
+					SetAnimation(downAnim);
+					position.y += speed;
+					colCheck[3] = false;
+					colCheck[4] = false;
+
+				}
+
+			}
+		}
+		if (colCheck[2] && colCheck[3] && colCheck[4])
+		{
 			SetAnimation(downLeftIdleAnim);
 		}
 	}
@@ -448,15 +527,56 @@ UpdateResult ModulePlayer::Update()
 	{
 		lastDirection = 6;
 		
-		if (collisionID != lastDirection && collisionID != lastDirection - 1 && collisionID != lastDirection + 1)
+		//if (!colCheck[5] && !colCheck[4] && !colCheck[6])
+		//{
+		//	SetAnimation(downRightAnim);
+		//
+		//	position.x += diagonalSpeed;
+		//	position.y += diagonalSpeed;
+		//	colCheck[5] = false;
+		//}
+		//else {
+		//	SetAnimation(downRightIdleAnim);
+		//}
+
+		if (!colCheck[5] && !colCheck[4] && !colCheck[6])
 		{
 			SetAnimation(downRightAnim);
 
 			position.x += diagonalSpeed;
 			position.y += diagonalSpeed;
-			collisionID = 0;
+			colCheck[4] = false;
+			colCheck[5] = false;
+			colCheck[6] = false;
 		}
-		else {
+		else 
+		{
+
+			if (!colCheck[5])
+			{
+
+				if (!colCheck[6]) 
+				{
+					SetAnimation(rightAnim);
+					position.x += speed;
+					colCheck[5] = false;
+					colCheck[6] = false;
+
+				}
+
+				if (!colCheck[4]) 
+				{
+					SetAnimation(downAnim);
+					position.y += speed;
+					colCheck[5] = false;
+					colCheck[6] = false;
+					
+				}
+
+			}
+		}
+		if (colCheck[5] && colCheck[4] && colCheck[6]) 
+		{
 			SetAnimation(downRightIdleAnim);
 		}
 	}
@@ -470,21 +590,66 @@ UpdateResult ModulePlayer::Update()
 		lastDirection = 8;
 
 		
-		if (collisionID != lastDirection && collisionID != lastDirection - 1 && collisionID != 1)
+		//if (!colCheck[7] && !colCheck[1] && !colCheck[6])
+		//{
+		//	SetAnimation(upRightAnim);
+		//
+		//	position.x += diagonalSpeed;
+		//	position.y -= diagonalSpeed;
+		//	colCheck[6] = false;
+		//}
+		//else {
+		//	SetAnimation(upRightIdleAnim);
+		//}
+
+		if (!colCheck[7] && !colCheck[0] && !colCheck[6])
 		{
 			SetAnimation(upRightAnim);
 
 			position.x += diagonalSpeed;
 			position.y -= diagonalSpeed;
-			collisionID = 0;
+			colCheck[7] = false;
+			colCheck[0] = false;
+			colCheck[6] = false;
 		}
-		else {
+		else
+		{
+
+			if (!colCheck[7])
+			{
+
+				if (!colCheck[6])
+				{
+					SetAnimation(rightAnim);
+					position.x += speed;
+					colCheck[7] = false;
+					colCheck[6] = false;
+
+				}
+
+				if (!colCheck[0])
+				{
+					SetAnimation(upAnim);
+					position.y -= speed;
+					colCheck[7] = false;
+					colCheck[0] = false;
+					
+				}
+
+			}
+		}
+		if (colCheck[7] && colCheck[0] && colCheck[6])
+		{
 			SetAnimation(upRightIdleAnim);
 		}
-
-		
 	}
+		
+	
 
+	for (int i = 0; i < 8; i++)
+	{
+		colCheck[i] = false;
+	}
 
 	if (keyRight == KEY_STATE::KEY_REPEAT) {
 		
@@ -594,12 +759,6 @@ UpdateResult ModulePlayer::Update()
 	////////////////////////////////////////////////
 
 	// Idle Animations 
-
-	//AXIS MOVEMENT
-	
-	
-	 //DIAGONAL AXIS MOVEMENT
-
 
 	if ((keyUp == KEY_STATE::KEY_IDLE)
 		&& (keyLeft == KEY_STATE::KEY_IDLE)
@@ -751,16 +910,12 @@ UpdateResult ModulePlayer::PostUpdate()
 
 void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
-	bool col = false;
+	
 
 	//AXIAL
 	if (c1 == colBoxUp && c2->type == Collider::WALL) {
-
 		
-		if (!col) {
-			collisionID = 1;
-			col = true;
-		}
+		colCheck[0] = true;	
 		
 	}
 
@@ -768,10 +923,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == colBoxLeft && c2->type == Collider::WALL) {
 
-		if (!col) {
-			collisionID = 3;
-			col = true;
-		}
+		colCheck[2] = true;
 
 	}
 
@@ -779,20 +931,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1 == colBoxDown && c2->type == Collider::WALL) {
 
-		if (!col) {
-			collisionID = 5;
-			col = true;
-		}
+		colCheck[4] = true;
 
 	}
 
 
 	if (c1 == colBoxRight && c2->type == Collider::WALL) {
 
-		if (!col) {
-			collisionID = 7;
-			col = true;
-		}
+		colCheck[6] = true;
 
 	}
 
@@ -801,38 +947,25 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	//DIAGONAL
 	if (c1 == colBoxUpLeft && c2->type == Collider::WALL) {
 
-		if (!col) {
-			collisionID = 2;
-			col = true;
-		}
-
+		colCheck[1] = true;
 	}
 
 	if (c1 == colBoxDownLeft && c2->type == Collider::WALL) {
 
-		if (!col) {
-			collisionID = 4;
-			col = true;
-		}
+		colCheck[3] = true;
 
 	}
 
 
 	if (c1 == colBoxDownRight && c2->type == Collider::WALL) {
 
-		if (!col) {
-			collisionID = 6;
-			col = true;
-		}
+		colCheck[5] = true;
 
 	}
 
 	if (c1 == colBoxUpRight && c2->type == Collider::WALL) {
 
-		if (!col) {
-			collisionID = 8;
-			col = true;
-		}
+		colCheck[7] = true;
 
 	}
 	

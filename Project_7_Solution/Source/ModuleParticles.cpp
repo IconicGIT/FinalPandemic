@@ -97,6 +97,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		// Always destroy particles that collide
 		if (particles[i] != nullptr && c2->type == Collider::WALL )
 		{
+			particles[i]->isAlive = false;
 			delete particles[i];
 			particles[i] = nullptr;
 			break;
@@ -104,6 +105,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 
 		if (particles[i] != nullptr && c2->type == Collider::ENEMY)
 		{
+			particles[i]->isAlive = false;
 			delete particles[i];
 			particles[i] = nullptr;
 			//Cause damage to enemy;
