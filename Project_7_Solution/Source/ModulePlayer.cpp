@@ -295,12 +295,6 @@ UpdateResult ModulePlayer::Update()
 
 	//LOG("col %i: ", collisionID);
 
-	for (int a = 0; a < 8; a++) {
-	
-		LOG("col %i state: %i", a, colCheck[a]);
-	
-	}
-
 	keyUp    = App->input->keys[SDL_SCANCODE_W];
 	keyLeft  = App->input->keys[SDL_SCANCODE_A];
 	keyDown  = App->input->keys[SDL_SCANCODE_S];
@@ -747,13 +741,53 @@ UpdateResult ModulePlayer::Update()
 	////////////////////////////////////////////////
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->particles->AddParticle(App->particles->PlayerBullet1[lastDirection - 1],0, position.x, position.y,lastDirection, Collider::Type::PLAYER_SHOT);
+		int posOffsetX = 0;
+		int posOffsetY = 0;
+
+		switch (lastDirection) {
+		case 1:
+			posOffsetX = 13;
+			
+			break;
+		case 2:
+			posOffsetX = 4;
+			posOffsetY = 1;
+			break;
+		case 3:
+			posOffsetX = 0;
+			posOffsetY = 9;
+			break;
+		case 4:
+			posOffsetX = PlayerWidthOffset;
+			posOffsetY = 16;
+			break;
+		case 5:
+			posOffsetX = 7;
+			posOffsetY = 24;
+			break;
+		case 6:
+			posOffsetX = 17;
+			posOffsetY = 18;
+			break;
+		case 7:
+			posOffsetX = 19;
+			posOffsetY = 11;
+			break;
+		case 8:
+			posOffsetX = 20;
+			posOffsetY = 4;
+			break;
+		}
+		App->particles->AddParticle(App->particles->playerBullet1[lastDirection - 1], 0, position.x + posOffsetX, position.y + posOffsetY, lastDirection, Collider::Type::PLAYER_SHOT);
+
+		
+		
 		App->audio->PlayFx(laserFx);
 	}
 	if (App->input->keys[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN)
 	{
 		destroyed = true;
-		//App->particles->AddParticle(App->particles->PlayerBullet1[lastDirection - 1], 0, position.x, position.y, lastDirection, Collider::Type::PLAYER_SHOT);
+		//App->particles->AddParticle(App->particles->playerBullet1[lastDirection - 1], 0, position.x, position.y, lastDirection, Collider::Type::PLAYER_SHOT);
 		//App->audio->PlayFx(laserFx);
 	}
 	////////////////////////////////////////////////

@@ -31,6 +31,7 @@ bool FrontPage::Start()
 
 
 
+
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
