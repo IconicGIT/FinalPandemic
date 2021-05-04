@@ -308,7 +308,7 @@ void Enemy_Soldier::Update()
 		for (int i = 4; i >= 0; i--)
 		{
 			App->particles->AddParticle(App->particles->EnemyBullet, 1, position.x, position.y, 1, Collider::Type::ENEMY_SHOT,1);
-			App->audio->PlayFx(laserFx);
+			//App->audio->PlayFx(laserFx);
 		}
 
 		pushTimer = pushTimerReference;

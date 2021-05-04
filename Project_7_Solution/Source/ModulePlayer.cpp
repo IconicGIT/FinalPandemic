@@ -244,7 +244,7 @@ bool ModulePlayer::Start()
 	currentAnimation = &downIdleAnim;
 
 	//Add audio -> remember unload
-	laserFx = App->audio->LoadFx("Assets/Fx/GunShot01.wav");
+	laserFx = App->audio->LoadFx("Assets/Fx/GunShot1.wav");
 	bombFx = App->audio->LoadFx("Assets/Fx/Explosion02.wav");
 
 
@@ -749,7 +749,7 @@ UpdateResult ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
 		App->particles->AddParticle(App->particles->PlayerBullet1[lastDirection - 1],0, position.x, position.y,lastDirection, Collider::Type::PLAYER_SHOT);
-		//App->audio->PlayFx(laserFx);
+		App->audio->PlayFx(laserFx);
 	}
 	if (App->input->keys[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN)
 	{
