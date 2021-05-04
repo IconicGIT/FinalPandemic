@@ -22,6 +22,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_HITBOX][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::PLAYER_HITBOX][Collider::Type::PLAYER_SHOT] = false;
 	matrix[Collider::Type::PLAYER_HITBOX][Collider::Type::ENEMY_SHOT] = true;
+	matrix[Collider::Type::PLAYER_HITBOX][Collider::Type::POWER_UP] = true;
 
 	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_HITBOX] = true;
@@ -140,6 +141,9 @@ void ModuleCollisions::DebugDraw()
 				break;
 			case Collider::Type::ENEMY_SHOT: // magenta
 				App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
+				break;
+			case Collider::Type::POWER_UP: // magenta
+				App->render->DrawQuad(colliders[i]->rect, 0, 255, 100, alpha);
 				break;
 		}
 	}

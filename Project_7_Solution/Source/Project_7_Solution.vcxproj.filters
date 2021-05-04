@@ -26,6 +26,9 @@
     <Filter Include="Source Files\Entities\Enemies">
       <UniqueIdentifier>{c465321a-28ed-404a-aa97-e9d0c6f722ee}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Power_Ups">
+      <UniqueIdentifier>{6d343b02-18b2-4f50-9eb5-800eeb84bd4b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -115,6 +118,12 @@
     <ClInclude Include="FrontPage.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClInclude>
+    <ClInclude Include="PowerUps.h">
+      <Filter>Source Files\Entities\Power_Ups</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePowerUp.h">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -197,6 +206,12 @@
     </ClCompile>
     <ClCompile Include="FrontPage.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUps.cpp">
+      <Filter>Source Files\Entities\Power_Ups</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePowerUp.cpp">
+      <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

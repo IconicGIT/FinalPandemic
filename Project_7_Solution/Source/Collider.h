@@ -16,6 +16,7 @@ struct Collider
 		ENEMY,
 		PLAYER_SHOT,
 		ENEMY_SHOT,
+		POWER_UP,
 
 		MAX
 	};
