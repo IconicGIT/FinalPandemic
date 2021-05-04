@@ -50,9 +50,6 @@ public:
 	
 	int timerReference;
 	int timer;
-
-	
-
 };
 
 #endif	// __FIRSTSCENE_H__
