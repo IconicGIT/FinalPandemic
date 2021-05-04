@@ -121,9 +121,6 @@
     <ClInclude Include="PowerUps.h">
       <Filter>Source Files\Entities\Power_Ups</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePowerUp.h">
-      <Filter>Source Files\Modules\Core</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -209,9 +206,6 @@
     </ClCompile>
     <ClCompile Include="PowerUps.cpp">
       <Filter>Source Files\Entities\Power_Ups</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePowerUp.cpp">
-      <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
