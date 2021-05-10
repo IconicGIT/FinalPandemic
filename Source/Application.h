@@ -17,6 +17,7 @@ class SecondScene;
 class ThirdScene;
 class FourthScene;
 class ModuleScene;
+class ModuleScene2;
 class ModuleParticles;
 class ModuleCollisions;
 class ModuleFadeToBlack;
@@ -62,6 +63,7 @@ public:
 	ThirdScene* thirdScene = nullptr;
 	FourthScene* fourthScene = nullptr;
 	ModuleScene* scene = nullptr;
+	ModuleScene2* scene2 = nullptr;
 	ModuleEnemies* enemies = nullptr;
 	ModuleParticles* particles = nullptr;
 
