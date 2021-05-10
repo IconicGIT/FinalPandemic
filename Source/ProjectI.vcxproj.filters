@@ -112,6 +112,9 @@
     <ClCompile Include="Particle.cpp">
       <Filter>Source Files\Instances\Particles</Filter>
     </ClCompile>
+    <ClCompile Include="FourthScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -203,6 +206,9 @@
     </ClInclude>
     <ClInclude Include="Particle.h">
       <Filter>Source Files\Instances\Particles</Filter>
+    </ClInclude>
+    <ClInclude Include="FourthScene.h">
+      <Filter>Source Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

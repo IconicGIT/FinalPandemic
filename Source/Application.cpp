@@ -10,6 +10,7 @@
 #include "FirstScene.h"
 #include "SecondScene.h"
 #include "ThirdScene.h"
+#include "FourthScene.h"
 #include "ModuleScene.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
@@ -33,15 +34,17 @@ Application::Application()
 	modules[5] = firstScene = new FirstScene(false);
 	modules[6] = secondScene = new SecondScene(false);
 	modules[7] = thirdScene = new ThirdScene(false);
-	modules[8] = scene = new ModuleScene(false);								//Gameplay scene starts disabled
-	modules[9] = player = new ModulePlayer(false);								//Player starts disabled
-	modules[10] = particles = new ModuleParticles(true);
-	modules[11] = enemies = new ModuleEnemies(false);							//Enemies start disabled
+	modules[8] = fourthScene = new FourthScene(false);
 
-	modules[12] = collisions = new ModuleCollisions(true);
-	modules[13] = fade = new ModuleFadeToBlack(true);
-	modules[14] = fonts = new ModuleFonts(true);
-	modules[15] = render = new ModuleRender(true);
+	modules[9] = scene = new ModuleScene(false);								//Gameplay scene starts disabled
+	modules[10] = player = new ModulePlayer(false);								//Player starts disabled
+	modules[11] = particles = new ModuleParticles(true);
+	modules[12] = enemies = new ModuleEnemies(false);							//Enemies start disabled
+
+	modules[13] = collisions = new ModuleCollisions(true);
+	modules[14] = fade = new ModuleFadeToBlack(true);
+	modules[15] = fonts = new ModuleFonts(true);
+	modules[16] = render = new ModuleRender(true);
 }
 
 Application::~Application()
