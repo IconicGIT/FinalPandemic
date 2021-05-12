@@ -1,23 +1,25 @@
-#ifndef __MODULE_SCENE_H__
-#define __MODULE_SCENE_H__
+#ifndef __THIRDSCENE_H__
+#define __THIRDSCENE_H__
 
 #include "Module.h"
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class ModuleScene : public Module
+class ThirdScene : public Module
 {
 public:
-	//Constructor
-	ModuleScene(bool startEnabled);
+	// Constructor
+	ThirdScene(bool startEnabled);
 
-	//Destructor
-	~ModuleScene();
+	// Destructor
+	~ThirdScene();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
 	bool Start() override;
+
+	bool CleanUp() override;
 
 	// Called at the middle of the application loop
 	// Updates the scene's background animations
@@ -28,26 +30,8 @@ public:
 	UpdateResult PostUpdate() override;
 
 public:
-	
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* bgTexture = nullptr;
-	SDL_Texture* tTexture = nullptr;
-
-	Collider* bottomCol;
-	
-	// The sprite rectangle for the ground
-	SDL_Texture* starsTexture = nullptr;
-
-
-
-	uint32_t startTime;
-
-	uint32_t currentTime;
-	int counterMusic;
-	int repetition;
-	bool afterStart = false;
-
-	double elapsedTime; // Convert to seconds.
+	SDL_Texture* bTexture = nullptr;
 };
 
-#endif
+#endif	// __THIRDSCENE_H__
