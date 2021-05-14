@@ -1,4 +1,4 @@
-#include "ModuleScene.h"
+#include "ModuleLevel_1.h"
 
 #include "Application.h"
 #include "Globals.h"
@@ -18,18 +18,18 @@
 #define CAMERA_X_MARGIN 25
 #define CAMERA_Y_MARGIN 50
 
-ModuleScene::ModuleScene(bool startEnabled) : Module(startEnabled)
+ModuleLevel_1::ModuleLevel_1(bool startEnabled) : Module(startEnabled)
 {
 
 }
 
-ModuleScene::~ModuleScene()
+ModuleLevel_1::~ModuleLevel_1()
 {
 
 }
 
 // Load assets
-bool ModuleScene::Start()
+bool ModuleLevel_1::Start()
 {
 	LOG("Loading background assets");
 
@@ -84,9 +84,9 @@ bool ModuleScene::Start()
 	App->collisions->AddCollider({ 675, 1110, 40, 34 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 585, 1132, 102, 33 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 525, 1166, 86, 25 }, Collider::Type::WALL);
-	App->collisions->AddCollider({ 484, 1193, 56, 24 }, Collider::Type::WALL);
+	 App->collisions->AddCollider({ 484, 1193, 56, 24 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 462, 1215, 36, 276 }, Collider::Type::WALL);
-	bottomCol =  App->collisions->AddCollider({ 479, 1478, 800, 70 }, Collider::Type::WALL);
+	bottomCol =  App->collisions->AddCollider({ 479, 1488, 800, 70 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 867, 1278, 73, 219 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 819, 1254, 62, 31 }, Collider::Type::WALL);
 	App->collisions->AddCollider({ 773, 1239, 55, 21 }, Collider::Type::WALL);
@@ -156,7 +156,7 @@ bool ModuleScene::Start()
 	return ret;
 }
 
-UpdateResult ModuleScene::Update()
+UpdateResult ModuleLevel_1::Update()
 {
 	//App->render->camera.x += 3;
 
@@ -202,14 +202,14 @@ UpdateResult ModuleScene::Update()
 
 
 	//render camera aread
-	bottomCol->SetPos(479, 1480 - (1534 - App->render->camera.y / SCREEN_SIZE) + 384 - 8);
+	bottomCol->SetPos(479, 1480 - (1534 - App->render->camera.y / SCREEN_SIZE) + 384 );
 	App->render->DrawQuad(App->render->camera, 0, 255, 255, 100);
 	App->fonts->BlitText(0, 0, App->player->scoreFont, App->player->scoreText);
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
 // Update: draw background
-UpdateResult ModuleScene::PostUpdate()
+UpdateResult ModuleLevel_1::PostUpdate()
 {
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);

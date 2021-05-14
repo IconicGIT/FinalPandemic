@@ -109,7 +109,7 @@
     <ClCompile Include="FrontPage.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleScene.cpp">
+    <ClCompile Include="ModuleLevel_1.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="SecondScene.cpp">
@@ -201,7 +201,7 @@
     <ClInclude Include="FrontPage.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleScene.h">
+    <ClInclude Include="ModuleLevel_1.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="SecondScene.h">
