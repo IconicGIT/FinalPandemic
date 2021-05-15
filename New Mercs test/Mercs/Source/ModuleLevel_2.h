@@ -1,19 +1,19 @@
-#ifndef __MODULE_LEVEL_1_H__
-#define __MODULE_LEVEL_1_H__
+#ifndef __MODULE_LEVEL_2_H__
+#define __MODULE_lEVEL_2_H__
 
 #include "Module.h"
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class ModuleLevel_1 : public Module
+class ModuleLevel_2 : public Module
 {
 public:
 	//Constructor
-	ModuleLevel_1(bool startEnabled);
-
+	ModuleLevel_2(bool startEnabled);
+	
 	//Destructor
-	~ModuleLevel_1();
+	~ModuleLevel_2();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -28,14 +28,13 @@ public:
 	UpdateResult PostUpdate() override;
 
 public:
-	
+
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* tTexture = nullptr;
 
 	Collider* bottomCol;
-	
-	Collider* playerWall[100] = { nullptr };
+
 	// The sprite rectangle for the ground
 	SDL_Texture* starsTexture = nullptr;
 
@@ -46,7 +45,6 @@ public:
 	uint32_t currentTime;
 	int counterMusic;
 	int repetition;
-	bool afterStart = false;
 
 	double elapsedTime; // Convert to seconds.
 };

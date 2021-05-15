@@ -121,6 +121,9 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
+    <ClCompile Include="ModuleLevel_2.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -212,6 +215,9 @@
     </ClInclude>
     <ClInclude Include="Enemy.h">
       <Filter>Source Files\Entities\Enemies</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleLevel_2.h">
+      <Filter>Source Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

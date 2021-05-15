@@ -11,6 +11,7 @@
 #include "SecondScene.h"
 #include "ThirdScene.h"
 #include "ModuleLevel_1.h"
+#include "ModuleLevel_2.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
@@ -33,15 +34,16 @@ Application::Application()
 	modules[5] = firstScene = new FirstScene(false);
 	modules[6] = secondScene = new SecondScene(false);
 	modules[7] = thirdScene = new ThirdScene(false);
-	modules[8] = scene = new ModuleLevel_1(false);								//Gameplay scene starts disabled
-	modules[9] = player = new ModulePlayer(false);								//Player starts disabled
-	modules[10] = particles = new ModuleParticles(true);
-	modules[11] = enemies = new ModuleEnemies(false);							//Enemies start disabled
+	modules[8] = scene = new ModuleLevel_1(false);
+	modules[9] = scene_2 = new ModuleLevel_2(false);								//Gameplay scene starts disabled
+	modules[10] = player = new ModulePlayer(false);								//Player starts disabled
+	modules[11] = particles = new ModuleParticles(true);
+	modules[12] = enemies = new ModuleEnemies(false);							//Enemies start disabled
 
-	modules[12] = collisions = new ModuleCollisions(true);
-	modules[13] = fade = new ModuleFadeToBlack(true);
-	modules[14] = fonts = new ModuleFonts(true);
-	modules[15] = render = new ModuleRender(true);
+	modules[13] = collisions = new ModuleCollisions(true);
+	modules[14] = fade = new ModuleFadeToBlack(true);
+	modules[15] = fonts = new ModuleFonts(true);
+	modules[16] = render = new ModuleRender(true);
 }
 
 Application::~Application()
