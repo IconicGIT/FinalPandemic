@@ -124,6 +124,9 @@
     <ClCompile Include="ModuleLevel_2.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="FourthScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -217,6 +220,9 @@
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ModuleLevel_2.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="FourthScene.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
