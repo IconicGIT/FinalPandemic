@@ -4,7 +4,7 @@ Final Pandemic is a group of four students coursing the first year Bachelor's de
 
 <img src="https://github.com/IconicGIT/FinalPandemic/blob/main/Wiki%20Images/team_photo.JPG" width=550 align=middle>
 
-### Team Roles
+## Team Roles
 
 - Code: **Alexandre Carreras** [[ _TheGewehr_ ](https://github.com/TheGewehr)]:
   - Main Responsible of Final Pandemic's Mercs code.
