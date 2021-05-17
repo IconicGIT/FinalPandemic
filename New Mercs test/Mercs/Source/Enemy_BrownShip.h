@@ -21,6 +21,8 @@ public:
 
 	float RealDistancePlayerEnemy(float x, float y);
 
+	float ReduceMovement(float diference, float y);
+
 	fPoint playerPosition;
 
 	float distanceX;

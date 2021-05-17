@@ -14,8 +14,9 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	float deathAnimSpeed = 0.05f;
 	float grenadeAnimSpeed = 0.05f;
 
-	soldierDirection = spawnPos;
+	soldierSpeed = 1;
 
+	
 	// idle animations
 
 	downIdleAnim.PushBack({ 115,362,26,40 });
@@ -209,15 +210,22 @@ void Enemy_Soldier::Update()
 	relativePosition.x += resultX;
 	relativePosition.y += resultY;
 
+	/*
 	positionA = position;
 	positionB = spawnPos + path.GetRelativePosition();
 	positionC = positionB - positionA;
 	distTotal = positionC.x + positionC.y;
 
-	if ()  // hacer que no pase de x distancia al caminar, tampoco y
+	if (relativePosition.x > 1)  // hacer que no pase de x distancia al caminar
 	{
-
+		relativePosition.x = ((positionC.x * 100) / distTotal) * soldierSpeed;
 	}
+
+	if (relativePosition.y > 1)  // hacer que no pase de y distancia al caminar
+	{
+		relativePosition.y = ((positionC.y * 100) / distTotal) * soldierSpeed;
+	}
+	*/
 
 	position = spawnPos + path.GetRelativePosition();
 
