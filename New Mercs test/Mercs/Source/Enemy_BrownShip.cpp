@@ -206,13 +206,23 @@ void Enemy_Soldier::Update()
 	////////////////////////////////////////////////////
 	path.Update();
 
-	soldierDirection.x += resultX;
-	soldierDirection.y += resultY;
+	relativePosition.x += resultX;
+	relativePosition.y += resultY;
+
+	positionA = position;
+	positionB = spawnPos + path.GetRelativePosition();
+	positionC = positionB - positionA;
+	distTotal = positionC.x + positionC.y;
+
+	if ()  // hacer que no pase de x distancia al caminar, tampoco y
+	{
+
+	}
 
 	position = spawnPos + path.GetRelativePosition();
 
-
 	pushTimer--;
+
 	if (pushTimer <= 0) {
 
 		//movement calculations
@@ -302,8 +312,12 @@ void Enemy_Soldier::Update()
 
 		// Soldier logic
 
-		path.PushBack({ resultX, resultY }, 100);
-		path.PushBack({ 0.0f, 0.0f }, 100);
+		path.PushBack({ resultX, resultY }, 1);
+		path.PushBack({ 0.0f, 0.0f }, 1);
+		path.PushBack({ resultX, resultY }, 1);
+		path.PushBack({ 0.0f, 0.0f }, 1);
+		path.PushBack({ resultX, resultY }, 1);
+		path.PushBack({ 0.0f, 0.0f }, 1);
 
 		for (int i = 4; i >= 0; i--)
 		{

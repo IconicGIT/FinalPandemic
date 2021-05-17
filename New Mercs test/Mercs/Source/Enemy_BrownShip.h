@@ -37,6 +37,7 @@ public:
 	float pushTimerReference = 400;
 
 	float soldierSpeed;
+	float distTotal;
 
 	fPoint soldierDirection;
 
@@ -46,6 +47,10 @@ private:
 	// A set of steps that define the position in the screen
 	// And an animation for each step
 	Path path;
+	fPoint relativePosition = fPoint(0.0f, 0.0f);
+	fPoint positionA = fPoint(0.0f, 0.0f);
+	fPoint positionB = fPoint(0.0f, 0.0f);
+	fPoint positionC = fPoint(0.0f, 0.0f);
 
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
