@@ -214,7 +214,7 @@ UpdateResult ModuleLevel_1::Update()
 
 	if (App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->scene_2, 90);
+		App->fade->FadeToBlack(this, (Module*)App->fifthScene, 90);
 
 		for (int i = 0; i < 100; i++) {
 			if (playerWall[i] != nullptr) {
