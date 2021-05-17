@@ -2,7 +2,7 @@
 
 Final Pandemic is a group of four students coursing the first year Bachelor's degree in Video Game Design and Development at UPC university. The integrants of the group are Alexandre Carreras, Pol Farreras, Brandon Arandia and Carlos Arnau.
 
-![Philadelphia's Magic Gardens. This place was so cool!](Wiki Images/Logo.png "Philadelphia's Magic Gardens")
+![Philadelphia's Magic Gardens. This place was so cool!](/Wiki Images/Logo.png "Philadelphia's Magic Gardens")
 
 ### PROJECT I: MERCS
 
