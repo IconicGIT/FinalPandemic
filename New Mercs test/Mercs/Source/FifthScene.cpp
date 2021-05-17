@@ -24,7 +24,7 @@ bool FifthScene::Start()
 
 	bool ret = true;
 
-	bTexture = App->textures->Load("Assets/Sprites/background_scene3.png");
+	bTexture = App->textures->Load("Assets/Sprites/background_scene5.png");
 
 
 	App->render->camera.x = 0;
@@ -37,7 +37,7 @@ UpdateResult FifthScene::Update()
 {
 	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
 	{
-		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
+		App->fade->FadeToBlack(this, (Module*)App->scene_2, 90);
 	}
 
 	return UpdateResult::UPDATE_CONTINUE;
