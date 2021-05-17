@@ -127,6 +127,9 @@
     <ClCompile Include="FourthScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="FifthScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -223,6 +226,9 @@
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="FourthScene.h">
+      <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="FifthScene.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
   </ItemGroup>

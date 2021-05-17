@@ -15,6 +15,7 @@ class FrontPage;
 class FirstScene;
 class SecondScene;
 class ThirdScene;
+class FifthScene;
 class ModuleLevel_1;
 class ModuleLevel_2;
 class ModuleParticles;
@@ -60,6 +61,7 @@ public:
 	FirstScene* firstScene = nullptr;
 	SecondScene* secondScene = nullptr;
 	ThirdScene* thirdScene = nullptr;
+	FifthScene* fifthScene = nullptr;
 	ModuleLevel_1* scene = nullptr;
 	ModuleLevel_2* scene_2 = nullptr;
 	ModuleEnemies* enemies = nullptr;

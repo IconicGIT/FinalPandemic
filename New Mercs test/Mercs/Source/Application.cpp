@@ -10,6 +10,7 @@
 #include "FirstScene.h"
 #include "SecondScene.h"
 #include "ThirdScene.h"
+#include "FifthScene.h"
 #include "ModuleLevel_1.h"
 #include "ModuleLevel_2.h"
 #include "ModuleParticles.h"
@@ -34,6 +35,7 @@ Application::Application()
 	modules[5] = firstScene = new FirstScene(false);
 	modules[6] = secondScene = new SecondScene(false);
 	modules[7] = thirdScene = new ThirdScene(false);
+	modules[8] = fifthScene = new FifthScene(false);
 	modules[8] = scene = new ModuleLevel_1(false);
 	modules[9] = scene_2 = new ModuleLevel_2(false);								//Gameplay scene starts disabled
 	modules[10] = player = new ModulePlayer(false);								//Player starts disabled
