@@ -2,8 +2,7 @@
 
 Final Pandemic is a group of four students coursing the first year Bachelor's degree in Video Game Design and Development at UPC university. The integrants of the group are Alexandre Carreras, Pol Farreras, Brandon Arandia and Carlos Arnau.
 
-<img src="https://github.com/IconicGIT/FinalPandemic/blob/main/Wiki%20Images/team_photo.JPG">
-![](github.com/IconicGIT/FinalPandemic/blob/main/Wiki%20Images/team_photo.JPG)
+<img src="https://github.com/IconicGIT/FinalPandemic/blob/main/Wiki%20Images/Logo.png" width=200 align=middle>
 
 ### PROJECT I: MERCS
 
