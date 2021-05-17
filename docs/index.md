@@ -1,37 +1,19 @@
-## Welcome to GitHub Pages
+# Welcome to Final Pandemic
 
-You can use the [editor on GitHub](https://github.com/IconicGIT/FinalPandemic/edit/main/docs/index.md) to maintain and preview the content for your website in Markdown files.
+Final Pandemic is a group of four students coursing the first year Bachelor's degree in Video Game Design and Development at UPC university. The integrants of the group are Alexandre Carreras, Pol Farreras, Brandon Arandia and Carlos Arnau.
 
-Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
+<img src="https://github.com/IconicGIT/FinalPandemic/blob/main/Wiki%20Images/team_photo.JPG" width=550 align=middle>
 
-### Markdown
+### Team Roles
 
-Markdown is a lightweight and easy-to-use syntax for styling your writing. It includes conventions for
+- Code: **Alexandre Carreras** [[ _TheGewehr_ ](https://github.com/TheGewehr)]:
+  - Main Responsible of Final Pandemic's Mercs code.
 
-```markdown
-Syntax highlighted code block
+- Art/Design: **Carlos Arnau** [[ _carlosarnau_ ](https://github.com/carlosarnau)]:
+  - Main Responsible of Final Pandemic's Mercs art and design.
 
-# Header 1
-## Header 2
-### Header 3
+- Q&A: **Pol Farreras** [[ _fakefarreraspol_ ](https://github.com/fakefarreraspol)]:
+  - Main Responsible of Final Pandemic's Mercs Performance and Well functioning.
 
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/IconicGIT/FinalPandemic/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+- Management: **Brandon Arandia** [[ _IconicGIT_ ](https://github.com/IconicGIT)]:
+  - Main Responsible of Final Pandemic's Mercs Team Management.
