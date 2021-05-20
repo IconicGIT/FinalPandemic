@@ -96,24 +96,57 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		// Always destroy particles that collide
-		if (particles[i] != nullptr && c2->type == Collider::WALL )
-		{
-			particles[i]->isAlive = false;
-			delete particles[i];
-			particles[i] = nullptr;
-			break;
-		}
 
-		if (particles[i] != nullptr && c2->type == Collider::ENEMY)
+		if (particles[i] != nullptr)
 		{
-			particles[i]->isAlive = false;
-			delete particles[i];
-			particles[i] = nullptr;
-			//Cause damage to enemy;
-			//
-			//
-			break;
+
+			switch (particles[i]->collider->type) {
+			case Collider::PLAYER_SHOT:
+				// Always destroy particles that collide
+				if (particles[i] != nullptr && c2->type == Collider::BULLET_WALL)
+				{
+					particles[i]->isAlive = false;
+					delete particles[i];
+					particles[i] = nullptr;
+					break;
+				}
+
+				if (particles[i] != nullptr && c2->type == Collider::ENEMY)
+				{
+					particles[i]->isAlive = false;
+					delete particles[i];
+					particles[i] = nullptr;
+					//Cause damage to enemy;
+					//
+					//
+					break;
+				}
+				break;
+
+			default:
+				// Always destroy particles that collide
+				if (particles[i] != nullptr && c2->type == Collider::WALL)
+				{
+					particles[i]->isAlive = false;
+					delete particles[i];
+					particles[i] = nullptr;
+					break;
+				}
+
+				if (particles[i] != nullptr && c2->type == Collider::ENEMY)
+				{
+					particles[i]->isAlive = false;
+					delete particles[i];
+					particles[i] = nullptr;
+					//Cause damage to enemy;
+					//
+					//
+					break;
+				}
+				break;
+
+			}
+
 		}
 	}
 }

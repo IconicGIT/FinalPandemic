@@ -49,8 +49,8 @@ bool ModuleLevel_2::Start()
 
 	//Bottomside collider
 	bottomCol = App->collisions->AddCollider({ 0, 1488, 800, 70 }, Collider::Type::WALL);
-
-	App->audio->PlayMusic("Assets/Music/mission_2.ogg", 1.0f);
+	
+	//App->audio->PlayMusic("Assets/Music/mission_2.ogg", 1.0f);
 
 	// Enemies ---
 	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
@@ -61,6 +61,7 @@ bool ModuleLevel_2::Start()
 	if (App->player->IsEnabled() == 0)
 	{
 		App->player->Enable();
+		App->player->level = 1;
 	}
 
 	if (App->enemies->IsEnabled() == 0)
@@ -106,7 +107,7 @@ UpdateResult ModuleLevel_2::Update()
 	{
 		if (elapsedTime > 92 * repetition)
 		{
-			App->audio->PlayMusic("Assets/Music/Mission_1_repeat.ogg", 1.0f);
+			//App->audio->PlayMusic("Assets/Music/Mission_1_repeat.ogg", 1.0f);
 			counterMusic++;
 			repetition++;
 		}
@@ -126,21 +127,21 @@ UpdateResult ModuleLevel_2::PostUpdate()
 	// Draw everything --------------------------------------
 	App->render->Blit(bgTexture, 0, 0, NULL);
 
-	SDL_Rect btree;
-	btree.x = 417;
-	btree.y = 294;
-	btree.w = 89;
-	btree.h = 160;
-
-	
-
-	SDL_Rect brock;
-	brock.x = 284;
-	brock.y = 7;
-	brock.w = 127;
-	brock.h = 213;
-
-	App->render->Blit(tTexture, 768, 487, &brock);
+	//SDL_Rect btree;
+	//btree.x = 417;
+	//btree.y = 294;
+	//btree.w = 89;
+	//btree.h = 160;
+	//
+	//
+	//
+	//SDL_Rect brock;
+	//brock.x = 284;
+	//brock.y = 7;
+	//brock.w = 127;
+	//brock.h = 213;
+	//
+	//App->render->Blit(tTexture, 768, 487, &brock);
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
