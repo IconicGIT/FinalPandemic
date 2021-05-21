@@ -33,7 +33,7 @@ public:
 	SDL_Texture* tTexture = nullptr;
 
 	Collider* bottomCol;
-	Collider* playerWall[100] = { nullptr };
+	Collider* playerWall[200] = { nullptr };
 
 	// The sprite rectangle for the ground
 	SDL_Texture* starsTexture = nullptr;
