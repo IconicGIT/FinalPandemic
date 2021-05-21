@@ -1,5 +1,5 @@
 #ifndef __MODULE_LEVEL_2_H__
-#define __MODULE_lEVEL_2_H__
+#define __MODULE_LEVEL_2_H__
 
 #include "Module.h"
 #include "Animation.h"
@@ -28,17 +28,15 @@ public:
 	UpdateResult PostUpdate() override;
 
 public:
-
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* tTexture = nullptr;
 
 	Collider* bottomCol;
+	Collider* playerWall[100] = { nullptr };
 
 	// The sprite rectangle for the ground
 	SDL_Texture* starsTexture = nullptr;
-
-
 
 	uint32_t startTime;
 
