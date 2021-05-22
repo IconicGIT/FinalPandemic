@@ -223,7 +223,6 @@ bool ModuleLevel_2::Start()
 	playerWall[162] = App->collisions->AddCollider({ 48, 2159, 34, 44 }, Collider::Type::WALL);
 	playerWall[163] = App->collisions->AddCollider({ 0, 2167, 32, 53 }, Collider::Type::WALL);
 	playerWall[164] = App->collisions->AddCollider({ 0, 2162, 60, 14 }, Collider::Type::WALL);
-
 	playerWall[165] = App->collisions->AddCollider({ 346, 2393, 422, 87 }, Collider::Type::WALL);
 	playerWall[166] = App->collisions->AddCollider({ 304, 2261, 69, 168 }, Collider::Type::WALL);
 	playerWall[167] = App->collisions->AddCollider({ 307, 2412, 64, 26 }, Collider::Type::WALL);
@@ -265,6 +264,57 @@ bool ModuleLevel_2::Start()
 	playerWall[203] = App->collisions->AddCollider({ 564, 1986, 32, 32 }, Collider::Type::WALL);
 	playerWall[204] = App->collisions->AddCollider({ 336, 2384, 53, 88 }, Collider::Type::WALL);
 
+	//Entrance Colliders
+	playerWall[205] = App->collisions->AddCollider({ 328, 2592, 382, 25 }, Collider::Type::WALL);
+	playerWall[206] = App->collisions->AddCollider({ 500, 2723, 13, 349 }, Collider::Type::WALL);
+	playerWall[207] = App->collisions->AddCollider({ 472, 2821, 53, 35 }, Collider::Type::WALL);
+	playerWall[208] = App->collisions->AddCollider({ 472, 2948, 60, 36 }, Collider::Type::WALL);
+	playerWall[209] = App->collisions->AddCollider({ 306, 2904, 26, 168 }, Collider::Type::WALL);
+	playerWall[210] = App->collisions->AddCollider({ 0, 2752, 173, 32 }, Collider::Type::WALL);
+
+	playerWall[211] = App->collisions->AddCollider({ 333, 2614, 40, 12 }, Collider::Type::WALL);
+	playerWall[212] = App->collisions->AddCollider({ 340, 2621, 40, 12 }, Collider::Type::WALL);
+	playerWall[213] = App->collisions->AddCollider({ 347, 2628, 40, 12 }, Collider::Type::WALL);
+	playerWall[214] = App->collisions->AddCollider({ 355, 2636, 40, 12 }, Collider::Type::WALL);
+	playerWall[215] = App->collisions->AddCollider({ 362, 2645, 40, 12 }, Collider::Type::WALL);
+	playerWall[216] = App->collisions->AddCollider({ 370, 2653, 40, 12 }, Collider::Type::WALL);
+	playerWall[217] = App->collisions->AddCollider({ 378, 2661, 40, 12 }, Collider::Type::WALL);
+	playerWall[218] = App->collisions->AddCollider({ 386, 2669, 40, 12 }, Collider::Type::WALL);
+	playerWall[219] = App->collisions->AddCollider({ 397, 2678, 40, 12 }, Collider::Type::WALL);
+	playerWall[220] = App->collisions->AddCollider({ 392, 2690, 40, 12 }, Collider::Type::WALL);
+	playerWall[221] = App->collisions->AddCollider({ 396, 2700, 40, 12 }, Collider::Type::WALL);
+	playerWall[222] = App->collisions->AddCollider({ 403, 2705, 40, 12 }, Collider::Type::WALL);
+	playerWall[223] = App->collisions->AddCollider({ 427, 2711, 40, 12 }, Collider::Type::WALL);
+	playerWall[224] = App->collisions->AddCollider({ 434, 2719, 40, 12 }, Collider::Type::WALL);
+	playerWall[225] = App->collisions->AddCollider({ 447, 2730, 40, 12 }, Collider::Type::WALL);
+	playerWall[226] = App->collisions->AddCollider({ 441, 2742, 40, 12 }, Collider::Type::WALL);
+	playerWall[227] = App->collisions->AddCollider({ 446, 2751, 40, 12 }, Collider::Type::WALL);
+	playerWall[228] = App->collisions->AddCollider({ 471, 2756, 40, 12 }, Collider::Type::WALL);
+	playerWall[229] = App->collisions->AddCollider({ 482, 2765, 40, 12 }, Collider::Type::WALL);
+	playerWall[230] = App->collisions->AddCollider({ 493, 2773, 40, 12 }, Collider::Type::WALL);
+
+	playerWall[231] = App->collisions->AddCollider({ 131, 2758, 40, 12 }, Collider::Type::WALL);
+	playerWall[232] = App->collisions->AddCollider({ 138, 2764, 40, 12 }, Collider::Type::WALL);
+	playerWall[233] = App->collisions->AddCollider({ 145, 2771, 40, 12 }, Collider::Type::WALL);
+	playerWall[234] = App->collisions->AddCollider({ 152, 2777, 40, 12 }, Collider::Type::WALL);
+	playerWall[235] = App->collisions->AddCollider({ 169, 2781, 40, 12 }, Collider::Type::WALL);
+	playerWall[236] = App->collisions->AddCollider({ 176, 2787, 40, 12 }, Collider::Type::WALL);
+	playerWall[237] = App->collisions->AddCollider({ 181, 2793, 40, 12 }, Collider::Type::WALL);
+	playerWall[237] = App->collisions->AddCollider({ 181, 2805, 40, 12 }, Collider::Type::WALL);
+	playerWall[238] = App->collisions->AddCollider({ 186, 2812, 40, 12 }, Collider::Type::WALL);
+	playerWall[239] = App->collisions->AddCollider({ 192, 2818, 40, 12 }, Collider::Type::WALL);
+	playerWall[240] = App->collisions->AddCollider({ 199, 2825, 40, 12 }, Collider::Type::WALL);
+	playerWall[241] = App->collisions->AddCollider({ 216, 2831, 40, 12 }, Collider::Type::WALL);
+	playerWall[242] = App->collisions->AddCollider({ 223, 2835, 40, 12 }, Collider::Type::WALL);
+	playerWall[243] = App->collisions->AddCollider({ 229, 2842, 40, 12 }, Collider::Type::WALL);
+	playerWall[244] = App->collisions->AddCollider({ 229, 2854, 40, 12 }, Collider::Type::WALL);
+	playerWall[245] = App->collisions->AddCollider({ 235, 2861, 40, 12 }, Collider::Type::WALL);
+	playerWall[246] = App->collisions->AddCollider({ 242, 2867, 40, 12 }, Collider::Type::WALL);
+	playerWall[247] = App->collisions->AddCollider({ 247, 2876, 40, 12 }, Collider::Type::WALL);
+	playerWall[248] = App->collisions->AddCollider({ 252, 2884, 40, 12 }, Collider::Type::WALL);
+	playerWall[249] = App->collisions->AddCollider({ 265, 2890, 40, 12 }, Collider::Type::WALL);
+	playerWall[250] = App->collisions->AddCollider({ 273, 2897, 40, 12 }, Collider::Type::WALL);
+	playerWall[250] = App->collisions->AddCollider({ 282, 2904, 40, 12 }, Collider::Type::WALL);
 
 	//App->audio->PlayMusic("Assets/Music/mission_2.ogg", 1.0f);
 
