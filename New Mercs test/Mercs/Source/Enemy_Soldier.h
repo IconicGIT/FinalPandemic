@@ -23,6 +23,8 @@ public:
 
 	float ReduceMovement(float diference, float y);
 
+	int RandomRange(int value01, int values02);
+
 	fPoint playerPosition;
 
 	float distanceX;
@@ -35,14 +37,23 @@ public:
 
 	float realDistance;
 
-	float pushTimer = 0;
-	float pushTimerReference = 400;
+	int pushTimer = 0;
+	int pushTimerReference = 400;
 
 	float soldierSpeed;
 	float distTotal;
 
 	fPoint soldierDirection;
+	iPoint targetPosition;
 
+	enum MovementStage
+	{
+		ADVANCE = 1,
+		BACKUP = 2, 
+		STAY = 0
+	};
+
+	int movement;
 	
 
 private:

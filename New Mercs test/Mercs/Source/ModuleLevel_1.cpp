@@ -15,6 +15,9 @@
 #include "SDL/include/SDL_timer.h"
 #include "ModuleFadeToBlack.h"
 
+//temporal
+#include "SDL_mixer/include/SDL_mixer.h"
+
 
 #define CAMERA_X_MARGIN 25
 #define CAMERA_Y_MARGIN 50
@@ -126,11 +129,13 @@ bool ModuleLevel_1::Start()
 	playerWall[74] = App->collisions->AddCollider({ 563, 526, 102, 32 }, Collider::Type::WALL);
 	playerWall[75] = App->collisions->AddCollider({ 611, 446, 102, 32 }, Collider::Type::WALL);
 
-	App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
+	//App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
-	
+	Mix_FadeOutMusic((int)(1000.0f));
+
+
 	//App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 600, 80);
 
 	App->render->camera.x = 475 * SCREEN_SIZE;
@@ -180,7 +185,7 @@ UpdateResult ModuleLevel_1::Update()
 		{
 			if (elapsedTime > 85.85f * repetition)
 			{
-				App->audio->PlayMusic("Assets/Music/Mission_1_repeat.ogg", 0.0f);
+				//App->audio->PlayMusic("Assets/Music/Mission_1_repeat.ogg", 0.0f);
 				counterMusic++;
 				repetition++;
 				afterStart = true;
@@ -190,7 +195,7 @@ UpdateResult ModuleLevel_1::Update()
 		{
 			if (elapsedTime > 38 * repetition)
 			{
-				App->audio->PlayMusic("Assets/Music/mission_1_repeat.ogg", 0.0f);
+				//App->audio->PlayMusic("Assets/Music/mission_1_repeat.ogg", 0.0f);
 				counterMusic++;
 				repetition++;
 			}

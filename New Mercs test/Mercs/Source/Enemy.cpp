@@ -30,7 +30,7 @@ void Enemy::Update()
 	if (collider != nullptr)
 		collider->SetPos(position.x, position.y);
 
-	timeAlive--;
+	if (!inmortal) timeAlive--;
 }
 
 void Enemy::Draw()

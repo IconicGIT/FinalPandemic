@@ -1,4 +1,4 @@
-#include "Enemy_BrownShip.h"
+#include "Enemy_Soldier.h"
 
 #include "Application.h"
 #include "ModuleCollisions.h"
@@ -7,6 +7,7 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 
+#include <math.h>
 Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 {
 	float idleAnimSpeed = 0.05f;
@@ -14,8 +15,8 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	float deathAnimSpeed = 0.05f;
 	float grenadeAnimSpeed = 0.05f;
 
-	soldierSpeed = 1;
-
+	soldierSpeed = 0.1f;
+	
 	
 	// idle animations
 
@@ -155,8 +156,9 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 
 	timeAlive = 1000;
 	inmortal = true;
+	movement = MovementStage::ADVANCE;
 
-	pushTimerReference = 200.0f;
+	pushTimerReference = RandomRange(100, 300);
 	pushTimer = pushTimerReference;
 
 	//sqrt(pow(distanceXY,2))
@@ -207,8 +209,84 @@ void Enemy_Soldier::Update()
 	////////////////////////////////////////////////////
 	path.Update();
 
-	relativePosition.x += resultX;
-	relativePosition.y += resultY;
+	//playerPosition = (fPoint)App->player->position;
+	playerPosition = App->player->GetPlayerPosition();
+	if (pushTimer <= 0)
+	{
+		
+		pushTimer = pushTimerReference;
+
+
+		switch (movement) {
+		case MovementStage::ADVANCE:
+
+			playerPosition = (fPoint) App->player->position;
+
+
+			soldierDirection = fPoint{ 
+				playerPosition.x + RandomRange(-10, 10),
+				playerPosition.y + RandomRange(-10, 10) 
+			};
+
+			distanceX = playerPosition.x - position.x;
+			distanceY = playerPosition.y - position.y;
+
+			distTotal = sqrtf(powf(distanceX, 2) + powf(distanceY, 2));
+
+
+
+			movement = MovementStage::BACKUP;
+			pushTimerReference = RandomRange(100, 300);
+			break;
+
+		case MovementStage::BACKUP:
+
+
+
+			movement = MovementStage::STAY;
+			pushTimerReference = RandomRange(50, 200);
+			break;
+
+		case MovementStage::STAY:
+
+
+			movement = MovementStage::ADVANCE;
+			pushTimerReference = RandomRange(100, 300);
+			break;
+		}
+
+		pushTimer = pushTimerReference;
+	}
+	else {
+		pushTimer--;
+	}
+
+
+	if (movement != MovementStage::STAY) {
+		
+		int speedX = (distanceX / distTotal) * soldierSpeed;
+		int speedY = (distanceY / distTotal) * soldierSpeed;
+
+		//relativePosition.x += speedX;
+		//relativePosition.y += speedY;
+		
+
+	}
+
+	//LOG("soldier x: %f, y: %f", position.x, position.y);
+	
+	
+	LOG("mov type: %i", movement);
+
+	LOG("player x: %i", position.x);
+	LOG("player y: %i", position.y);
+
+
+
+
+
+	//relativePosition.x += resultX;
+	//relativePosition.y += resultY;
 
 	/*
 	positionA = position;
@@ -229,118 +307,118 @@ void Enemy_Soldier::Update()
 
 	position = spawnPos + path.GetRelativePosition();
 
-	pushTimer--;
-
-	if (pushTimer <= 0) {
-
-		//movement calculations
-
-		playerPosition = App->player->GetPlayerPosition();
-
-		distanceX = GetDistanceX(position.x, playerPosition.x);
-		distanceY = GetDistanceY(position.y, playerPosition.y);
-
-		if (distanceY == 0.0000000f)
-		{
-			distanceY = 0.000001f;
-		}
-		if (distanceX == 0.0000000f)
-		{
-			distanceX = 0.000001f;
-		}
-
-		distanceXY = fabs(distanceX + distanceY);
-
-		resultX = (distanceX / distanceXY) * soldierSpeed;                           
-		resultY = (distanceY / distanceXY) * soldierSpeed;
-
-		realDistance = RealDistancePlayerEnemy(distanceX, distanceY);
-
-		// Animations
-
-		if (((resultX >= ((1/3)*soldierSpeed)) && (resultX >= ((2/ 3)*soldierSpeed))) && ((resultY >= ((1 / 3) * soldierSpeed)) && (resultY >= ((2 / 3) * soldierSpeed))))
-		{
-			downRightAnim.Reset();
-			currentAnim = &downRightAnim; //diagonal down right
-		}
-
-		if (((resultX >= ((-1 / 3) * soldierSpeed)) && (resultX >= ((-2 / 3) * soldierSpeed))) && ((resultY >= ((1 / 3) * soldierSpeed)) && (resultY >= ((2 / 3) * soldierSpeed))))
-		{
-			//diagonal down left
-
-			downLeftAnim.Reset();
-			currentAnim = &downLeftAnim;
-		}
-		
-		if (((resultX >= ((-1 / 3) * soldierSpeed)) && (resultX >= ((-2 / 3) * soldierSpeed))) && ((resultY >= ((-1 / 3) * soldierSpeed)) && (resultY >= ((-2 / 3) * soldierSpeed))))
-		{
-			//diagonal up left
-
-			upLeftAnim.Reset();
-			currentAnim = &upLeftAnim;
-		}
-
-		if (((resultX >= ((1 / 3) * soldierSpeed)) && (resultX >= ((2 / 3) * soldierSpeed))) && ((resultY >= ((-1 / 3) * soldierSpeed)) && (resultY >= ((-2 / 3) * soldierSpeed))))
-		{
-			//diagonal up right
-
-			upRightAnim.Reset();
-			currentAnim = &upRightAnim;
-		}
-
-		if (((resultX > ((2 / 3) * soldierSpeed)) ) && ((resultY > ((-1 / 3) * soldierSpeed)) && (resultY < ((1 / 3) * soldierSpeed))))
-		{
-			//  right
-
-			rightAnim.Reset();
-			currentAnim = &rightAnim;
-		}
-
-		if (((resultX < ((-2 / 3) * soldierSpeed))) && ((resultY > ((-1 / 3) * soldierSpeed)) && (resultY < ((1 / 3) * soldierSpeed))))
-		{
-			//  left
-			leftAnim.Reset();
-			currentAnim = &leftAnim;
-		}
-
-		if (((resultY > ((2 / 3) * soldierSpeed))) && ((resultX > ((-1 / 3) * soldierSpeed)) && (resultX < ((1 / 3) * soldierSpeed))))
-		{
-			//  down
-			downAnim.Reset();
-			currentAnim = &downAnim;
-		}
-
-		if (((resultY < ((-2 / 3) * soldierSpeed))) && ((resultX > ((-1 / 3) * soldierSpeed)) && (resultX < ((1 / 3) * soldierSpeed))))
-		{
-			//  up
-			upAnim.Reset();
-			currentAnim = &upAnim;
-		}
-		
-
-		// Soldier logic
-
-		path.PushBack({ resultX, resultY }, 1);
-		path.PushBack({ 0.0f, 0.0f }, 1);
-		path.PushBack({ resultX, resultY }, 1);
-		path.PushBack({ 0.0f, 0.0f }, 1);
-		path.PushBack({ resultX, resultY }, 1);
-		path.PushBack({ 0.0f, 0.0f }, 1);
-
-		for (int i = 4; i >= 0; i--)
-		{
-			App->particles->AddParticle(App->particles->EnemyBullet, 1, position.x, position.y, 1, Collider::Type::ENEMY_SHOT,1);
-			//App->audio->PlayFx(laserFx);
-		}
-
-		pushTimer = pushTimerReference;
-
-		distanceX = 0;
-		distanceY = 0;
-		distanceXY = 0;
-		resultX = 0;
-		resultY = 0;
-	}
+	//pushTimer--;
+	//
+	//if (pushTimer <= 0) {
+	//
+	//	//movement calculations
+	//
+	//	playerPosition = App->player->GetPlayerPosition();
+	//
+	//	distanceX = GetDistanceX(position.x, playerPosition.x);
+	//	distanceY = GetDistanceY(position.y, playerPosition.y);
+	//
+	//	if (distanceY == 0.0000000f)
+	//	{
+	//		distanceY = 0.000001f;
+	//	}
+	//	if (distanceX == 0.0000000f)
+	//	{
+	//		distanceX = 0.000001f;
+	//	}
+	//
+	//	distanceXY = fabs(distanceX + distanceY);
+	//
+	//	resultX = (distanceX / distanceXY) * soldierSpeed;                           
+	//	resultY = (distanceY / distanceXY) * soldierSpeed;
+	//
+	//	realDistance = RealDistancePlayerEnemy(distanceX, distanceY);
+	//
+	//	// Animations
+	//
+	//	if (((resultX >= ((1/3)*soldierSpeed)) && (resultX >= ((2/ 3)*soldierSpeed))) && ((resultY >= ((1 / 3) * soldierSpeed)) && (resultY >= ((2 / 3) * soldierSpeed))))
+	//	{
+	//		downRightAnim.Reset();
+	//		currentAnim = &downRightAnim; //diagonal down right
+	//	}
+	//
+	//	if (((resultX >= ((-1 / 3) * soldierSpeed)) && (resultX >= ((-2 / 3) * soldierSpeed))) && ((resultY >= ((1 / 3) * soldierSpeed)) && (resultY >= ((2 / 3) * soldierSpeed))))
+	//	{
+	//		//diagonal down left
+	//
+	//		downLeftAnim.Reset();
+	//		currentAnim = &downLeftAnim;
+	//	}
+	//	
+	//	if (((resultX >= ((-1 / 3) * soldierSpeed)) && (resultX >= ((-2 / 3) * soldierSpeed))) && ((resultY >= ((-1 / 3) * soldierSpeed)) && (resultY >= ((-2 / 3) * soldierSpeed))))
+	//	{
+	//		//diagonal up left
+	//
+	//		upLeftAnim.Reset();
+	//		currentAnim = &upLeftAnim;
+	//	}
+	//
+	//	if (((resultX >= ((1 / 3) * soldierSpeed)) && (resultX >= ((2 / 3) * soldierSpeed))) && ((resultY >= ((-1 / 3) * soldierSpeed)) && (resultY >= ((-2 / 3) * soldierSpeed))))
+	//	{
+	//		//diagonal up right
+	//
+	//		upRightAnim.Reset();
+	//		currentAnim = &upRightAnim;
+	//	}
+	//
+	//	if (((resultX > ((2 / 3) * soldierSpeed)) ) && ((resultY > ((-1 / 3) * soldierSpeed)) && (resultY < ((1 / 3) * soldierSpeed))))
+	//	{
+	//		//  right
+	//
+	//		rightAnim.Reset();
+	//		currentAnim = &rightAnim;
+	//	}
+	//
+	//	if (((resultX < ((-2 / 3) * soldierSpeed))) && ((resultY > ((-1 / 3) * soldierSpeed)) && (resultY < ((1 / 3) * soldierSpeed))))
+	//	{
+	//		//  left
+	//		leftAnim.Reset();
+	//		currentAnim = &leftAnim;
+	//	}
+	//
+	//	if (((resultY > ((2 / 3) * soldierSpeed))) && ((resultX > ((-1 / 3) * soldierSpeed)) && (resultX < ((1 / 3) * soldierSpeed))))
+	//	{
+	//		//  down
+	//		downAnim.Reset();
+	//		currentAnim = &downAnim;
+	//	}
+	//
+	//	if (((resultY < ((-2 / 3) * soldierSpeed))) && ((resultX > ((-1 / 3) * soldierSpeed)) && (resultX < ((1 / 3) * soldierSpeed))))
+	//	{
+	//		//  up
+	//		upAnim.Reset();
+	//		currentAnim = &upAnim;
+	//	}
+	//	
+	//
+	//	// Soldier logic
+	//
+	//	path.PushBack({ resultX, resultY }, 1);
+	//	path.PushBack({ 0.0f, 0.0f }, 1);
+	//	path.PushBack({ resultX, resultY }, 1);
+	//	path.PushBack({ 0.0f, 0.0f }, 1);
+	//	path.PushBack({ resultX, resultY }, 1);
+	//	path.PushBack({ 0.0f, 0.0f }, 1);
+	//
+	//	for (int i = 4; i >= 0; i--)
+	//	{
+	//		App->particles->AddParticle(App->particles->EnemyBullet, 1, position.x, position.y, 1, Collider::Type::ENEMY_SHOT,1);
+	//		//App->audio->PlayFx(laserFx);
+	//	}
+	//
+	//	pushTimer = pushTimerReference;
+	//
+	//	distanceX = 0;
+	//	distanceY = 0;
+	//	distanceXY = 0;
+	//	resultX = 0;
+	//	resultY = 0;
+	//}
 
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
@@ -372,4 +450,17 @@ float Enemy_Soldier::RealDistancePlayerEnemy(float x, float y)
 	result = sqrt(Z);
 
 	return result;
+}
+
+int Enemy_Soldier::RandomRange(int value01, int value02) {
+
+	if (value01 > value02) {
+
+		int i = value01;
+		value01 = value02;
+		value02 = i;
+
+	}
+	return(rand() % (value02 - value01 + 1) + value01);
+
 }

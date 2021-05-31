@@ -647,7 +647,7 @@ UpdateResult ModulePlayer::Update()
 
 	//camera control
 
-	LOG("player x: %f, y: %f", position.x, position.y);
+	//LOG("player x: %f, y: %f", position.x, position.y);
 
 	switch (level) {
 
