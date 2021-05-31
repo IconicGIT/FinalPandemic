@@ -72,6 +72,10 @@ public:
 	ModuleFonts* fonts = nullptr;
 
 	ModuleRender* render = nullptr;
+
+	float limitFrames = 60;
+	float init;
+	float end;
 };
 
 // Global var made extern for Application ---

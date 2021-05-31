@@ -20,6 +20,8 @@
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
 
+#include "SDL/include/SDL.h"
+#include "Globals.h"
 
 Application::Application()
 {
@@ -76,6 +78,8 @@ bool Application::Init()
 
 UpdateResult Application::Update()
 {
+	init = SDL_GetTicks();
+
 	UpdateResult ret = UpdateResult::UPDATE_CONTINUE;
 
 	for (int i = 0; i < NUM_MODULES && ret == UpdateResult::UPDATE_CONTINUE; ++i)
@@ -86,6 +90,12 @@ UpdateResult Application::Update()
 
 	for (int i = 0; i < NUM_MODULES && ret == UpdateResult::UPDATE_CONTINUE; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : UpdateResult::UPDATE_CONTINUE;
+
+	end = SDL_GetTicks();
+
+	float elapsedTime = (float)(end - init);
+
+	//OG("Current FPS: %f", (1000.0f / elapsedTime));
 
 	return ret;
 }
