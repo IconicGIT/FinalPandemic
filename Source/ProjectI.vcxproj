@@ -14,9 +14,10 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Enemy_BrownShip.cpp" />
+    <ClCompile Include="Enemy_Soldier.cpp" />
     <ClCompile Include="Enemy_Mech.cpp" />
     <ClCompile Include="Enemy_RedBird.cpp" />
+    <ClCompile Include="FifthScene.cpp" />
     <ClCompile Include="FirstScene.cpp" />
     <ClCompile Include="FourthScene.cpp" />
     <ClCompile Include="FrontPage.cpp" />
@@ -31,10 +32,9 @@
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
-    <ClCompile Include="ModulePowerUps.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
-    <ClCompile Include="ModuleScene.cpp" />
-    <ClCompile Include="ModuleScene2.cpp" />
+    <ClCompile Include="ModuleLevel_1.cpp" />
+    <ClCompile Include="ModuleLevel_2.cpp" />
     <ClCompile Include="ModuleTextures.cpp" />
     <ClCompile Include="ModuleWindow.cpp" />
     <ClCompile Include="Particle.cpp" />
@@ -48,9 +48,10 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Enemy_BrownShip.h" />
+    <ClInclude Include="Enemy_Soldier.h" />
     <ClInclude Include="Enemy_Mech.h" />
     <ClInclude Include="Enemy_RedBird.h" />
+    <ClInclude Include="FifthScene.h" />
     <ClInclude Include="FirstScene.h" />
     <ClInclude Include="FourthScene.h" />
     <ClInclude Include="FrontPage.h" />
@@ -65,10 +66,9 @@
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePlayer.h" />
-    <ClInclude Include="ModulePowerUps.h" />
     <ClInclude Include="ModuleRender.h" />
-    <ClInclude Include="ModuleScene.h" />
-    <ClInclude Include="ModuleScene2.h" />
+    <ClInclude Include="ModuleLevel_1.h" />
+    <ClInclude Include="ModuleLevel_2.h" />
     <ClInclude Include="ModuleTextures.h" />
     <ClInclude Include="ModuleWindow.h" />
     <ClInclude Include="p2Point.h" />
@@ -81,7 +81,7 @@
   <PropertyGroup Label="Globals">
     <ProjectGuid>{F00B105C-B164-4FA2-AC11-FBC1A13D6F47}</ProjectGuid>
     <RootNamespace>ProjectI</RootNamespace>
-    <ProjectName>Mercs</ProjectName>
+    <ProjectName>ProjectI</ProjectName>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -109,8 +109,8 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <IncludePath>$(SolutionDir)/$(SolutionName)/External_Libraries;$(IncludePath)</IncludePath>
-    <LibraryPath>$(SolutionDir)/$(SolutionName)/External_Libraries;$(LibraryPath)</LibraryPath>
+    <IncludePath>$(SolutionDir)/$(SolutionName)/External;$(IncludePath)</IncludePath>
+    <LibraryPath>$(SolutionDir)/$(SolutionName)/External;$(LibraryPath)</LibraryPath>
     <OutDir>$(SolutionDir)Build\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)Build\$(Configuration)\</IntDir>
   </PropertyGroup>

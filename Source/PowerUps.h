@@ -2,21 +2,20 @@
 #define __POWERUPS_H__
 
 #include "p2Point.h"
-#include "Animation.h"
 
 
 struct Collider;
 
-class PowerUp{
+class Power_Up{
 public:
 
-	PowerUp() { };
+	Power_Up() { };
 
-	PowerUp(const PowerUp& p) 
+	Power_Up(const Power_Up& p) 
 	{ 
 	};
 
-	~PowerUp(){ };
+	~Power_Up(){ };
 
 	bool Update();
 
@@ -25,7 +24,7 @@ public:
 	
 	iPoint position;
 
-	Animation anim;
+	
 
 	bool isAlive = false;
 

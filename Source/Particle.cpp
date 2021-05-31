@@ -1,7 +1,7 @@
 #include "Particle.h"
 
 #include "Collider.h"
-#include "Enemy_BrownShip.h"
+#include "Enemy_Soldier.h"
 #include "Application.h"
 
 Particle::Particle()

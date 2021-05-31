@@ -3,8 +3,9 @@
 #include "MemLeaks.h"
 
 #include "SDL/include/SDL.h"
-#pragma comment( lib, "SDL/lib/x86/SDL2.lib")
-#pragma comment( lib, "SDL/lib/x86/SDL2main.lib")
+
+//#pragma comment( lib, "SDL/lib/x86/SDL2.lib")
+//#pragma comment( lib, "SDL/lib/x86/SDL2main.lib")
 
 
 enum class main_states
@@ -21,7 +22,6 @@ Application* App = nullptr;
 int main(int argc, char* argv[])
 {
 	ReportMemoryLeaks();
-
 	int main_return = EXIT_FAILURE;
 	main_states state = main_states::MAIN_CREATION;
 

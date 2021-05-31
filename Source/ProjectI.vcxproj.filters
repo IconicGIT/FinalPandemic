@@ -6,28 +6,34 @@
       <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
     </Filter>
     <Filter Include="Source Files\Application">
-      <UniqueIdentifier>{3260fb0f-8ed7-4bcb-a507-dcbd768197c5}</UniqueIdentifier>
+      <UniqueIdentifier>{8904658a-a31a-40fc-93e8-1b42e0c2bfde}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities">
+      <UniqueIdentifier>{a8b5d87f-88ee-4428-8596-6c65cfb47248}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Scenes">
-      <UniqueIdentifier>{46d85658-3171-47ad-a26c-02c3abd1b9f8}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Instances">
-      <UniqueIdentifier>{bd95ecb8-f0eb-4c84-912d-e0e859d5bb0b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Utils">
-      <UniqueIdentifier>{5af37ac8-223e-41fe-97ee-9666bc2b8ea8}</UniqueIdentifier>
+      <UniqueIdentifier>{ee17dfa4-4545-4385-ab23-eb5e62b0f450}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Modules">
-      <UniqueIdentifier>{6177545e-138c-436d-8f39-0a8a2b3ea282}</UniqueIdentifier>
+      <UniqueIdentifier>{8ecea196-ca7e-4edf-b401-1cd6395cc785}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{2206a4a6-3841-4523-b307-8d1bdb00716a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Player">
+      <UniqueIdentifier>{d4ff98ed-2972-4819-8be2-565784f2be1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Enemies">
+      <UniqueIdentifier>{6226e0cb-68a2-446f-8bc2-37ab26cd1992}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Particles">
+      <UniqueIdentifier>{11b79db0-52c3-475b-9b38-cf2d0f8cae35}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\Interactable">
+      <UniqueIdentifier>{2292c12d-5b78-459b-93b4-32a873863459}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\Scenes\Transitions">
-      <UniqueIdentifier>{bcbf73c2-6494-4472-a94d-3daf63cf618b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Instances\Particles">
-      <UniqueIdentifier>{f0f73100-701a-4265-a124-e6770cbcd8d9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Instances\PowerUps">
-      <UniqueIdentifier>{9c83af97-3d4e-4d71-aef9-aa814bf429ea}</UniqueIdentifier>
+      <UniqueIdentifier>{3cbae5af-30bd-46af-9777-85ce221bdd23}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -40,34 +46,37 @@
     <ClCompile Include="Main.cpp">
       <Filter>Source Files\Application</Filter>
     </ClCompile>
-    <ClCompile Include="Collider.cpp">
-      <Filter>Source Files\Utils</Filter>
+    <ClCompile Include="Enemy_Soldier.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Path.cpp">
-      <Filter>Source Files\Utils</Filter>
+    <ClCompile Include="Enemy_Mech.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
+    <ClCompile Include="Enemy_RedBird.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="SecondScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
+    <ClCompile Include="ModuleEnemies.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="ThirdScene.cpp">
-      <Filter>Source Files\Scenes</Filter>
+    <ClCompile Include="PowerUps.cpp">
+      <Filter>Source Files\Entities\Interactable</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleFadeToBlack.cpp">
-      <Filter>Source Files\Scenes\Transitions</Filter>
+    <ClCompile Include="ModuleParticles.cpp">
+      <Filter>Source Files\Entities\Particles</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy.cpp">
+    <ClCompile Include="Particle.cpp">
+      <Filter>Source Files\Entities\Particles</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePlayer.cpp">
+      <Filter>Source Files\Entities\Player</Filter>
+    </ClCompile>
+    <ClCompile Include="Module.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleAudio.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleCollisions.cpp">
-      <Filter>Source Files\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleEnemies.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
     <ClCompile Include="ModuleFonts.cpp">
@@ -85,44 +94,41 @@
     <ClCompile Include="ModuleWindow.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
+    <ClCompile Include="Collider.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="Path.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleFadeToBlack.cpp">
+      <Filter>Source Files\Scenes\Transitions</Filter>
+    </ClCompile>
     <ClCompile Include="FirstScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="FrontPage.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_BrownShip.cpp">
-      <Filter>Source Files\Instances</Filter>
+    <ClCompile Include="ModuleLevel_1.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_Mech.cpp">
-      <Filter>Source Files\Instances</Filter>
+    <ClCompile Include="SecondScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_RedBird.cpp">
-      <Filter>Source Files\Instances</Filter>
+    <ClCompile Include="ThirdScene.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ModulePlayer.cpp">
-      <Filter>Source Files\Instances</Filter>
+    <ClCompile Include="Enemy.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Module.cpp">
-      <Filter>Source Files\Modules</Filter>
-    </ClCompile>
-    <ClCompile Include="ModuleParticles.cpp">
-      <Filter>Source Files\Instances\Particles</Filter>
-    </ClCompile>
-    <ClCompile Include="Particle.cpp">
-      <Filter>Source Files\Instances\Particles</Filter>
+    <ClCompile Include="ModuleLevel_2.cpp">
+      <Filter>Source Files\Scenes</Filter>
     </ClCompile>
     <ClCompile Include="FourthScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleScene2.cpp">
+    <ClCompile Include="FifthScene.cpp">
       <Filter>Source Files\Scenes</Filter>
-    </ClCompile>
-    <ClCompile Include="PowerUps.cpp">
-      <Filter>Source Files\Instances\PowerUps</Filter>
-    </ClCompile>
-    <ClCompile Include="ModulePowerUps.cpp">
-      <Filter>Source Files\Instances\PowerUps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -135,40 +141,37 @@
     <ClInclude Include="MemLeaks.h">
       <Filter>Source Files\Application</Filter>
     </ClInclude>
-    <ClInclude Include="Animation.h">
-      <Filter>Source Files\Utils</Filter>
+    <ClInclude Include="Enemy_Soldier.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Collider.h">
-      <Filter>Source Files\Utils</Filter>
+    <ClInclude Include="Enemy_Mech.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="p2Point.h">
-      <Filter>Source Files\Utils</Filter>
+    <ClInclude Include="Enemy_RedBird.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Path.h">
-      <Filter>Source Files\Utils</Filter>
+    <ClInclude Include="ModuleEnemies.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleScene.h">
-      <Filter>Source Files\Scenes</Filter>
+    <ClInclude Include="PowerUps.h">
+      <Filter>Source Files\Entities\Interactable</Filter>
     </ClInclude>
-    <ClInclude Include="SecondScene.h">
-      <Filter>Source Files\Scenes</Filter>
+    <ClInclude Include="ModuleParticles.h">
+      <Filter>Source Files\Entities\Particles</Filter>
     </ClInclude>
-    <ClInclude Include="ThirdScene.h">
-      <Filter>Source Files\Scenes</Filter>
+    <ClInclude Include="Particle.h">
+      <Filter>Source Files\Entities\Particles</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleFadeToBlack.h">
-      <Filter>Source Files\Scenes\Transitions</Filter>
+    <ClInclude Include="ModulePlayer.h">
+      <Filter>Source Files\Entities\Player</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy.h">
+    <ClInclude Include="Module.h">
       <Filter>Source Files\Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleAudio.h">
       <Filter>Source Files\Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleCollisions.h">
-      <Filter>Source Files\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleEnemies.h">
       <Filter>Source Files\Modules</Filter>
     </ClInclude>
     <ClInclude Include="ModuleFonts.h">
@@ -186,44 +189,47 @@
     <ClInclude Include="ModuleWindow.h">
       <Filter>Source Files\Modules</Filter>
     </ClInclude>
+    <ClInclude Include="Animation.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Collider.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="p2Point.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="Path.h">
+      <Filter>Source Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleFadeToBlack.h">
+      <Filter>Source Files\Scenes\Transitions</Filter>
+    </ClInclude>
     <ClInclude Include="FirstScene.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="FrontPage.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_BrownShip.h">
-      <Filter>Source Files\Instances</Filter>
+    <ClInclude Include="ModuleLevel_1.h">
+      <Filter>Source Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_Mech.h">
-      <Filter>Source Files\Instances</Filter>
+    <ClInclude Include="SecondScene.h">
+      <Filter>Source Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_RedBird.h">
-      <Filter>Source Files\Instances</Filter>
+    <ClInclude Include="ThirdScene.h">
+      <Filter>Source Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ModulePlayer.h">
-      <Filter>Source Files\Instances</Filter>
+    <ClInclude Include="Enemy.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Module.h">
-      <Filter>Source Files\Modules</Filter>
-    </ClInclude>
-    <ClInclude Include="ModuleParticles.h">
-      <Filter>Source Files\Instances\Particles</Filter>
-    </ClInclude>
-    <ClInclude Include="Particle.h">
-      <Filter>Source Files\Instances\Particles</Filter>
+    <ClInclude Include="ModuleLevel_2.h">
+      <Filter>Source Files\Scenes</Filter>
     </ClInclude>
     <ClInclude Include="FourthScene.h">
       <Filter>Source Files\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleScene2.h">
+    <ClInclude Include="FifthScene.h">
       <Filter>Source Files\Scenes</Filter>
-    </ClInclude>
-    <ClInclude Include="PowerUps.h">
-      <Filter>Source Files\Instances\PowerUps</Filter>
-    </ClInclude>
-    <ClInclude Include="ModulePowerUps.h">
-      <Filter>Source Files\Instances\PowerUps</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

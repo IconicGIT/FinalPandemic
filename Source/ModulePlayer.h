@@ -47,10 +47,11 @@ public:
 
 	//Camera
 	SDL_Rect camera;
+	int level;
 
 	//Margin of movement
 	int horizontalMargin = 45;
-	int verticalMargin = 160;
+	int verticalMargin = 205;
 	
 	// The speed in which we move the player (pixels per frame)
 	int speed = 2;

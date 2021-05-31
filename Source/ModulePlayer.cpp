@@ -645,93 +645,172 @@ UpdateResult ModulePlayer::Update()
 		colCheck[i] = false;
 	}
 
-	if (keyRight == KEY_STATE::KEY_REPEAT) {
-		
-		if (App->render->camera.y + App->render->camera.h > 500) {
+	//camera control
+
+	//LOG("player x: %f, y: %f", position.x, position.y);
+
+	switch (level) {
+
+	case 0:
+
+			if (keyRight == KEY_STATE::KEY_REPEAT) {
+
+				if (App->render->camera.y + App->render->camera.h > 500) {
 
 
-			if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 1083)
+					if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 1083)
+					{
+
+						if (lastDirection % 2 != 0)
+						{
+							if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+								App->render->camera.x += speed * SCREEN_SIZE;
+							}
+						}
+						else
+						{
+							if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+								App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+							}
+						}
+
+					}
+
+				}
+				else
+				{
+
+					if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 1242)
+					{
+
+						if (lastDirection % 2 != 0)
+						{
+							if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+								App->render->camera.x += speed * SCREEN_SIZE;
+							}
+						}
+						else
+						{
+							if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+								App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+							}
+						}
+
+					}
+				}
+
+			}
+
+			if (keyLeft == KEY_STATE::KEY_REPEAT) {
+
+
+				if (App->render->camera.x / SCREEN_SIZE - speed > 474)
+				{
+
+					if (lastDirection % 2 != 0)
+					{
+						if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+							App->render->camera.x -= speed * SCREEN_SIZE;
+						}
+					}
+					else
+					{
+						if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+							App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
+						}
+					}
+
+				}
+
+			}
+
+
+
+			if (App->render->camera.y / SCREEN_SIZE <= 1156) {
+
+				if (lastDirection % 2 == 0)
+				{
+					if (position.y <= (App->render->camera.y / SCREEN_SIZE + verticalMargin) && App->render->camera.y / SCREEN_SIZE - diagonalSpeed >= 0) App->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
+				}
+				else
+				{
+					if (position.y < (App->render->camera.y / SCREEN_SIZE + verticalMargin) && App->render->camera.y / SCREEN_SIZE - speed >= 0) App->render->camera.y -= speed * SCREEN_SIZE;
+				}
+			}
+
+		break;
+
+	case 1:
+
+		if (keyRight == KEY_STATE::KEY_REPEAT) {
+
+			
+
+
+				if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 768)
+				{
+
+					if (lastDirection % 2 != 0)
+					{
+						if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+							App->render->camera.x += speed * SCREEN_SIZE;
+						}
+					}
+					else
+					{
+						if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
+							App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+						}
+					}
+
+				}
+
+			
+
+		}
+
+		if (keyLeft == KEY_STATE::KEY_REPEAT) {
+
+
+			if (App->render->camera.x / SCREEN_SIZE - speed > 0)
 			{
 
 				if (lastDirection % 2 != 0)
 				{
-					if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
-						App->render->camera.x += speed * SCREEN_SIZE;
+					if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+						App->render->camera.x -= speed * SCREEN_SIZE;
 					}
 				}
 				else
 				{
-					if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
-						App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
+					if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+						App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
 					}
 				}
 
 			}
 
 		}
-		else 
-		{
 
-			if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 1242)
+
+
+		if (App->render->camera.y / SCREEN_SIZE <= 3072) {
+
+			if (lastDirection % 2 == 0)
 			{
-
-				if (lastDirection % 2 != 0)
-				{
-					if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
-						App->render->camera.x += speed * SCREEN_SIZE;
-					}
-				}
-				else
-				{
-					if (position.x + playerWidth > App->render->camera.x / SCREEN_SIZE + App->render->camera.w - horizontalMargin) {
-						App->render->camera.x += diagonalSpeed * SCREEN_SIZE;
-					}
-				}
-
-			}
-		}
-
-	}
-
-	if (keyLeft == KEY_STATE::KEY_REPEAT) {
-
-
-		if (App->render->camera.x / SCREEN_SIZE - speed > 474)
-		{
-
-			if (lastDirection % 2 != 0)
-			{
-				if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
-					App->render->camera.x -= speed * SCREEN_SIZE;
-				}
+				if (position.y <= (App->render->camera.y / SCREEN_SIZE + verticalMargin) 
+					&& App->render->camera.y / SCREEN_SIZE - diagonalSpeed >= 0) App->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
 			}
 			else
 			{
-				if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
-					App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
-				}
+				if (position.y < (App->render->camera.y / SCREEN_SIZE + verticalMargin) 
+					&& App->render->camera.y / SCREEN_SIZE - speed >= 0) App->render->camera.y -= speed * SCREEN_SIZE;
 			}
-
 		}
+
+		break;
 
 	}
-
-	//474
-
-	if (App->render->camera.y <= 1156 * SCREEN_SIZE) {
-
-		if (lastDirection % 2 == 0)
-		{
-			if (position.y <= (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
-		}
-		else
-		{
-			if (position.y < (App->render->camera.y / SCREEN_SIZE + verticalMargin)) App->render->camera.y -= speed * SCREEN_SIZE;
-		}
-	}
-
-	
-
 
 
 	
