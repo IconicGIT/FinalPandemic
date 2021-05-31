@@ -26,6 +26,9 @@
     <Filter Include="Source Files\Instances\Particles">
       <UniqueIdentifier>{f0f73100-701a-4265-a124-e6770cbcd8d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Instances\PowerUps">
+      <UniqueIdentifier>{9c83af97-3d4e-4d71-aef9-aa814bf429ea}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -100,9 +103,6 @@
     <ClCompile Include="ModulePlayer.cpp">
       <Filter>Source Files\Instances</Filter>
     </ClCompile>
-    <ClCompile Include="PowerUps.cpp">
-      <Filter>Source Files\Instances</Filter>
-    </ClCompile>
     <ClCompile Include="Module.cpp">
       <Filter>Source Files\Modules</Filter>
     </ClCompile>
@@ -117,6 +117,12 @@
     </ClCompile>
     <ClCompile Include="ModuleScene2.cpp">
       <Filter>Source Files\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUps.cpp">
+      <Filter>Source Files\Instances\PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePowerUps.cpp">
+      <Filter>Source Files\Instances\PowerUps</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -198,9 +204,6 @@
     <ClInclude Include="ModulePlayer.h">
       <Filter>Source Files\Instances</Filter>
     </ClInclude>
-    <ClInclude Include="PowerUps.h">
-      <Filter>Source Files\Instances</Filter>
-    </ClInclude>
     <ClInclude Include="Module.h">
       <Filter>Source Files\Modules</Filter>
     </ClInclude>
@@ -215,6 +218,12 @@
     </ClInclude>
     <ClInclude Include="ModuleScene2.h">
       <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps.h">
+      <Filter>Source Files\Instances\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePowerUps.h">
+      <Filter>Source Files\Instances\PowerUps</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
