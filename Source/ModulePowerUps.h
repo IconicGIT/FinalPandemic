@@ -35,7 +35,7 @@ public:
 
 	void OnCollision(Collider* c1, Collider* c2) override;
 
-	void AddPowerUp(const PowerUp& particle, int id, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
+	void AddPowerUp(const PowerUp& powerUp, int id, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
 
 private:
@@ -43,7 +43,7 @@ private:
 	SDL_Texture* texture = nullptr;
 
 
-	PowerUp* particles[MAX_ACTIVE_POWER_UPS] = { nullptr };
+	PowerUp* powerUps[MAX_ACTIVE_POWER_UPS] = { nullptr };
 
 public:
 

@@ -14,6 +14,7 @@
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_timer.h"
 #include "ModuleFadeToBlack.h"
+#include "ModulePowerUps.h"
 
 //temporal
 #include "SDL_mixer/include/SDL_mixer.h"
@@ -38,6 +39,8 @@ ModuleLevel_1::~ModuleLevel_1()
 bool ModuleLevel_1::Start()
 {
 	LOG("Loading background assets");
+	srand(2);
+	int randValue = rand() % 2;
 
 	bool ret = true;
 
@@ -131,10 +134,20 @@ bool ModuleLevel_1::Start()
 
 	//App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
 
+	// PowerUp
+	if(randValue==1)
+	{
+		App->powerUps->AddPowerUp(App->powerUps->Medal1, 0, 535, 1360, Collider::Type::POWER_UP, 0);
+	}
+	else
+	{
+		App->powerUps->AddPowerUp(App->powerUps->MachineGun, 0, 535, 1360, Collider::Type::POWER_UP, 0);
+	}
+
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
-	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 600, 1300);
-	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 400, 1400);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 540, 1360);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 530, 1360);
 	Mix_FadeOutMusic((int)(1000.0f));
 
 

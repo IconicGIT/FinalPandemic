@@ -23,21 +23,18 @@ public:
 
 public:
 
-
 	iPoint position;
 
 	Animation anim;
 
 	bool isAlive = false;
 
-	// Defines the amout of frames this particle has been active
-	// Negative values mean the particle is waiting to be activated
+	int id;
+
 	int frameCount = 0;
 
-	// Defines the total amount of frames during which the particle will be active
 	uint lifetime = 0;
 
-	// The particle's collider
 	Collider* collider = nullptr;
 
 	int counter;
