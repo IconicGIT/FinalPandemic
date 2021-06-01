@@ -151,7 +151,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	resultX = 0.0f;
 	resultY = 0.0f;
 	counter = 0;
-	soldierSpeed = 1;
+	soldierSpeed = 0.5f;
 	realDistance = 0.0f;
 
 	timeAlive = 1000;
@@ -160,6 +160,8 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 
 	pushTimerReference = RandomRange(100, 300);
 	pushTimer = pushTimerReference;
+	path.loop = false;
+	path.PushBack({ 0, 0 }, 1);
 
 	//sqrt(pow(distanceXY,2))
 	//path.PushBack({-1.0f, -0.5f}, 100); // x movement, y movement, frames de
@@ -214,46 +216,61 @@ void Enemy_Soldier::Update()
 	if (pushTimer <= 0)
 	{
 		
-		pushTimer = pushTimerReference;
+		playerPosition = (fPoint)App->player->position;
+
+
+		soldierDirection = fPoint{
+			playerPosition.x + RandomRange(-10, 10),
+			playerPosition.y + RandomRange(-10, 10)
+		};
+
+		distanceX = playerPosition.x - position.x;
+		distanceY = playerPosition.y - position.y;
+
+		distTotal = sqrtf(powf(distanceX, 2) + powf(distanceY, 2));
 
 
 		switch (movement) {
 		case MovementStage::ADVANCE:
 
-			playerPosition = (fPoint) App->player->position;
-
-
-			soldierDirection = fPoint{ 
-				playerPosition.x + RandomRange(-10, 10),
-				playerPosition.y + RandomRange(-10, 10) 
-			};
-
-			distanceX = playerPosition.x - position.x;
-			distanceY = playerPosition.y - position.y;
-
-			distTotal = sqrtf(powf(distanceX, 2) + powf(distanceY, 2));
-
-
 
 			movement = MovementStage::BACKUP;
-			pushTimerReference = RandomRange(100, 300);
+			pushTimerReference = RandomRange(20, 100);
 			break;
 
 		case MovementStage::BACKUP:
 
-
+			
 
 			movement = MovementStage::STAY;
 			pushTimerReference = RandomRange(50, 200);
+		
 			break;
 
 		case MovementStage::STAY:
-
+			
+			
 
 			movement = MovementStage::ADVANCE;
-			pushTimerReference = RandomRange(100, 300);
+			pushTimerReference = RandomRange(20, 100);
+			path.PushBack({ 0, 0 }, pushTimerReference);
 			break;
 		}
+
+		float speedX = (distanceX / distTotal) * soldierSpeed;
+		float speedY = (distanceY / distTotal) * soldierSpeed;
+
+		//LOG("speedX x: %f", speedX);
+		LOG("speedY y: %f", speedY);
+
+		if (movement != MovementStage::STAY && distTotal != 0) {
+			relativePosition.x += speedX;
+			relativePosition.y += speedY;
+			path.PushBack({ speedX,speedY }, pushTimerReference);
+			
+			LOG("time ref: %i //////////", pushTimerReference);
+		}
+
 
 		pushTimer = pushTimerReference;
 	}
@@ -261,25 +278,49 @@ void Enemy_Soldier::Update()
 		pushTimer--;
 	}
 
+	float speedX = (distanceX / distTotal) * soldierSpeed;
+	float speedY = (distanceY / distTotal) * soldierSpeed;
 
-	if (movement != MovementStage::STAY) {
-		
-		int speedX = (distanceX / distTotal) * soldierSpeed;
-		int speedY = (distanceY / distTotal) * soldierSpeed;
+	LOG("speedX x: %f", speedX);
+	LOG("speedY y: %f", speedY);
+	LOG("distance x: %f", distanceX);
+	LOG("distance y: %f", distanceY);
+	LOG("total distance: %f", distTotal);
+	LOG("speed: %f", soldierSpeed);
 
-		//relativePosition.x += speedX;
-		//relativePosition.y += speedY;
-		
-
-	}
-
-	//LOG("soldier x: %f, y: %f", position.x, position.y);
+	//if (movement != MovementStage::STAY) {
+	//	
+	//	float speedX = (distanceX / distTotal) * soldierSpeed;
+	//	float speedY = (distanceY / distTotal) * soldierSpeed;
+	//
+	//	LOG("speedX x: %f", speedX);
+	//	LOG("speedY y: %f", speedY);
+	//	LOG("Total distance: %f", distTotal);
+	//
+	//	
+	//
+	//	if (distTotal != 0) {
+	//		relativePosition.x += speedX;
+	//		relativePosition.y += speedY;
+	//	}
+	//	
+	//
+	//}
+	//LOG("time alive: %i", timeAlive);
+	LOG("soldier x: %f, y: %f", position.x, position.y);
+	LOG("timer: %i", pushTimer);
 	
 	
-	LOG("mov type: %i", movement);
-
-	LOG("player x: %i", position.x);
-	LOG("player y: %i", position.y);
+	
+	//LOG("mov type: %i", movement);
+	//
+	//LOG("player x: %f", App->player->position.x);
+	//LOG("player y: %f", App->player->position.y);
+	//LOG("player x: %f", playerPosition.x);
+	//LOG("player y: %f", playerPosition.y);
+	//
+	//LOG("soldier x: %f", position.x);
+	//LOG("soldier y: %f", position.y);
 
 
 
@@ -304,8 +345,10 @@ void Enemy_Soldier::Update()
 		relativePosition.y = ((positionC.y * 100) / distTotal) * soldierSpeed;
 	}
 	*/
-
+	path.Update();
 	position = spawnPos + path.GetRelativePosition();
+	//position.x = spawnPos.x + relativePosition.x;
+	//position.x = spawnPos.y + relativePosition.y;
 
 	//pushTimer--;
 	//

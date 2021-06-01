@@ -193,7 +193,7 @@ UpdateResult ModuleLevel_1::Update()
 		}
 		else
 		{
-			if (elapsedTime > 38 * repetition)
+			if (elapsedTime > 38.0f * repetition)
 			{
 				//App->audio->PlayMusic("Assets/Music/mission_1_repeat.ogg", 0.0f);
 				counterMusic++;
@@ -211,6 +211,7 @@ UpdateResult ModuleLevel_1::Update()
 	if (App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->fifthScene, 90);
+		App->player->level = 1;
 
 		for (int i = 0; i < 100; i++) {
 			if (playerWall[i] != nullptr) {

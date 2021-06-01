@@ -93,9 +93,11 @@ UpdateResult Application::Update()
 
 	end = SDL_GetTicks();
 
-	float elapsedTime = (float)(end - init);
+	long elapsedTime = (float)(end - init);
+	(float)SDL_GetPerformanceFrequency();
 
-	//OG("Current FPS: %f", (1000.0f / elapsedTime));
+	//LOG("Current FPS: %f", (1000.0f / elapsedTime)); 
+	SDL_Delay(fabs(floor((long)16.666f - elapsedTime)));
 
 	return ret;
 }
