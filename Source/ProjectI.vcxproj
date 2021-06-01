@@ -11,8 +11,6 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\ModulePowerUps.cpp" />
-    <ClCompile Include="..\..\PowerUps.cpp" />
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
@@ -45,8 +43,6 @@
     <ClCompile Include="ThirdScene.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\ModulePowerUps.h" />
-    <ClInclude Include="..\..\PowerUps.h" />
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Collider.h" />
