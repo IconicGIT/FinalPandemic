@@ -29,11 +29,11 @@
     <Filter Include="Source Files\Entities\Particles">
       <UniqueIdentifier>{11b79db0-52c3-475b-9b38-cf2d0f8cae35}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Entities\Interactable">
-      <UniqueIdentifier>{2292c12d-5b78-459b-93b4-32a873863459}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Scenes\Transitions">
       <UniqueIdentifier>{3cbae5af-30bd-46af-9777-85ce221bdd23}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entities\PowerUps">
+      <UniqueIdentifier>{2292c12d-5b78-459b-93b4-32a873863459}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -57,9 +57,6 @@
     </ClCompile>
     <ClCompile Include="ModuleEnemies.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="PowerUps.cpp">
-      <Filter>Source Files\Entities\Interactable</Filter>
     </ClCompile>
     <ClCompile Include="ModuleParticles.cpp">
       <Filter>Source Files\Entities\Particles</Filter>
@@ -130,6 +127,12 @@
     <ClCompile Include="FifthScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="..\..\ModulePowerUps.cpp">
+      <Filter>Source Files\Entities\PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\PowerUps.cpp">
+      <Filter>Source Files\Entities\PowerUps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -152,9 +155,6 @@
     </ClInclude>
     <ClInclude Include="ModuleEnemies.h">
       <Filter>Source Files\Entities\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="PowerUps.h">
-      <Filter>Source Files\Entities\Interactable</Filter>
     </ClInclude>
     <ClInclude Include="ModuleParticles.h">
       <Filter>Source Files\Entities\Particles</Filter>
@@ -230,6 +230,12 @@
     </ClInclude>
     <ClInclude Include="FifthScene.h">
       <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\ModulePowerUps.h">
+      <Filter>Source Files\Entities\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\PowerUps.h">
+      <Filter>Source Files\Entities\PowerUps</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
