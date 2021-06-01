@@ -20,7 +20,7 @@ public:
 	void PushBack(fPoint speed, uint frames, Animation* animation = nullptr);
 
 	// Called from Enemy's Update
-	// Increases the frame count and, if necessary, increases step
+	// Increases the frame count and, if necessary, increases step 
 	void Update();
 
 	// Returns the position relative to the start of the path

@@ -73,7 +73,7 @@ public:
 
 	ModuleRender* render = nullptr;
 
-	float limitFrames = 60;
+	float limitFrames = 20;
 	float init;
 	float end;
 };

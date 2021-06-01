@@ -15,7 +15,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	float deathAnimSpeed = 0.05f;
 	float grenadeAnimSpeed = 0.05f;
 
-	soldierSpeed = 0.1f;
+	soldierSpeed = 0;
 	
 	
 	// idle animations
@@ -151,7 +151,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	resultX = 0.0f;
 	resultY = 0.0f;
 	counter = 0;
-	soldierSpeed = 0.5f;
+	soldierSpeed = 0.6f;
 	realDistance = 0.0f;
 
 	timeAlive = 1000;
@@ -235,7 +235,7 @@ void Enemy_Soldier::Update()
 
 
 			movement = MovementStage::BACKUP;
-			pushTimerReference = RandomRange(20, 100);
+			pushTimerReference = RandomRange(40, 100);
 			break;
 
 		case MovementStage::BACKUP:
@@ -243,17 +243,19 @@ void Enemy_Soldier::Update()
 			
 
 			movement = MovementStage::STAY;
-			pushTimerReference = RandomRange(50, 200);
+			pushTimerReference = RandomRange(60, 200);
 		
 			break;
 
 		case MovementStage::STAY:
 			
 			
-
+			
 			movement = MovementStage::ADVANCE;
-			pushTimerReference = RandomRange(20, 100);
+			pushTimerReference = RandomRange(60, 100);
+			
 			path.PushBack({ 0, 0 }, pushTimerReference);
+			
 			break;
 		}
 
@@ -261,16 +263,21 @@ void Enemy_Soldier::Update()
 		float speedY = (distanceY / distTotal) * soldierSpeed;
 
 		//LOG("speedX x: %f", speedX);
-		LOG("speedY y: %f", speedY);
+		//LOG("speedY y: %f", speedY);
 
 		if (movement != MovementStage::STAY && distTotal != 0) {
-			relativePosition.x += speedX;
-			relativePosition.y += speedY;
-			path.PushBack({ speedX,speedY }, pushTimerReference);
-			
-			LOG("time ref: %i //////////", pushTimerReference);
-		}
+			//relativePosition.x += speedX;
+			//relativePosition.y += speedY;
+			path.PushBack({ speedX, speedY }, pushTimerReference);
+			moves++;
 
+			LOG("time ref: %i //////////", pushTimerReference);
+			LOG("moves: %i", moves);
+		}
+		if (movement == MovementStage::STAY) {
+			path.Reset();
+			LOG("path reset ////////////////////////////////////////////////////////////////////////");
+		}
 
 		pushTimer = pushTimerReference;
 	}
@@ -281,6 +288,7 @@ void Enemy_Soldier::Update()
 	float speedX = (distanceX / distTotal) * soldierSpeed;
 	float speedY = (distanceY / distTotal) * soldierSpeed;
 
+	LOG("movement: %i", movement);
 	LOG("speedX x: %f", speedX);
 	LOG("speedY y: %f", speedY);
 	LOG("distance x: %f", distanceX);

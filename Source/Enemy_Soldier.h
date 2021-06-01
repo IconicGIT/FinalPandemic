@@ -43,6 +43,8 @@ public:
 	float soldierSpeed;
 	float distTotal;
 
+	int moves = 0;
+
 	fPoint soldierDirection;
 	iPoint targetPosition;
 
@@ -54,6 +56,7 @@ public:
 	};
 
 	int movement;
+	
 	
 
 private:

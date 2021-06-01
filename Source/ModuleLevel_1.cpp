@@ -133,6 +133,8 @@ bool ModuleLevel_1::Start()
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
+	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 600, 1300);
+	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 400, 1400);
 	Mix_FadeOutMusic((int)(1000.0f));
 
 

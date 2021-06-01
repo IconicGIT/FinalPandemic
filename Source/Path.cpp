@@ -6,7 +6,7 @@ void Path::PushBack(fPoint speed, uint frames, Animation* animation)
 {
 	steps[totalSteps].animation = animation;
 	steps[totalSteps].framesDuration = frames;
-	steps[totalSteps].speed = speed;
+	steps[totalSteps].speed = speed; 
 	totalSteps++;
 }
 
@@ -44,4 +44,5 @@ void Path::Reset()
 {
 	currentStepFrame = 0;
 	currentStep = 0;
+	totalSteps = 1;
 }
