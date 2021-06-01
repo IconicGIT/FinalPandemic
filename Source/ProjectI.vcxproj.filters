@@ -127,6 +127,12 @@
     <ClCompile Include="FifthScene.cpp">
       <Filter>Source Files\Scenes</Filter>
     </ClCompile>
+    <ClCompile Include="ModulePowerUps.cpp">
+      <Filter>Source Files\Entities\PowerUps</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerUps.cpp">
+      <Filter>Source Files\Entities\PowerUps</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -224,6 +230,12 @@
     </ClInclude>
     <ClInclude Include="FifthScene.h">
       <Filter>Source Files\Scenes</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePowerUps.h">
+      <Filter>Source Files\Entities\PowerUps</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerUps.h">
+      <Filter>Source Files\Entities\PowerUps</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
