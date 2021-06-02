@@ -41,7 +41,7 @@ bool ModuleRender::Init()
 	}
 	else {
 
-		//if (WIN_FULLSCREEN_DESKTOP) SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2);
+		if (WIN_FULLSCREEN_DESKTOP) SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2);
 
 	}
 
