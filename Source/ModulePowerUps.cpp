@@ -9,6 +9,8 @@
 
 #include "SDL/include/SDL_timer.h"
 
+#define LIFETIME 30000000000000000
+
 ModulePowerUps::ModulePowerUps(bool startEnabled) : Module(startEnabled)
 {
 	for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
@@ -25,15 +27,93 @@ bool ModulePowerUps::Start()
 	LOG("Loading Power Ups");
 	texture = App->textures->Load("Assets/Sprites/items_and_particles.png");
 
-	Medal1.anim.PushBack({ 0, 115, 25, 18 }); // TODO
+	// Medals
+	Medal1.anim.PushBack({ 1, 115, 25, 18 }); 
 	Medal1.anim.loop = true;
 	Medal1.anim.speed = 1.0f;
-	Medal1.lifetime = 30000000;
+	Medal1.lifetime = LIFETIME;
+
+	Medal2.anim.PushBack({ 29, 115, 24, 19 });
+	Medal2.anim.loop = true;
+	Medal2.anim.speed = 1.0f;
+	Medal2.lifetime = LIFETIME;
+
+	Medal3.anim.PushBack({ 60, 115, 24, 17 });
+	Medal3.anim.loop = true;
+	Medal3.anim.speed = 1.0f;
+	Medal3.lifetime = LIFETIME;
 	 
-	MachineGun.anim.PushBack({ 0, 51, 26, 24 }); // TODO
+	// Weapons
+	MachineGun.anim.PushBack({ 1, 51, 26, 24 }); 
 	MachineGun.anim.loop = true;
 	MachineGun.anim.speed = 1.0f;
-	MachineGun.lifetime = 3000000000;
+	MachineGun.lifetime = LIFETIME;
+
+	FlameThrower.anim.PushBack({ 31, 48, 24, 24 });
+	FlameThrower.anim.loop = true;
+	FlameThrower.anim.speed = 1.0f;
+	FlameThrower.lifetime = LIFETIME;
+
+	Shotgun.anim.PushBack({ 91, 51, 24, 23 });
+	Shotgun.anim.loop = true;
+	Shotgun.anim.speed = 1.0f;
+	Shotgun.lifetime = LIFETIME;
+	
+	GrenadeLouncher.anim.PushBack({ 62, 50, 24, 23 });
+	GrenadeLouncher.anim.loop = true;
+	GrenadeLouncher.anim.speed = 1.0f;
+	GrenadeLouncher.lifetime = LIFETIME;
+
+	// Bomb
+
+	Bomb.anim.PushBack({ 148, 40, 24, 32 });
+	Bomb.anim.PushBack({ 177, 40, 24, 32 });
+	Bomb.anim.PushBack({ 206, 40, 24, 32 });
+	Bomb.anim.loop = false;
+	Bomb.anim.speed = 1.0f;
+	Bomb.lifetime = LIFETIME;
+
+	Bomb.anim.PushBack({ 123, 50, 19, 24 });
+	Bomb.anim.loop = true;
+	Bomb.anim.speed = 1.0f;
+	Bomb.lifetime = LIFETIME;
+
+	// Health
+
+	TotalHealing.anim.PushBack({ 154, 84, 24, 19 });
+	TotalHealing.anim.loop = true;
+	TotalHealing.anim.speed = 1.0f;
+	TotalHealing.lifetime = LIFETIME;
+
+	MediumMedickit.anim.PushBack({ 103, 80, 20, 23 });
+	MediumMedickit.anim.loop = true;
+	MediumMedickit.anim.speed = 1.0f;
+	MediumMedickit.lifetime = LIFETIME;
+
+	MaxMedickit.anim.PushBack({ 128, 80, 20, 23 });
+	MaxMedickit.anim.loop = true;
+	MaxMedickit.anim.speed = 1.0f;
+	MaxMedickit.lifetime = LIFETIME;
+
+	Food1.anim.PushBack({ 1, 86, 20, 17 });
+	Food1.anim.loop = true;
+	Food1.anim.speed = 1.0f;
+	Food1.lifetime = LIFETIME;
+
+	Food2.anim.PushBack({ 28, 84, 15, 18 });
+	Food2.anim.loop = true;
+	Food2.anim.speed = 1.0f;
+	Food2.lifetime = LIFETIME;
+
+	Food3.anim.PushBack({ 49, 83, 22, 20 });
+	Food3.anim.loop = true;
+	Food3.anim.speed = 1.0f;
+	Food3.lifetime = LIFETIME;
+
+	Food4.anim.PushBack({ 76, 83, 21, 20 });
+	Food4.anim.loop = true;
+	Food4.anim.speed = 1.0f;
+	Food4.lifetime = LIFETIME;
 
 	return true;
 }
@@ -70,6 +150,7 @@ void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 			break;
 		}
 
+		//add powerups effects
 	}
 }
 

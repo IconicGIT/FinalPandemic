@@ -47,9 +47,33 @@ private:
 
 public:
 
-
+	// Points
 	PowerUp Medal1;
+	PowerUp Medal2;
+	PowerUp Medal3;
+
+	// Player Shots
 	PowerUp MachineGun;
+	PowerUp FlameThrower;
+	PowerUp Shotgun; 
+	PowerUp GrenadeLouncher;
+
+	// MERCS Bomb
+	PowerUp Bomb;
+	//
+	PowerUp Pow;
+
+	// Health
+	PowerUp TotalHealing;
+	PowerUp MediumMedickit;
+	PowerUp MaxMedickit;
+	PowerUp Food1;
+	PowerUp Food2;
+	PowerUp Food3;
+	PowerUp Food4;
+
+	// Vehicles
+	PowerUp Jeep;
 };
 
 #endif
