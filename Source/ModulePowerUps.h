@@ -72,7 +72,7 @@ public:
 	PowerUp Food4;
 
 	// Vehicles
-	PowerUp Jeep;// life of the jeep = 6
+	PowerUp Jeep; // life of the jeep = 6
 };
 
 #endif

@@ -8,14 +8,14 @@
 
 struct Collider;
 
-class PowerUp {
+class Obstacle {
 public:
 
-	PowerUp();
+	Obstacle();
 
-	PowerUp(const PowerUp& p);
+	Obstacle(const Obstacle& p);
 
-	~PowerUp();
+	~Obstacle();
 
 	bool Update();
 
@@ -27,16 +27,16 @@ public:
 
 	bool isAlive = false;
 
-	int id;
+	int life;
 
 	int frameCount = 0;
 
-	uint lifetime = 0;
-
 	Collider* collider = nullptr;
 
+	//friend OnCollision(Collider* c1, Collider* c2) ;
 };
 
 
 #endif 
+
 

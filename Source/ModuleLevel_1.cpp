@@ -225,7 +225,7 @@ bool ModuleLevel_1::Start()
 	
 	//App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 995, 1010, Collider::Type::POWER_UP, 0);
 	//App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 555, 450, Collider::Type::POWER_UP, 0);
-	//App->powerUps->AddPowerUp(App->powerUps->Food1, 0, 730, 450, Collider::Type::POWER_UP, 0);
+	//App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 730, 450, Collider::Type::POWER_UP, 0);
 
 	
 
