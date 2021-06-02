@@ -25,15 +25,15 @@ bool ModulePowerUps::Start()
 	LOG("Loading Power Ups");
 	texture = App->textures->Load("Assets/Sprites/items_and_particles.png");
 
-	Medal1.anim.PushBack({ 274, 296, 33, 30 }); // TODO
+	Medal1.anim.PushBack({ 0, 115, 25, 18 }); // TODO
 	Medal1.anim.loop = true;
 	Medal1.anim.speed = 1.0f;
-	Medal1.lifetime = 300;
+	Medal1.lifetime = 30000000;
 	 
-	MachineGun.anim.PushBack({ 274, 296, 33, 30 }); // TODO
+	MachineGun.anim.PushBack({ 0, 51, 26, 24 }); // TODO
 	MachineGun.anim.loop = true;
 	MachineGun.anim.speed = 1.0f;
-	MachineGun.lifetime = 300;
+	MachineGun.lifetime = 3000000000;
 
 	return true;
 }
