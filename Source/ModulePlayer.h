@@ -131,6 +131,7 @@ public:
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
 	int playerLife = PLAYER_LIFE;
+	int playerMaximumLife = PLAYER_LIFE;
 	int playerWidth = 24;
 	int playerHeight = 16;
 	int playerHeightOffset = 30;
@@ -153,7 +154,8 @@ public:
 
 	// Weapon
 	int weaponType = 0; // 0 normal, 1 shotgun, 2 machinegun, 3 flamethrower, 4 grenade launcher
-
+	int bombs = 0;
+	int weaponLevel = 1;
 	//player keys
 	KEY_STATE keyUp;
 	KEY_STATE keyLeft;

@@ -160,16 +160,34 @@ void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 	// Score
 	if ((c1 == Medal1.collider)||(c2 == Medal1.collider))
 	{
-		App->player->score += 2500;//
+		App->player->score += 1000;
 	}
 	if ((c1 == Medal2.collider) || (c2 == Medal2.collider))
 	{
-		App->player->score += 5000;//
+		App->player->score += 2500;//
 	}
 	if ((c1 == Medal3.collider) || (c2 == Medal3.collider))
 	{
-		App->player->score += 10000;//
+		App->player->score += 5000;//
 	}
+
+	if ((c1 == Food1.collider) || (c2 == Food1.collider))
+	{
+		App->player->score += 500;
+	}
+	if ((c1 == Food2.collider) || (c2 == Food2.collider))
+	{
+		App->player->score += 2000;
+	}
+	if ((c1 == Food3.collider) || (c2 == Food3.collider))
+	{
+		App->player->score += 3000;
+	}
+	if ((c1 == Food4.collider) || (c2 == Food4.collider))
+	{
+		App->player->score += 5000;
+	}
+	
 
 	// Shots
 	if ((c1 == Shotgun.collider) || (c2 == Shotgun.collider))
@@ -189,18 +207,43 @@ void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 		App->player->weaponType = 4;
 	}
 
+	if ((c1 == Bomb.collider) || (c2 == Bomb.collider))
+	{
+		App->player->bombs ++;
+	}
+	if ((c1 == Pow.collider) || (c2 == Pow.collider))
+	{
+		App->player->weaponLevel++;
+	}
+
 	// Health
 	if ((c1 == TotalHealing.collider) || (c2 == TotalHealing.collider))
 	{
-		App->player->playerLife = PLAYER_LIFE;
+		App->player->playerLife += 2;
+		App->player->playerMaximumLife += 2;
+
+		if (App->player->playerLife > App->player->playerMaximumLife)
+		{
+			App->player->playerLife = App->player->playerMaximumLife;
+		}
 	}
 	if ((c1 == MaxMedickit.collider) || (c2 == MaxMedickit.collider))
 	{
-		App->player->playerLife += 5;//
+		App->player->playerLife += 4;//
+
+		if (App->player->playerLife > App->player->playerMaximumLife)
+		{
+			App->player->playerLife = App->player->playerMaximumLife;
+		}
 	}
 	if ((c1 == MediumMedickit.collider) || (c2 == MediumMedickit.collider))
 	{
 		App->player->playerLife += 2;//
+
+		if (App->player->playerLife > App->player->playerMaximumLife)
+		{
+			App->player->playerLife = App->player->playerMaximumLife;
+		}
 	}
 
 	for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
@@ -261,8 +304,8 @@ void ModulePowerUps::AddPowerUp(const PowerUp& powerUp, int id, int x, int y,  C
 		{
 			PowerUp* p = new PowerUp(powerUp);
 
-			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
-			p->position.x = x;						// so when frameCount reaches 0 the particle will be activated
+			p->frameCount = -(int)delay;			
+			p->position.x = x;						
 			p->position.y = y;
 			p->id = id;
 

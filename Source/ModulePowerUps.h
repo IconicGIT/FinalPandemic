@@ -60,7 +60,6 @@ public:
 
 	// MERCS Bomb
 	PowerUp Bomb;
-	//
 	PowerUp Pow;
 
 	// Health
@@ -73,7 +72,7 @@ public:
 	PowerUp Food4;
 
 	// Vehicles
-	PowerUp Jeep;
+	PowerUp Jeep;// life of the jeep = 6
 };
 
 #endif

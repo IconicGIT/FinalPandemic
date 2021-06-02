@@ -220,15 +220,14 @@ bool ModuleLevel_1::Start()
 	bulletWall[80] = App->collisions->AddCollider({ 612, 452, 100, 20 }, Collider::Type::BULLET_WALL);
 	//App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
 
-	// PowerUp
-	if(randValue==1)
-	{
-		App->powerUps->AddPowerUp(App->powerUps->Medal1, 0, 535, 1360, Collider::Type::POWER_UP, 0);
-	}
-	else
-	{
-		App->powerUps->AddPowerUp(App->powerUps->MachineGun, 0, 535, 1360, Collider::Type::POWER_UP, 0);
-	}
+	// PowerUps
+	
+	
+	//App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 995, 1010, Collider::Type::POWER_UP, 0);
+	//App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 555, 450, Collider::Type::POWER_UP, 0);
+	//App->powerUps->AddPowerUp(App->powerUps->Food1, 0, 730, 450, Collider::Type::POWER_UP, 0);
+
+	
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
