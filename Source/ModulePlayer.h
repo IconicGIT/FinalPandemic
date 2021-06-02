@@ -7,7 +7,7 @@
 #include "p2Point.h"
 #include "ModuleInput.h"
 
-#define PLAYER_LIFE 10
+#define PLAYER_LIFE 16
 #define PLAYER_LIFES_LEFT 3
 
 struct SDL_Texture;
@@ -150,6 +150,9 @@ public:
 	uint score = 000;
 	int scoreFont = -1;
 	char scoreText[10] = { "\0" };
+
+	// Weapon
+	int weaponType = 0; // 0 normal, 1 shotgun, 2 machinegun, 3 flamethrower, 4 grenade launcher
 
 	//player keys
 	KEY_STATE keyUp;
