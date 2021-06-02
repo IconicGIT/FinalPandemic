@@ -32,6 +32,7 @@
     <ClCompile Include="ModuleInput.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePlayer.cpp" />
+    <ClCompile Include="ModulePowerUps.cpp" />
     <ClCompile Include="ModuleRender.cpp" />
     <ClCompile Include="ModuleLevel_1.cpp" />
     <ClCompile Include="ModuleLevel_2.cpp" />
@@ -66,6 +67,7 @@
     <ClInclude Include="ModuleInput.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePlayer.h" />
+    <ClInclude Include="ModulePowerUps.h" />
     <ClInclude Include="ModuleRender.h" />
     <ClInclude Include="ModuleLevel_1.h" />
     <ClInclude Include="ModuleLevel_2.h" />
