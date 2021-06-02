@@ -8,6 +8,7 @@
 #include "ModuleInput.h"
 
 #define PLAYER_LIFE 10
+#define PLAYER_LIFES_LEFT 3
 
 struct SDL_Texture;
 struct Collider;
@@ -134,7 +135,7 @@ public:
 	int playerHeight = 16;
 	int playerHeightOffset = 30;
 	int PlayerWidthOffset = 2;
-
+	int playerLifesLeft = PLAYER_LIFES_LEFT;
 
 	// A countdown to when the player gets destroyed. After a while, the game exits
 	uint exitCountdown = 120;
