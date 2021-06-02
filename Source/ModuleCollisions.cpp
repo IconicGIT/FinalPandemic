@@ -127,6 +127,9 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::WALL: // blue
 				App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
 				break;
+			case Collider::Type::BULLET_WALL: // blue
+				App->render->DrawQuad(colliders[i]->rect, 100, 0, 100, alpha);
+				break;
 			case Collider::Type::PLAYER_HITBOX: // green
 				App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
 				break;
