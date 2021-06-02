@@ -11,13 +11,11 @@ struct Collider;
 class PowerUp {
 public:
 
-	PowerUp() { };
+	PowerUp();
 
-	PowerUp(const PowerUp& p)
-	{
-	};
+	PowerUp(const PowerUp& p);
 
-	~PowerUp() { };
+	~PowerUp();
 
 	bool Update();
 

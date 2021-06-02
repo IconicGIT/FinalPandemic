@@ -19,6 +19,8 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
+#include "ModulePowerUps.h"
+
 
 #include "SDL/include/SDL.h"
 #include "Globals.h"
@@ -42,12 +44,14 @@ Application::Application()
 	modules[10] = scene_2 = new ModuleLevel_2(false);							//Gameplay scene starts disabled
 	modules[11] = player = new ModulePlayer(false);								//Player starts disabled
 	modules[12] = particles = new ModuleParticles(true);
-	modules[13] = enemies = new ModuleEnemies(false);							//Enemies start disabled
+	modules[13] = powerUps = new ModulePowerUps(true);
+	modules[14] = enemies = new ModuleEnemies(false);							//Enemies start disabled
 
-	modules[14] = collisions = new ModuleCollisions(true);
-	modules[15] = fade = new ModuleFadeToBlack(true);
-	modules[16] = fonts = new ModuleFonts(true);
-	modules[17] = render = new ModuleRender(true);
+
+	modules[15] = collisions = new ModuleCollisions(true);
+	modules[16] = fade = new ModuleFadeToBlack(true);
+	modules[17] = fonts = new ModuleFonts(true);
+	modules[18] = render = new ModuleRender(true);
 }
 
 Application::~Application()

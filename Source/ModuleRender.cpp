@@ -1,6 +1,8 @@
 #include "ModuleRender.h"
 
 #include "Application.h"
+#include "Globals.h"
+
 
 #include "ModuleWindow.h"
 #include "ModuleTextures.h"
@@ -37,6 +39,13 @@ bool ModuleRender::Init()
 		LOG("Renderer could not be created! SDL_Error: %s\n", SDL_GetError());
 		ret = false;
 	}
+	else {
+
+		//if (WIN_FULLSCREEN_DESKTOP) SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH * 2, SCREEN_HEIGHT * 2);
+
+	}
+
+
 
 	return ret;
 }

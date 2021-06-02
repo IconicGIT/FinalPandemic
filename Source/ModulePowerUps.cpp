@@ -84,7 +84,8 @@ UpdateResult ModulePowerUps::Update()
 		// Call Power Ups Update. If it has reached its lifetime, destroy it
 		if (powerUp->Update() == false)
 		{
-			delete powerUps;
+			
+			delete powerUps[i];
 			powerUps[i] = nullptr;
 		}
 	}

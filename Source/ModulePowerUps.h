@@ -1,8 +1,8 @@
 #pragma once
 #pragma once
 
-#ifndef __MODULE_PARTICLES_H__
-#define __MODULE_PARTICLES_H__
+#ifndef __MODULE_POWERUPS_H__
+#define __MODULE_POWERUPS_H__
 
 #include "Module.h"
 

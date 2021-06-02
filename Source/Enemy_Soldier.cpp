@@ -262,21 +262,19 @@ void Enemy_Soldier::Update()
 		float speedX = (distanceX / distTotal) * soldierSpeed;
 		float speedY = (distanceY / distTotal) * soldierSpeed;
 
-		//LOG("speedX x: %f", speedX);
-		//LOG("speedY y: %f", speedY);
+
 
 		if (movement != MovementStage::STAY && distTotal != 0) {
-			//relativePosition.x += speedX;
-			//relativePosition.y += speedY;
+
 			path.PushBack({ speedX, speedY }, pushTimerReference);
 			moves++;
 
-			LOG("time ref: %i //////////", pushTimerReference);
-			LOG("moves: %i", moves);
+			//LOG("time ref: %i //////////", pushTimerReference);
+			//LOG("moves: %i", moves);
 		}
 		if (movement == MovementStage::STAY) {
 			path.Reset();
-			LOG("path reset ////////////////////////////////////////////////////////////////////////");
+			//LOG("path reset ////////////////////////////////////////////////////////////////////////");
 		}
 
 		pushTimer = pushTimerReference;
@@ -288,35 +286,16 @@ void Enemy_Soldier::Update()
 	float speedX = (distanceX / distTotal) * soldierSpeed;
 	float speedY = (distanceY / distTotal) * soldierSpeed;
 
-	LOG("movement: %i", movement);
-	LOG("speedX x: %f", speedX);
-	LOG("speedY y: %f", speedY);
-	LOG("distance x: %f", distanceX);
-	LOG("distance y: %f", distanceY);
-	LOG("total distance: %f", distTotal);
-	LOG("speed: %f", soldierSpeed);
+	//LOG("movement: %i", movement);
+	//LOG("speedX x: %f", speedX);
+	//LOG("speedY y: %f", speedY);
+	//LOG("distance x: %f", distanceX);
+	//LOG("distance y: %f", distanceY);
+	//LOG("total distance: %f", distTotal);
+	//LOG("speed: %f", soldierSpeed);
 
-	//if (movement != MovementStage::STAY) {
-	//	
-	//	float speedX = (distanceX / distTotal) * soldierSpeed;
-	//	float speedY = (distanceY / distTotal) * soldierSpeed;
-	//
-	//	LOG("speedX x: %f", speedX);
-	//	LOG("speedY y: %f", speedY);
-	//	LOG("Total distance: %f", distTotal);
-	//
-	//	
-	//
-	//	if (distTotal != 0) {
-	//		relativePosition.x += speedX;
-	//		relativePosition.y += speedY;
-	//	}
-	//	
-	//
-	//}
-	//LOG("time alive: %i", timeAlive);
-	LOG("soldier x: %f, y: %f", position.x, position.y);
-	LOG("timer: %i", pushTimer);
+	//LOG("soldier x: %f, y: %f", position.x, position.y);
+	//LOG("timer: %i", pushTimer);
 	
 	
 	

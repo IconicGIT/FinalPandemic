@@ -153,6 +153,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 
 UpdateResult ModuleParticles::Update()
 {
+
 	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		Particle* particle = particles[i];
@@ -162,6 +163,7 @@ UpdateResult ModuleParticles::Update()
 		// Call particle Update. If it has reached its lifetime, destroy it
 		if(particle->Update() == false)
 		{
+
 			delete particle;
 			particles[i] = nullptr;
 		}
