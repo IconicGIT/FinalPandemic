@@ -142,6 +142,9 @@
     <ClCompile Include="ModuleObstacle.cpp">
       <Filter>Source Files\Entities\Obstacle</Filter>
     </ClCompile>
+    <ClCompile Include="Boss1.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -251,6 +254,9 @@
     </ClInclude>
     <ClInclude Include="ModuleObstacle.h">
       <Filter>Source Files\Entities\Obstacle</Filter>
+    </ClInclude>
+    <ClInclude Include="Boss1.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
