@@ -271,8 +271,8 @@ bool ModulePlayer::Start()
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	scoreFont = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable,2);
-
+	scoreFont = App->fonts->Load("Assets/Fonts/bomb_score _font small", lookupTable,2);
+	scoreFont = App->fonts->Load("Assets/Fonts/game_over_fonts big", lookupTable, 2);
 
 	
 	return ret;
