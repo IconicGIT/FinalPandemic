@@ -4,7 +4,7 @@ Final Pandemic is a group of four students coursing the first year Bachelor's de
 
 <p>&nbsp;</p>
 
-![](logo.png)
+![](logo.png){width=50%}                                  
 
 <p>&nbsp;</p>
 
