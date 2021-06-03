@@ -302,6 +302,7 @@ UpdateResult ModulePlayer::Update()
 	keyLeft  = App->input->keys[SDL_SCANCODE_A];
 	keyDown  = App->input->keys[SDL_SCANCODE_S];
 	keyRight = App->input->keys[SDL_SCANCODE_D];
+	shoot = App->input->keys[SDL_SCANCODE_SPACE];
 
 	//VOLUNTARY EXIT
 
@@ -821,7 +822,7 @@ UpdateResult ModulePlayer::Update()
 
 
 	////////////////////////////////////////////////
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	if (shoot == KEY_STATE::KEY_DOWN)
 	{
 		int posOffsetX = 0;
 		int posOffsetY = 0;

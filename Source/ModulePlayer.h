@@ -161,6 +161,7 @@ public:
 	KEY_STATE keyLeft;
 	KEY_STATE keyDown;
 	KEY_STATE keyRight;
+	KEY_STATE shoot;
 
 	KEY_STATE lastHorizontalKey;
 	KEY_STATE lastVerticalKey;
