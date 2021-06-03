@@ -4,8 +4,6 @@ Final Pandemic is a group of four students coursing the first year Bachelor's de
 
 <p>&nbsp;</p>
 
-<img src="https://github.com/IconicGIT/FinalPandemic/blob/d386e02ec91350af4e88109bedbbfb4f50cb8993/docs/logo.png" alt="Logo" title="Team Logo" width="150" height="100" />
-
 ![](logo.png)                                 
 
 <p>&nbsp;</p>
