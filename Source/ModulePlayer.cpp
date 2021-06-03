@@ -10,6 +10,8 @@
 #include "ModuleEnemies.h"
 #include "ModuleCollisions.h"
 #include "ModuleFonts.h"
+#include "ModuleFadeToBlack.h"
+
 
 
 #include "SDL/include/SDL_scancode.h"
@@ -867,12 +869,18 @@ UpdateResult ModulePlayer::Update()
 		
 		App->audio->PlayFx(laserFx);
 	}
-	if (App->input->keys[SDL_SCANCODE_F] == KEY_STATE::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)
 	{
 		destroyed = true;
 		//App->particles->AddParticle(App->particles->playerBullet1[lastDirection - 1], 0, position.x, position.y, lastDirection, Collider::Type::PLAYER_SHOT);
 		//App->audio->PlayFx(laserFx);
 	}
+
+	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->fifthScene, 90);
+	}
+
 	////////////////////////////////////////////////
 
 	// Idle Animations 
