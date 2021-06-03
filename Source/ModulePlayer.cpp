@@ -1045,9 +1045,9 @@ UpdateResult ModulePlayer::PostUpdate()
 	printf_s(scoreText, 10, "%7d", score);
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
-	App->fonts->BlitText(58, 248, scoreFont, scoreText);
+	App->fonts->BlitText(0, 0, scoreFont, scoreText);
 
-	App->fonts->BlitText(150, 248, scoreFont, "this is just a font test");
+	App->fonts->BlitText(0, 0, scoreFont, "this is just a font test");
 
 	SDL_Rect quitRect1 = { 0,0,58,16 };
 	SDL_Rect quitRect2 = { 0,0,64,16 };
