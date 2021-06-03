@@ -34,6 +34,7 @@ public:
 
 	Collider* bottomCol;
 	Collider* playerWall[300] = { nullptr };
+	Collider* bulletWall[300] = { nullptr };
 
 	// The sprite rectangle for the ground
 	SDL_Texture* starsTexture = nullptr;

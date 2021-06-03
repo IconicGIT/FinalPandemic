@@ -183,7 +183,7 @@ bool ModuleLevel_2::Start()
 	playerWall[122] = App->collisions->AddCollider({ 379, 1628, 20, 28 }, Collider::Type::WALL);
 	playerWall[123] = App->collisions->AddCollider({ 389, 1634, 25, 28 }, Collider::Type::WALL);
 	playerWall[124] = App->collisions->AddCollider({ 406, 1640, 32, 29 }, Collider::Type::WALL);
-	playerWall[125] = App->collisions->AddCollider({ 425, 1645, 33, 29 }, Collider::Type::WALL);
+	playerWall[125] = App->collisions->AddCollider({ 425, 1640, 33, 35 }, Collider::Type::WALL);
 	playerWall[126] = App->collisions->AddCollider({ 445, 1659, 18, 57 }, Collider::Type::WALL);
 	playerWall[127] = App->collisions->AddCollider({ 456, 1675, 13, 53 }, Collider::Type::WALL);
 	playerWall[128] = App->collisions->AddCollider({ 465, 1696, 9, 50 }, Collider::Type::WALL);
@@ -316,6 +316,53 @@ bool ModuleLevel_2::Start()
 	playerWall[250] = App->collisions->AddCollider({ 273, 2897, 40, 12 }, Collider::Type::WALL);
 	playerWall[250] = App->collisions->AddCollider({ 282, 2904, 40, 12 }, Collider::Type::WALL);
 
+	bulletWall[0  ] = App->collisions->AddCollider({ 0, 2224, 108, 295 }, Collider::Type::BULLET_WALL); 
+	bulletWall[1  ] = App->collisions->AddCollider({ 65, 2167, 61, 50 }, Collider::Type::BULLET_WALL);
+	bulletWall[2  ] = App->collisions->AddCollider({ 97, 2152, 55, 40 }, Collider::Type::BULLET_WALL);
+	bulletWall[3  ] = App->collisions->AddCollider({ 136, 2132, 38, 42 }, Collider::Type::BULLET_WALL);
+	bulletWall[4  ] = App->collisions->AddCollider({ 658, 1766, 110, 154 }, Collider::Type::BULLET_WALL);
+	bulletWall[5  ] = App->collisions->AddCollider({ 40, 1235, 91, 48 }, Collider::Type::BULLET_WALL);
+	bulletWall[6  ] = App->collisions->AddCollider({ 378, 1206, 175, 44 }, Collider::Type::BULLET_WALL);
+	bulletWall[7  ] = App->collisions->AddCollider({ 150, 2080, 24, 52 }, Collider::Type::BULLET_WALL);
+	bulletWall[8  ] = App->collisions->AddCollider({ 162, 2000, 40, 79 }, Collider::Type::BULLET_WALL);
+	bulletWall[9  ] = App->collisions->AddCollider({ 188, 2012, 45, 43 }, Collider::Type::BULLET_WALL);
+	bulletWall[10 ] = App->collisions->AddCollider({ 211, 1985, 42, 47 }, Collider::Type::BULLET_WALL);
+	bulletWall[11 ] = App->collisions->AddCollider({ 232, 1967, 46, 49 }, Collider::Type::BULLET_WALL);
+	bulletWall[12 ] = App->collisions->AddCollider({ 255, 1951, 48, 49 }, Collider::Type::BULLET_WALL);
+	bulletWall[13 ] = App->collisions->AddCollider({ 284, 1946, 44, 42 }, Collider::Type::BULLET_WALL);
+	bulletWall[14 ] = App->collisions->AddCollider({ 312, 1930, 40, 42 }, Collider::Type::BULLET_WALL);
+	bulletWall[15 ] = App->collisions->AddCollider({ 329, 1916, 50, 42 }, Collider::Type::BULLET_WALL);
+	bulletWall[16 ] = App->collisions->AddCollider({ 358, 1895, 36, 36 }, Collider::Type::BULLET_WALL);
+	bulletWall[17 ] = App->collisions->AddCollider({ 376, 1871, 40, 33 }, Collider::Type::BULLET_WALL);
+	bulletWall[18 ] = App->collisions->AddCollider({ 395, 1844, 40, 41 }, Collider::Type::BULLET_WALL);
+	bulletWall[19 ] = App->collisions->AddCollider({ 414, 1826, 39, 39 }, Collider::Type::BULLET_WALL);
+	bulletWall[20 ] = App->collisions->AddCollider({ 437, 1807, 38, 40 }, Collider::Type::BULLET_WALL);
+	bulletWall[21 ] = App->collisions->AddCollider({ 451, 1729, 26, 84 }, Collider::Type::BULLET_WALL);
+	bulletWall[22 ] = App->collisions->AddCollider({ 456, 1695, 18, 39 }, Collider::Type::BULLET_WALL);
+	bulletWall[23 ] = App->collisions->AddCollider({ 441, 1652, 21, 44 }, Collider::Type::BULLET_WALL);
+	bulletWall[24 ] = App->collisions->AddCollider({ 590, 1772, 81, 113 }, Collider::Type::BULLET_WALL);
+	bulletWall[25 ] = App->collisions->AddCollider({ 593, 1885, 43, 73 }, Collider::Type::BULLET_WALL);
+	bulletWall[26 ] = App->collisions->AddCollider({ 585, 1920, 33, 77 }, Collider::Type::BULLET_WALL);
+	bulletWall[27 ] = App->collisions->AddCollider({ 571, 1964, 19, 73 }, Collider::Type::BULLET_WALL);
+	bulletWall[28 ] = App->collisions->AddCollider({ 525, 1980, 32, 80 }, Collider::Type::BULLET_WALL);
+	bulletWall[29 ] = App->collisions->AddCollider({ 533, 1962, 16, 24 }, Collider::Type::BULLET_WALL);
+	bulletWall[30 ] = App->collisions->AddCollider({ 554, 2004, 23, 63 }, Collider::Type::BULLET_WALL);
+	bulletWall[31 ] = App->collisions->AddCollider({ 516, 2020, 16, 54 }, Collider::Type::BULLET_WALL);
+	bulletWall[32 ] = App->collisions->AddCollider({ 506, 2068, 24, 114 }, Collider::Type::BULLET_WALL);
+	bulletWall[33 ] = App->collisions->AddCollider({ 415, 2185, 43, 25 }, Collider::Type::BULLET_WALL);
+	bulletWall[34 ] = App->collisions->AddCollider({ 452, 2191, 55, 36 }, Collider::Type::BULLET_WALL);
+	bulletWall[35 ] = App->collisions->AddCollider({ 350, 2195, 23, 37 }, Collider::Type::BULLET_WALL);
+	bulletWall[36 ] = App->collisions->AddCollider({ 331, 2204, 58, 49 }, Collider::Type::BULLET_WALL);
+	bulletWall[37 ] = App->collisions->AddCollider({ 316, 2226, 88, 83 }, Collider::Type::BULLET_WALL);
+	bulletWall[38 ] = App->collisions->AddCollider({ 409, 2200, 25, 45 }, Collider::Type::BULLET_WALL);
+	bulletWall[39 ] = App->collisions->AddCollider({ 307, 2246, 92, 183 }, Collider::Type::BULLET_WALL);
+	bulletWall[40 ] = App->collisions->AddCollider({ 320, 2418, 78, 25 }, Collider::Type::BULLET_WALL);
+	bulletWall[41 ] = App->collisions->AddCollider({ 337, 2435, 67, 44 }, Collider::Type::BULLET_WALL);
+	bulletWall[42 ] = App->collisions->AddCollider({ 100, 1046, 93, 101 }, Collider::Type::BULLET_WALL);
+	bulletWall[43 ] = App->collisions->AddCollider({ 578, 799, 110, 112 }, Collider::Type::BULLET_WALL);
+	bulletWall[44 ] = App->collisions->AddCollider({ 289, 980, 131, 48 }, Collider::Type::BULLET_WALL);
+	bulletWall[45 ] = App->collisions->AddCollider({ 0, 790, 269, 45 }, Collider::Type::BULLET_WALL);
+	
 	//App->audio->PlayMusic("Assets/Music/mission_2.ogg", 1.0f);
 
 	// Enemies ---

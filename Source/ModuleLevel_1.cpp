@@ -216,8 +216,8 @@ bool ModuleLevel_1::Start()
 	bulletWall[78] = App->collisions->AddCollider({ 503, 132, 48, 46 }, Collider::Type::BULLET_WALL);
 	bulletWall[79] = App->collisions->AddCollider({ 469, 123, 33, 46 }, Collider::Type::BULLET_WALL);
 	bulletWall[80] = App->collisions->AddCollider({ 692, 580, 100, 20 }, Collider::Type::BULLET_WALL);
-	bulletWall[80] = App->collisions->AddCollider({ 563, 532, 100, 20 }, Collider::Type::BULLET_WALL);
-	bulletWall[80] = App->collisions->AddCollider({ 612, 452, 100, 20 }, Collider::Type::BULLET_WALL);
+	bulletWall[81] = App->collisions->AddCollider({ 563, 532, 100, 20 }, Collider::Type::BULLET_WALL);
+	bulletWall[82] = App->collisions->AddCollider({ 612, 452, 100, 20 }, Collider::Type::BULLET_WALL);
 	//App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
 
 	// PowerUps
@@ -317,6 +317,11 @@ UpdateResult ModuleLevel_1::Update()
 			if (playerWall[i] != nullptr) {
 				playerWall[i]->pendingToDelete = true;
 			}
+			if (bulletWall[i] != nullptr) {
+				bulletWall[i]->pendingToDelete = true;
+			}
+			
+
 		}
 		
 	}
