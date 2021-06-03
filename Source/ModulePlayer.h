@@ -165,6 +165,11 @@ public:
 	KEY_STATE lastHorizontalKey;
 	KEY_STATE lastVerticalKey;
 	int lastDirection;
+
+	//Exit
+	int exit_counter;
+	SDL_Texture* exitTexture;
+
 };
 
 #endif //!__MODULE_PLAYER_H__

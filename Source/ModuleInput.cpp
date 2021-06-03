@@ -33,6 +33,12 @@ bool ModuleInput::Init()
 		ret = false;
 	}
 
+	for (size_t i = 0; i < MAX_PADS; i++)
+	{
+		pads[i].controller = nullptr;
+	}
+
+
 	return ret;
 }
 
@@ -44,21 +50,21 @@ UpdateResult ModuleInput::PreUpdate()
 	{
 		switch (event.type)
 		{
-		case(SDL_CONTROLLERDEVICEADDED):
-		{
-			HandleDeviceConnection(event.cdevice.which);
-			break;
-		}
-		case(SDL_CONTROLLERDEVICEREMOVED):
-		{
-			HandleDeviceRemoval(event.cdevice.which);
-			break;
-		}
-		case(SDL_QUIT):
-		{
-			return UpdateResult::UPDATE_STOP;
-			break;
-		}
+			case(SDL_CONTROLLERDEVICEADDED):
+			{
+				HandleDeviceConnection(event.cdevice.which);
+				break;
+			}
+			case(SDL_CONTROLLERDEVICEREMOVED):
+			{
+				HandleDeviceRemoval(event.cdevice.which);
+				break;
+			}
+			case(SDL_QUIT):
+			{
+				return UpdateResult::UPDATE_STOP;
+				break;
+			}
 		}
 	}
 
@@ -88,7 +94,13 @@ bool ModuleInput::CleanUp()
 			SDL_HapticStopAll(pads[i].haptic);
 			SDL_HapticClose(pads[i].haptic);
 		}
-		if (pads[i].controller != nullptr) SDL_GameControllerClose(pads[i].controller);
+		if (pads[i].controller != nullptr) {
+
+			SDL_GameControllerClose(pads[i].controller);
+			
+		}
+
+
 	}
 
 	SDL_QuitSubSystem(SDL_INIT_HAPTIC);

@@ -240,6 +240,7 @@ bool ModulePlayer::Start()
 
 	//Add textures -> remember unload
 	texture = App->textures->Load("Assets/Sprites/character_sprites.png");
+	exitTexture = App->textures->Load("Assets/Sprites/quit_icon.png");
 	currentAnimation = &downIdleAnim;
 
 	//Add audio -> remember unload
@@ -279,6 +280,8 @@ bool ModulePlayer::Start()
 
 UpdateResult ModulePlayer::Update()
 {
+
+	UpdateResult ret = UpdateResult::UPDATE_CONTINUE;
 	////////////////////////////////////////////////////////
 	// Moving the player with the camera scroll
 	//App->player->position.x += 0;
@@ -300,6 +303,9 @@ UpdateResult ModulePlayer::Update()
 	keyDown  = App->input->keys[SDL_SCANCODE_S];
 	keyRight = App->input->keys[SDL_SCANCODE_D];
 
+	//VOLUNTARY EXIT
+
+	
 	// lastDirection
 	// 
 	//	1 = up
@@ -333,9 +339,6 @@ UpdateResult ModulePlayer::Update()
 		else {
 			SetAnimation(leftIdleAnim);
 		}
-		
-		
-
 	}
 
 	//right
@@ -996,6 +999,24 @@ UpdateResult ModulePlayer::Update()
 
 	currentAnimation->Update();
 
+
+	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_STATE::KEY_REPEAT)
+	{
+		exit_counter++;
+	}
+	else {
+		exit_counter = 0;
+	}
+	
+	if (exit_counter >= 200) {
+	
+		ret = UpdateResult::UPDATE_STOP;
+	}
+	
+	LOG("Quit time: %i", exit_counter);
+
+
+
 	if (destroyed)
 	{
 		//exitCountdown--;
@@ -1005,7 +1026,7 @@ UpdateResult ModulePlayer::Update()
 	
 	////////////////////////////////////////////
 	
-	return UpdateResult::UPDATE_CONTINUE;
+	return ret;
 }
 
 UpdateResult ModulePlayer::PostUpdate()
@@ -1013,10 +1034,28 @@ UpdateResult ModulePlayer::PostUpdate()
 	if (destroyed != true)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
+		
 		App->render->Blit(texture, position.x + PlayerWidthOffset, position.y, &rect,1);
+		
+		
+
 	}
 
 	App->fonts->BlitText(20, 20,scoreFont,scoreText);
+
+	SDL_Rect quitRect1 = { 0,0,58,16 };
+	SDL_Rect quitRect2 = { 0,0,64,16 };
+	SDL_Rect quitRect3 = { 0,0,70,16 };
+
+	if (exit_counter > 0 && exit_counter < 60) {
+		App->render->Blit(exitTexture, 10, 10, &quitRect1, 1,false);
+	}
+	if (exit_counter >= 60 && exit_counter < 120) {
+		App->render->Blit(exitTexture, 10, 10, &quitRect2, 1,false);
+	}
+	if (exit_counter >= 120) {
+		App->render->Blit(exitTexture, 10, 10, &quitRect3, 1,false);
+	}
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
