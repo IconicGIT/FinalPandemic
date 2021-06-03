@@ -10,7 +10,7 @@ Final Pandemic is a group of four students coursing the first year Bachelor's de
 
 This game is inspired by the action movies of the 80’s, it is a Run and Gun game that was made by Capcom and was very appreciated by the arcade players. It contained a history and a local multiplayer, enemies, bosses, explosions, vehicles and more. 
 
-![](mercs_logo.png)
+![](mercs_cover.png)
 
 <p>&nbsp;</p>
 
