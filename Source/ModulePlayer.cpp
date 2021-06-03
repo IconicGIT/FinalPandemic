@@ -876,11 +876,6 @@ UpdateResult ModulePlayer::Update()
 		//App->audio->PlayFx(laserFx);
 	}
 
-	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_DOWN)
-	{
-		App->fade->FadeToBlack(this, (Module*)App->fifthScene, 90);
-	}
-
 	////////////////////////////////////////////////
 
 	// Idle Animations 

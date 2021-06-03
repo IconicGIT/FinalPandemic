@@ -308,7 +308,8 @@ UpdateResult ModuleLevel_1::Update()
 	App->render->DrawQuad(App->render->camera, 0, 255, 255, 100);
 	App->fonts->BlitText(0, 0, App->player->scoreFont, App->player->scoreText);
 
-	if (App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN)
+	//winning condition
+	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_DOWN)
 	{
 		App->fade->FadeToBlack(this, (Module*)App->fifthScene, 90);
 		App->player->level = 1;

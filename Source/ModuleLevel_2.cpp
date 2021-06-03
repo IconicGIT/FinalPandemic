@@ -13,6 +13,8 @@
 #include "ModuleFonts.h"
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_timer.h"
+#include "ModuleFadeToBlack.h"
+
 
 
 #define CAMERA_X_MARGIN 25
@@ -424,6 +426,19 @@ UpdateResult ModuleLevel_2::Update()
 		}
 	}
 
+	//winning condition
+	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_DOWN)
+	{
+		App->fade->FadeToBlack(this, (Module*)App->fifthScene, 90);
+		App->player->level = 1;
+
+		for (int i = 0; i < 100; i++) {
+			if (playerWall[i] != nullptr) {
+				playerWall[i]->pendingToDelete = true;
+			}
+		}
+
+	}
 
 	//render camera aread
 	bottomCol->SetPos(0, 1480 - (1534 - App->render->camera.y / SCREEN_SIZE) + 384 + 32);
