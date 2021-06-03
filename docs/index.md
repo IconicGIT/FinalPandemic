@@ -2,6 +2,8 @@
 
 Final Pandemic is a group of four students coursing the first year Bachelor's degree in Video Game Design and Development at UPC university. The integrants of the group are Alexandre Carreras, Pol Farreras, Brandon Arandia and Carlos Arnau.
 
+<p>&nbsp;</p>
+
 ![](logo.png)
 
 <p>&nbsp;</p>
@@ -25,3 +27,7 @@ This game is inspired by the action movies of the 80’s, it is a Run and Gun ga
 
 - Management: **Brandon Arandia** [[ _IconicGIT_ ](https://github.com/IconicGIT)]:
   - Main Responsible of Final Pandemic's Mercs Team Management.
+
+<p>&nbsp;</p>
+
+![](team_photo.jfif)
