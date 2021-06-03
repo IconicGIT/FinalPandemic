@@ -869,12 +869,18 @@ UpdateResult ModulePlayer::Update()
 		
 		App->audio->PlayFx(laserFx);
 	}
-	if (App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)
+	if ((App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)||(playerLifesLeft<=0))
 	{
 		destroyed = true;
 		//App->particles->AddParticle(App->particles->playerBullet1[lastDirection - 1], 0, position.x, position.y, lastDirection, Collider::Type::PLAYER_SHOT);
 		//App->audio->PlayFx(laserFx);
 	}
+	if (App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_DOWN)
+	{
+		playerLifesLeft--;
+		
+	}
+	
 
 	////////////////////////////////////////////////
 
