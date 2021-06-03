@@ -50,6 +50,8 @@ bool ModuleLevel_1::Start()
 
 	tTexture = App->textures->Load("Assets/Sprites/moving_and_chaging_tiles.png");
 
+	
+
 	////
 	startTime = SDL_GetTicks();
 	counterMusic = 0;
@@ -223,9 +225,9 @@ bool ModuleLevel_1::Start()
 	// PowerUps
 	
 	
-	//App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 995, 1010, Collider::Type::POWER_UP, 0);
-	//App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 555, 450, Collider::Type::POWER_UP, 0);
-	//App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 730, 450, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 995, 1010, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 555, 450, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 730, 450, Collider::Type::POWER_UP, 0);
 
 	
 
@@ -306,7 +308,7 @@ UpdateResult ModuleLevel_1::Update()
 	//render camera aread
 	bottomCol->SetPos(479, 1480 - (1534 - App->render->camera.y / SCREEN_SIZE) + 384 + 32);
 	App->render->DrawQuad(App->render->camera, 0, 255, 255, 100);
-	App->fonts->BlitText(0, 0, App->player->scoreFont, App->player->scoreText);
+	App->fonts->BlitText(0, 0, App->player->playerScoreFont, App->player->txtBombScoreText);
 
 	//winning condition
 	if (App->input->keys[SDL_SCANCODE_I] == KEY_STATE::KEY_DOWN)

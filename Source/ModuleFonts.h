@@ -13,7 +13,7 @@ struct Font
 {
 	// Lookup table. All characters displayed in the same order as the texture
 	char table[MAX_FONT_CHARS];
-
+	 
 	// The font texture
 	SDL_Texture* texture = nullptr;
 

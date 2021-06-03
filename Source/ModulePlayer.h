@@ -148,14 +148,23 @@ public:
 	uint bombFx = 0;
 	
 
-	uint score = 000;
-	int scoreFont = -1;
-	char scoreText[10] = { "\0" };
+	uint score = 0;
+	int playerScoreFont = -1;
+	int bombScoreFont = -1;
+	int bombCounterFont = -1;
+	int endLevelFontGreen = -1;
+	int endLevelFontPink = -1;
+	int timerFont = -1;
+
+	char txtBombScoreText[10] = { "\0" };
+	char txtPlayerScore[10] = { "\0" };
+	char txtBombCounterScore[10] = { "\0" };
 
 	// Weapon
 	int weaponType = 0; // 0 normal, 1 shotgun, 2 machinegun, 3 flamethrower, 4 grenade launcher
 	int bombs = 0;
 	int weaponLevel = 1;
+
 	//player keys
 	KEY_STATE keyUp;
 	KEY_STATE keyLeft;

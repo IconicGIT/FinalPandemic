@@ -11,11 +11,12 @@
 #include "ModuleCollisions.h"
 #include "ModuleFonts.h"
 #include "ModuleFadeToBlack.h"
-
+#include <string>
 
 #include "SDL/include/SDL_scancode.h"
 #include <math.h>
 
+using namespace std;
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
@@ -247,6 +248,7 @@ bool ModulePlayer::Start()
 	//Add audio -> remember unload
 	laserFx = App->audio->LoadFx("Assets/Fx/gun_shot.wav");
 	bombFx = App->audio->LoadFx("Assets/Fx/explosion_02.wav");
+	
 
 
 
@@ -270,10 +272,19 @@ bool ModulePlayer::Start()
 
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
-	char lookupTable1[] = { "123456789/abcdefghijklmnopqrstuvwxyz" };
-	char lookupTable2[] = { ";!?,/abcdefghijklmnopqrstuvwxyz" };
-	scoreFont = App->fonts->Load("Assets/Fonts/bomb_score _font small", lookupTable1,2);
-	scoreFont = App->fonts->Load("Assets/Fonts/game_over_fonts big", lookupTable2, 5);
+	char lookupTable1[] = { "0123456789abcdefghijklmnopqrstuvwxyz                       " };
+	char lookupTable2[] = { "0123456789:;<=>?*abcdefghijklmnopqrstuvwxyz@                    " };
+	char lookupTable3[] = { "0123456789çççççççççççççççççççççççççççççççççççççççççççççççççççççççççççççç        " };
+	char lookupTable4[] = { "çççççççççççççççç0123456789abcdefghijklmnopqrstuvwxyççççççççççççççççççççç        " };
+	char lookupTable5[] = { "çççççççççççççççççççççççççççççççççççççççççççççççççççççççç0123456789çççççç        " };
+	bombScoreFont = App->fonts->Load("Assets/Fonts/bomb_score_font_small.png", lookupTable1, 2);
+	playerScoreFont = App->fonts->Load("Assets/Fonts/player_score_font.png", lookupTable2, 2);
+
+	bombCounterFont = App->fonts->Load("Assets/Fonts/game_over_fonts_big.png", lookupTable3, 5);
+	endLevelFontGreen = App->fonts->Load("Assets/Fonts/game_over_fonts_big.png", lookupTable4, 5);
+	endLevelFontPink = App->fonts->Load("Assets/Fonts/game_over_fonts_big.png", lookupTable5, 5);
+
+	//scoreFont = App->fonts->Load("Assets/Fonts/game_over_fonts big", lookupTable2, 5);
 
 	
 	return ret;
@@ -305,8 +316,6 @@ UpdateResult ModulePlayer::Update()
 	keyDown  = App->input->keys[SDL_SCANCODE_S];
 	keyRight = App->input->keys[SDL_SCANCODE_D];
 	shoot = App->input->keys[SDL_SCANCODE_SPACE];
-
-	//VOLUNTARY EXIT
 
 	
 	// lastDirection
@@ -1049,12 +1058,12 @@ UpdateResult ModulePlayer::PostUpdate()
 	}
 
 	// Draw UI (score) --------------------------------------
-	printf_s(scoreText, 10, "%7d", score);
+	sprintf_s(txtPlayerScore, "%7d", score);
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
-	App->fonts->BlitText(0, 0, scoreFont, scoreText);
+	//App->fonts->BlitText(29, 1, playerScoreFont, txtPlayerScore);
 
-	App->fonts->BlitText(0, 0, scoreFont, "this is just a font test");
+	App->fonts->BlitText(0, 0, endLevelFontGreen, "player score ");
 
 	SDL_Rect quitRect1 = { 0,0,58,16 };
 	SDL_Rect quitRect2 = { 0,0,64,16 };

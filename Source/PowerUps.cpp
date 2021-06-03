@@ -18,10 +18,10 @@ frameCount(p.frameCount), lifetime(p.lifetime), id(p.id)
 
 PowerUp::~PowerUp()
 {
-	if (collider != nullptr)
-	{
-		collider->pendingToDelete = true;
-	}
+	//if (collider != nullptr)
+	//{
+	//	collider->pendingToDelete = true;
+	//}
 
 }
 
