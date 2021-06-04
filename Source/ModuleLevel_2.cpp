@@ -444,6 +444,13 @@ UpdateResult ModuleLevel_2::Update()
 	bottomCol->SetPos(0, 1480 - (1534 - App->render->camera.y / SCREEN_SIZE) + 384 + 32);
 	App->render->DrawQuad(App->render->camera, 0, 255, 255, 100);
 	App->fonts->BlitText(0, 0, App->player->playerScoreFont, App->player->txtBombScoreText);
+
+	//timer
+
+	if (levelTimer > 0) levelTimer--;
+
+	App->player->levelTime = (float)levelTimer / 60;
+
 	return UpdateResult::UPDATE_CONTINUE;
 }
 

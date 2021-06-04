@@ -45,6 +45,9 @@ public:
 	int counterMusic;
 	int repetition;
 
+	int levelTimerReference = 300 * 60;
+	int levelTimer = levelTimerReference;
+
 	double elapsedTime; // Convert to seconds.
 };
 
