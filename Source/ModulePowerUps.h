@@ -10,7 +10,7 @@
 #include "PowerUps.h"
 #include "Collider.h"
 
-#define MAX_ACTIVE_POWER_UPS 10
+#define MAX_ACTIVE_POWER_UPS 30
 
 struct SDL_Texture;
 struct Collider;

@@ -14,7 +14,7 @@
 #include "SDL/include/SDL_scancode.h"
 #include "SDL/include/SDL_timer.h"
 #include "ModuleFadeToBlack.h"
-
+#include "ModulePowerUps.h"
 
 
 #define CAMERA_X_MARGIN 25
@@ -366,6 +366,24 @@ bool ModuleLevel_2::Start()
 	bulletWall[45 ] = App->collisions->AddCollider({ 0, 790, 269, 45 }, Collider::Type::BULLET_WALL);
 	
 	//App->audio->PlayMusic("Assets/Music/mission_2.ogg", 1.0f);
+
+	// PowerUps
+
+	App->powerUps->AddPowerUp(App->powerUps->Pow, 0,400, 2730, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Shotgun, 0, 70, 2575, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Medal1, 0, 220, 2070, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->TotalHealing, 0, 500, 1640, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 550, 1600, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food1, 0, 695, 1470, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food4, 0, 735, 1470, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 680, 1360, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Shotgun, 0, 170, 1290, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->MediumMedickit, 0, 170, 1170, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food4, 0, 300, 1040, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food2, 0, 420, 850, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 365, 750, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food4, 0, 55, 670, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 210, 628, Collider::Type::POWER_UP, 0);
 
 	// Enemies ---
 	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);

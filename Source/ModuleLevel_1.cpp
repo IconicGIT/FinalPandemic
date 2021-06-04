@@ -226,12 +226,12 @@ bool ModuleLevel_1::Start()
 
 	// PowerUps
 	
-	playerWall[76] = App->collisions->AddCollider({ 995, 1010, 28, 32 }, Collider::Type::WALL);
-	playerWall[77] = App->collisions->AddCollider({ 555, 450, 28, 32 }, Collider::Type::WALL);
-	playerWall[78] = App->collisions->AddCollider({ 730, 450, 28, 32 }, Collider::Type::WALL);
-	//App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 995, 1010, Collider::Type::POWER_UP, 0);
-	//App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 555, 450, Collider::Type::POWER_UP, 0);
-	//App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 730, 450, Collider::Type::POWER_UP, 0);
+	//playerWall[76] = App->collisions->AddCollider({ 995, 1010, 28, 32 }, Collider::Type::WALL);
+	//playerWall[77] = App->collisions->AddCollider({ 555, 450, 28, 32 }, Collider::Type::WALL);
+	//playerWall[78] = App->collisions->AddCollider({ 730, 450, 28, 32 }, Collider::Type::WALL);
+	App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 995, 1010, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 555, 450, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 730, 450, Collider::Type::POWER_UP, 0);
 
 	//App->obstacles->AddObstacle(App->obstacles->Box, 995, 1010, 8, Collider::Type::OBSTACLE, 0);
 	//App->obstacles->AddObstacle(App->obstacles->Box, 555, 450, 7, Collider::Type::OBSTACLE, 0);
@@ -282,6 +282,21 @@ UpdateResult ModuleLevel_1::Update()
 	//
 	//	App->render->camera.x += 10; // App->player->speed * 3;
 	//}
+
+	/*
+	if (App->obstacles->Box->x==995 && App->obstacles->Box->isAlive == false)
+	{
+		playerWall[76]== nullptr;
+	}
+	if (App->obstacles->Box->x == 555  && App->obstacles->Box->isAlive == false)
+	{
+		playerWall[77] == nullptr;
+	}
+	if (App->obstacles->Box->x == 730  && App->obstacles->Box->isAlive == false)
+	{
+		playerWall[78] == nullptr;
+	}
+	*/
 
 	currentTime = SDL_GetTicks();
 	elapsedTime = (currentTime - startTime) / 1000.0;

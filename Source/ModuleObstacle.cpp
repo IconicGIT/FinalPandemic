@@ -78,7 +78,7 @@ void ModuleObstacle::OnCollision(Collider* c1, Collider* c2)
 					Box.anim.PushBack({ 1, 70, 28, 32 });
 					break;
 				case 0:
-					Box.isAlive = false;
+					obstacles[i]->isAlive = false;
 
 					switch (Box.id)
 					{
@@ -184,27 +184,27 @@ UpdateResult ModuleObstacle::PostUpdate()
 }
 
 
-//void ModuleObstacle::AddObstacle(const Obstacle& obstacle, int x, int y, int _id, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0)
-//{
-//	for (uint i = 0; i < MAX_ACTIVE_OBSTACLES; ++i)
-//	{
-//		//Finding an empty slot for a new particle
-//		if (obstacles[i] == nullptr)
-//		{
-//			Obstacle* o = new Obstacle(obstacle);
-//
-//			o->frameCount = -(int)delay;
-//			o->position.x = x;
-//			o->position.y = y;
-//			o->id = _id;
-//			
-//
-//			//Adding the particle's collider
-//			if (colliderType != Collider::Type::NONE)
-//				o->collider = App->collisions->AddCollider(o->anim.GetCurrentFrame(), colliderType, this);
-//
-//			obstacles[i] = o;
-//			break;
-//		}
-//	}
-//}
+void ModuleObstacle::AddObstacle(const Obstacle& obstacle, int x, int y, int _id, Collider::Type colliderType , uint delay)
+{
+	for (uint i = 0; i < MAX_ACTIVE_OBSTACLES; ++i)
+	{
+		//Finding an empty slot for a new particle
+		if (obstacles[i] == nullptr)
+		{
+			Obstacle* o = new Obstacle(obstacle);
+
+			o->frameCount = -(int)delay;
+			o->position.x = x;
+			o->position.y = y;
+			o->id = _id;
+			
+
+			//Adding the particle's collider
+			if (colliderType != Collider::Type::NONE)
+			o->collider = App->collisions->AddCollider(o->anim.GetCurrentFrame(), colliderType, this);
+
+			obstacles[i] = o;
+			break;
+		}
+	}
+}
