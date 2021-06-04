@@ -16,8 +16,6 @@
 #include "SDL/include/SDL_scancode.h"
 #include <math.h>
 
-using namespace std;
-
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 
