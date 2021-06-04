@@ -226,9 +226,9 @@ bool ModuleLevel_1::Start()
 
 	// PowerUps
 	
-	//playerWall[76] = App->collisions->AddCollider({ 995, 1010, 28, 32 }, Collider::Type::WALL);
-	//playerWall[77] = App->collisions->AddCollider({ 555, 450, 28, 32 }, Collider::Type::WALL);
-	//playerWall[78] = App->collisions->AddCollider({ 730, 450, 28, 32 }, Collider::Type::WALL);
+	playerWall[76] = App->collisions->AddCollider({ 995, 1010, 28, 32 }, Collider::Type::WALL);
+	playerWall[77] = App->collisions->AddCollider({ 555, 450, 28, 32 }, Collider::Type::WALL);
+	playerWall[78] = App->collisions->AddCollider({ 730, 450, 28, 32 }, Collider::Type::WALL);
 	//App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 995, 1010, Collider::Type::POWER_UP, 0);
 	//App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 555, 450, Collider::Type::POWER_UP, 0);
 	//App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 730, 450, Collider::Type::POWER_UP, 0);
@@ -236,12 +236,7 @@ bool ModuleLevel_1::Start()
 	//App->obstacles->AddObstacle(App->obstacles->Box, 995, 1010, 8, Collider::Type::OBSTACLE, 0);
 	//App->obstacles->AddObstacle(App->obstacles->Box, 555, 450, 7, Collider::Type::OBSTACLE, 0);
 	//App->obstacles->AddObstacle(App->obstacles->Box, 730, 450, 13, Collider::Type::OBSTACLE, 0);
-<<<<<<< HEAD
-	//playerWall[76] = App->collisions->AddCollider({ 995, 1010, 28, 32 }, Collider::Type::WALL);
-	//playerWall[77] = App->collisions->AddCollider({ 555, 450, 28, 32 }, Collider::Type::WALL);
-	//playerWall[78] = App->collisions->AddCollider({ 730, 450, 28, 32 }, Collider::Type::WALL);
-=======
->>>>>>> a8809dd728bd42083e72b742b5cc4b744aa6cf53
+
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
