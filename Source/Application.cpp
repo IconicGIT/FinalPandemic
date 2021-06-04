@@ -20,6 +20,7 @@
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
 #include "ModulePowerUps.h"
+#include "ModuleObstacle.h"
 
 
 #include "SDL/include/SDL.h"
@@ -52,6 +53,7 @@ Application::Application()
 	modules[16] = fade = new ModuleFadeToBlack(true);
 	modules[17] = fonts = new ModuleFonts(true);
 	modules[18] = render = new ModuleRender(true);
+	modules[19] = obstacles = new ModuleObstacle(true);
 }
 
 Application::~Application()

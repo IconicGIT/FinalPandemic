@@ -15,6 +15,7 @@
 #include "SDL/include/SDL_timer.h"
 #include "ModuleFadeToBlack.h"
 #include "ModulePowerUps.h"
+#include "ModuleObstacle.h"
 
 //temporal
 #include "SDL_mixer/include/SDL_mixer.h"
@@ -225,11 +226,13 @@ bool ModuleLevel_1::Start()
 	// PowerUps
 	
 	
-	App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 995, 1010, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 555, 450, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 730, 450, Collider::Type::POWER_UP, 0);
+	//App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 995, 1010, Collider::Type::POWER_UP, 0);
+	//App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 555, 450, Collider::Type::POWER_UP, 0);
+	//App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 730, 450, Collider::Type::POWER_UP, 0);
 
-	
+	App->obstacles->AddObstacle(App->obstacles->Box, 995, 1010, 8, Collider::Type::OBSTACLE, 0);
+	App->obstacles->AddObstacle(App->obstacles->Box, 555, 450, 7, Collider::Type::OBSTACLE, 0);
+	App->obstacles->AddObstacle(App->obstacles->Box, 730, 450, 13, Collider::Type::OBSTACLE, 0);
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);

@@ -1,6 +1,7 @@
 
 #include "ModuleObstacle.h"
-
+#include "ModulePowerUps.h"
+#include "PowerUps.h"
 #include "Application.h"
 
 #include "ModuleTextures.h"
@@ -13,7 +14,7 @@
 
 ModuleObstacle::ModuleObstacle(bool startEnabled) : Module(startEnabled)
 {
-	for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_OBSTACLES; ++i)
 		obstacles[i] = nullptr;
 }
 
@@ -28,11 +29,11 @@ bool ModuleObstacle::Start()
 	texture = App->textures->Load("Assets/Sprites/items_and_particles.png");
 
 	
-	Box.anim.PushBack({ 1, 115, 25, 18 });
+	Box.anim.PushBack({ 0, 0, 28, 32 });
 	Box.anim.loop = true;
 	Box.anim.speed = 1.0f;
 	Box.life = 3;
-	//
+	
 
 	return true;
 }
@@ -42,9 +43,8 @@ bool ModuleObstacle::Start()
 bool ModuleObstacle::CleanUp()
 {
 	LOG("Unloading power ups");
-
-	// Delete all remaining active power ups on application exit
-	for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
+	
+	for (uint i = 0; i < MAX_ACTIVE_OBSTACLES; ++i)
 	{
 		if (obstacles[i] != nullptr)
 		{
@@ -58,26 +58,96 @@ bool ModuleObstacle::CleanUp()
 
 void ModuleObstacle::OnCollision(Collider* c1, Collider* c2)
 {
+	if (c2->type == Collider::PLAYER_SHOT)
+	{
+		Box.life--;
+
+		switch (Box.life)
+		{
+		case 2:
+			Box.anim.PushBack({ 1, 34, 29, 32 });
+			break;
+		case 1:
+			Box.anim.PushBack({ 1, 70, 28, 32 });
+			break;
+		case 0:
+			Box.isAlive = false;
+
+			switch (Box.id)
+			{
+			case 0:
+				App->powerUps->AddPowerUp(App->powerUps->Medal1, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 1:
+				App->powerUps->AddPowerUp(App->powerUps->Medal2, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 2:
+				App->powerUps->AddPowerUp(App->powerUps->Medal3, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 3:
+				App->powerUps->AddPowerUp(App->powerUps->MachineGun, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 4:
+				App->powerUps->AddPowerUp(App->powerUps->FlameThrower, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 5:
+				App->powerUps->AddPowerUp(App->powerUps->Shotgun, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 6:
+				App->powerUps->AddPowerUp(App->powerUps->GrenadeLouncher, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 7:
+				App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 8:
+				App->powerUps->AddPowerUp(App->powerUps->Pow, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 9:
+				App->powerUps->AddPowerUp(App->powerUps->TotalHealing, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 10:
+				App->powerUps->AddPowerUp(App->powerUps->MediumMedickit, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 11:
+				App->powerUps->AddPowerUp(App->powerUps->MaxMedickit, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 12:
+				App->powerUps->AddPowerUp(App->powerUps->Food1, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 13:
+				App->powerUps->AddPowerUp(App->powerUps->Food2, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 14:
+				App->powerUps->AddPowerUp(App->powerUps->Food3, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			case 15:
+				App->powerUps->AddPowerUp(App->powerUps->Food4, 0, Box.position.x, Box.position.y, Collider::Type::POWER_UP, 0);
+				break;
+			}
+
+			break;
+		}
+	}
 	
-	for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
+	
+	for (uint i = 0; i < MAX_ACTIVE_OBSTACLES; ++i)
 	{
 		
 		if (obstacles[i] != nullptr && c2->type == Collider::PLAYER_SHOT) /////////////////////
 		{
-			//if (life <=0)
-			//{
-				obstacles[i]->isAlive = false;
-				delete obstacles[i];
-				obstacles[i] = nullptr;
-				break;
-			//}
+			
+			obstacles[i]->isAlive = false;
+			delete obstacles[i];
+			obstacles[i] = nullptr;
+			break;
+			
 		}
 	}
 }
 
 UpdateResult ModuleObstacle::Update()
 {
-	for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_OBSTACLES; ++i)
 	{
 		Obstacle* obstacle = obstacles[i];
 
@@ -97,8 +167,7 @@ UpdateResult ModuleObstacle::Update()
 
 UpdateResult ModuleObstacle::PostUpdate()
 {
-	//Iterating all particle array and drawing any active particles
-	for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_OBSTACLES; ++i)
 	{
 		Obstacle* obstacle = obstacles[i];
 
@@ -111,9 +180,9 @@ UpdateResult ModuleObstacle::PostUpdate()
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
-void ModuleObstacle::AddObstacle(const Obstacle& obstacle, int x, int y, Collider::Type colliderType, uint delay)
+void ModuleObstacle::AddObstacle(const Obstacle& obstacle, int x, int y, int _id, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0)
 {
-	for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_OBSTACLES; ++i)
 	{
 		//Finding an empty slot for a new particle
 		if (obstacles[i] == nullptr)
@@ -123,6 +192,7 @@ void ModuleObstacle::AddObstacle(const Obstacle& obstacle, int x, int y, Collide
 			o->frameCount = -(int)delay;
 			o->position.x = x;
 			o->position.y = y;
+			o->id = _id;
 			
 
 			//Adding the particle's collider

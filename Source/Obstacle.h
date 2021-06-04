@@ -1,6 +1,6 @@
 //#pragma once
-#ifndef __POWERUPS_H__
-#define __POWERUPS_H__
+#ifndef __OBSTACLE_H__
+#define __OBSTACLE_H__
 
 #include "p2Point.h"
 #include "Animation.h"
@@ -28,6 +28,8 @@ public:
 	bool isAlive = false;
 
 	int life;
+
+	int id;
 
 	int frameCount = 0;
 
