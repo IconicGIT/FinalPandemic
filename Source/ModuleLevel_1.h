@@ -4,6 +4,7 @@
 #include "Module.h"
 #include "Animation.h"
 #include "p2Point.h"
+#include "ModulePowerUps.h"
 
 struct SDL_Texture;
 
@@ -37,7 +38,7 @@ public:
 	Collider* bottomCol;
 	Collider* playerWall[100] = { nullptr };
 	Collider* bulletWall[100] = { nullptr };
-
+	PowerUp* _powerUps[3] = {nullptr};
 	// The sprite rectangle for the ground
 	SDL_Texture* starsTexture = nullptr;
 
