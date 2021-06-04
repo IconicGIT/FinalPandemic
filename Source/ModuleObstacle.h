@@ -36,7 +36,7 @@ public:
 	void OnCollision(Collider* c1, Collider* c2) override;
 
 	void AddObstacle(const Obstacle& obstacle,  int x, int y, int id, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
-	//void AddPowerUp(const Obstacle& obstacle, int x, int y, int id, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
+	
 
 
 private:
@@ -49,6 +49,7 @@ private:
 public:
 
 	Obstacle Box;
+	
 	//Obstacle House;
 	//Obstacle Palms;
 	//Obstacle Wall;
