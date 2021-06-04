@@ -42,6 +42,7 @@ bool ModuleLevel_2::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/background_ingame2.png");
+	tmountainDown = App->textures->Load("Assets/Sprites/background_ingame_rock_down.png");
 
 	startTime = SDL_GetTicks();
 	counterMusic = 0;

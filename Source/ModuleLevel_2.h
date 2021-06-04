@@ -31,6 +31,7 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* tTexture = nullptr;
+	SDL_Texture* tmountainDown = nullptr;
 
 	Collider* bottomCol;
 	Collider* playerWall[300] = { nullptr };

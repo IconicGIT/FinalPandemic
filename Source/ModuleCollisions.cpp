@@ -157,6 +157,9 @@ void ModuleCollisions::DebugDraw()
 			case Collider::Type::OBSTACLE: // magenta
 				App->render->DrawQuad(colliders[i]->rect, 0, 255, 100, alpha);
 				break;
+			case Collider::Type::TRIGGER: // magenta
+				App->render->DrawQuad(colliders[i]->rect, 128, 128, 128, alpha);
+				break;
 		}
 	}
 }

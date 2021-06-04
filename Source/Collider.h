@@ -19,6 +19,7 @@ struct Collider
 		ENEMY_SHOT,
 		POWER_UP,
 		OBSTACLE,
+		TRIGGER,
 
 		MAX
 	};

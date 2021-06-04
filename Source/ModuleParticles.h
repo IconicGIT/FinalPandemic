@@ -66,7 +66,7 @@ public:
 	Particle laser;
 	Particle playerBullet1[8];
 
-
+	Particle dust_particle;
 
 
 	Particle EnemyBullet;

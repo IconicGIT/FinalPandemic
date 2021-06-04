@@ -24,7 +24,7 @@ bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
 	texture = App->textures->Load("Assets/Sprites/items_and_particles.png");
-
+	
 
 	// Explosion particle
 	explosion.anim.PushBack({274, 296, 33, 30});
@@ -56,13 +56,19 @@ bool ModuleParticles::Start()
 	{
 		playerBullet1[i].speed.x = 6;
 		playerBullet1[i].speed.y = 6;
-		playerBullet1[i].lifetime = 180;
+		playerBullet1[i].lifetime = 60;
 		playerBullet1[i].anim.speed = 0;
 		playerBullet1[i].anim.loop = false;
 	}
 
-
-	
+	dust_particle.anim.PushBack({ 270,232,32,32 });
+	dust_particle.anim.PushBack({ 302,232,32,32 });
+	dust_particle.anim.PushBack({ 334,232,32,32 });
+	dust_particle.anim.PushBack({ 366,232,32,32 });
+	dust_particle.anim.PushBack({ 270,264,32,32 });
+	dust_particle.anim.PushBack({ 302,264,32,32 });
+	dust_particle.anim.loop = false;
+	dust_particle.anim.speed = 0.2f;
 
 	EnemyBullet.anim.PushBack({ 232, 103, 16, 12 });
 	EnemyBullet.anim.PushBack({ 249, 103, 16, 12 });

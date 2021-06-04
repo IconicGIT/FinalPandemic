@@ -16,6 +16,8 @@
 #include "ModuleFadeToBlack.h"
 #include "ModulePowerUps.h"
 #include "ModuleObstacle.h"
+#include "p2Point.h"
+#include "ModuleParticles.h"
 
 //temporal
 #include "SDL_mixer/include/SDL_mixer.h"
@@ -50,7 +52,10 @@ bool ModuleLevel_1::Start()
 	//App->audio->PlayMusic("Assets/stage_1.ogg", 1.0f);
 
 	tTexture = App->textures->Load("Assets/Sprites/moving_and_chaging_tiles.png");
+	bg2Texture = App->textures->Load("Assets/Sprites/background_ingame_rock_down.png");
 
+
+	
 	
 
 	////
@@ -222,6 +227,9 @@ bool ModuleLevel_1::Start()
 	bulletWall[80] = App->collisions->AddCollider({ 692, 580, 100, 20 }, Collider::Type::BULLET_WALL);
 	bulletWall[81] = App->collisions->AddCollider({ 563, 532, 100, 20 }, Collider::Type::BULLET_WALL);
 	bulletWall[82] = App->collisions->AddCollider({ 612, 452, 100, 20 }, Collider::Type::BULLET_WALL);
+
+	rockTrigger = App->collisions->AddCollider({ 475, 880, 600, 10 }, Collider::Type::BULLET_WALL);
+	rockPos = { 768 ,487 };
 	//App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
 
 	// PowerUps
@@ -357,6 +365,37 @@ UpdateResult ModuleLevel_1::Update()
 
 	App->player->levelTime = (float)levelTimer/60;
 
+
+	//rock animation
+
+	if (rockAnimActivate) {
+
+		if (rockPos.x > 700.0f) rockPos.x -= 0.7f;
+		if (rockPos.y < 630.0f) rockPos.y += 1.5f;
+
+		if (rockPos.x > 705.0f && rockPos.y < 630.0f) 
+		{
+			if (dustTimer <= 0) {
+				dustTimer = dustTimerReference;
+				for (int i = 0; i < RandomRange(1, 3); i++)
+				{
+					App->particles->AddParticle(
+
+						App->particles->dust_particle,
+						0,
+						RandomRange(rockPos.x, rockPos.x + brock.w - 25),
+						RandomRange(rockPos.y + 10, rockPos.y + brock.h - 25),
+						0,
+						Collider::NONE,RandomRange(0,4));
+				}
+			}
+			else 
+			{
+				dustTimer--;
+			}
+		}
+
+	}
 	return UpdateResult::UPDATE_CONTINUE;
 }
 
@@ -364,7 +403,26 @@ UpdateResult ModuleLevel_1::Update()
 UpdateResult ModuleLevel_1::PostUpdate()
 {
 	// Draw everything --------------------------------------
+
 	App->render->Blit(bgTexture, 0, 0, NULL);
+
+	if (!rockAnimActivate || rockPos.x > 705.0f && rockPos.y < 630.0f) 
+	{
+		App->render->Blit(bgTexture, 0, 0, NULL);
+
+		if (rockAnimActivate && rockPos.x > 705.0f && rockPos.y < 630.0f)
+		{
+			App->render->Blit(tTexture, rockPos.x + RandomRange(-1, 1), rockPos.y, &brock);
+		}
+		else
+		{
+			App->render->Blit(tTexture, rockPos.x, rockPos.y, &brock);
+		}
+	}
+	else {
+		App->render->Blit(bg2Texture, 0, 0, NULL);
+	}
+
 
 	SDL_Rect btree;
 	btree.x = 417;
@@ -378,13 +436,26 @@ UpdateResult ModuleLevel_1::PostUpdate()
 	App->render->Blit(tTexture, 813, 974, &btree);
 	App->render->Blit(tTexture, 781, 974, &btree);
 
-	SDL_Rect brock;
+
 	brock.x = 284;
 	brock.y = 7;
 	brock.w = 127;
 	brock.h = 213;
 
-	App->render->Blit(tTexture, 768, 487, &brock);
+	
+	
 
 	return UpdateResult::UPDATE_CONTINUE;
+}
+int ModuleLevel_1::RandomRange(int value01, int value02) {
+
+	if (value01 > value02) {
+
+		int i = value01;
+		value01 = value02;
+		value02 = i;
+
+	}
+	return(rand() % (value02 - value01 + 1) + value01);
+
 }

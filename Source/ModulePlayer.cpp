@@ -317,6 +317,9 @@ UpdateResult ModulePlayer::Update()
 
 	//LOG("col %i: ", collisionID);
 
+
+
+
 	keyUp    = App->input->keys[SDL_SCANCODE_W];
 	keyLeft  = App->input->keys[SDL_SCANCODE_A];
 	keyDown  = App->input->keys[SDL_SCANCODE_S];
@@ -1041,7 +1044,7 @@ UpdateResult ModulePlayer::Update()
 		ret = UpdateResult::UPDATE_STOP;
 	}
 	
-	LOG("Quit time: %i", exit_counter);
+	//LOG("Quit time: %i", exit_counter);
 
 	
 
@@ -1057,7 +1060,7 @@ UpdateResult ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN) score += 1000;
 	if (App->input->keys[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) playerLife--;
 
-	LOG("player live: %f", (float)playerLife / (float)playerMaximumLife * 22);
+	//LOG("player live: %f", (float)playerLife / (float)playerMaximumLife * 22);
 
 	return ret;
 }
@@ -1185,6 +1188,13 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		colCheck[7] = true;
 
+	}
+
+	//rock
+
+	if (c2 == App->scene->rockTrigger) {
+		App->scene->rockAnimActivate = true;
+		App->scene->rockTrigger->pendingToDelete = true;
 	}
 	
 }

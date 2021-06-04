@@ -3,6 +3,7 @@
 
 #include "Module.h"
 #include "Animation.h"
+#include "p2Point.h"
 
 struct SDL_Texture;
 
@@ -30,6 +31,7 @@ public:
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* bg2Texture = nullptr;
 	SDL_Texture* tTexture = nullptr;
 
 	Collider* bottomCol;
@@ -49,8 +51,17 @@ public:
 	int levelTimerReference = 300 * 60;
 	int levelTimer = levelTimerReference;
 
+	//rock animation
+	SDL_Rect brock;
+	Collider* rockTrigger;
+	bool rockAnimActivate;
+	fPoint rockPos;
+	int dustTimerReference = 3;
+	int dustTimer = dustTimerReference;
 
 	double elapsedTime; // Convert to seconds.
+
+	int RandomRange(int value01, int values02);
 };
 
 #endif
