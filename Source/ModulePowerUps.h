@@ -46,6 +46,7 @@ private:
 	PowerUp* powerUps[MAX_ACTIVE_POWER_UPS] = { nullptr };
 
 public:
+	int _powerUps[MAX_ACTIVE_POWER_UPS] ;
 
 	// Points
 	PowerUp Medal1;

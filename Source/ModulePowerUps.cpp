@@ -87,6 +87,7 @@ bool ModulePowerUps::Start()
 	Pow.anim.speed = 1.0f;
 	Pow.lifetime = LIFETIME;
 	Pow.id = 8;
+	
 
 	// Health
 
@@ -157,106 +158,127 @@ bool ModulePowerUps::CleanUp()
 
 void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 {
-	// Score
-	if ((c1 == Medal1.collider)||(c2 == Medal1.collider))
+	if (c2->type == Collider::PLAYER_HITBOX)
 	{
-		App->player->score += 1000;
-	}
-	if ((c1 == Medal2.collider) || (c2 == Medal2.collider))
-	{
-		App->player->score += 2500;//
-	}
-	if ((c1 == Medal3.collider) || (c2 == Medal3.collider))
-	{
-		App->player->score += 5000;//
-	}
+		if ((c1 == Medal1.collider) || (c2 == Medal1.collider))
+		{
+			App->player->score += 1000;
+			Medal1.collider->pendingToDelete = true;
+		}
+		if ((c1 == Medal2.collider) || (c2 == Medal2.collider))
+		{
+			App->player->score += 2500;//
+			Medal2.collider->pendingToDelete = true;
+		}
+		if ((c1 == Medal3.collider) || (c2 == Medal3.collider))
+		{
+			App->player->score += 5000;//
+			Medal3.collider->pendingToDelete = true;
+		}
 
-	if ((c1 == Food1.collider) || (c2 == Food1.collider))
-	{
-		App->player->score += 500;
-	}
-	if ((c1 == Food2.collider) || (c2 == Food2.collider))
-	{
-		App->player->score += 2000;
-	}
-	if ((c1 == Food3.collider) || (c2 == Food3.collider))
-	{
-		App->player->score += 3000;
-	}
-	if ((c1 == Food4.collider) || (c2 == Food4.collider))
-	{
-		App->player->score += 5000;
+		if ((c1 == Food1.collider) || (c2 == Food1.collider))
+		{
+			App->player->score += 500;
+			Food1.collider->pendingToDelete = true;
+		}
+		if ((c1 == Food2.collider) || (c2 == Food2.collider))
+		{
+			App->player->score += 2000;
+			Food2.collider->pendingToDelete = true;
+		}
+		if ((c1 == Food3.collider) || (c2 == Food3.collider))
+		{
+			App->player->score += 3000;
+			Food3.collider->pendingToDelete = true;
+		}
+		if ((c1 == Food4.collider) || (c2 == Food4.collider))
+		{
+			App->player->score += 5000;
+			Food4.collider->pendingToDelete = true;
+		}
+
+
+		// Shots
+		if ((c1 == Shotgun.collider) || (c2 == Shotgun.collider))
+		{
+			App->player->weaponType = 1;
+			Shotgun.collider->pendingToDelete = true;
+		}
+		if ((c1 == MachineGun.collider) || (c2 == MachineGun.collider))
+		{
+			App->player->weaponType = 2;
+			MachineGun.collider->pendingToDelete = true;
+		}
+		if ((c1 == FlameThrower.collider) || (c2 == FlameThrower.collider))
+		{
+			App->player->weaponType = 3;
+			FlameThrower.collider->pendingToDelete = true;
+		}
+		if ((c1 == GrenadeLouncher.collider) || (c2 == GrenadeLouncher.collider))
+		{
+			App->player->weaponType = 4;
+			GrenadeLouncher.collider->pendingToDelete = true;
+		}
+
+		if ((c1 == Bomb.collider) || (c2 == Bomb.collider))
+		{
+			App->player->bombs++;
+			Bomb.collider->pendingToDelete = true;
+		}
+		if ((c1 == Pow.collider) || (c2 == Pow.collider))
+		{
+			App->player->weaponLevel++;
+			Pow.collider->pendingToDelete=true;
+		}
+
+		// Health
+		if ((c1 == TotalHealing.collider) || (c2 == TotalHealing.collider))
+		{
+			App->player->playerLife += 2;
+			App->player->playerMaximumLife += 2;
+
+			if (App->player->playerLife > App->player->playerMaximumLife)
+			{
+				App->player->playerLife = App->player->playerMaximumLife;
+			}
+
+			TotalHealing.collider->pendingToDelete = true;
+		}
+		if ((c1 == MaxMedickit.collider) || (c2 == MaxMedickit.collider))
+		{
+			App->player->playerLife += 4;//
+
+			if (App->player->playerLife > App->player->playerMaximumLife)
+			{
+				App->player->playerLife = App->player->playerMaximumLife;
+			}
+			MaxMedickit.collider->pendingToDelete = true;
+		}
+		if ((c1 == MediumMedickit.collider) || (c2 == MediumMedickit.collider))
+		{
+			App->player->playerLife += 2;//
+
+			if (App->player->playerLife > App->player->playerMaximumLife)
+			{
+				App->player->playerLife = App->player->playerMaximumLife;
+			}
+			MediumMedickit.collider->pendingToDelete = true;
+		}
+
+		for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
+		{
+			// Always destroy particles that collide
+			if (powerUps[i] != nullptr && c2->type == Collider::PLAYER_HITBOX)
+			{
+				//_powerUps[i]=powerUps[i]->id ;
+				powerUps[i]->isAlive = false;
+				delete powerUps[i];
+				powerUps[i] = nullptr;
+				break;
+			}
+		}
 	}
 	
-
-	// Shots
-	if ((c1 == Shotgun.collider) || (c2 == Shotgun.collider))
-	{
-		App->player->weaponType = 1;
-	}
-	if ((c1 == MachineGun.collider) || (c2 == MachineGun.collider))
-	{
-		App->player->weaponType = 2;
-	}
-	if ((c1 == FlameThrower.collider) || (c2 == FlameThrower.collider))
-	{
-		App->player->weaponType = 3;
-	}
-	if ((c1 == GrenadeLouncher.collider) || (c2 == GrenadeLouncher.collider))
-	{
-		App->player->weaponType = 4;
-	}
-
-	if ((c1 == Bomb.collider) || (c2 == Bomb.collider))
-	{
-		App->player->bombs ++;
-	}
-	if ((c1 == Pow.collider) || (c2 == Pow.collider))
-	{
-		App->player->weaponLevel++;
-	}
-
-	// Health
-	if ((c1 == TotalHealing.collider) || (c2 == TotalHealing.collider))
-	{
-		App->player->playerLife += 2;
-		App->player->playerMaximumLife += 2;
-
-		if (App->player->playerLife > App->player->playerMaximumLife)
-		{
-			App->player->playerLife = App->player->playerMaximumLife;
-		}
-	}
-	if ((c1 == MaxMedickit.collider) || (c2 == MaxMedickit.collider))
-	{
-		App->player->playerLife += 4;//
-
-		if (App->player->playerLife > App->player->playerMaximumLife)
-		{
-			App->player->playerLife = App->player->playerMaximumLife;
-		}
-	}
-	if ((c1 == MediumMedickit.collider) || (c2 == MediumMedickit.collider))
-	{
-		App->player->playerLife += 2;//
-
-		if (App->player->playerLife > App->player->playerMaximumLife)
-		{
-			App->player->playerLife = App->player->playerMaximumLife;
-		}
-	}
-
-	for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
-	{
-		// Always destroy particles that collide
-		if (powerUps[i] != nullptr && c2->type == Collider::PLAYER_HITBOX)
-		{
-			powerUps[i]->isAlive = false;
-			delete powerUps[i];
-			powerUps[i] = nullptr;
-			break;
-		}
-	}
 }
 
 UpdateResult ModulePowerUps::Update()
