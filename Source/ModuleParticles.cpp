@@ -6,6 +6,7 @@
 #include "ModuleRender.h"
 #include "ModuleCollisions.h"
 #include "Collider.h"
+#include "Globals.h"
 
 #include "SDL/include/SDL_timer.h"
 
@@ -103,9 +104,10 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 
-		if (particles[i] != nullptr)
+		if (particles[i] != nullptr && particles[i]->collider != nullptr)
 		{
-
+			LOG("collider c1 type: %i", c1->type);
+			LOG("collider c2 type: %i", c2->type);
 			switch (particles[i]->collider->type) {
 			case Collider::PLAYER_SHOT:
 				// Always destroy particles that collide
@@ -128,6 +130,9 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 					break;
 				}
 				break;
+
+
+
 
 			default:
 				//// Always destroy particles that collide
@@ -218,3 +223,4 @@ void ModuleParticles::AddParticle(const Particle& particle, int id, int x, int y
 		}
 	}
 }
+

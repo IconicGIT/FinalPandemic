@@ -884,7 +884,11 @@ UpdateResult ModulePlayer::Update()
 			posOffsetY = 4;
 			break;
 		}
-		App->particles->AddParticle(App->particles->playerBullet1[lastDirection - 1], 0, position.x + posOffsetX, position.y + posOffsetY, lastDirection, Collider::Type::PLAYER_SHOT);
+		for (size_t i = 0; i < 4; i++)
+		{
+			App->particles->AddParticle(App->particles->playerBullet1[lastDirection - 1], 0, position.x + posOffsetX, position.y + posOffsetY, lastDirection, Collider::Type::PLAYER_SHOT,i * 2);
+		}
+		
 
 		
 		

@@ -7,7 +7,7 @@
 #include "Particle.h"
 #include "Collider.h"
 
-#define MAX_ACTIVE_PARTICLES 100
+#define MAX_ACTIVE_PARTICLES 500
 
 struct SDL_Texture;
 struct Collider;
@@ -47,6 +47,7 @@ public:
 	// Param x, y		- Position x,y in the screen (upper left axis)
 	// Param delay		- Delay time from the moment the function is called until the particle is displayed in screen
 	void AddParticle(const Particle& particle, int id, int x, int y, int direction, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
+	
 	
 
 private:

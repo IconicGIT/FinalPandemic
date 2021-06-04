@@ -7,7 +7,7 @@
 #include "p2Point.h"
 #include "ModuleInput.h"
 
-#define PLAYER_LIFE 22
+
 #define PLAYER_LIFES_LEFT 3
 
 struct SDL_Texture;
@@ -131,8 +131,9 @@ public:
 
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
-	int playerLife = PLAYER_LIFE;
-	int playerMaximumLife = PLAYER_LIFE;
+	
+	int playerMaximumLife = 22;
+	int playerLife = playerMaximumLife;
 	int playerWidth = 24;
 	int playerHeight = 16;
 	int playerHeightOffset = 30;
