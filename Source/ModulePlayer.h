@@ -7,7 +7,7 @@
 #include "p2Point.h"
 #include "ModuleInput.h"
 
-#define PLAYER_LIFE 16
+#define PLAYER_LIFE 22
 #define PLAYER_LIFES_LEFT 3
 
 struct SDL_Texture;
@@ -60,6 +60,7 @@ public:
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
+
 	
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
@@ -148,17 +149,33 @@ public:
 	uint bombFx = 0;
 	
 
+
+	//end score
 	uint score = 0;
 	int playerScoreFont = -1;
-	int bombScoreFont = -1;
-	int bombCounterFont = -1;
+	
+
+	
 	int endLevelFontGreen = -1;
 	int endLevelFontPink = -1;
-	int timerFont = -1;
+	int bombScoreFont = -1;
 
 	char txtBombScoreText[10] = { "\0" };
 	char txtPlayerScore[10] = { "\0" };
 	char txtBombCounterScore[10] = { "\0" };
+
+	//UI elements
+	int levelTime;
+
+	int bigGreyFont = -1;
+	int bombCounterFont = -1;
+
+
+	char txtBombCounter[10] = { "\0" };
+	char txtTimer[10] = { "\0" };
+	char txtUpLeftScore[10] = { "\0" };
+	char txtLevelTimer[10] = { "\0" };
+	SDL_Texture* lifeBarTexture;
 
 	// Weapon
 	int weaponType = 0; // 0 normal, 1 shotgun, 2 machinegun, 3 flamethrower, 4 grenade launcher

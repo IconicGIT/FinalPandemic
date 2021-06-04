@@ -46,6 +46,10 @@ public:
 	int repetition;
 	bool afterStart = false;
 
+	int levelTimerReference = 300 * 60;
+	int levelTimer = levelTimerReference;
+
+
 	double elapsedTime; // Convert to seconds.
 };
 

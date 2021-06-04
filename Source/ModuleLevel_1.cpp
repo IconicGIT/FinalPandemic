@@ -230,9 +230,9 @@ bool ModuleLevel_1::Start()
 	//App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 555, 450, Collider::Type::POWER_UP, 0);
 	//App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 730, 450, Collider::Type::POWER_UP, 0);
 
-	App->obstacles->AddObstacle(App->obstacles->Box, 995, 1010, 8, Collider::Type::OBSTACLE, 0);
-	App->obstacles->AddObstacle(App->obstacles->Box, 555, 450, 7, Collider::Type::OBSTACLE, 0);
-	App->obstacles->AddObstacle(App->obstacles->Box, 730, 450, 13, Collider::Type::OBSTACLE, 0);
+	//App->obstacles->AddObstacle(App->obstacles->Box, 995, 1010, 8, Collider::Type::OBSTACLE, 0);
+	//App->obstacles->AddObstacle(App->obstacles->Box, 555, 450, 7, Collider::Type::OBSTACLE, 0);
+	//App->obstacles->AddObstacle(App->obstacles->Box, 730, 450, 13, Collider::Type::OBSTACLE, 0);
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
@@ -331,6 +331,13 @@ UpdateResult ModuleLevel_1::Update()
 		}
 		
 	}
+
+	//timer
+
+	if (levelTimer > 0) levelTimer--;
+
+	App->player->levelTime = (float)levelTimer/60;
+
 	return UpdateResult::UPDATE_CONTINUE;
 }
 

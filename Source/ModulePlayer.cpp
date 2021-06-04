@@ -12,6 +12,8 @@
 #include "ModuleFonts.h"
 #include "ModuleFadeToBlack.h"
 #include <string>
+#include "ModuleLevel_1.h"
+#include "ModuleLevel_2.h"
 
 #include "SDL/include/SDL_scancode.h"
 #include <math.h>
@@ -241,6 +243,8 @@ bool ModulePlayer::Start()
 	//Add textures -> remember unload
 	texture = App->textures->Load("Assets/Sprites/character_sprites.png");
 	exitTexture = App->textures->Load("Assets/Sprites/quit_icon.png");
+	lifeBarTexture = App->textures->Load("Assets/Sprites/player_life_bar.png");
+
 	currentAnimation = &downIdleAnim;
 
 	//Add audio -> remember unload
@@ -271,18 +275,22 @@ bool ModulePlayer::Start()
 
 	// TODO 4: Try loading "rtype_font3.png" that has two rows to test if all calculations are correct
 	char lookupTable1[] = { "0123456789abcdefghijklmnopqrstuvwxyz                       " };
-	char lookupTable2[] = { "0123456789:;<=>?*abcdefghijklmnopqrstuvwxyz@                    " };
+	char lookupTable2[] = { "0123456789:;<=>?*abcdefghijklmnopqrstuvwxyz@çççççççççç          " };
 	char lookupTable3[] = { "0123456789çççççççççççççççççççççççççççççççççççççççççççççççççççççççççççççç        " };
 	char lookupTable4[] = { "çççççççççççççççç0123456789abcdefghijklmnopqrstuvwxyççççççççççççççççççççç        " };
 	char lookupTable5[] = { "çççççççççççççççççççççççççççççççççççççççççççççççççççççççç0123456789çççççç        " };
+	char lookupTable6[] = { "çççççççççççççççççççççççççççççççççççççççççççç0123456789          " };
+	char lookupTable7[] = { "çççççççççççççççççççççççççççççççççççççççççççççççççççççççç0123456789çççççç        " };
 	bombScoreFont = App->fonts->Load("Assets/Fonts/bomb_score_font_small.png", lookupTable1, 2);
 	playerScoreFont = App->fonts->Load("Assets/Fonts/player_score_font.png", lookupTable2, 2);
-
-	bombCounterFont = App->fonts->Load("Assets/Fonts/game_over_fonts_big.png", lookupTable3, 5);
+	
 	endLevelFontGreen = App->fonts->Load("Assets/Fonts/game_over_fonts_big.png", lookupTable4, 5);
-	endLevelFontPink = App->fonts->Load("Assets/Fonts/game_over_fonts_big.png", lookupTable5, 5);
+	bigGreyFont = App->fonts->Load("Assets/Fonts/game_over_fonts_big.png", lookupTable5, 5);
+	endLevelFontPink = App->fonts->Load("Assets/Fonts/game_over_fonts_big.png", lookupTable3, 5);
 
-	//scoreFont = App->fonts->Load("Assets/Fonts/game_over_fonts big", lookupTable2, 5);
+	bombCounterFont = App->fonts->Load("Assets/Fonts/player_score_font.png", lookupTable6, 2);
+
+
 
 	
 	return ret;
@@ -665,7 +673,8 @@ UpdateResult ModulePlayer::Update()
 	switch (level) {
 
 	case 0:
-
+			
+			
 			if (keyRight == KEY_STATE::KEY_REPEAT) {
 
 				if (App->render->camera.y + App->render->camera.h > 500) {
@@ -755,6 +764,8 @@ UpdateResult ModulePlayer::Update()
 
 	case 1:
 
+		
+		
 		if (keyRight == KEY_STATE::KEY_REPEAT) {
 
 			
@@ -1032,7 +1043,7 @@ UpdateResult ModulePlayer::Update()
 	
 	LOG("Quit time: %i", exit_counter);
 
-
+	
 
 	if (destroyed)
 	{
@@ -1043,11 +1054,17 @@ UpdateResult ModulePlayer::Update()
 	
 	////////////////////////////////////////////
 	
+	if (App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN) score += 1000;
+	if (App->input->keys[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) playerLife--;
+
+	LOG("player live: %f", (float)playerLife / (float)playerMaximumLife * 22);
+
 	return ret;
 }
 
 UpdateResult ModulePlayer::PostUpdate()
 {
+
 	if (destroyed != true)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
@@ -1056,13 +1073,42 @@ UpdateResult ModulePlayer::PostUpdate()
 	}
 
 	// Draw UI (score) --------------------------------------
-	sprintf_s(txtPlayerScore, "%7d", score);
+
+	
+	sprintf_s(txtUpLeftScore, "%5d", score);
+	sprintf_s(txtBombCounter, "%2d", bombs);
+	sprintf_s(txtLevelTimer, "%3d", levelTime);
+
+	
 
 	// TODO 3: Blit the text of the score in at the bottom of the screen
 	//App->fonts->BlitText(29, 1, playerScoreFont, txtPlayerScore);
 
-	App->fonts->BlitText(0, 0, endLevelFontGreen, "player score ");
+	
 
+	
+
+	//icon and score left up
+	SDL_Rect playerIconRect = { 474,493,16,21 };
+	App->render->Blit(texture, 5, 0, &playerIconRect, 1, false);
+	App->fonts->BlitText(38, 0, playerScoreFont, txtUpLeftScore);
+
+	//player bombs and bomb counter
+	SDL_Rect playerBombIconRect = { 186,84,14,16 };
+	App->render->Blit(App->particles->texture, 6, 360, &playerBombIconRect, 1, false);
+	App->fonts->BlitText(6, 376, bombCounterFont, txtBombCounter);
+
+	//player lifebar
+	SDL_Rect lifeBarRectOutline = { 216,14,25,14 };
+	SDL_Rect lifeBarRectInside = { 240, 14, ((float) playerLife / (float)playerMaximumLife * 22),14 };
+	
+	App->render->Blit(lifeBarTexture, 21, 362, &lifeBarRectOutline, 1, false);
+	App->render->Blit(lifeBarTexture, 21, 362, &lifeBarRectInside, 1, false);
+	
+	//level time
+	App->fonts->BlitText(166, 40, bigGreyFont, txtLevelTimer);
+
+	//quitting icon in pressing ESC
 	SDL_Rect quitRect1 = { 0,0,58,16 };
 	SDL_Rect quitRect2 = { 0,0,64,16 };
 	SDL_Rect quitRect3 = { 0,0,70,16 };
