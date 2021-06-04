@@ -20,7 +20,7 @@ Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), spee
 
 Particle::~Particle()
 {
-	if (collider != nullptr)
+	if (collider != nullptr && !collider->pendingToDelete)
 		collider->pendingToDelete = true;
 }
 

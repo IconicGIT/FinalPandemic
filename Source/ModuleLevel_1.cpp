@@ -228,7 +228,7 @@ bool ModuleLevel_1::Start()
 	bulletWall[81] = App->collisions->AddCollider({ 563, 532, 100, 20 }, Collider::Type::BULLET_WALL);
 	bulletWall[82] = App->collisions->AddCollider({ 612, 452, 100, 20 }, Collider::Type::BULLET_WALL);
 
-	rockTrigger = App->collisions->AddCollider({ 475, 880, 600, 10 }, Collider::Type::BULLET_WALL);
+	rockTrigger = App->collisions->AddCollider({ 475, 880, 600, 10 }, Collider::Type::NONE);
 	rockPos = { 768 ,487 };
 	//App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
 

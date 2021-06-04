@@ -130,25 +130,25 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				break;
 
 			default:
-				// Always destroy particles that collide
-				if (particles[i] != nullptr && c2->type == Collider::WALL)
-				{
-					particles[i]->isAlive = false;
-					delete particles[i];
-					particles[i] = nullptr;
-					break;
-				}
-
-				if (particles[i] != nullptr && c2->type == Collider::ENEMY)
-				{
-					particles[i]->isAlive = false;
-					delete particles[i];
-					particles[i] = nullptr;
-					//Cause damage to enemy;
-					//
-					//
-					break;
-				}
+				//// Always destroy particles that collide
+				//if (particles[i] != nullptr && c2->type == Collider::WALL)
+				//{
+				//	particles[i]->isAlive = false;
+				//	delete particles[i];
+				//	particles[i] = nullptr;
+				//	break;
+				//}
+				//
+				//if (particles[i] != nullptr && c2->type == Collider::ENEMY)
+				//{
+				//	particles[i]->isAlive = false;
+				//	delete particles[i];
+				//	particles[i] = nullptr;
+				//	//Cause damage to enemy;
+				//	//
+				//	//
+				//	break;
+				//}
 				break;
 
 			}
