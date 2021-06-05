@@ -48,7 +48,9 @@ public:
 	int counterMusic;
 	int repetition;
 	bool afterStart = false;
+	double elapsedTime; // Convert to seconds.
 
+	//timer
 	int levelTimerReference = 300 * 60;
 	int levelTimer = levelTimerReference;
 
@@ -60,7 +62,9 @@ public:
 	int dustTimerReference = 3;
 	int dustTimer = dustTimerReference;
 
-	double elapsedTime; // Convert to seconds.
+	//houses
+	Collider* houseHitbox;
+	int housesLife;
 
 	int RandomRange(int value01, int values02);
 };

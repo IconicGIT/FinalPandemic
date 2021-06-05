@@ -57,7 +57,7 @@ bool ModuleParticles::Start()
 	{
 		playerBullet1[i].speed.x = 6;
 		playerBullet1[i].speed.y = 6;
-		playerBullet1[i].lifetime = 60;
+		playerBullet1[i].lifetime = 16;
 		playerBullet1[i].anim.speed = 0;
 		playerBullet1[i].anim.loop = false;
 	}
@@ -101,13 +101,15 @@ bool ModuleParticles::CleanUp()
 
 void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 {
-	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	int max = MAX_ACTIVE_PARTICLES;
+	bool loopDone = false;
+ 	for (uint i = deleteParticleIndex; i < max; ++i)
 	{
-
+		
+		bool deleted = false;
 		if (particles[i] != nullptr && particles[i]->collider != nullptr)
 		{
-			LOG("collider c1 type: %i", c1->type);
-			LOG("collider c2 type: %i", c2->type);
+ 			LOG("particle index: %i", deleteParticleIndex);
 			switch (particles[i]->collider->type) {
 			case Collider::PLAYER_SHOT:
 				// Always destroy particles that collide
@@ -116,6 +118,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 					particles[i]->isAlive = false;
 					delete particles[i];
 					particles[i] = nullptr;
+					deleted = true;
 					break;
 				}
 
@@ -124,15 +127,13 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 					particles[i]->isAlive = false;
 					delete particles[i];
 					particles[i] = nullptr;
+					deleted = true;
 					//Cause damage to enemy;
 					//
 					//
 					break;
 				}
 				break;
-
-
-
 
 			default:
 				//// Always destroy particles that collide
@@ -158,6 +159,20 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 
 			}
 
+			if (deleteParticleIndex + 1 == MAX_ACTIVE_PARTICLES) {
+				deleteParticleIndex = 0;
+			}
+			else {
+				deleteParticleIndex++;
+			}
+			
+
+			if (i == max - 1 && !loopDone) {
+				i = 0;
+				max = deleteParticleIndex;
+				loopDone = true;
+			}
+			if (deleted) break;
 		}
 	}
 }
@@ -223,4 +238,3 @@ void ModuleParticles::AddParticle(const Particle& particle, int id, int x, int y
 		}
 	}
 }
-

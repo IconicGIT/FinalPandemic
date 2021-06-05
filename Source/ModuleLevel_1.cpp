@@ -18,6 +18,7 @@
 #include "ModuleObstacle.h"
 #include "p2Point.h"
 #include "ModuleParticles.h"
+#include "Particle.h"
 
 //temporal
 #include "SDL_mixer/include/SDL_mixer.h"
@@ -247,9 +248,9 @@ bool ModuleLevel_1::Start()
 
 
 	// Enemies ---
-	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
-	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 540, 1360);
-	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 530, 1360);
+	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
+	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 540, 1360);
+	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 530, 1360);
 	Mix_FadeOutMusic((int)(1000.0f));
 
 
@@ -369,24 +370,27 @@ UpdateResult ModuleLevel_1::Update()
 	//rock animation
 
 	if (rockAnimActivate) {
-
+	
 		if (rockPos.x > 700.0f) rockPos.x -= 0.7f;
 		if (rockPos.y < 630.0f) rockPos.y += 1.5f;
-
+	
 		if (rockPos.x > 705.0f && rockPos.y < 630.0f) 
 		{
 			if (dustTimer <= 0) {
 				dustTimer = dustTimerReference;
 				for (int i = 0; i < RandomRange(1, 3); i++)
 				{
+					
 					App->particles->AddParticle(
-
+	
 						App->particles->dust_particle,
 						0,
 						RandomRange(rockPos.x, rockPos.x + brock.w - 25),
 						RandomRange(rockPos.y + 10, rockPos.y + brock.h - 25),
 						0,
-						Collider::NONE,RandomRange(0,4));
+						Collider::NONE,
+						RandomRange(0,4));
+
 				}
 			}
 			else 
@@ -394,7 +398,7 @@ UpdateResult ModuleLevel_1::Update()
 				dustTimer--;
 			}
 		}
-
+	
 	}
 	return UpdateResult::UPDATE_CONTINUE;
 }

@@ -71,6 +71,8 @@ public:
 
 
 	Particle EnemyBullet;
+
+	int deleteParticleIndex = 0;
 };
 
 #endif // !__MODULEPARTICLES_H__
