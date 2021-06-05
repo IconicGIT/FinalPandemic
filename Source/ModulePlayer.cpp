@@ -250,7 +250,7 @@ bool ModulePlayer::Start()
 	//Add audio -> remember unload
 	laserFx = App->audio->LoadFx("Assets/Fx/gun_shot.wav");
 	bombFx = App->audio->LoadFx("Assets/Fx/explosion_02.wav");
-	
+	deathFx = App->audio->LoadFx("Assets/Fx/player_death.wav");
 
 
 
@@ -900,10 +900,11 @@ UpdateResult ModulePlayer::Update()
 		//App->particles->AddParticle(App->particles->playerBullet1[lastDirection - 1], 0, position.x, position.y, lastDirection, Collider::Type::PLAYER_SHOT);
 		//App->audio->PlayFx(laserFx);
 	}
-	if (App->input->keys[SDL_SCANCODE_J] == KEY_STATE::KEY_DOWN)
+	if (playerLife <= 0)
 	{
+		App->audio->PlayFx(deathFx);
 		playerLifesLeft--;
-		
+		playerLife = playerMaximumLife;
 	}
 	
 
