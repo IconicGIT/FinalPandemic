@@ -902,7 +902,7 @@ UpdateResult ModulePlayer::Update()
 	}
 	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN)
 	{
-		if (playerLife < 9)
+		if (App->fade->credits < 9)
 		{
 			App->fade->credits++;
 		}
