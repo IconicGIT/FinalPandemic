@@ -1,5 +1,5 @@
-#ifndef __ENEMY_MECH_H__
-#define __ENEMY_MECH_H__
+#ifndef __ENEMY_CAR_H__
+#define __ENEMY_CAR_H__
 
 #include "Enemy.h"
 #include "Path.h"

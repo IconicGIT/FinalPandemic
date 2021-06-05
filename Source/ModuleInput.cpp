@@ -48,16 +48,19 @@ UpdateResult ModuleInput::PreUpdate()
 	SDL_Event event;
 	while (SDL_PollEvent(&event) != 0)
 	{
+		
 		switch (event.type)
 		{
 			case(SDL_CONTROLLERDEVICEADDED):
 			{
 				HandleDeviceConnection(event.cdevice.which);
+				//LOG("controller detected");
 				break;
 			}
 			case(SDL_CONTROLLERDEVICEREMOVED):
 			{
 				HandleDeviceRemoval(event.cdevice.which);
+				//LOG("controller removed");
 				break;
 			}
 			case(SDL_QUIT):
@@ -65,6 +68,9 @@ UpdateResult ModuleInput::PreUpdate()
 				return UpdateResult::UPDATE_STOP;
 				break;
 			}
+			default:
+				//LOG("controller not detected");
+				break;
 		}
 	}
 

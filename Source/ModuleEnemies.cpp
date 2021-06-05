@@ -7,7 +7,7 @@
 #include "ModuleAudio.h"
 
 #include "Enemy.h"
-#include "Enemy_RedBird.h"
+#include "Enemy_Car.h"
 #include "Enemy_Soldier.h"
 #include "Enemy_Mech.h"
 
@@ -28,6 +28,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("Assets/Sprites/enemy_sprites.png");
+	tCar = App->textures->Load("Assets/Sprites/enemy_car.png");
 	enemyDestroyedFx = App->audio->LoadFx("");
 
 	return true;
@@ -153,17 +154,20 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 		{
 			switch (info.type)
 			{
-				case ENEMY_TYPE::REDBIRD:
-					enemies[i] = new Enemy_RedBird(info.x, info.y);
+				case ENEMY_TYPE::CAR:
+					enemies[i] = new Enemy_Car(info.x, info.y);
+					enemies[i]->texture = tCar;
 					break;
 				case ENEMY_TYPE::SOLDIER:
 					enemies[i] = new Enemy_Soldier(info.x, info.y);
+					enemies[i]->texture = texture;
 					break;
 				case ENEMY_TYPE::MECH:
 					enemies[i] = new Enemy_Mech(info.x, info.y);
+					enemies[i]->texture = texture;
 					break;
 			}
-			enemies[i]->texture = texture;
+			
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}
@@ -176,7 +180,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		//if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		//{
-		//	enemies[i]->OnCollision(c2); //Notify the enemy of a collision
+			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 		//
 		//	delete enemies[i];
 		//	enemies[i] = nullptr;

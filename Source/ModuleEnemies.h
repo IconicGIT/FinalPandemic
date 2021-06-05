@@ -14,7 +14,7 @@
 enum class ENEMY_TYPE
 {
 	NO_TYPE,
-	REDBIRD,
+	CAR,
 	SOLDIER,
 	MECH,
 };
@@ -79,9 +79,10 @@ private:
 
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
-
+	SDL_Texture* tCar = nullptr;
 	// The audio fx for destroying an enemy
 	int enemyDestroyedFx = 0;
+	int direction;
 };
 
 #endif // __MODULE_ENEMIES_H__

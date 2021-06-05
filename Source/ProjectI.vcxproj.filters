@@ -55,7 +55,7 @@
     <ClCompile Include="Enemy_Mech.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_RedBird.cpp">
+    <ClCompile Include="Enemy_Car.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="ModuleEnemies.cpp">
@@ -162,7 +162,7 @@
     <ClInclude Include="Enemy_Mech.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_RedBird.h">
+    <ClInclude Include="Enemy_Car.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="ModuleEnemies.h">
