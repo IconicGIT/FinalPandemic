@@ -32,6 +32,7 @@ public:
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bTexture = nullptr;
+	uint creditFX = 0;
 };
 
 #endif	// __THIRDSCENE_H__

@@ -13,11 +13,12 @@ public:
 	
 	// Destructor
 	~ModuleFadeToBlack();
-
+	
+	int credits;
 	// Called when the module is activated
 	// Enables the blending mode for transparency
 	bool Start() override;
-
+	
 	// Called at the middle of the application loop
 	// Updates the fade logic
 	UpdateResult Update() override;

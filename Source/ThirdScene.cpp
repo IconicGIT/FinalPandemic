@@ -23,6 +23,8 @@ bool ThirdScene::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
+	
+	creditFX = App->audio->LoadFx("Assets/Fx/credit.wav");
 
 	bTexture = App->textures->Load("Assets/Sprites/background_scene3.png");
 	
@@ -35,9 +37,20 @@ bool ThirdScene::Start()
 
 UpdateResult ThirdScene::Update()
 {
-	if (App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)
+	
+	if ((App->input->keys[SDL_SCANCODE_SPACE] == KEY_STATE::KEY_DOWN)&&(App->fade->credits>0))
 	{
 		App->fade->FadeToBlack(this, (Module*)App->scene, 90);
+	}
+	if (App->input->keys[SDL_SCANCODE_LSHIFT] == KEY_STATE::KEY_DOWN)
+	{
+		if (App->fade->credits < 10)
+		{
+			App->fade->credits++;
+			App->audio->PlayFx(creditFX);
+
+		}
+		
 	}
 
 	return UpdateResult::UPDATE_CONTINUE;
@@ -53,6 +66,8 @@ UpdateResult ThirdScene::PostUpdate()
 	bcoin.h = 384;
 
 	App->render->Blit(bTexture, 0, 0, &bcoin);
+	
+	
 
 	return UpdateResult::UPDATE_CONTINUE;
 }

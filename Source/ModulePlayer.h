@@ -6,7 +6,7 @@
 #include "Animation.h"
 #include "p2Point.h"
 #include "ModuleInput.h"
-
+#include "ModuleFadeToBlack.h"
 
 #define PLAYER_LIFES_LEFT 3
 
@@ -138,7 +138,7 @@ public:
 	int playerHeight = 16;
 	int playerHeightOffset = 30;
 	int PlayerWidthOffset = 2;
-	unsigned int playerLifesLeft = PLAYER_LIFES_LEFT;
+	
 
 	// A countdown to when the player gets destroyed. After a while, the game exits
 	uint exitCountdown = 120;
