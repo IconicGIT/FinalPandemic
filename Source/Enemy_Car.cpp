@@ -38,8 +38,8 @@ Enemy_Car::Enemy_Car(int x, int y) : Enemy(x, y)
 	SDL_Rect colboxRect = { 206,2326,73,75 };
 	SDL_Rect hitboxRect = { 209,2336,67,43 };
 
-	colbox = App->collisions->AddCollider(colboxRect, Collider::WALL);
-	hitbox = App->collisions->AddCollider(colboxRect, Collider::ENEMY);
+	//colbox = App->collisions->AddCollider(colboxRect, Collider::WALL);
+	//hitbox = App->collisions->AddCollider(colboxRect, Collider::ENEMY);
 	
 }
 
@@ -59,7 +59,4 @@ void Enemy_Car::Update()
 	Enemy::Update();
 }
 
-void Enemy::OnCollision(Collider* collider)
-{
-	
-}
+

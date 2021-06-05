@@ -1,5 +1,5 @@
-#ifndef __ENEMY_REDBIRD_H__
-#define __ENEMY_REDBIRD_H__
+#ifndef __ENEMY_CAR_H__
+#define __ENEMY_CAR_H__
 
 #include "Enemy.h"
 
@@ -22,6 +22,10 @@ private:
 	//Animation flyAnim;
 
 	Animation carDirectionRect[16];
+
+	Collider* colbox;
+	Collider* hitbox;
+	int carLife = 16;
 
 	int direction = 0;
 
