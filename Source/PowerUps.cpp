@@ -30,6 +30,8 @@ bool PowerUp::Update()
 	bool ret = true;
 	frameCount++;
 
+
+
 	if (!isAlive && frameCount >= 0)
 		isAlive = true;
 
