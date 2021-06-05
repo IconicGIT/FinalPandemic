@@ -252,10 +252,11 @@ bool ModulePlayer::Start()
 	bombFx = App->audio->LoadFx("Assets/Fx/explosion_02.wav");
 	deathFx = App->audio->LoadFx("Assets/Fx/player_death.wav");
 
+	position.x = 1088;
+	position.y = 242;
 
-
-	position.x = 550;
-	position.y = 1400;
+	//position.x = 550;
+	//position.y = 1400;
 
 	lastDirection = 5;
 

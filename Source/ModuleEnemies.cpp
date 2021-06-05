@@ -10,6 +10,7 @@
 #include "Enemy_Car.h"
 #include "Enemy_Soldier.h"
 #include "Enemy_Mech.h"
+#include "Boss1.h"
 
 #define SPAWN_MARGIN 300
 
@@ -29,6 +30,7 @@ bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("Assets/Sprites/enemy_sprites.png");
 	tCar = App->textures->Load("Assets/Sprites/enemy_car.png");
+	tBoss_1 = App->textures->Load("Assets/Sprites/harrier_jet.png");
 	enemyDestroyedFx = App->audio->LoadFx("");
 
 	return true;
@@ -162,6 +164,10 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					enemies[i] = new Enemy_Soldier(info.x, info.y);
 					enemies[i]->texture = texture;
 					break;
+				case ENEMY_TYPE::BOSS_1:
+					enemies[i] = new Enemy_Boss01(info.x, info.y);
+					enemies[i]->texture = tBoss_1;
+					break;
 				case ENEMY_TYPE::MECH:
 					enemies[i] = new Enemy_Mech(info.x, info.y);
 					enemies[i]->texture = texture;
@@ -180,7 +186,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 	{
 		//if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		//{
-			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
+		// enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 		//
 		//	delete enemies[i];
 		//	enemies[i] = nullptr;

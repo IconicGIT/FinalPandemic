@@ -281,6 +281,12 @@ UpdateResult ModuleLevel_1::Update()
 {
 	//App->render->camera.x += 3;
 
+	// ///////////////////////////////////////////////////////
+	if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
+	{
+		LOG("spawning boss");
+		App->enemies->AddEnemy(ENEMY_TYPE::BOSS_1, 1060, -150);
+	}
 
 	//if (App->player->position.x < (App->render->camera.x + CAMERA_X_MARGIN)) {
 	//
@@ -400,6 +406,12 @@ UpdateResult ModuleLevel_1::Update()
 		}
 	
 	}
+
+	
+	
+
+
+
 	return UpdateResult::UPDATE_CONTINUE;
 }
 

@@ -1,5 +1,5 @@
-#ifndef __ENEMY_BOSS_H__
-#define __ENEMY_BOSS_H__
+#ifndef __ENEMY_BOSS1_H__
+#define __ENEMY_BOSS1_H__
 
 #include "Enemy.h"
 #include "Path.h"
@@ -15,15 +15,8 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
-	float GetDistanceX(float enemyPosX, float playerPosX);
-
-	float GetDistanceY(float enemyPosY, float playerPosY);
-
-	float RealDistancePlayerEnemy(float x, float y);
-
-	float ReduceMovement(float diference, float y);
-
-	int RandomRange(int value01, int values02);
+	int iRandomRange(int value01, int values02);
+	float fRandomRange(float value01, float values02);
 
 	fPoint playerPosition;
 
@@ -37,22 +30,25 @@ public:
 
 	float realDistance;
 
+	int pushTimerReference = 1;
 	int pushTimer = 0;
-	int pushTimerReference = 400;
+	
 
-	float soldierSpeed;
-	float distTotal;
+	int shootTimerReference;
+	int shootTimer;
 
-	int moves = 0;
+	iPoint pivot;
+	
+	int shootWhileMoving = false;
 
-	fPoint soldierDirection;
-	iPoint targetPosition;
+
 
 	enum MovementStage
 	{
-		ADVANCE = 1,
-		BACKUP = 2,
-		STAY = 0
+		MOVE = 0,
+		SHOOT = 1,
+		ENTRANCE = 2
+
 	};
 
 	int movement;
@@ -64,44 +60,11 @@ private:
 	// And an animation for each step
 	Path path;
 	fPoint relativePosition = fPoint(0.0f, 0.0f);
-	fPoint positionA = fPoint(0.0f, 0.0f);
-	fPoint positionB = fPoint(0.0f, 0.0f);
-	fPoint positionC = fPoint(0.0f, 0.0f);
+	Animation BossIdleAnim;
+	Animation BossShootingAnim;
 
-	// This enemy has one sprite and one frame
-	// We are keeping it an animation for consistency with other enemies
 
-	// Shoot / Idle Animations 
-	Animation upIdleAnim;
-	Animation upRightIdleAnim;
-	Animation rightIdleAnim;
-	Animation downRightIdleAnim;
-	Animation downIdleAnim;
-	Animation downLeftIdleAnim;
-	Animation upLeftIdleAnim;
-	Animation leftIdleAnim;
-
-	// Move Animations
-	Animation upAnim;
-	Animation downAnim;
-	Animation leftAnim;
-	Animation rightAnim;
-	Animation downRightAnim;
-	Animation upRightAnim;
-	Animation downLeftAnim;
-	Animation upLeftAnim;
-
-	// Death Animation
-	Animation upRightDeath;
-	Animation upLeftDeath;
-	Animation downRightDeath;
-	Animation downLeftDeath;
-
-	// Grenade Animation
-
-	Animation grenadeAnim;
-
-	uint laserFx = 0;
+	
 	uint explosionFx = 0;
 };
 

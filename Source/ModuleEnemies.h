@@ -17,6 +17,7 @@ enum class ENEMY_TYPE
 	CAR,
 	SOLDIER,
 	MECH,
+	BOSS_1
 };
 //cscscscscsscs
 struct EnemySpawnpoint
@@ -80,6 +81,7 @@ private:
 	// The enemies sprite sheet
 	SDL_Texture* texture = nullptr;
 	SDL_Texture* tCar = nullptr;
+	SDL_Texture* tBoss_1;
 	// The audio fx for destroying an enemy
 	int enemyDestroyedFx = 0;
 	int direction;

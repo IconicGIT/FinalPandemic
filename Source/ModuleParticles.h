@@ -69,7 +69,7 @@ public:
 
 	Particle dust_particle;
 
-
+	Particle Boss1Bullet;
 	Particle EnemyBullet;
 
 	int deleteParticleIndex = 0;

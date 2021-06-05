@@ -78,7 +78,13 @@ bool ModuleParticles::Start()
 	EnemyBullet.lifetime = 180;
 	EnemyBullet.anim.speed = 0.2f;
 	
-	
+	Boss1Bullet.anim.PushBack({ 126,275,1,10 });
+	Boss1Bullet.lifetime = 16;
+	Boss1Bullet.anim.speed = 1;
+	Boss1Bullet.anim.loop = false;
+	EnemyBullet.speed.y = 5;
+
+
 	return true;
 }
 
@@ -109,7 +115,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		bool deleted = false;
 		if (particles[i] != nullptr && particles[i]->collider != nullptr)
 		{
- 			LOG("particle index: %i", deleteParticleIndex);
+ 			//LOG("particle index: %i", deleteParticleIndex);
 			switch (particles[i]->collider->type) {
 			case Collider::PLAYER_SHOT:
 				// Always destroy particles that collide
