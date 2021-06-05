@@ -78,11 +78,19 @@ bool ModuleParticles::Start()
 	EnemyBullet.lifetime = 180;
 	EnemyBullet.anim.speed = 0.2f;
 	
-	Boss1Bullet.anim.PushBack({ 126,275,1,10 });
-	Boss1Bullet.lifetime = 16;
-	Boss1Bullet.anim.speed = 1;
-	Boss1Bullet.anim.loop = false;
-	EnemyBullet.speed.y = 5;
+	Boss1BulletR.anim.PushBack({ 126,275,1,10 });
+	Boss1BulletR.lifetime = 24;
+	Boss1BulletR.anim.speed = 1;
+	Boss1BulletR.anim.loop = false;
+	Boss1BulletR.speed.y = 5;
+	Boss1BulletR.speed.x = -1;
+
+	Boss1BulletL.anim.PushBack({ 126,275,1,10 });
+	Boss1BulletL.lifetime = 24;
+	Boss1BulletL.anim.speed = 1;
+	Boss1BulletL.anim.loop = false;
+	Boss1BulletL.speed.y = 5;
+	Boss1BulletL.speed.x = 1;
 
 
 	return true;

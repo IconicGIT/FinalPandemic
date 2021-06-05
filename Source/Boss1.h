@@ -17,15 +17,11 @@ public:
 
 	int iRandomRange(int value01, int values02);
 	float fRandomRange(float value01, float values02);
+	
 
 	fPoint playerPosition;
 
-	float distanceX;
-	float distanceY;
-	float distanceXY;
 
-	float resultX;
-	float resultY;
 	int   counter;
 
 	float realDistance;
@@ -41,7 +37,8 @@ public:
 	
 	int shootWhileMoving = false;
 
-
+	float bobbingAmplitude;
+	float a;
 
 	enum MovementStage
 	{

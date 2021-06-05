@@ -47,13 +47,13 @@ Application::Application()
 	modules[12] = particles = new ModuleParticles(true);
 	modules[13] = powerUps = new ModulePowerUps(true);
 	modules[14] = enemies = new ModuleEnemies(false);							//Enemies start disabled
+	modules[15] = obstacles = new ModuleObstacle(true);
 
-
-	modules[15] = collisions = new ModuleCollisions(true);
-	modules[16] = fade = new ModuleFadeToBlack(true);
-	modules[17] = fonts = new ModuleFonts(true);
-	modules[18] = render = new ModuleRender(true);
-	modules[19] = obstacles = new ModuleObstacle(true);
+	modules[16] = collisions = new ModuleCollisions(true);
+	modules[17] = fade = new ModuleFadeToBlack(true);
+	modules[18] = fonts = new ModuleFonts(true);
+	modules[19] = render = new ModuleRender(true);
+	
 }
 
 Application::~Application()

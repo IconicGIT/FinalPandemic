@@ -285,7 +285,7 @@ UpdateResult ModuleLevel_1::Update()
 	if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
 	{
 		LOG("spawning boss");
-		App->enemies->AddEnemy(ENEMY_TYPE::BOSS_1, 1060, -150);
+		App->enemies->AddEnemy(ENEMY_TYPE::BOSS_1, 1060, -190);
 	}
 
 	//if (App->player->position.x < (App->render->camera.x + CAMERA_X_MARGIN)) {
