@@ -6,7 +6,7 @@ Final Pandemic is a group of four students coursing the first year Bachelor's de
 
 GitHub project link: https://github.com/IconicGIT/FinalPandemic
 
-<img src="https://github.com/IconicGIT/FinalPandemic/blob/cb693d4b3a26262534e4ad21a4b44a8c08d24ca4/Images/Logo.png" width=400 align=middle>
+<img src="https://github.com/IconicGIT/FinalPandemic/blob/cb693d4b3a26262534e4ad21a4b44a8c08d24ca4/Images/Logo.png" width=200 align=middle>
 
 <p>&nbsp;</p>
 
@@ -24,11 +24,10 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
 - Management: **Brandon Arandia** [[ _IconicGIT_ ](https://github.com/IconicGIT)]:
   - Main Responsible of Final Pandemic's Mercs Team Management.
 
-~~~~~~~~~
-+ Even if the members are in charge of their labors, each team member will perform other member labors as a form of develop efficiency and mastery in different areas and abilities.
-~~~~~~~~~
+*/ Even if the members are in charge of their labors, each team member will perform other member labors as a form of develop efficiency and mastery in different areas and abilities.
 
-<img src="https://github.com/IconicGIT/FinalPandemic/blob/a01aeceb6546c90fb7fe63bdacd08d361794d725/Images/team_photo.JPG" width=400 align=middle>
+
+<img src="https://github.com/IconicGIT/FinalPandemic/blob/a01aeceb6546c90fb7fe63bdacd08d361794d725/Images/team_photo.JPG" width=500 align=middle>
 
 <p>&nbsp;</p>
 
