@@ -258,12 +258,13 @@ bool ModulePlayer::Start()
 	laserFx = App->audio->LoadFx("Assets/Fx/gun_shot.wav");
 	bombFx = App->audio->LoadFx("Assets/Fx/explosion_02.wav");
 	deathFx = App->audio->LoadFx("Assets/Fx/player_death.wav");
+	rockFallFx = App->audio->LoadFx("Assets/Fx/rock_falling.wav");
 
-	position.x = 1088;
-	position.y = 242;
+	//position.x = 1088;
+	//position.y = 242;
 
-	//position.x = 550;
-	//position.y = 1400;
+	position.x = 550;
+	position.y = 1400;
 
 	lastDirection = 5;
 
@@ -1218,6 +1219,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c2 == App->scene->rockTrigger) {
 		App->scene->rockAnimActivate = true;
+		App->audio->PlayFx(rockFallFx);
 		App->scene->rockTrigger->pendingToDelete = true;
 	}
 	

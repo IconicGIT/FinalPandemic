@@ -148,6 +148,7 @@ public:
 	uint damageFx = 0;
 	uint deathFx = 0;
 	uint bombFx = 0;
+	uint rockFallFx = 0;
 	
 
 
