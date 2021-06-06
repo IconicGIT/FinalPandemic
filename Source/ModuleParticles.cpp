@@ -114,6 +114,14 @@ bool ModuleParticles::Start()
 	Explosion2Big.anim.loop = false;
 	Explosion2Big.anim.speed = 0.2f;
 
+	BulletEnd.anim.PushBack({ 0,274,12,12 });
+	BulletEnd.anim.PushBack({ 12,274,12,12 });
+	BulletEnd.anim.PushBack({ 24,274,12,12 });
+	BulletEnd.anim.PushBack({ 35,274,12,12 });
+	BulletEnd.anim.PushBack({ 48,274,12,12 });
+	BulletEnd.anim.loop = false;
+	BulletEnd.anim.speed = 0.4f;
+
 	return true;
 }
 
@@ -144,21 +152,49 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 		bool deleted = false;
 		if (particles[i] != nullptr && particles[i]->collider != nullptr)
 		{
- 			//LOG("particle index: %i", deleteParticleIndex);
+ 			////LOG("particle index: %i", deleteParticleIndex);
 			switch (particles[i]->collider->type) {
 			case Collider::PLAYER_SHOT:
+			
 				// Always destroy particles that collide
  				if (particles[i] != nullptr && c2->type == Collider::BULLET_WALL)
 				{
+					particles[i]->collider->pendingToDelete = true;
 					particles[i]->isAlive = false;
 					delete particles[i];
 					particles[i] = nullptr;
 					deleted = true;
-					break;
+					
 				}
-
+			
 				if (particles[i] != nullptr && c2->type == Collider::ENEMY)
 				{
+					particles[i]->collider->pendingToDelete = true;
+					App->particles->AddParticle(App->particles->BulletEnd, 0, particles[i]->position.x - 3, particles[i]->position.y - 3, 0, Collider::NONE);
+					particles[i]->isAlive = false;
+					delete particles[i];
+					particles[i] = nullptr;
+					deleted = true;
+					
+					
+				}
+				break;
+			
+			case Collider::ENEMY_SHOT:
+				// Always destroy particles that collide
+				if (particles[i] != nullptr && c2->type == Collider::BULLET_WALL)
+				{
+					particles[i]->collider->pendingToDelete = true;
+					particles[i]->isAlive = false;
+					delete particles[i];
+					particles[i] = nullptr;
+					deleted = true;
+					
+				}
+			
+				if (particles[i] != nullptr && c2->type == Collider::PLAYER_HITBOX)
+				{
+					particles[i]->collider->pendingToDelete = true;
 					particles[i]->isAlive = false;
 					delete particles[i];
 					particles[i] = nullptr;
@@ -166,9 +202,10 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 					//Cause damage to enemy;
 					//
 					//
-					break;
+					
 				}
 				break;
+			
 
 			default:
 				//// Always destroy particles that collide
@@ -230,7 +267,9 @@ UpdateResult ModuleParticles::Update()
 
 			delete particle;
 			particles[i] = nullptr;
+			LOG("fin upd");
 		}
+		
 	}
 
 	return UpdateResult::UPDATE_CONTINUE;
@@ -259,6 +298,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int id, int x, int y
 		//Finding an empty slot for a new particle
 		if (particles[i] == nullptr)
 		{
+			LOG("particle created");
 			Particle* p = new Particle(particle);
 
 			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
@@ -268,9 +308,13 @@ void ModuleParticles::AddParticle(const Particle& particle, int id, int x, int y
 			p->id = id;
 
 			//Adding the particle's collider
-			if (colliderType != Collider::Type::NONE)
+ 			if (colliderType != Collider::Type::NONE) 
+			{
+				
 				p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
-
+				if (colliderType == Collider::ENEMY_SHOT) LOG("enemy bullet fired");
+				if (colliderType == Collider::PLAYER_SHOT) LOG("player bullet fired");
+			}
 			particles[i] = p;
 			break;
 		}

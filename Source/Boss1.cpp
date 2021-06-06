@@ -48,7 +48,7 @@ Enemy_Boss01::Enemy_Boss01(int x, int y) : Enemy(x, y)
 	srand(time(0));
 	bobbingAmplitude = 0.2f;
 
-	lifePoints = 100;
+	lifePoints = 300;
 
 	particleTimerReference = 4;
 	particleTimer = particleTimerReference;
@@ -196,7 +196,7 @@ void Enemy_Boss01::Update()
 
 	if (currentAnim == &BossShootingAnim) {
 
-		if (movement == MovementStage::SHOOT)
+		if (movement == MovementStage::SHOOT || movement == MovementStage::MOVE)
 		{
 			if (shootTimer <= 0) {
 
@@ -208,27 +208,27 @@ void Enemy_Boss01::Update()
 				{
 
 				case 0:
-					App->particles->AddParticle(App->particles->Boss1BulletL, 0, position.x + 19, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletL, 0, position.x + 21, position.y + 107, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletL, 0, position.x + 23, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletL, 0, position.x + 24, position.y + 107, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 19, position.y + 106,0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 21, position.y + 107, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 23, position.y + 106, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 24, position.y + 107, 0, Collider::ENEMY_SHOT);
 
-					App->particles->AddParticle(App->particles->Boss1BulletR, 0, position.x + 99, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletR, 0, position.x + 101, position.y + 107, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletR, 0, position.x + 103, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletR, 0, position.x + 105, position.y + 107, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 99, position.y + 106, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 101, position.y + 107, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 103, position.y + 106, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 105, position.y + 107, 0, Collider::ENEMY_SHOT);
 
 					break;
 				case 1:
-					App->particles->AddParticle(App->particles->Boss1BulletL, 0, position.x + 19, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletL, 0, position.x + 22, position.y + 107, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletL, 0, position.x + 23, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletL, 0, position.x + 25, position.y + 107, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 19, position.y + 106, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 22, position.y + 107, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 23, position.y + 106, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 25, position.y + 107, 0, Collider::ENEMY_SHOT);
 
-					App->particles->AddParticle(App->particles->Boss1BulletR, 0, position.x + 99, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletR, 0, position.x + 102, position.y + 107, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletR, 0, position.x + 103, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(App->particles->Boss1BulletR, 0, position.x + 105, position.y + 107, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 99, position.y + 106, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 102, position.y + 107, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 103, position.y + 106, 0, Collider::ENEMY_SHOT);
+					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 105, position.y + 107, 0, Collider::ENEMY_SHOT);
 
 					break;
 
@@ -236,62 +236,6 @@ void Enemy_Boss01::Update()
 					break;
 				}
 				shootTimer = shootTimerReference;
-			}
-			else {
-				shootTimer--;
-			}
-
-		}
-		else if (movement == MovementStage::MOVE)
-		{
-
-			int bulletLifeShortener = 2;
-			Particle bullets[2];
-			bullets[0] = App->particles->Boss1BulletL;
-			bullets[1] = App->particles->Boss1BulletR;
-
-			if (shootTimer <= 0) {
-
-				int bulletType = iRandomRange(0, 1);
-
-				bullets[0].lifetime -= bulletLifeShortener;
-				bullets[1].lifetime -= bulletLifeShortener;
-
-
-				switch (bulletType)
-				{
-
-				case 0:
-
-					App->particles->AddParticle(bullets[0], 0, position.x + 19, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[0], 0, position.x + 21, position.y + 107, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[0], 0, position.x + 23, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[0], 0, position.x + 24, position.y + 107, Collider::ENEMY_SHOT);
-
-					App->particles->AddParticle(bullets[1], 0, position.x + 99, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[1], 0, position.x + 101, position.y + 107, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[1], 0, position.x + 103, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[1], 0, position.x + 105, position.y + 107, Collider::ENEMY_SHOT);
-
-					break;
-				case 1:
-					App->particles->AddParticle(bullets[0], 0, position.x + 19, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[0], 0, position.x + 22, position.y + 107, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[0], 0, position.x + 23, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[0], 0, position.x + 25, position.y + 107, Collider::ENEMY_SHOT);
-
-					App->particles->AddParticle(bullets[1], 0, position.x + 99, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[1], 0, position.x + 102, position.y + 107, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[1], 0, position.x + 103, position.y + 106, Collider::ENEMY_SHOT);
-					App->particles->AddParticle(bullets[1], 0, position.x + 105, position.y + 107, Collider::ENEMY_SHOT);
-
-					break;
-
-				default:
-					break;
-				}
-				shootTimer = shootTimerReference;
-				bulletLifeShortener += 2;
 			}
 			else {
 				shootTimer--;
@@ -333,21 +277,19 @@ void Enemy_Boss01::Draw()
 	if (lifePoints > 0) {
 		App->render->Blit(texture, 184, 26, &lifeBar, 0, true);
 	}
-	if (lifePoints >= 20) {
+	if (lifePoints >= 20 * 3) {
 		App->render->Blit(texture, 184 - 24, 26, &lifeBar, 0, true);
 	}
-	if (lifePoints >= 40) {
+	if (lifePoints >= 40 * 3) {
 		App->render->Blit(texture, 184 - 24 * 2, 26, &lifeBar, 0, true);
 	}
-	if (lifePoints >= 60) {
+	if (lifePoints >= 60 * 3) {
 		App->render->Blit(texture, 184 - 24 * 3, 26, &lifeBar, 0, true);
 	}
-	if (lifePoints >= 80) {
+	if (lifePoints >= 80 * 3) {
 		App->render->Blit(texture, 184 - 24 * 4, 26, &lifeBar, 0, true);
 	}
-	if (lifePoints >= 100) {
-		App->render->Blit(texture, 184 - 24 * 5, 26, &lifeBar, 0, true);
-	}
+
 }
 
 
@@ -382,7 +324,7 @@ float Enemy_Boss01::fRandomRange(float value01, float value02) {
 
 void Enemy_Boss01::OnCollision(Collider* collider)
 {
-	LOG("collision");
+	//LOG("collision");
 
 	switch (collider->type)
 	{

@@ -1,3 +1,4 @@
+#include "Globals.h"
 #include "Collider.h"
 
 Collider::Collider(SDL_Rect rectangle, Type type, Module* listener): rect(rectangle), type(type), listener(listener)
@@ -7,6 +8,7 @@ Collider::Collider(SDL_Rect rectangle, Type type, Module* listener): rect(rectan
 
 void Collider::SetPos(int x, int y)
 {
+
 	rect.x = x;
 	rect.y = y;
 }

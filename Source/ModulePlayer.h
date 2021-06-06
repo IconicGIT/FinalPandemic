@@ -194,6 +194,10 @@ public:
 	KEY_STATE lastVerticalKey;
 	int lastDirection;
 
+	int iFrameTimerReference;
+	int iFrameTimer;
+	bool in_iFrame;
+
 	//Exit
 	int exit_counter;
 	SDL_Texture* exitTexture;

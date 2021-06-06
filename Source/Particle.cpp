@@ -2,6 +2,7 @@
 
 #include "Collider.h"
 #include "Enemy_Soldier.h"
+#include "ModuleParticles.h"
 #include "Application.h"
 
 Particle::Particle()
@@ -20,12 +21,12 @@ Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), spee
 
 Particle::~Particle()
 {
-	if (collider != nullptr)
+	if (collider != nullptr && collider->pendingToDelete == false)
 		collider->pendingToDelete = true;
-}
+} 
 
 bool Particle::Update()
-{
+ {
 	bool ret = true;
 	frameCount++;
 
@@ -40,8 +41,38 @@ bool Particle::Update()
 		// If the particle has a specific lifetime, check when it has to be destroyed
 		if (lifetime > 0)
 		{
-			if (frameCount >= lifetime)
+			if (frameCount >= lifetime) {
 				ret = false;
+
+				switch (id)
+				{
+
+				case 0:
+
+					App->particles->AddParticle(App->particles->BulletEnd, 0, position.x - 3, position.y - 3, 0, Collider::NONE);
+
+					break;
+
+				case 1:
+
+					App->particles->AddParticle(App->particles->BulletEnd, 0, position.x - 3, position.y - 3, 0, Collider::NONE);
+
+					break;
+
+				case 2:
+
+					App->particles->AddParticle(App->particles->BulletEnd, 0, position.x - 3, position.y - 3, 0, Collider::NONE);
+
+					break;
+				default:
+
+
+
+
+					break;
+				}
+			}
+
 		}
 		// Otherwise the particle is destroyed when the animation is finished
 		else if (anim.HasFinished())
@@ -136,6 +167,12 @@ bool Particle::Update()
 				}
 				
 			}
+			
+		default:
+
+			position += speed;
+
+			break;
 
 
 		}

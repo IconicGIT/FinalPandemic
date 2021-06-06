@@ -51,6 +51,10 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	float hitSpeed = 0.1f;
 	float deathSpeed = 0.1f;
 
+	iFrameTimerReference = 180;
+	iFrameTimer = iFrameTimerReference;
+	in_iFrame = false;
+
 	// animation idle up
 	upIdleAnim.PushBack({ 147, 8, 21, 41 });
 	upIdleAnim.PushBack({ 178, 8, 22, 42 });
@@ -1074,6 +1078,12 @@ UpdateResult ModulePlayer::Update()
 	
 	if (App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN) score += 1000;
 	if (App->input->keys[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) playerLife--;
+	if (App->input->keys[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
+	{
+		iFrameTimer = iFrameTimerReference;
+		in_iFrame = true;
+	}
+
 
 	//LOG("player live: %f", (float)playerLife / (float)playerMaximumLife * 22);
 
@@ -1087,7 +1097,24 @@ UpdateResult ModulePlayer::PostUpdate()
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		
-		App->render->Blit(texture, position.x + PlayerWidthOffset, position.y, &rect,1);
+		if (in_iFrame) 
+		{
+			iFrameTimer--;
+
+			if (((iFrameTimer % 10) >= 0) && ((iFrameTimer % 10) <= 5)) 
+			{
+				App->render->Blit(texture, position.x + PlayerWidthOffset, position.y, &rect, 1);
+			
+			}
+
+			if (iFrameTimer <= 0) in_iFrame = !in_iFrame;
+		}
+		else 
+		{
+			App->render->Blit(texture, position.x + PlayerWidthOffset, position.y, &rect, 1);
+		}
+
+		
 	}
 
 	// Draw UI (score) --------------------------------------
@@ -1150,59 +1177,30 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	//AXIAL
 	if (c1 == colBoxUp && c2->type == Collider::WALL) {
-		
 		colCheck[0] = true;	
-		
 	}
-
-
-
 	if (c1 == colBoxLeft && c2->type == Collider::WALL) {
-
 		colCheck[2] = true;
-
 	}
-
-
-
 	if (c1 == colBoxDown && c2->type == Collider::WALL) {
-
 		colCheck[4] = true;
-
 	}
-
-
 	if (c1 == colBoxRight && c2->type == Collider::WALL) {
-
 		colCheck[6] = true;
-
 	}
-
-
 
 	//DIAGONAL
 	if (c1 == colBoxUpLeft && c2->type == Collider::WALL) {
-
 		colCheck[1] = true;
 	}
-
 	if (c1 == colBoxDownLeft && c2->type == Collider::WALL) {
-
 		colCheck[3] = true;
-
 	}
-
-
 	if (c1 == colBoxDownRight && c2->type == Collider::WALL) {
-
 		colCheck[5] = true;
-
 	}
-
 	if (c1 == colBoxUpRight && c2->type == Collider::WALL) {
-
 		colCheck[7] = true;
-
 	}
 
 	//rock
@@ -1210,6 +1208,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c2 == App->scene->rockTrigger) {
 		App->scene->rockAnimActivate = true;
 		App->scene->rockTrigger->pendingToDelete = true;
+	}
+	
+	if (c2->type == Collider::ENEMY_SHOT && !in_iFrame) 
+	{
+		playerLife -= 4;
+		iFrameTimer = iFrameTimerReference;
+		in_iFrame = true;
+
 	}
 	
 }

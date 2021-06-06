@@ -146,7 +146,7 @@ void ModuleCollisions::DebugDraw()
 				App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
 				break;
 			case Collider::Type::PLAYER_SHOT: // yellow
-				App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
+				App->render->DrawQuad(colliders[i]->rect, 0, 0, 0, alpha);
 				break;
 			case Collider::Type::ENEMY_SHOT: // magenta
 				App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
@@ -189,6 +189,7 @@ Collider* ModuleCollisions::AddCollider(SDL_Rect rect, Collider::Type type, Modu
 	{
 		if(colliders[i] == nullptr)
 		{
+			
 			ret = colliders[i] = new Collider(rect, type, listener);
 			break;
 		}

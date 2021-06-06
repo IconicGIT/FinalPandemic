@@ -75,6 +75,7 @@ public:
 	Particle Explosion1;
 	Particle Explosion2Small;
 	Particle Explosion2Big;
+	Particle BulletEnd;
 
 	int deleteParticleIndex = 0;
 };
