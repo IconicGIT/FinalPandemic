@@ -17,35 +17,23 @@ This game is inspired by the action movies of the 80’s, it is a Run and Gun ga
 ## Controls
 ~~~~~~~~~~~~~~~
 
-Keyboard Player 1 controls:
+Keyboard Player controls:
 - UP: W key
-- LEFT / MOVE SELECTOR LEFT: A key
-- RIGHT / MOVE SELECTOR RIGHT:: D key
+- LEFT: A key
+- RIGHT: D key
 - DOWN: S key
-- BASIC SHOT: SPACE key
-- SELECT CHARACTER: SPACE key 
+- GUN SHOT: SPACE key
 - BOMB: B key
-
-Keyboard Player 2 controls:
-- UP: UP_ARROW key
-- LEFT / MOVE SELECTOR LEFT: LEFT_ARROW key
-- RIGHT / MOVE SELECTOR RIGHT:: RIGHT_ARROW key
-- DOWN: DOWN_ARROW key
-- BASIC SHOT: 1 key (NUMPAD)
-- JOIN THE GAME: 2 key (NUMPAD)
-- JOIN THE GAME (in-game): 1 key (NUMPAD)
-- SELECT CHARACTER: 1 key (NUMPAD)
-- BOMB: 2 key (NUMPAD)
 
 General controls:
 - SKIP SCREEN: SPACE key
+- INSERT COIN: SHIFT key
 - EXIT GAME: ESC key
 
 Gamepad:
-
 - MOVE: JOYSTIC AND D-PAD
-- SHOOT AND SELECT CHARACTER: A 
-- SKIP SCREEN: A
+- SHOOT: K
+- SKIP SCREEN: P
 - BOMB: B
 - START GAME: START
 - EXIT GAME: BACK
