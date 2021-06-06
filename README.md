@@ -12,9 +12,6 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
 
 ## TEAM MEMBERS
 
-- Code: **Alexandre Carreras** [[ _TheGewehr_ ](https://github.com/TheGewehr)]:
-  - Main Responsible of Final Pandemic's Mercs code.
-
 - Art/Design: **Carlos Arnau** [[ _carlosarnau_ ](https://github.com/carlosarnau)]:
   - Main Responsible of Final Pandemic's Mercs art and design.
 
@@ -24,11 +21,14 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
 - Management: **Brandon Arandia** [[ _IconicGIT_ ](https://github.com/IconicGIT)]:
   - Main Responsible of Final Pandemic's Mercs Team Management.
 
-<img src="https://github.com/IconicGIT/FinalPandemic/blob/a01aeceb6546c90fb7fe63bdacd08d361794d725/Images/team_photo.JPG" width=700 align=middle>
+- Code: **Alexandre Carreras** [[ _TheGewehr_ ](https://github.com/TheGewehr)]:
+  - Main Responsible of Final Pandemic's Mercs code.
 
 ~~~~~~~~~~~~~~~
 IN ORDER OF APPERANCE
 ~~~~~~~~~~~~~~~
+
+<img src="https://github.com/IconicGIT/FinalPandemic/blob/a01aeceb6546c90fb7fe63bdacd08d361794d725/Images/team_photo.JPG" width=700 align=middle>
 
 <p>&nbsp;</p>
 
