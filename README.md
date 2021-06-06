@@ -32,7 +32,8 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
 
 This game is inspired by the action movies of the 80’s, it is a Run and Gun game that was made by Capcom and was very appreciated by the arcade players. It contained a history and a local multiplayer, enemies, bosses, explosions, vehicles and more. 
 
-![](mercs_cover.jpg)
+![](Images/team_photo.JPG)
+
 
 <p>&nbsp;</p>
 
