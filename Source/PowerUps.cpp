@@ -39,7 +39,7 @@ bool PowerUp::Update()
 
 	if (!isAlive && frameCount >= 0)
 		isAlive = true;
-
+	/*
 	if (isAlive)
 	{
 		anim.Update();
@@ -121,7 +121,8 @@ bool PowerUp::Update()
 			App->player->score += 5000;
 			break;
 		}
-
+		*/
+		
 		if (lifetime > 0)
 		{
 			if (frameCount >= lifetime)
