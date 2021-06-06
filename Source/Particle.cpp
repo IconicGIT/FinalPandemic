@@ -21,8 +21,8 @@ Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), spee
 
 Particle::~Particle()
 {
-	if (collider != nullptr && collider->pendingToDelete == false)
-		collider->pendingToDelete = true;
+	if (collider != nullptr && collider->pendingToDelete == false && collider->rect.x != NULL)
+  		collider->pendingToDelete = true;
 } 
 
 bool Particle::Update()
@@ -180,6 +180,9 @@ bool Particle::Update()
 		if (collider != nullptr)
 			collider->SetPos(position.x, position.y);
 	}
+else {
+	
+}
 
 	return ret;
 }

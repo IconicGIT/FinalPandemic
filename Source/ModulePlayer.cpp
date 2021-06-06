@@ -55,6 +55,9 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	iFrameTimer = iFrameTimerReference;
 	in_iFrame = false;
 
+	backTimerReference = 180;
+	backTimer = backTimerReference;
+
 	// animation idle up
 	upIdleAnim.PushBack({ 147, 8, 21, 41 });
 	upIdleAnim.PushBack({ 178, 8, 22, 42 });
@@ -255,12 +258,13 @@ bool ModulePlayer::Start()
 	laserFx = App->audio->LoadFx("Assets/Fx/gun_shot.wav");
 	bombFx = App->audio->LoadFx("Assets/Fx/explosion_02.wav");
 	deathFx = App->audio->LoadFx("Assets/Fx/player_death.wav");
+	rockFallFx = App->audio->LoadFx("Assets/Fx/rock_falling.wav");
 
-	position.x = 1088;
-	position.y = 242;
+	//position.x = 1088;
+	//position.y = 242;
 
-	//position.x = 550;
-	//position.y = 1400;
+	position.x = 550;
+	position.y = 1400;
 
 	lastDirection = 5;
 
@@ -325,13 +329,13 @@ UpdateResult ModulePlayer::Update()
 
 
 
-	keyUp    = App->input->keys[SDL_SCANCODE_W];
-	keyLeft  = App->input->keys[SDL_SCANCODE_A];
-	keyDown  = App->input->keys[SDL_SCANCODE_S];
+	keyUp = App->input->keys[SDL_SCANCODE_W];
+	keyLeft = App->input->keys[SDL_SCANCODE_A];
+	keyDown = App->input->keys[SDL_SCANCODE_S];
 	keyRight = App->input->keys[SDL_SCANCODE_D];
 	shoot = App->input->keys[SDL_SCANCODE_SPACE];
 
-	
+
 	// lastDirection
 	// 
 	//	1 = up
@@ -349,324 +353,327 @@ UpdateResult ModulePlayer::Update()
 	//AXIS MOVEMENT
 	//left
 
-	if ((keyUp == KEY_STATE::KEY_IDLE)
-		&& (keyLeft == KEY_STATE::KEY_REPEAT)
-		&& (keyDown == KEY_STATE::KEY_IDLE)
-		&& (keyRight == KEY_STATE::KEY_IDLE))
-	{
-		lastDirection = 3;
 
-		if (!colCheck[2])
+	if (!destroyed) {
+
+		if ((keyUp == KEY_STATE::KEY_IDLE)
+			&& (keyLeft == KEY_STATE::KEY_REPEAT)
+			&& (keyDown == KEY_STATE::KEY_IDLE)
+			&& (keyRight == KEY_STATE::KEY_IDLE))
 		{
-			position.x -= speed;
-			SetAnimation(leftAnim);
-			colCheck[2] = false;
-		}
-		else {
-			SetAnimation(leftIdleAnim);
-		}
-	}
+			lastDirection = 3;
 
-	//right
-	if ((keyUp == KEY_STATE::KEY_IDLE)
-		&& (keyLeft == KEY_STATE::KEY_IDLE)
-		&& (keyDown == KEY_STATE::KEY_IDLE)
-		&& (keyRight == KEY_STATE::KEY_REPEAT))
-	{
-		lastDirection = 7;
-		
-
-		
-
-		if (!colCheck[6])
-		{
-			position.x += speed;
-			SetAnimation(rightAnim);
-			colCheck[5] = false;
-		}
-		else {
-			SetAnimation(rightIdleAnim);
-		}
-	}
-
-	//Up
-	if ((keyUp == KEY_STATE::KEY_REPEAT)
-		&& (keyLeft == KEY_STATE::KEY_IDLE)
-		&& (keyDown == KEY_STATE::KEY_IDLE)
-		&& (keyRight == KEY_STATE::KEY_IDLE))
-	{
-		lastDirection = 1;
-		
-		if (!colCheck[0])
-		{
-			SetAnimation(upAnim);
-			position.y -= speed;
-			colCheck[0] = false;
-		}
-		else {
-			SetAnimation(upIdleAnim);
-		}
-		
-	}
-
-	//Down
-	if ((keyUp == KEY_STATE::KEY_IDLE)
-		&& (keyLeft == KEY_STATE::KEY_IDLE)
-		&& (keyDown == KEY_STATE::KEY_REPEAT)
-		&& (keyRight == KEY_STATE::KEY_IDLE))
-	{
-		lastDirection = 5;
-		
-		if (!colCheck[4])
-		{
-			SetAnimation(downAnim);
-
-			position.y += speed;
-			colCheck[4] = false;
-		}
-		else {
-			SetAnimation(downIdleAnim);
-		}
-
-		
-	}
-
-	//DIAGONAL AXIS MOVEMENT
-	
-	//up-left
-	if ((keyUp == KEY_STATE::KEY_REPEAT) 
-		&& (keyLeft == KEY_STATE::KEY_REPEAT)
-		&& (keyDown == KEY_STATE::KEY_IDLE)
-		&& (keyRight == KEY_STATE::KEY_IDLE))
-	{
-		lastDirection = 2;
-		
-		//if (!colCheck[1] && !colCheck[2] && !colCheck[0])
-		//{
-		//	SetAnimation(upLeftAnim);
-		//
-		//	position.x -= diagonalSpeed;
-		//	position.y -= diagonalSpeed;
-		//	colCheck[1] = false;
-		//}
-		//else {
-		//	SetAnimation(upLeftIdleAnim);
-		//}
-		
-		if (!colCheck[1] && !colCheck[2] && !colCheck[0])
-		{
-			SetAnimation(upLeftAnim);
-
-			position.x -= diagonalSpeed;
-			position.y -= diagonalSpeed;
-			colCheck[1] = false;
-			colCheck[2] = false;
-			colCheck[0] = false;
-		}
-		else
-		{
-
-			if (!colCheck[1])
+			if (!colCheck[2])
 			{
-
-				if (!colCheck[2]) {
-					SetAnimation(leftAnim);
-					position.x -= speed;
-					colCheck[1] = false;
-					colCheck[2] = false;
-
-				}
-				if (!colCheck[0])
-				{
-					SetAnimation(upAnim);
-					position.y -= speed;
-					colCheck[1] = false;
-					colCheck[0] = false;
-
-				}
-
+				position.x -= speed;
+				SetAnimation(leftAnim);
+				colCheck[2] = false;
+			}
+			else {
+				SetAnimation(leftIdleAnim);
 			}
 		}
-		if (colCheck[1] && colCheck[2] && colCheck[0])
-		{
-			SetAnimation(upLeftIdleAnim);
-		}
 
-	}
-
-	//down-left
-	if ((keyUp == KEY_STATE::KEY_IDLE)
-		&& (keyLeft == KEY_STATE::KEY_REPEAT)
-		&& (keyDown == KEY_STATE::KEY_REPEAT)
-		&& (keyRight == KEY_STATE::KEY_IDLE))
-	{
-		lastDirection = 4;
-		
-		if (!colCheck[3] && !colCheck[2] && !colCheck[4])
+		//right
+		if ((keyUp == KEY_STATE::KEY_IDLE)
+			&& (keyLeft == KEY_STATE::KEY_IDLE)
+			&& (keyDown == KEY_STATE::KEY_IDLE)
+			&& (keyRight == KEY_STATE::KEY_REPEAT))
 		{
-			SetAnimation(downLeftAnim);
-		
-			position.x -= diagonalSpeed;
-			position.y += diagonalSpeed;
-			colCheck[3] = false;
-			colCheck[2] = false;
-			colCheck[4] = false;
-		}
-		else 
-		{
+			lastDirection = 7;
 
-			if (!colCheck[3]) 
+
+
+
+			if (!colCheck[6])
 			{
-
-				if (!colCheck[2]) {
-					SetAnimation(leftAnim);
-					position.x -= speed;
-					colCheck[3] = false;
-					colCheck[2] = false;
-
-				}
-				if (!colCheck[4]) 
-				{
-					SetAnimation(downAnim);
-					position.y += speed;
-					colCheck[3] = false;
-					colCheck[4] = false;
-
-				}
-
+				position.x += speed;
+				SetAnimation(rightAnim);
+				colCheck[5] = false;
+			}
+			else {
+				SetAnimation(rightIdleAnim);
 			}
 		}
-		if (colCheck[2] && colCheck[3] && colCheck[4])
+
+		//Up
+		if ((keyUp == KEY_STATE::KEY_REPEAT)
+			&& (keyLeft == KEY_STATE::KEY_IDLE)
+			&& (keyDown == KEY_STATE::KEY_IDLE)
+			&& (keyRight == KEY_STATE::KEY_IDLE))
 		{
-			SetAnimation(downLeftIdleAnim);
+			lastDirection = 1;
+
+			if (!colCheck[0])
+			{
+				SetAnimation(upAnim);
+				position.y -= speed;
+				colCheck[0] = false;
+			}
+			else {
+				SetAnimation(upIdleAnim);
+			}
+
 		}
-	}
 
-	//down-right
-	if ((keyUp == KEY_STATE::KEY_IDLE)
-		&& (keyLeft == KEY_STATE::KEY_IDLE)
-		&& (keyDown == KEY_STATE::KEY_REPEAT)
-		&& (keyRight == KEY_STATE::KEY_REPEAT))
-	{
-		lastDirection = 6;
-		
-		//if (!colCheck[5] && !colCheck[4] && !colCheck[6])
-		//{
-		//	SetAnimation(downRightAnim);
-		//
-		//	position.x += diagonalSpeed;
-		//	position.y += diagonalSpeed;
-		//	colCheck[5] = false;
-		//}
-		//else {
-		//	SetAnimation(downRightIdleAnim);
-		//}
-
-		if (!colCheck[5] && !colCheck[4] && !colCheck[6])
+		//Down
+		if ((keyUp == KEY_STATE::KEY_IDLE)
+			&& (keyLeft == KEY_STATE::KEY_IDLE)
+			&& (keyDown == KEY_STATE::KEY_REPEAT)
+			&& (keyRight == KEY_STATE::KEY_IDLE))
 		{
-			SetAnimation(downRightAnim);
+			lastDirection = 5;
 
-			position.x += diagonalSpeed;
-			position.y += diagonalSpeed;
-			colCheck[4] = false;
-			colCheck[5] = false;
-			colCheck[6] = false;
+			if (!colCheck[4])
+			{
+				SetAnimation(downAnim);
+
+				position.y += speed;
+				colCheck[4] = false;
+			}
+			else {
+				SetAnimation(downIdleAnim);
+			}
+
+
 		}
-		else 
-		{
 
-			if (!colCheck[5])
+		//DIAGONAL AXIS MOVEMENT
+
+		//up-left
+		if ((keyUp == KEY_STATE::KEY_REPEAT)
+			&& (keyLeft == KEY_STATE::KEY_REPEAT)
+			&& (keyDown == KEY_STATE::KEY_IDLE)
+			&& (keyRight == KEY_STATE::KEY_IDLE))
+		{
+			lastDirection = 2;
+
+			//if (!colCheck[1] && !colCheck[2] && !colCheck[0])
+			//{
+			//	SetAnimation(upLeftAnim);
+			//
+			//	position.x -= diagonalSpeed;
+			//	position.y -= diagonalSpeed;
+			//	colCheck[1] = false;
+			//}
+			//else {
+			//	SetAnimation(upLeftIdleAnim);
+			//}
+
+			if (!colCheck[1] && !colCheck[2] && !colCheck[0])
+			{
+				SetAnimation(upLeftAnim);
+
+				position.x -= diagonalSpeed;
+				position.y -= diagonalSpeed;
+				colCheck[1] = false;
+				colCheck[2] = false;
+				colCheck[0] = false;
+			}
+			else
 			{
 
-				if (!colCheck[6]) 
+				if (!colCheck[1])
 				{
-					SetAnimation(rightAnim);
-					position.x += speed;
-					colCheck[5] = false;
-					colCheck[6] = false;
+
+					if (!colCheck[2]) {
+						SetAnimation(leftAnim);
+						position.x -= speed;
+						colCheck[1] = false;
+						colCheck[2] = false;
+
+					}
+					if (!colCheck[0])
+					{
+						SetAnimation(upAnim);
+						position.y -= speed;
+						colCheck[1] = false;
+						colCheck[0] = false;
+
+					}
 
 				}
-
-				if (!colCheck[4]) 
-				{
-					SetAnimation(downAnim);
-					position.y += speed;
-					colCheck[5] = false;
-					colCheck[6] = false;
-					
-				}
-
 			}
+			if (colCheck[1] && colCheck[2] && colCheck[0])
+			{
+				SetAnimation(upLeftIdleAnim);
+			}
+
 		}
-		if (colCheck[5] && colCheck[4] && colCheck[6]) 
+
+		//down-left
+		if ((keyUp == KEY_STATE::KEY_IDLE)
+			&& (keyLeft == KEY_STATE::KEY_REPEAT)
+			&& (keyDown == KEY_STATE::KEY_REPEAT)
+			&& (keyRight == KEY_STATE::KEY_IDLE))
 		{
-			SetAnimation(downRightIdleAnim);
-		}
-	}
+			lastDirection = 4;
 
-	//up-right
-	if ((keyUp == KEY_STATE::KEY_REPEAT)
-		&& (keyLeft == KEY_STATE::KEY_IDLE)
-		&& (keyDown == KEY_STATE::KEY_IDLE)
-		&& (keyRight == KEY_STATE::KEY_REPEAT))
-	{
-		lastDirection = 8;
+			if (!colCheck[3] && !colCheck[2] && !colCheck[4])
+			{
+				SetAnimation(downLeftAnim);
 
-		
-		//if (!colCheck[7] && !colCheck[1] && !colCheck[6])
-		//{
-		//	SetAnimation(upRightAnim);
-		//
-		//	position.x += diagonalSpeed;
-		//	position.y -= diagonalSpeed;
-		//	colCheck[6] = false;
-		//}
-		//else {
-		//	SetAnimation(upRightIdleAnim);
-		//}
-
-		if (!colCheck[7] && !colCheck[0] && !colCheck[6])
-		{
-			SetAnimation(upRightAnim);
-
-			position.x += diagonalSpeed;
-			position.y -= diagonalSpeed;
-			colCheck[7] = false;
-			colCheck[0] = false;
-			colCheck[6] = false;
-		}
-		else
-		{
-
-			if (!colCheck[7])
+				position.x -= diagonalSpeed;
+				position.y += diagonalSpeed;
+				colCheck[3] = false;
+				colCheck[2] = false;
+				colCheck[4] = false;
+			}
+			else
 			{
 
-				if (!colCheck[6])
+				if (!colCheck[3])
 				{
-					SetAnimation(rightAnim);
-					position.x += speed;
-					colCheck[7] = false;
-					colCheck[6] = false;
+
+					if (!colCheck[2]) {
+						SetAnimation(leftAnim);
+						position.x -= speed;
+						colCheck[3] = false;
+						colCheck[2] = false;
+
+					}
+					if (!colCheck[4])
+					{
+						SetAnimation(downAnim);
+						position.y += speed;
+						colCheck[3] = false;
+						colCheck[4] = false;
+
+					}
 
 				}
-
-				if (!colCheck[0])
-				{
-					SetAnimation(upAnim);
-					position.y -= speed;
-					colCheck[7] = false;
-					colCheck[0] = false;
-					
-				}
-
+			}
+			if (colCheck[2] && colCheck[3] && colCheck[4])
+			{
+				SetAnimation(downLeftIdleAnim);
 			}
 		}
-		if (colCheck[7] && colCheck[0] && colCheck[6])
+
+		//down-right
+		if ((keyUp == KEY_STATE::KEY_IDLE)
+			&& (keyLeft == KEY_STATE::KEY_IDLE)
+			&& (keyDown == KEY_STATE::KEY_REPEAT)
+			&& (keyRight == KEY_STATE::KEY_REPEAT))
 		{
-			SetAnimation(upRightIdleAnim);
+			lastDirection = 6;
+
+			//if (!colCheck[5] && !colCheck[4] && !colCheck[6])
+			//{
+			//	SetAnimation(downRightAnim);
+			//
+			//	position.x += diagonalSpeed;
+			//	position.y += diagonalSpeed;
+			//	colCheck[5] = false;
+			//}
+			//else {
+			//	SetAnimation(downRightIdleAnim);
+			//}
+
+			if (!colCheck[5] && !colCheck[4] && !colCheck[6])
+			{
+				SetAnimation(downRightAnim);
+
+				position.x += diagonalSpeed;
+				position.y += diagonalSpeed;
+				colCheck[4] = false;
+				colCheck[5] = false;
+				colCheck[6] = false;
+			}
+			else
+			{
+
+				if (!colCheck[5])
+				{
+
+					if (!colCheck[6])
+					{
+						SetAnimation(rightAnim);
+						position.x += speed;
+						colCheck[5] = false;
+						colCheck[6] = false;
+
+					}
+
+					if (!colCheck[4])
+					{
+						SetAnimation(downAnim);
+						position.y += speed;
+						colCheck[5] = false;
+						colCheck[6] = false;
+
+					}
+
+				}
+			}
+			if (colCheck[5] && colCheck[4] && colCheck[6])
+			{
+				SetAnimation(downRightIdleAnim);
+			}
+		}
+
+		//up-right
+		if ((keyUp == KEY_STATE::KEY_REPEAT)
+			&& (keyLeft == KEY_STATE::KEY_IDLE)
+			&& (keyDown == KEY_STATE::KEY_IDLE)
+			&& (keyRight == KEY_STATE::KEY_REPEAT))
+		{
+			lastDirection = 8;
+
+
+			//if (!colCheck[7] && !colCheck[1] && !colCheck[6])
+			//{
+			//	SetAnimation(upRightAnim);
+			//
+			//	position.x += diagonalSpeed;
+			//	position.y -= diagonalSpeed;
+			//	colCheck[6] = false;
+			//}
+			//else {
+			//	SetAnimation(upRightIdleAnim);
+			//}
+
+			if (!colCheck[7] && !colCheck[0] && !colCheck[6])
+			{
+				SetAnimation(upRightAnim);
+
+				position.x += diagonalSpeed;
+				position.y -= diagonalSpeed;
+				colCheck[7] = false;
+				colCheck[0] = false;
+				colCheck[6] = false;
+			}
+			else
+			{
+
+				if (!colCheck[7])
+				{
+
+					if (!colCheck[6])
+					{
+						SetAnimation(rightAnim);
+						position.x += speed;
+						colCheck[7] = false;
+						colCheck[6] = false;
+
+					}
+
+					if (!colCheck[0])
+					{
+						SetAnimation(upAnim);
+						position.y -= speed;
+						colCheck[7] = false;
+						colCheck[0] = false;
+
+					}
+
+				}
+			}
+			if (colCheck[7] && colCheck[0] && colCheck[6])
+			{
+				SetAnimation(upRightIdleAnim);
+			}
 		}
 	}
-		
 	
 
 	for (int i = 0; i < 8; i++)
@@ -678,11 +685,13 @@ UpdateResult ModulePlayer::Update()
 
 	//LOG("player x: %f, y: %f", position.x, position.y);
 
-	switch (level) {
+	if (canMoveCamera) {
 
-	case 0:
-			
-			
+		switch (level) {
+
+		case 0:
+
+
 			if (keyRight == KEY_STATE::KEY_REPEAT) {
 
 				if (App->render->camera.y + App->render->camera.h > 500) {
@@ -768,15 +777,15 @@ UpdateResult ModulePlayer::Update()
 				}
 			}
 
-		break;
+			break;
 
-	case 1:
+		case 1:
 
-		
-		
-		if (keyRight == KEY_STATE::KEY_REPEAT) {
 
-			
+
+			if (keyRight == KEY_STATE::KEY_REPEAT) {
+
+
 
 
 				if (App->render->camera.x / SCREEN_SIZE + App->render->camera.w + speed < 768)
@@ -797,53 +806,53 @@ UpdateResult ModulePlayer::Update()
 
 				}
 
-			
-
-		}
-
-		if (keyLeft == KEY_STATE::KEY_REPEAT) {
 
 
-			if (App->render->camera.x / SCREEN_SIZE - speed > 0)
-			{
+			}
 
-				if (lastDirection % 2 != 0)
+			if (keyLeft == KEY_STATE::KEY_REPEAT) {
+
+
+				if (App->render->camera.x / SCREEN_SIZE - speed > 0)
 				{
-					if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
-						App->render->camera.x -= speed * SCREEN_SIZE;
+
+					if (lastDirection % 2 != 0)
+					{
+						if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+							App->render->camera.x -= speed * SCREEN_SIZE;
+						}
 					}
+					else
+					{
+						if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
+							App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
+						}
+					}
+
+				}
+
+			}
+
+
+
+			if (App->render->camera.y / SCREEN_SIZE <= 3072) {
+
+				if (lastDirection % 2 == 0)
+				{
+					if (position.y <= (App->render->camera.y / SCREEN_SIZE + verticalMargin)
+						&& App->render->camera.y / SCREEN_SIZE - diagonalSpeed >= 0) App->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
 				}
 				else
 				{
-					if (position.x < App->render->camera.x / SCREEN_SIZE + horizontalMargin) {
-						App->render->camera.x -= diagonalSpeed * SCREEN_SIZE;
-					}
+					if (position.y < (App->render->camera.y / SCREEN_SIZE + verticalMargin)
+						&& App->render->camera.y / SCREEN_SIZE - speed >= 0) App->render->camera.y -= speed * SCREEN_SIZE;
 				}
-
 			}
+
+			break;
 
 		}
-
-
-
-		if (App->render->camera.y / SCREEN_SIZE <= 3072) {
-
-			if (lastDirection % 2 == 0)
-			{
-				if (position.y <= (App->render->camera.y / SCREEN_SIZE + verticalMargin) 
-					&& App->render->camera.y / SCREEN_SIZE - diagonalSpeed >= 0) App->render->camera.y -= diagonalSpeed * SCREEN_SIZE;
-			}
-			else
-			{
-				if (position.y < (App->render->camera.y / SCREEN_SIZE + verticalMargin) 
-					&& App->render->camera.y / SCREEN_SIZE - speed >= 0) App->render->camera.y -= speed * SCREEN_SIZE;
-			}
-		}
-
-		break;
-
 	}
-
 
 	
 
@@ -899,7 +908,7 @@ UpdateResult ModulePlayer::Update()
 		
 		App->audio->PlayFx(laserFx);
 	}
-	if ((App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)||(App->fade->credits<=0))
+	if ((App->input->keys[SDL_SCANCODE_L] == KEY_STATE::KEY_DOWN)||(App->fade->credits <= 0 || App->scene->levelTimer <= 0))
 	{
 		destroyed = true;
 		//App->particles->AddParticle(App->particles->playerBullet1[lastDirection - 1], 0, position.x, position.y, lastDirection, Collider::Type::PLAYER_SHOT);
@@ -987,48 +996,50 @@ UpdateResult ModulePlayer::Update()
 
 	if (destroyed == true)
 	{
+		backTimer--;
+		currentAnimation->Reset();
 		switch (lastDirection)
 		{
 		case 1:
-			
+			if (currentAnimation != &deathFromUpAnim)
+
 			SetAnimation(deathFromUpAnim);
 			break;
 
 		case 2:
-			
+			if (currentAnimation != &deathFromUpAnim)
 			SetAnimation(deathFromUpAnim);
 			break;
 
 		case 3:
-			
+			if (currentAnimation != &deathFromLeftAnim)
 			SetAnimation(deathFromLeftAnim);
 			break;
 
 		case 4:
-			
+			if (currentAnimation != &deathFromLeftAnim)
 			SetAnimation(deathFromLeftAnim);
 			break;
 
 		case 5:
-			
+			if (currentAnimation != &deathFromDownAnim)
 			SetAnimation(deathFromDownAnim);
 			break;
 
 		case 6:
-			
+			if (currentAnimation != &deathFromDownAnim)
 			SetAnimation(deathFromDownAnim);
 			break;
 
 		case 7:
-			
+			if (currentAnimation != &deathFromRightAnim)
 			SetAnimation(deathFromRightAnim);
 			break;
 
 		case 8:
-			
+			if (currentAnimation != &deathFromRightAnim)
 			SetAnimation(deathFromRightAnim);
 			break;
-
 
 		}
 	}
@@ -1067,22 +1078,23 @@ UpdateResult ModulePlayer::Update()
 
 	
 
-	if (destroyed)
+	if (backTimer <= 0)
 	{
 		//exitCountdown--;
 		//if (exitCountdown <= 0)
-			return UpdateResult::UPDATE_STOP;
+		App->fade->FadeToBlack(this, (Module*)App->fifthScene, 90);
+	}
+
+	if (App->player->backTimer < -60) {
+		App->player->Disable();
+
 	}
 	
 	////////////////////////////////////////////
 	
 	if (App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN) score += 1000;
 	if (App->input->keys[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) playerLife--;
-	if (App->input->keys[SDL_SCANCODE_C] == KEY_STATE::KEY_DOWN)
-	{
-		iFrameTimer = iFrameTimerReference;
-		in_iFrame = true;
-	}
+
 
 
 	//LOG("player live: %f", (float)playerLife / (float)playerMaximumLife * 22);
@@ -1093,7 +1105,7 @@ UpdateResult ModulePlayer::Update()
 UpdateResult ModulePlayer::PostUpdate()
 {
 
-	if (destroyed != true)
+	if (backTimer > 0)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
 		
@@ -1207,7 +1219,16 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c2 == App->scene->rockTrigger) {
 		App->scene->rockAnimActivate = true;
+		App->audio->PlayFx(rockFallFx);
 		App->scene->rockTrigger->pendingToDelete = true;
+	}
+	
+	if (c2 == App->scene->bossTrigger) {
+		if (App->scene->bossTrigger->pendingToDelete == false) App->enemies->AddEnemy(ENEMY_TYPE::BOSS_1, 1060, -190);
+		App->scene->bossTrigger->pendingToDelete = true;
+		canMoveCamera = false;
+		
+		 
 	}
 	
 	if (c2->type == Collider::ENEMY_SHOT && !in_iFrame) 

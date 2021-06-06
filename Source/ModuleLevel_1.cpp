@@ -230,6 +230,7 @@ bool ModuleLevel_1::Start()
 	bulletWall[82] = App->collisions->AddCollider({ 612, 452, 100, 20 }, Collider::Type::BULLET_WALL);
 
 	rockTrigger = App->collisions->AddCollider({ 475, 880, 600, 10 }, Collider::Type::NONE);
+	bossTrigger = App->collisions->AddCollider({ 1070, 150, 10, 200 }, Collider::Type::NONE);
 	rockPos = { 768 ,487 };
 	//App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
 
@@ -288,30 +289,6 @@ UpdateResult ModuleLevel_1::Update()
 		App->enemies->AddEnemy(ENEMY_TYPE::BOSS_1, 1060, -190);
 	}
 
-	//if (App->player->position.x < (App->render->camera.x + CAMERA_X_MARGIN)) {
-	//
-	//	App->render->camera.x -= 10; //App->player->speed;
-	//	
-	//
-	//} else if ((App->player->position.x + App->player->collider->rect.w) > (App->render->camera.x + App->render->camera.w - CAMERA_X_MARGIN)) {
-	//
-	//	App->render->camera.x += 10; // App->player->speed * 3;
-	//}
-
-	/*
-	if (App->obstacles->Box->x==995 && App->obstacles->Box->isAlive == false)
-	{
-		playerWall[76]== nullptr;
-	}
-	if (App->obstacles->Box->x == 555  && App->obstacles->Box->isAlive == false)
-	{
-		playerWall[77] == nullptr;
-	}
-	if (App->obstacles->Box->x == 730  && App->obstacles->Box->isAlive == false)
-	{
-		playerWall[78] == nullptr;
-	}
-	*/
 
 	currentTime = SDL_GetTicks();
 	elapsedTime = (currentTime - startTime) / 1000.0;
@@ -406,6 +383,7 @@ UpdateResult ModuleLevel_1::Update()
 		}
 	
 	}
+
 
 	
 	

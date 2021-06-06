@@ -148,6 +148,7 @@ public:
 	uint damageFx = 0;
 	uint deathFx = 0;
 	uint bombFx = 0;
+	uint rockFallFx = 0;
 	
 
 
@@ -198,9 +199,15 @@ public:
 	int iFrameTimer;
 	bool in_iFrame;
 
+	int canMoveCamera = true;
+
 	//Exit
 	int exit_counter;
 	SDL_Texture* exitTexture;
+
+	//return to enter credit scene
+	int backTimerReference;
+	int backTimer;
 
 };
 
