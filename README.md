@@ -26,7 +26,7 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
 
 * Even if the members are in charge of their labors, each team member will perform other member labors as a form of develop efficiency and mastery in different areas and abilities.
 
-<img src="https://github.com/IconicGIT/FinalPandemic/blob/a01aeceb6546c90fb7fe63bdacd08d361794d725/Images/team_photo.JPG" width=500 align=middle>
+<img src="https://github.com/IconicGIT/FinalPandemic/blob/a01aeceb6546c90fb7fe63bdacd08d361794d725/Images/team_photo.JPG" width=700 align=middle>
 
 <p>&nbsp;</p>
 
