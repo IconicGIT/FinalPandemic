@@ -6,6 +6,10 @@
 #include <math.h>
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "Animation.h"
+#include "ModuleLevel_1.h"
+#include "ModuleLevel_2.h"
+
 
 #include <math.h>
 Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
@@ -14,9 +18,10 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	float runAminSpeed = 0.05f;
 	float deathAnimSpeed = 0.05f;
 	float grenadeAnimSpeed = 0.05f;
+	
 
 	soldierSpeed = 0;
-	
+	shootTimerReference = 90;
 	
 	// idle animations
 
@@ -136,7 +141,7 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 
 	// Collider
 	
-	currentAnim = &downIdleAnim;
+
 	collider = App->collisions->AddCollider({0, 0, 24, 40}, Collider::Type::ENEMY, (Module*)App->enemies);
 
 	// TODO 3: Have the Brown Cookies describe a path in the screen
@@ -203,6 +208,8 @@ Enemy_Soldier::Enemy_Soldier(int x, int y) : Enemy(x, y)
 	//	App->audio->PlayFx(laserFx);
 	//}
 	
+	currentAnim = &downAnim;
+
 	counter++;
 }
 
@@ -210,13 +217,20 @@ void Enemy_Soldier::Update()
 {
 	////////////////////////////////////////////////////
 	path.Update();
+	
+	playerPosition = (fPoint)App->player->position;
+
+	distanceX = playerPosition.x - position.x;
+	distanceY = playerPosition.y - position.y;
+
+	distTotal = sqrtf(powf(distanceX, 2) + powf(distanceY, 2));
 
 	//playerPosition = (fPoint)App->player->position;
 	playerPosition = App->player->GetPlayerPosition();
 	if (pushTimer <= 0)
 	{
 		
-		playerPosition = (fPoint)App->player->position;
+		
 
 
 		soldierDirection = fPoint{
@@ -224,10 +238,9 @@ void Enemy_Soldier::Update()
 			playerPosition.y + RandomRange(-10, 10)
 		};
 
-		distanceX = playerPosition.x - position.x;
-		distanceY = playerPosition.y - position.y;
+		
 
-		distTotal = sqrtf(powf(distanceX, 2) + powf(distanceY, 2));
+		
 
 
 		switch (movement) {
@@ -283,8 +296,153 @@ void Enemy_Soldier::Update()
 		pushTimer--;
 	}
 
-	float speedX = (distanceX / distTotal) * soldierSpeed;
-	float speedY = (distanceY / distTotal) * soldierSpeed;
+	float trueDistance;
+
+	fPoint dirDistance = playerPosition - position;
+
+	
+
+	float angle = acos(distanceX / distTotal) * 180 / M_PI;
+
+	float a;
+
+	if (position.y < App->player->position.y) {
+
+		a = -angle;
+	}
+	else {
+
+		a = angle;
+	}
+LOG("soldier angle: %f", a);
+
+
+
+	int direction = 0;
+
+	if (a > 0) 
+	{
+		float i = 2.0f;
+		if (a < 30.0f) 
+		{
+			direction = 0;
+			currentAnim->Reset();
+			currentAnim = &rightAnim;
+		}
+		 if (a >= 30.0f * (i - 1) && a < 30.0f * i)
+		{
+			 direction = 1;
+			 currentAnim->Reset();
+			 currentAnim = &upRightAnim;
+		}
+		 i++;
+		 if (a >= 30.0f * (i - 1) && a < 30.0f * i)
+		{
+			 direction = 2;
+			 currentAnim->Reset();
+			 currentAnim = &upAnim;
+		}
+		 i++;
+		 if (a >= 30.0f * (i - 1) && a < 30.0f * i)
+		{
+			 direction = 2;
+			 currentAnim->Reset();
+			 currentAnim = &upAnim;
+		}
+		 i++;
+		 if (a >= 30.0f * (i - 1) && a < 30.0f * i)
+		{
+			 direction = 3;
+			 currentAnim->Reset();
+			 currentAnim = &upLeftAnim;
+		}
+		 i++;
+		 if (a >= 30.0f * (i - 1) && a < 30.0f * i)
+		{
+			 direction = 4;
+			 currentAnim->Reset();
+			 currentAnim = &leftAnim;
+		}
+
+	}
+	else
+	{
+		LOG("-a");
+		float i = -1.0f;
+		if (a > -30.0f)
+		{
+			direction = 0;
+			currentAnim->Reset();
+			currentAnim = &rightAnim;
+			LOG("-0");
+		}
+		if (a <= 30.0f * i  && a > 30.0f * (i - 1))
+		{
+			direction = 7;
+			currentAnim->Reset();
+			currentAnim = &downRightAnim;
+			LOG("-1");
+		}
+		i--;
+		if (a <= 30.0f * i && a > 30.0f * (i - 1))
+		{
+			direction = 6;
+			currentAnim->Reset();
+			currentAnim = &downAnim;
+			LOG("-2");
+		}
+		i--;
+		if (a <= 30.0f * i && a > 30.0f * (i - 1))
+		{
+			direction = 6;
+ 			currentAnim->Reset();
+			currentAnim = &downAnim;
+			LOG("-2");
+		}
+		i--;
+		if (a <= 30.0f * i && a > 30.0f * (i - 1))
+		{
+			direction = 5;
+ 			currentAnim->Reset();
+			currentAnim = &downLeftAnim;
+			LOG("-3");
+		}
+		i--;
+		if (a <= 30.0f * i && a > 30.0f * (i - 1))
+		{
+			direction = 4;
+ 			currentAnim->Reset();
+			currentAnim = &leftAnim;
+			LOG("-4");
+		}
+
+	}
+
+	LOG("direction: %i", direction);
+
+	if (App->input->keys[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN){}
+		
+
+
+	if (movement == MovementStage::STAY){
+		if (shootTimer <= 0)
+		{
+			shootTimer = shootTimerReference;
+
+
+			for (int i = 0; i < 4; i++) {
+				App->particles->AddParticle(App->particles->SoldierBullet, 1, position.x, position.y, direction, Collider::ENEMY_SHOT, i * 5);
+			}
+
+
+		}
+		shootTimer--;
+	}
+
+
+
+
+
 
 	//LOG("movement: %i", movement);
 	//LOG("speedX x: %f", speedX);
@@ -450,6 +608,16 @@ void Enemy_Soldier::Update()
 	//	resultY = 0;
 	//}
 
+
+if (lifePoints <= 0) {
+
+	inmortal = 0;
+	timeAlive = 0;
+	App->scene->numberOfEnemies--;
+
+	}
+
+
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
@@ -493,4 +661,36 @@ int Enemy_Soldier::RandomRange(int value01, int value02) {
 	}
 	return(rand() % (value02 - value01 + 1) + value01);
 
+}
+
+void Enemy_Soldier::SetAnimation(Animation toChange) {
+
+	if (currentAnimation != &toChange) {
+
+		toChange.Reset();
+		currentAnimation = &toChange;
+	}
+
+}
+
+void Enemy_Soldier::OnCollision(Collider* collider)
+{
+	//LOG("collision");
+
+	switch (collider->type)
+	{
+	case Collider::PLAYER_SHOT:
+
+		lifePoints--;
+		if (collider->pendingToDelete != false) collider->pendingToDelete = true;
+
+		break;
+
+
+	default:
+		break;
+	}
+
+	//App->particles->AddParticle(App->particles->explosion,App->particles->explosion.id, position.x, position.y, App->particles->explosion.direction);
+	//App->audio->PlayFx(destroyedFx);
 }

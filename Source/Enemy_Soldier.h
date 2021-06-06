@@ -25,6 +25,10 @@ public:
 
 	int RandomRange(int value01, int values02);
 
+	void OnCollision(Collider* collider);
+
+
+	int lifePoints = 1;
 	fPoint playerPosition;
 
 	float distanceX;
@@ -57,7 +61,6 @@ public:
 
 	int movement;
 	
-	
 
 private:
 	// A set of steps that define the position in the screen
@@ -70,6 +73,8 @@ private:
 
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
+
+	Animation* currentAnimation;
 
 	// Shoot / Idle Animations 
 	Animation upIdleAnim;
@@ -103,6 +108,18 @@ private:
 
 	uint laserFx = 0;
 	uint explosionFx = 0;
+
+
+	int shootTimerReference;
+	int shootTimer;
+
+
+
+
+	void SetAnimation(Animation toChange);
+
+
+
 };
 
 #endif // __ENEMY_BROWNSHIP_H__

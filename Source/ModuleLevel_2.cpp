@@ -387,8 +387,14 @@ bool ModuleLevel_2::Start()
 	App->powerUps->AddPowerUp(App->powerUps->Food3, 14, 210, 628, Collider::Type::POWER_UP, 0);
 
 	// Enemies ---
-	App->enemies->AddEnemy(ENEMY_TYPE::CAR, 179, 2291);
-
+	//App->enemies->AddEnemy(ENEMY_TYPE::CAR, 179, 2291);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 296, 2740);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 80, 2640);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 208, 2408);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 208, 2006);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 364, 1120);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 204, 1336);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 560, 1000);
 
 	if (App->player->IsEnabled() == 0)
 	{

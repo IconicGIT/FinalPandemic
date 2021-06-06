@@ -66,6 +66,12 @@ public:
 	//appear boss
 	Collider* bossTrigger;
 
+	void SpawnSoldier();
+	int numberOfEnemies;
+
+	int enemySpawnTimerReference;
+	int enemySpawnTimer;
+
 
 	//houses
 	Collider* houseHitbox;

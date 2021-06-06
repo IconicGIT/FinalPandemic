@@ -1095,6 +1095,9 @@ UpdateResult ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN) score += 1000;
 	if (App->input->keys[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) playerLife--;
 
+	
+
+
 
 
 	//LOG("player live: %f", (float)playerLife / (float)playerMaximumLife * 22);
@@ -1238,6 +1241,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		in_iFrame = true;
 
 	}
+
+
 	
 }
 void ModulePlayer::SetAnimation(Animation &toChange) {

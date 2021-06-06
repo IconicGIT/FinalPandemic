@@ -114,13 +114,19 @@ bool ModuleParticles::Start()
 	Explosion2Big.anim.loop = false;
 	Explosion2Big.anim.speed = 0.2f;
 
-	BulletEnd.anim.PushBack({ 0,274,12,12 });
-	BulletEnd.anim.PushBack({ 12,274,12,12 });
+	
 	BulletEnd.anim.PushBack({ 24,274,12,12 });
 	BulletEnd.anim.PushBack({ 35,274,12,12 });
 	BulletEnd.anim.PushBack({ 48,274,12,12 });
 	BulletEnd.anim.loop = false;
 	BulletEnd.anim.speed = 0.4f;
+
+	SoldierBullet.anim.PushBack({ 0,274,12,12 });
+	SoldierBullet.anim.PushBack({ 12,274,12,12 });
+	SoldierBullet.anim.loop = true;
+	SoldierBullet.lifetime = 90;
+	SoldierBullet.anim.speed = 0.1f;
+	SoldierBullet.speed = { 2,2 };
 
 	return true;
 }
@@ -268,7 +274,7 @@ UpdateResult ModuleParticles::Update()
 
 			delete particle;
 			particles[i] = nullptr;
-			LOG("fin upd");
+			//LOG("fin upd");
 		}
 		
 	}
@@ -299,7 +305,7 @@ void ModuleParticles::AddParticle(const Particle& particle, int id, int x, int y
 		//Finding an empty slot for a new particle
 		if (particles[i] == nullptr)
 		{
-			LOG("particle created");
+			//LOG("particle created");
 			Particle* p = new Particle(particle);
 
 			p->frameCount = -(int)delay;			// We start the frameCount as the negative delay
@@ -313,8 +319,8 @@ void ModuleParticles::AddParticle(const Particle& particle, int id, int x, int y
 			{
 				
 				p->collider = App->collisions->AddCollider(p->anim.GetCurrentFrame(), colliderType, this);
-				if (colliderType == Collider::ENEMY_SHOT) LOG("enemy bullet fired");
-				if (colliderType == Collider::PLAYER_SHOT) LOG("player bullet fired");
+				//if (colliderType == Collider::ENEMY_SHOT) LOG("enemy bullet fired");
+				//if (colliderType == Collider::PLAYER_SHOT) LOG("player bullet fired");
 			}
 			particles[i] = p;
 			break;

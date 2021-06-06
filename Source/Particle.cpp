@@ -144,26 +144,83 @@ bool Particle::Update()
 
 		case 1: // Enemy Bullet
 
-			if (direction == 1)
-			{
-				counter = 0;
-				_speedy = 0.0f;
-				_speedx = 0.0f;
+			switch (direction) {
 
-				if (counter == 0)
-				{
-					//_speedy = speed.y * App->enemies->ENEMY_SOLDIER->resultY;
-					//_speedx = speed.x * App->enemies->ENEMY_SOLDIER->resultX;
+			case 0:
 
-					counter++;
-				}
-				else
-				{
-					position.y += _speedy;
-					position.x += _speedx;
-				}
 				
+
+				position.y += 0;
+				position.x += speed.x;
+
+				break;
+
+
+			case 1:
+
+				position.y -= speed.y;
+				position.x += speed.x;
+
+				
+
+				break;
+
+			case 2:
+
+				position.y -= speed.y;
+				position.x += 0;
+
+				
+				break;
+
+			case 3:
+
+				position.y -= speed.y;
+				position.x -= speed.x;
+
+
+				
+
+				break;
+
+			case 4:
+
+				position.y -= 0;
+				position.x -= speed.x;
+
+				
+
+				break;
+
+			case 5:
+
+				position.y += speed.y;
+				position.x -= speed.x;
+
+				
+
+				break;
+
+			case 6:
+
+
+				position.y += speed.y;
+				position.x -= 0;
+				
+
+				break;
+
+			case 7:
+
+				position.y += speed.y;
+				position.x += speed.x;
+
+				break;
+
+			
 			}
+
+			break;
 		case 2: // Enemy Bullet
 
 			switch(direction)
@@ -287,7 +344,7 @@ bool Particle::Update()
 
 			default:
 
-				position += speed;
+				//position += speed;
 
 			break;
 		}

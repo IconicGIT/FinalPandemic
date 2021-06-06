@@ -55,7 +55,7 @@ bool ModuleLevel_1::Start()
 	tTexture = App->textures->Load("Assets/Sprites/moving_and_chaging_tiles.png");
 	bg2Texture = App->textures->Load("Assets/Sprites/background_ingame_rock_down.png");
 
-
+	enemySpawnTimerReference = 60;
 	
 	
 
@@ -225,7 +225,7 @@ bool ModuleLevel_1::Start()
 	bulletWall[82] = App->collisions->AddCollider({ 612, 452, 100, 20 }, Collider::Type::BULLET_WALL);
 
 	rockTrigger = App->collisions->AddCollider({ 475, 880, 600, 10 }, Collider::Type::NONE);
-	bossTrigger = App->collisions->AddCollider({ 1070, 150, 10, 200 }, Collider::Type::NONE);
+	bossTrigger = App->collisions->AddCollider({ 1200, 150, 10, 200 }, Collider::Type::NONE);
 	rockPos = { 768 ,487 };
 	//App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
 
@@ -242,11 +242,21 @@ bool ModuleLevel_1::Start()
 	//App->obstacles->AddObstacle(App->obstacles->Box, 555, 450, 7, Collider::Type::OBSTACLE, 0);
 	//App->obstacles->AddObstacle(App->obstacles->Box, 730, 450, 13, Collider::Type::OBSTACLE, 0);
 
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 680, 1384);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 570, 1238);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 536, 1380);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 600, 642);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 838, 940);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 602, 496);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 706, 594);
+
+
+
 
 	// Enemies ---
-	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 535, 1360);
-	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 540, 1360);
-	//App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 530, 1360);
+	
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 540, 1360);
+	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 530, 1360);
 	Mix_FadeOutMusic((int)(1000.0f));
 
 
@@ -379,9 +389,16 @@ UpdateResult ModuleLevel_1::Update()
 	
 	}
 
-
+	//enemy spawn
 	
-	
+	///if (enemySpawnTimer <= 0) {
+	///	enemySpawnTimerReference = RandomRange(120, 300);
+	///	enemySpawnTimer = enemySpawnTimerReference;
+	///	SpawnSoldier();
+	///}
+	///else {
+	///	enemySpawnTimer--;
+	///}
 
 
 
@@ -447,5 +464,29 @@ int ModuleLevel_1::RandomRange(int value01, int value02) {
 
 	}
 	return(rand() % (value02 - value01 + 1) + value01);
+
+}
+
+void ModuleLevel_1::SpawnSoldier() {
+	int paddingX = 50;
+	int paddingY = 50;
+
+
+	if (numberOfEnemies < 12) {
+
+		int x = RandomRange(App->player->position.x - paddingX, App->player->position.x + paddingX) * SCREEN_SIZE;
+		int y = RandomRange(App->player->position.x - paddingY, App->player->position.x + paddingY) * SCREEN_SIZE;
+
+		for (size_t i = 0; i < RandomRange(1,3); i++)
+		{
+			App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, x, y);
+			numberOfEnemies++;
+
+		}
+
+		
+
+	}
+
 
 }
