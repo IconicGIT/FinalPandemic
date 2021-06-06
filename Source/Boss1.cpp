@@ -6,18 +6,20 @@
 #include "ModulePlayer.h"
 #include <math.h>
 #include "ModuleParticles.h"
+
 #include "ModuleLevel_1.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include <time.h>
 
 #include <math.h>
+
 Enemy_Boss01::Enemy_Boss01(int x, int y) : Enemy(x, y)
 {
 	float AnimSpeed = 0.05f;
-	bossShotFX = App->audio->LoadFx("Assets/Fx/gun_shot02.wav");
+	bossShotFX = App->audio->LoadFx("Assets/Fx/gun_shot02.2.wav");
 	bossDefeatedFX = App->audio->LoadFx("Assets/Fx/explosion_03.wav");
-	App->audio->PlayMusic("Assets/Music/boss.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/boss_repeat.ogg", 1.0f);
 
 	BossIdleAnim.PushBack({ 0,0,128,158 });
 
@@ -28,6 +30,8 @@ Enemy_Boss01::Enemy_Boss01(int x, int y) : Enemy(x, y)
 	BossShootingAnim.loop = true;
 	BossShootingAnim.speed = 0.3f;
 
+	
+	
 	// Death animation
 
 
@@ -72,6 +76,7 @@ void Enemy_Boss01::Update()
 
 	fPoint movementRangeX;
 	fPoint movementRangeY;
+	
 
 	if (lifePoints <= 0 && movement != MovementStage::DEFEATED) 
 	{

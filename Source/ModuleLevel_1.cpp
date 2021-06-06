@@ -45,7 +45,7 @@ bool ModuleLevel_1::Start()
 	LOG("Loading background assets");
 	srand(2);
 	int randValue = rand() % 2;
-
+	roundClear = App->audio->LoadFx("Assets/Fx/round_clear.wav");
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/background_ingame.png");
@@ -329,7 +329,7 @@ UpdateResult ModuleLevel_1::Update()
 	{
 		App->fade->FadeToBlack(this, (Module*)App->fifthScene, 90);
 		App->player->level = 1;
-
+		App->audio->PlayFx(roundClear);
 		for (int i = 0; i < 100; i++) {
 			if (playerWall[i] != nullptr) {
 				playerWall[i]->pendingToDelete = true;

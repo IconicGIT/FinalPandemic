@@ -45,6 +45,7 @@ public:
 	uint32_t startTime;
 
 	uint32_t currentTime;
+	uint roundClear;
 	int counterMusic;
 	int repetition;
 	bool afterStart = false;

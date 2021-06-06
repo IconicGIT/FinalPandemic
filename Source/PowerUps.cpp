@@ -136,7 +136,11 @@ bool PowerUp::Update()
 
 		if (collider != nullptr)
 			collider->SetPos(position.x, position.y);
-	}
 
-	return ret;
+		return ret;
+
+
+
 }
+	
+	
