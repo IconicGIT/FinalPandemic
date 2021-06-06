@@ -170,7 +170,6 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				if (particles[i] != nullptr && c2->type == Collider::ENEMY)
 				{
 					particles[i]->collider->pendingToDelete = true;
-					App->particles->AddParticle(App->particles->BulletEnd, 0, particles[i]->position.x - 3, particles[i]->position.y - 3, 0, Collider::NONE);
 					particles[i]->isAlive = false;
 					delete particles[i];
 					particles[i] = nullptr;
@@ -184,8 +183,9 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 				// Always destroy particles that collide
 				if (particles[i] != nullptr && c2->type == Collider::BULLET_WALL)
 				{
-					particles[i]->collider->pendingToDelete = true;
+					
 					particles[i]->isAlive = false;
+					particles[i]->collider->pendingToDelete = true;
 					delete particles[i];
 					particles[i] = nullptr;
 					deleted = true;
@@ -194,8 +194,9 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			
 				if (particles[i] != nullptr && c2->type == Collider::PLAYER_HITBOX)
 				{
-					particles[i]->collider->pendingToDelete = true;
+					
 					particles[i]->isAlive = false;
+					particles[i]->collider->pendingToDelete = true;
 					delete particles[i];
 					particles[i] = nullptr;
 					deleted = true;

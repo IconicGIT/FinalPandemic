@@ -34,24 +34,25 @@ Application::Application()
 	modules[0] = window = new ModuleWindow(true);
 	modules[1] = input = new ModuleInput(true);
 	modules[2] = textures = new ModuleTextures(true);
-	modules[3] = audio = new ModuleAudio(true);
+	modules[3] = fonts = new ModuleFonts(true);
+	modules[4] = audio = new ModuleAudio(true);
 
-	modules[4] = frontPage = new FrontPage(true);
-	modules[5] = firstScene = new FirstScene(false);
-	modules[6] = secondScene = new SecondScene(false);
-	modules[7] = thirdScene = new ThirdScene(false);
-	modules[8] = fifthScene = new FifthScene(false);
-	modules[9] = scene = new ModuleLevel_1(false);
-	modules[10] = scene_2 = new ModuleLevel_2(false);							//Gameplay scene starts disabled
-	modules[11] = player = new ModulePlayer(false);								//Player starts disabled
-	modules[12] = enemies = new ModuleEnemies(false);							//Enemies start disabled
-	modules[13] = powerUps = new ModulePowerUps(true);
-	modules[14] = particles = new ModuleParticles(true);
-	modules[15] = obstacles = new ModuleObstacle(true);
+	modules[5] = frontPage = new FrontPage(true);
+	modules[6] = firstScene = new FirstScene(false);
+	modules[7] = secondScene = new SecondScene(false);
+	modules[8] = thirdScene = new ThirdScene(false);
+	modules[9] = fifthScene = new FifthScene(false);
+	modules[10] = scene = new ModuleLevel_1(false);
+	modules[11] = scene_2 = new ModuleLevel_2(false);							//Gameplay scene starts disabled
+	modules[12] = player = new ModulePlayer(false);								//Player starts disabled
+	modules[13] = enemies = new ModuleEnemies(false);							//Enemies start disabled
+	modules[14] = powerUps = new ModulePowerUps(true);
+	modules[15] = particles = new ModuleParticles(true);
+	modules[16] = obstacles = new ModuleObstacle(true);
 
-	modules[16] = collisions = new ModuleCollisions(true);
-	modules[17] = fade = new ModuleFadeToBlack(true);
-	modules[18] = fonts = new ModuleFonts(true);
+	modules[17] = collisions = new ModuleCollisions(true);
+	modules[18] = fade = new ModuleFadeToBlack(true);
+	
 	modules[19] = render = new ModuleRender(true);
 	
 }

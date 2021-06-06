@@ -6,6 +6,7 @@
 #include "ModulePlayer.h"
 #include <math.h>
 #include "ModuleParticles.h"
+#include "ModuleLevel_1.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include <time.h>
@@ -253,6 +254,15 @@ void Enemy_Boss01::Update()
 
 		}
 	}
+
+
+	if (App->player->backTimer < -60) {
+		inmortal = false;
+		timeAlive = 0;
+		
+	}
+
+
 
 	//LOG("stage: %i", movement);
 

@@ -198,9 +198,15 @@ public:
 	int iFrameTimer;
 	bool in_iFrame;
 
+	int canMoveCamera = true;
+
 	//Exit
 	int exit_counter;
 	SDL_Texture* exitTexture;
+
+	//return to enter credit scene
+	int backTimerReference;
+	int backTimer;
 
 };
 

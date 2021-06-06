@@ -57,13 +57,18 @@ public:
 	//rock animation
 	SDL_Rect brock;
 	Collider* rockTrigger;
-	bool rockAnimActivate;
+	bool rockAnimActivate = false;
 	fPoint rockPos;
 	int dustTimerReference = 3;
 	int dustTimer = dustTimerReference;
 
+	//appear boss
+	Collider* bossTrigger;
+
+
 	//houses
 	Collider* houseHitbox;
+	
 	int housesLife;
 
 	int RandomRange(int value01, int values02);
