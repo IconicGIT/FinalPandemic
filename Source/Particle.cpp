@@ -67,8 +67,6 @@ bool Particle::Update()
 				default:
 
 
-
-
 					break;
 				}
 			}
@@ -140,7 +138,6 @@ bool Particle::Update()
 
 				break;
 
-
 			}
 
 			break;
@@ -167,14 +164,132 @@ bool Particle::Update()
 				}
 				
 			}
-			
-		default:
+		case 2: // Enemy Bullet
 
-			position += speed;
+			switch(direction)
+			{
+
+			case 0:
+
+				position.y += 0;
+				position.x += speed.x;
+
+				break;
+
+			case 1:
+
+				position.y -= speed.y / 2;
+				position.x += speed.x;
+
+				break;
+
+			case 2:
+
+				position.y -= speed.y;
+				position.x += speed.x;
+
+				break;
+
+			case 3:
+				position.y -= speed.y;
+				position.x += speed.x / 2;
+
+				break;
+
+			case 4:
+
+				position.y -= speed.y;
+				position.x -= 0;
+
+				break;
+
+			case 5:
+
+				position.y -= speed.y / 2;
+				position.x -= speed.x;
+
+				break;
+
+			case 6:
+
+				position.y -= speed.y;
+				position.x -= speed.x;
+
+				break;
+
+			case 7:
+
+				position.y -= speed.y / 2;
+				position.x -= speed.x;
+
+				break;
+
+			case 8:
+
+				position.y -= 0;
+				position.x -= speed.x;
+
+				break;
+
+			case 9:
+
+				position.y += speed.y / 2;
+				position.x -= speed.x;
+
+				break;
+
+			case 10:
+
+				position.y -= speed.y;
+				position.x += speed.x;
+
+				break;
+
+			case 11:
+
+				position.y += speed.y / 2;
+				position.x += speed.x;
+
+				break;
+
+			case 12:
+
+				position.y += speed.y;
+				position.x += 0;
+
+				break;
+
+			case 13:
+
+				position.y += speed.y / 2;
+				position.x += speed.x;
+
+				break;
+
+			case 14:
+
+				position.y += speed.y;
+				position.x += speed.x;
+
+				break;
+
+			case 15:
+
+				position.y += speed.y / 2;
+				position.x += speed.x;
+
+				break;
+
+			default:
+
+				break;
+			}
+
+			default:
+
+				position += speed;
 
 			break;
-
-
 		}
 
 		if (collider != nullptr)
