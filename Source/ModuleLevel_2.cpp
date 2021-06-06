@@ -370,21 +370,21 @@ bool ModuleLevel_2::Start()
 
 	// PowerUps
 
-	App->powerUps->AddPowerUp(App->powerUps->Pow, 0,400, 2730, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Shotgun, 0, 70, 2575, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Pow, 8,400, 2730, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Shotgun, 5, 70, 2575, Collider::Type::POWER_UP, 0);
 	App->powerUps->AddPowerUp(App->powerUps->Medal1, 0, 220, 2070, Collider::Type::POWER_UP, 0);
 	App->powerUps->AddPowerUp(App->powerUps->TotalHealing, 0, 500, 1640, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Pow, 0, 550, 1600, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Food1, 0, 695, 1470, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Food4, 0, 735, 1470, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 680, 1360, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Shotgun, 0, 170, 1290, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Pow, 8, 550, 1600, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food1, 12, 695, 1470, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food4, 15, 735, 1470, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Bomb, 7, 680, 1360, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Shotgun, 5, 170, 1290, Collider::Type::POWER_UP, 0);
 	App->powerUps->AddPowerUp(App->powerUps->MediumMedickit, 0, 170, 1170, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Food4, 0, 300, 1040, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Food2, 0, 420, 850, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Bomb, 0, 365, 750, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Food4, 0, 55, 670, Collider::Type::POWER_UP, 0);
-	App->powerUps->AddPowerUp(App->powerUps->Food3, 0, 210, 628, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food4, 15, 300, 1040, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food2, 13, 420, 850, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Bomb, 7, 365, 750, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food4, 15, 55, 670, Collider::Type::POWER_UP, 0);
+	App->powerUps->AddPowerUp(App->powerUps->Food3, 14, 210, 628, Collider::Type::POWER_UP, 0);
 
 	// Enemies ---
 	App->enemies->AddEnemy(ENEMY_TYPE::CAR, 179, 2291);

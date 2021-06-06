@@ -160,6 +160,7 @@ void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c2->type == Collider::PLAYER_HITBOX)
 	{
+		/*
 		if ((c1 == Medal1.collider) || (c2 == Medal1.collider))
 		{
 			App->player->score += 1000;
@@ -264,7 +265,8 @@ void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 			}
 			MediumMedickit.collider->pendingToDelete = true;
 		}
-
+		*/
+		
 		for (uint i = 0; i < MAX_ACTIVE_POWER_UPS; ++i)
 		{
 			// Always destroy particles that collide
@@ -277,6 +279,7 @@ void ModulePowerUps::OnCollision(Collider* c1, Collider* c2)
 				break;
 			}
 		}
+		
 	}
 	
 }
