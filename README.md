@@ -44,26 +44,35 @@ This game is inspired by the action movies of the 80’s, it is a Run and Gun ga
 ~~~~~~~~~~~~~~~
 
 Keyboard Player controls:
-- UP: W key
-- LEFT: A key
-- RIGHT: D key
-- DOWN: S key
-- GUN SHOT: SPACE key
+- UP --> W key
+- LEFT --> A key
+- RIGHT --> D key
+- DOWN --> S key
+- GUN SHOT --> SPACE key
 
 General controls:
-- SKIP SCREEN: SPACE key
-- EXIT GAME: ESC key
-- WIN INSTANT: I key
-- LOSE INSTANT: L key
-- INTRODUCE COIN: SHIFT key
+- SKIP SCREEN --> SPACE key
+- EXIT GAME --> ESC key for 3 seconds
+- INTRODUCE COIN --> SHIFT key
+
+Debug Controls:
+- GO DIRECT TO LEVEL --> Q key
+- SPWAN ENEMY --> E key
+- SPWAN BOSS --> B key
+- SHOW COLLISIONS ON CAMERA --> F1 key
+- HEAL PLAYER (by 1) --> H
+- DAMAGE PLAYER (by 1) --> G
+- WIN INSTANT --> I key
+- LOSE INSTANT --> L key
+- SCORE +1000 --> Z
 
 Gamepad:
-- MOVE: JOYSTIC AND D-PAD
-- SHOOT: K
-- SKIP SCREEN: P
-- BOMB: B
-- START GAME: START
-- EXIT GAME: BACK
+- MOVE --> Joystick AND D-PAD
+- SHOOT --> K
+- BOMB --> B
+- SKIP SCREEN --> P
+- START GAME --> Start
+- EXIT GAME --> Back
 
 ~~~~~~~~~~~~~~~
 
