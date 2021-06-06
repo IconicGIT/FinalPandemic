@@ -1,10 +1,14 @@
 # FINAL PANDEMIC – PROJECT I: MERCS
 
+## Welcome to Final Pandemic
+
+Final Pandemic is a group of four students coursing the first year Bachelor's degree in Video Game Design and Development at UPC university. The integrants of the group are Alexandre Carreras, Pol Farreras, Brandon Arandia and Carlos Arnau.
+
 GitHub project link: https://github.com/IconicGIT/FinalPandemic
 
 <p>&nbsp;</p>
 
-## Team Members
+## TEAM MEMBERS
 
 - Code: **Alexandre Carreras** [[ _TheGewehr_ ](https://github.com/TheGewehr)]:
   - Main Responsible of Final Pandemic's Mercs code.
@@ -13,29 +17,54 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
   - Main Responsible of Final Pandemic's Mercs art and design.
 
 - Q&A: **Pol Farreras** [[ _fakefarreraspol_ ](https://github.com/fakefarreraspol)]:
-  - Main Responsible of Final Pandemic's Mercs Performance and well functioning.
+  - Main Responsible of Final Pandemic's Mercs Performance and Well functioning.
 
 - Management: **Brandon Arandia** [[ _IconicGIT_ ](https://github.com/IconicGIT)]:
   - Main Responsible of Final Pandemic's Mercs Team Management.
+
+![](team_photo.jfif)
 
 + Even if the members are in charge of their labors, each team member will perform other member labors as a form of develop efficiency and mastery in different areas and abilities.
 
 <p>&nbsp;</p>
 
-## Mercs game description
+## PROJECT I: MERCS
 
-Mercs is a top-down run and gun arcade game, that consists in a marked path where you are able to move freely around the four directions, shooting the enemies, trying not to get reached by their weapons. In each level you will be able to use different vehicles to finally reach the final boss who will decide if you pass to the next level.
+This game is inspired by the action movies of the 80’s, it is a Run and Gun game that was made by Capcom and was very appreciated by the arcade players. It contained a history and a local multiplayer, enemies, bosses, explosions, vehicles and more. 
 
-<p>&nbsp;</p>
-
-## Game controls
-
-The game controls used to play the game are:
-- Movement controls: Use the –W, A, S, D– keys to move in 8 directions
-- Attack controls: To attack the enemies you can use your gun pressing –SPACE– to shoot.
+![](mercs_cover.jpg)
 
 <p>&nbsp;</p>
 
-## Additional comments
+## GAME CONTROLS
+~~~~~~~~~~~~~~~
+
+Keyboard Player controls:
+- UP: W key
+- LEFT: A key
+- RIGHT: D key
+- DOWN: S key
+- GUN SHOT: SPACE key
+
+General controls:
+- SKIP SCREEN: SPACE key
+- EXIT GAME: ESC key
+- WIN INSTANT: I key
+- LOSE INSTANT: L key
+- INTRODUCE COIN: SHIFT key
+
+Gamepad:
+- MOVE: JOYSTIC AND D-PAD
+- SHOOT: K
+- SKIP SCREEN: P
+- BOMB: B
+- START GAME: START
+- EXIT GAME: BACK
+
+~~~~~~~~~~~~~~~
+
+<p>&nbsp;</p>
+
+## ADDITIONAL COMMENTS
 
 - Game still in development...
