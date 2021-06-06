@@ -7,7 +7,7 @@
 #include "Particle.h"
 #include "Collider.h"
 
-#define MAX_ACTIVE_PARTICLES 5000
+#define MAX_ACTIVE_PARTICLES 500
 
 struct SDL_Texture;
 struct Collider;
@@ -72,6 +72,9 @@ public:
 	Particle Boss1BulletR;
 	Particle Boss1BulletL;
 	Particle EnemyBullet;
+	Particle Explosion1;
+	Particle Explosion2Small;
+	Particle Explosion2Big;
 
 	int deleteParticleIndex = 0;
 };

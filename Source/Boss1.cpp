@@ -2,10 +2,12 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include <math.h>
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "ModuleRender.h"
 #include <time.h>
 
 #include <math.h>
@@ -29,8 +31,8 @@ Enemy_Boss01::Enemy_Boss01(int x, int y) : Enemy(x, y)
 	// Collider
 
 	currentAnim = &BossIdleAnim;
-	collider = App->collisions->AddCollider({ 0, 0, 24, 40 }, Collider::Type::ENEMY, (Module*)App->enemies);
-
+	collider = App->collisions->AddCollider({ (int)position.x + 10, (int)position.y + 5, 128, 120 }, Collider::Type::ENEMY, (Module*)App->enemies);
+	lifeBar = { 384,0,21,12 };
 
 	timeAlive = 1000;
 	inmortal = true;
@@ -45,6 +47,11 @@ Enemy_Boss01::Enemy_Boss01(int x, int y) : Enemy(x, y)
 	shootTimerReference = 4;
 	srand(time(0));
 	bobbingAmplitude = 0.2f;
+
+	lifePoints = 100;
+
+	particleTimerReference = 4;
+	particleTimer = particleTimerReference;
 
 	counter++;
 }
@@ -61,6 +68,16 @@ void Enemy_Boss01::Update()
 
 	fPoint movementRangeX;
 	fPoint movementRangeY;
+
+	if (lifePoints <= 0 && movement != MovementStage::DEFEATED) 
+	{
+		path.Reset();
+		movement = MovementStage::DEFEATED;
+		pushTimerReference = 180;
+		pushTimer = pushTimerReference;
+		currentAnim = &BossIdleAnim;
+	}
+
 
 	if (pushTimer <= 0)
 	{
@@ -127,6 +144,19 @@ void Enemy_Boss01::Update()
 			path.PushBack({ 0,0 }, pushTimerReference);
 			movement = MovementStage::MOVE;
 			break;
+		
+		case MovementStage::DEFEATED:
+			path.Reset();
+			path.PushBack({ 0,0.3f }, pushTimerReference);
+
+			
+
+
+			break;
+		
+		
+		
+		
 		}
 
 		
@@ -136,6 +166,33 @@ void Enemy_Boss01::Update()
 	else {
 		pushTimer--;
 	}
+
+	if (movement == MovementStage::DEFEATED)
+	{
+		if (particleTimer <= 0) {
+			particleTimer = particleTimerReference;
+			for (int i = 0; i < iRandomRange(1, 3); i++)
+			{
+
+				App->particles->AddParticle(
+
+					App->particles->Explosion2Big,
+					0,
+					iRandomRange(position.x, position.x + collider->rect.w - 25),
+					iRandomRange(position.y + 10, position.y + collider->rect.h + 15),
+					0,
+					Collider::NONE,
+					iRandomRange(0, 4));
+
+
+			}
+		}
+		else
+		{
+			particleTimer--;
+		}
+	}
+
 
 	if (currentAnim == &BossShootingAnim) {
 
@@ -243,18 +300,22 @@ void Enemy_Boss01::Update()
 		}
 	}
 
-	LOG("stage: %i", movement);
+	//LOG("stage: %i", movement);
 
 	//LOG(" x: %f, y: %f", position.x, position.y);
 	
-	if (movement != MovementStage::ENTRANCE) a++;
+	if (movement != MovementStage::ENTRANCE && movement != MovementStage::DEFEATED) a++;
 
 	path.Update();
 	position.x = spawnPos.x + path.GetRelativePosition().x;
 	
 
 	position.y = spawnPos.y + path.GetRelativePosition().y + bobbingAmplitude * sin((double)a * 0.05f);
+	collider->SetPos((int)position.x + 10, (int)position.y + 5);
 	
+	
+
+
 	
 
 	// Call to the base class. It must be called at the end
@@ -262,6 +323,32 @@ void Enemy_Boss01::Update()
 	Enemy::Update();
 }
 
+void Enemy_Boss01::Draw()
+{
+	if (currentAnim != nullptr)
+		App->render->Blit(texture, position.x, position.y, &(currentAnim->GetCurrentFrame()));
+
+	//show life bar
+
+	if (lifePoints > 0) {
+		App->render->Blit(texture, 184, 26, &lifeBar, 0, true);
+	}
+	if (lifePoints >= 20) {
+		App->render->Blit(texture, 184 - 24, 26, &lifeBar, 0, true);
+	}
+	if (lifePoints >= 40) {
+		App->render->Blit(texture, 184 - 24 * 2, 26, &lifeBar, 0, true);
+	}
+	if (lifePoints >= 60) {
+		App->render->Blit(texture, 184 - 24 * 3, 26, &lifeBar, 0, true);
+	}
+	if (lifePoints >= 80) {
+		App->render->Blit(texture, 184 - 24 * 4, 26, &lifeBar, 0, true);
+	}
+	if (lifePoints >= 100) {
+		App->render->Blit(texture, 184 - 24 * 5, 26, &lifeBar, 0, true);
+	}
+}
 
 
 int Enemy_Boss01::iRandomRange(int value01, int value02) {
@@ -293,3 +380,24 @@ float Enemy_Boss01::fRandomRange(float value01, float value02) {
 
 }
 
+void Enemy_Boss01::OnCollision(Collider* collider)
+{
+	LOG("collision");
+
+	switch (collider->type)
+	{
+	case Collider::PLAYER_SHOT:
+
+		lifePoints--;
+		if (collider->pendingToDelete != false) collider->pendingToDelete = true;
+
+		break;
+
+
+	default:
+		break;
+	}
+
+	//App->particles->AddParticle(App->particles->explosion,App->particles->explosion.id, position.x, position.y, App->particles->explosion.direction);
+	//App->audio->PlayFx(destroyedFx);
+}

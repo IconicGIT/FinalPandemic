@@ -17,10 +17,11 @@ public:
 
 	int iRandomRange(int value01, int values02);
 	float fRandomRange(float value01, float values02);
-	
+	void OnCollision(Collider* collider);
+	void Draw();
 
 	fPoint playerPosition;
-
+	SDL_Rect lifeBar;
 
 	int   counter;
 
@@ -33,6 +34,9 @@ public:
 	int shootTimerReference;
 	int shootTimer;
 
+	int particleTimerReference;
+	int particleTimer;
+
 	iPoint pivot;
 	
 	int shootWhileMoving = false;
@@ -44,7 +48,8 @@ public:
 	{
 		MOVE = 0,
 		SHOOT = 1,
-		ENTRANCE = 2
+		ENTRANCE = 2,
+		DEFEATED = 3
 
 	};
 

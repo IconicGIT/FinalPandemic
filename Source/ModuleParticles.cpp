@@ -57,7 +57,7 @@ bool ModuleParticles::Start()
 	{
 		playerBullet1[i].speed.x = 6;
 		playerBullet1[i].speed.y = 6;
-		playerBullet1[i].lifetime = 16;
+		playerBullet1[i].lifetime = 20;
 		playerBullet1[i].anim.speed = 0;
 		playerBullet1[i].anim.loop = false;
 	}
@@ -92,6 +92,27 @@ bool ModuleParticles::Start()
 	Boss1BulletL.speed.y = 5;
 	Boss1BulletL.speed.x = 1;
 
+	Explosion1.anim.PushBack({ 103,0,32,33 });
+	Explosion1.anim.PushBack({ 135,0,32,33 });
+	Explosion1.anim.PushBack({ 167,0,32,33 });
+	Explosion1.anim.PushBack({ 199,0,32,33 });
+	Explosion1.anim.loop = false;
+	Explosion1.anim.speed = 0.2f;
+
+	Explosion2Small.anim.PushBack({ 197,149,32,28 });
+	Explosion2Small.anim.PushBack({ 197,247,32,28 });
+	Explosion2Small.anim.PushBack({ 197,302,32,28 });
+	Explosion2Small.anim.PushBack({ 197,356,32,28 });
+	Explosion2Small.anim.loop = false;
+	Explosion2Small.anim.speed = 0.2f;
+
+
+	Explosion2Big.anim.PushBack({ 189,184,48,41 });
+	Explosion2Big.anim.PushBack({ 239,184,48,41 });
+	Explosion2Big.anim.PushBack({ 294,184,48,41 });
+	Explosion2Big.anim.PushBack({ 350,184,48,41 });
+	Explosion2Big.anim.loop = false;
+	Explosion2Big.anim.speed = 0.2f;
 
 	return true;
 }
@@ -127,7 +148,7 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 			switch (particles[i]->collider->type) {
 			case Collider::PLAYER_SHOT:
 				// Always destroy particles that collide
-				if (particles[i] != nullptr && c2->type == Collider::BULLET_WALL)
+ 				if (particles[i] != nullptr && c2->type == Collider::BULLET_WALL)
 				{
 					particles[i]->isAlive = false;
 					delete particles[i];
@@ -173,21 +194,24 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 
 			}
 
-			if (deleteParticleIndex + 1 == MAX_ACTIVE_PARTICLES) {
-				deleteParticleIndex = 0;
-			}
-			else {
-				deleteParticleIndex++;
-			}
 			
-
-			if (i == max - 1 && !loopDone) {
-				i = 0;
-				max = deleteParticleIndex;
-				loopDone = true;
-			}
-			if (deleted) break;
 		}
+		if (deleteParticleIndex + 1 == MAX_ACTIVE_PARTICLES) {
+			deleteParticleIndex = 0;
+		}
+		else {
+			if (deleted) deleteParticleIndex = i;
+		}
+
+
+
+		if (i == max - 1 && !loopDone) {
+			i = -1;
+			
+			max = deleteParticleIndex;
+			loopDone = true;
+		}
+		if (deleted) break;
 	}
 }
 
