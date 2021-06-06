@@ -1,11 +1,12 @@
 #include "ThirdScene.h"
-
+#include <stdio.h>
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleRender.h"
 #include "ModuleAudio.h"
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h"
+#include "ModuleFonts.h"
 
 ThirdScene::ThirdScene(bool startEnabled) : Module(startEnabled)
 {
@@ -27,8 +28,11 @@ bool ThirdScene::Start()
 	creditFX = App->audio->LoadFx("Assets/Fx/credit.wav");
 
 	bTexture = App->textures->Load("Assets/Sprites/background_scene3.png");
+	char lookupTable1[] = { "0123456789abcdefghijklmnopqrstuvwxyz                       " };
 	
-
+	texture = App->textures->Load("Assets/Sprites/character_sprites.png");
+	creditsFont = App->fonts->Load("Assets/Fonts/bomb_score_font_small.png", lookupTable1, 2);
+	
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
@@ -67,8 +71,10 @@ UpdateResult ThirdScene::PostUpdate()
 
 	App->render->Blit(bTexture, 0, 0, &bcoin);
 	
+	sprintf_s(txtCredits, "%2d", App->fade->credits);
 	
-
+	App->fonts->BlitText(15, 370, creditsFont, txtCredits);
+	
 	return UpdateResult::UPDATE_CONTINUE;
 }
 

@@ -11,7 +11,7 @@ class ThirdScene : public Module
 public:
 	// Constructor
 	ThirdScene(bool startEnabled);
-
+	SDL_Texture* texture = nullptr;
 	// Destructor
 	~ThirdScene();
 
@@ -28,7 +28,10 @@ public:
 	// Called at the end of the application loop.
 	// Performs the render call of all the parts of the scene's background
 	UpdateResult PostUpdate() override;
-
+	char txtCredits[10] = { "\0" };
+	
+	int creditsFont = -1;
+	
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bTexture = nullptr;
