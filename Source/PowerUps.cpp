@@ -29,7 +29,6 @@ PowerUp::~PowerUp()
 	//{
 	//	collider->pendingToDelete = true;
 	//}
-
 }
 
 bool PowerUp::Update()
@@ -39,11 +38,11 @@ bool PowerUp::Update()
 
 	if (!isAlive && frameCount >= 0)
 		isAlive = true;
-	/*
+	
 	if (isAlive)
 	{
 		anim.Update();
-
+		/*
 		switch (id)
 		{
 		case 0:

@@ -82,7 +82,7 @@ UpdateResult ThirdScene::PostUpdate()
 
 bool ThirdScene::CleanUp() {
 
-	//SDL_free(bgTexture);
+	SDL_free(bTexture);
 
 	return true;
 }

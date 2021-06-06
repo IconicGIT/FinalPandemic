@@ -83,7 +83,7 @@ UpdateResult SecondScene::PostUpdate()
 
 bool SecondScene::CleanUp() {
 
-	//SDL_free(bgTexture);
+	SDL_free(bTexture);
 
 	return true;
 }

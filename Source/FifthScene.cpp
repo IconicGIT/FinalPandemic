@@ -59,7 +59,7 @@ UpdateResult FifthScene::PostUpdate()
 
 bool FifthScene::CleanUp() {
 
-	//SDL_free(bgTexture);
+	SDL_free(bTexture);
 
 	return true;
 }

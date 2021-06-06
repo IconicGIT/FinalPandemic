@@ -436,6 +436,7 @@ UpdateResult ModuleLevel_1::PostUpdate()
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
+
 int ModuleLevel_1::RandomRange(int value01, int value02) {
 
 	if (value01 > value02) {

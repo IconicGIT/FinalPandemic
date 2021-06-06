@@ -70,7 +70,7 @@ UpdateResult FrontPage::PostUpdate()
 
 bool FrontPage::CleanUp() {
 
-	//SDL_free(bgTexture);
+	SDL_free(bTexture);
 
 	return true;
 }
