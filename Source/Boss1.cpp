@@ -16,6 +16,8 @@ Enemy_Boss01::Enemy_Boss01(int x, int y) : Enemy(x, y)
 	float AnimSpeed = 0.05f;
 	bossShotFX = App->audio->LoadFx("Assets/Fx/gun_shot02.wav");
 	bossDefeatedFX = App->audio->LoadFx("Assets/Fx/explosion_03.wav");
+	App->audio->PlayMusic("Assets/Music/boss.ogg", 1.0f);
+
 	BossIdleAnim.PushBack({ 0,0,128,158 });
 
 	BossShootingAnim.PushBack({ 0,0,128,158 });
