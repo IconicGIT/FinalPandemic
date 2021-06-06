@@ -30,7 +30,8 @@ bool ThirdScene::Start()
 	bTexture = App->textures->Load("Assets/Sprites/background_scene3.png");
 	char lookupTable1[] = { "0123456789abcdefghijklmnopqrstuvwxyz                       " };
 	
-	texture = App->textures->Load("Assets/Sprites/character_sprites.png");
+	texture = App->textures->Load("Assets/Sprites/insert_coin2.png");
+	texture2 = App->textures->Load("Assets/Sprites/credit.png");
 	creditsFont = App->fonts->Load("Assets/Fonts/bomb_score_font_small.png", lookupTable1, 2);
 	
 	App->render->camera.x = 0;
@@ -73,8 +74,9 @@ UpdateResult ThirdScene::PostUpdate()
 	
 	sprintf_s(txtCredits, "%2d", App->fade->credits);
 	
+	App->render->Blit(texture, 40, 216, false);
 	App->fonts->BlitText(15, 370, creditsFont, txtCredits);
-	
+	App->render->Blit(texture2, 45, 367, false);
 	return UpdateResult::UPDATE_CONTINUE;
 }
 

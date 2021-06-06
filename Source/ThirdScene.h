@@ -12,6 +12,7 @@ public:
 	// Constructor
 	ThirdScene(bool startEnabled);
 	SDL_Texture* texture = nullptr;
+	SDL_Texture* texture2 = nullptr;
 	// Destructor
 	~ThirdScene();
 
