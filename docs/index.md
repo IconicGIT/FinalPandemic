@@ -23,12 +23,12 @@ Keyboard Player controls:
 - RIGHT: D key
 - DOWN: S key
 - GUN SHOT: SPACE key
-- BOMB: B key
 
 General controls:
 - SKIP SCREEN: SPACE key
-- INSERT COIN: SHIFT key
 - EXIT GAME: ESC key
+- WIN INSTANT: I key
+- LOSE INSTANT: L key
 
 Gamepad:
 - MOVE: JOYSTIC AND D-PAD
