@@ -36,6 +36,8 @@ IN ORDER OF APPERANCE
 
 This game is inspired by the action movies of the 80’s, it is a Run and Gun game that was made by Capcom and was very appreciated by the arcade players. It contained a history and a local multiplayer, enemies, bosses, explosions, vehicles and more. 
 
+<img src="https://github.com/IconicGIT/FinalPandemic/blob/811de888dfbc820265cecb392ddcab193e32df54/docs/mercs_cover.jpg" width=700 align=middle>
+
 <p>&nbsp;</p>
 
 ## GAME CONTROLS
