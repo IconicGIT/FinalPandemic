@@ -14,13 +14,13 @@ This game is inspired by the action movies of the 80’s, it is a Run and Gun ga
 
 <p>&nbsp;</p>
 
-### Controls
+### GAMEPLAY
 
-<iframe width="740" height="590" src="https://www.youtube.com/embed/yBFzOEv0snY" frameborder="0" allowfullscreen></iframe>
+<iframe width="740" height="590" src="" frameborder="0" allowfullscreen></iframe>
 
 <p>&nbsp;</p>
 
-### Controls
+### CONTROLS
 ~~~~~~~~~~~~~~~
 
 Keyboard Player controls:
@@ -49,7 +49,7 @@ Gamepad:
 
 <p>&nbsp;</p>
 
-### Team Members
+### TEAM MEMBERS
 
 - Code: **Alexandre Carreras** [[ _TheGewehr_ ](https://github.com/TheGewehr)]:
   - Main Responsible of Final Pandemic's Mercs code.
