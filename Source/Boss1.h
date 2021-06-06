@@ -40,7 +40,7 @@ public:
 	iPoint pivot;
 	
 	uint bossShotFX = 0;
-	
+	uint bossDefeatedFX = 0;
 	int shootWhileMoving = false;
 
 	float bobbingAmplitude;
