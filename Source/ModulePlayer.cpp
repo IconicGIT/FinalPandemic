@@ -1092,8 +1092,11 @@ UpdateResult ModulePlayer::Update()
 	
 	////////////////////////////////////////////
 	
-	if (App->input->keys[SDL_SCANCODE_Q] == KEY_STATE::KEY_DOWN) score += 1000;
-	if (App->input->keys[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) playerLife--;
+	if (App->input->keys[SDL_SCANCODE_Z] == KEY_STATE::KEY_DOWN) score += 1000;
+	if (App->input->keys[SDL_SCANCODE_H] == KEY_STATE::KEY_DOWN) playerLife++;
+	if (App->input->keys[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN) playerLife--;
+	if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN) App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, position.x, position.y);
+	
 
 	
 
@@ -1234,12 +1237,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		 
 	}
 	
-	if (c2->type == Collider::ENEMY_SHOT && !in_iFrame) 
-	{
-		playerLife -= 4;
-		iFrameTimer = iFrameTimerReference;
-		in_iFrame = true;
+	if (!App->collisions->debug) {
+		if (c2->type == Collider::ENEMY_SHOT && !in_iFrame)
+		{
+			playerLife -= 4;
+			iFrameTimer = iFrameTimerReference;
+			in_iFrame = true;
 
+		}
 	}
 
 

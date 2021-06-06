@@ -63,6 +63,8 @@ bool ModuleLevel_1::Start()
 	startTime = SDL_GetTicks();
 	counterMusic = 0;
 	repetition = 1;
+	nextLevelTimerReference = 180;
+
 
 	//Map colliders
 	playerWall[0] = App->collisions->AddCollider({ 475, 1534, 608, 15 }, Collider::Type::WALL);
@@ -227,8 +229,7 @@ bool ModuleLevel_1::Start()
 	rockTrigger = App->collisions->AddCollider({ 475, 880, 600, 10 }, Collider::Type::NONE);
 	bossTrigger = App->collisions->AddCollider({ 1200, 150, 10, 200 }, Collider::Type::NONE);
 	rockPos = { 768 ,487 };
-	//App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
-
+	App->audio->PlayMusic("Assets/Music/mission_1.ogg", 0.0f);
 	// PowerUps
 	
 	//playerWall[76] = App->collisions->AddCollider({ 995, 1010, 28, 32 }, Collider::Type::WALL);
@@ -257,7 +258,7 @@ bool ModuleLevel_1::Start()
 	
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 540, 1360);
 	App->enemies->AddEnemy(ENEMY_TYPE::SOLDIER, 530, 1360);
-	Mix_FadeOutMusic((int)(1000.0f));
+	//Mix_FadeOutMusic((int)(1000.0f));
 
 
 	//App->enemies->AddEnemy(ENEMY_TYPE::REDBIRD, 600, 80);
@@ -288,7 +289,7 @@ UpdateResult ModuleLevel_1::Update()
 	//App->render->camera.x += 3;
 
 	// ///////////////////////////////////////////////////////
-	if (App->input->keys[SDL_SCANCODE_E] == KEY_STATE::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_B] == KEY_STATE::KEY_DOWN)
 	{
 		LOG("spawning boss");
 		App->enemies->AddEnemy(ENEMY_TYPE::BOSS_1, 1060, -190);
@@ -300,13 +301,13 @@ UpdateResult ModuleLevel_1::Update()
 
 
 
-	if (counterMusic < 1 * repetition)
+	if (counterMusic < 1 * repetition && !levelComplete)
 	{
 		if (!afterStart)
 		{
 			if (elapsedTime > 85.85f * repetition)
 			{
-				//App->audio->PlayMusic("Assets/Music/Mission_1_repeat.ogg", 0.0f);
+				App->audio->PlayMusic("Assets/Music/Mission_1_repeat.ogg", 0.0f);
 				counterMusic++;
 				repetition++;
 				afterStart = true;
@@ -316,7 +317,7 @@ UpdateResult ModuleLevel_1::Update()
 		{
 			if (elapsedTime > 38.0f * repetition)
 			{
-				//App->audio->PlayMusic("Assets/Music/mission_1_repeat.ogg", 0.0f);
+				App->audio->PlayMusic("Assets/Music/mission_1_repeat.ogg", 0.0f);
 				counterMusic++;
 				repetition++;
 			}
@@ -400,7 +401,27 @@ UpdateResult ModuleLevel_1::Update()
 	///	enemySpawnTimer--;
 	///}
 
+	if (levelComplete) {
+		Mix_FadeOutMusic((int)(1000.0f));
+		App->player->score += 10000;
+		nextLevelTimer--;
 
+		if (nextLevelTimer <= 0) 
+		{
+			App->fade->FadeToBlack(this, (Module*)App->fifthScene, 90);
+			App->player->level = 1;
+			App->audio->PlayFx(roundClear);
+			for (int i = 0; i < 100; i++) {
+				if (playerWall[i] != nullptr) {
+					playerWall[i]->pendingToDelete = true;
+				}
+				if (bulletWall[i] != nullptr) {
+					bulletWall[i]->pendingToDelete = true;
+				}
+			}
+		}
+
+	}
 
 	return UpdateResult::UPDATE_CONTINUE;
 }

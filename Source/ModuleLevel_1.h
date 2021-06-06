@@ -72,6 +72,9 @@ public:
 	int enemySpawnTimerReference;
 	int enemySpawnTimer;
 
+	int nextLevelTimerReference;
+	int nextLevelTimer;
+	bool levelComplete = false;
 
 	//houses
 	Collider* houseHitbox;

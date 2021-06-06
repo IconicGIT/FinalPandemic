@@ -109,7 +109,7 @@ bool PowerUp::Update()
 		case 12:
 			App->player->score += 500;
 			break;
-			
+
 		case 13:
 			App->player->score += 2000;
 			break;
@@ -121,7 +121,7 @@ bool PowerUp::Update()
 			break;
 		}
 		*/
-		
+
 		if (lifetime > 0)
 		{
 			if (frameCount >= lifetime)
@@ -131,14 +131,14 @@ bool PowerUp::Update()
 		else if (anim.HasFinished())
 			ret = false;
 
-		
+
 
 		if (collider != nullptr)
 			collider->SetPos(position.x, position.y);
 
 		return ret;
 
-
+	}
 
 }
 	

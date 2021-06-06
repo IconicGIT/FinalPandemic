@@ -314,7 +314,7 @@ void Enemy_Soldier::Update()
 
 		a = angle;
 	}
-LOG("soldier angle: %f", a);
+
 
 
 
@@ -367,21 +367,21 @@ LOG("soldier angle: %f", a);
 	}
 	else
 	{
-		LOG("-a");
+		
 		float i = -1.0f;
 		if (a > -30.0f)
 		{
 			direction = 0;
 			currentAnim->Reset();
 			currentAnim = &rightAnim;
-			LOG("-0");
+			
 		}
 		if (a <= 30.0f * i  && a > 30.0f * (i - 1))
 		{
 			direction = 7;
 			currentAnim->Reset();
 			currentAnim = &downRightAnim;
-			LOG("-1");
+			
 		}
 		i--;
 		if (a <= 30.0f * i && a > 30.0f * (i - 1))
@@ -389,7 +389,7 @@ LOG("soldier angle: %f", a);
 			direction = 6;
 			currentAnim->Reset();
 			currentAnim = &downAnim;
-			LOG("-2");
+			
 		}
 		i--;
 		if (a <= 30.0f * i && a > 30.0f * (i - 1))
@@ -397,7 +397,7 @@ LOG("soldier angle: %f", a);
 			direction = 6;
  			currentAnim->Reset();
 			currentAnim = &downAnim;
-			LOG("-2");
+			
 		}
 		i--;
 		if (a <= 30.0f * i && a > 30.0f * (i - 1))
@@ -405,7 +405,7 @@ LOG("soldier angle: %f", a);
 			direction = 5;
  			currentAnim->Reset();
 			currentAnim = &downLeftAnim;
-			LOG("-3");
+			
 		}
 		i--;
 		if (a <= 30.0f * i && a > 30.0f * (i - 1))
@@ -413,14 +413,15 @@ LOG("soldier angle: %f", a);
 			direction = 4;
  			currentAnim->Reset();
 			currentAnim = &leftAnim;
-			LOG("-4");
+			
 		}
 
 	}
 
-	LOG("direction: %i", direction);
 
-	if (App->input->keys[SDL_SCANCODE_G] == KEY_STATE::KEY_DOWN){}
+
+	//LOG("direction: %i", direction);
+
 		
 
 

@@ -7,6 +7,7 @@
 #include "ModuleWindow.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
+#include "ModuleCollisions.h"
 
 #include "SDL/include/SDL_render.h"
 #include "SDL/include/SDL_scancode.h"
@@ -64,20 +65,22 @@ UpdateResult ModuleRender::PreUpdate()
 
 UpdateResult ModuleRender::Update()
 {
-	//Handle positive vertical movement
-	if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
-		camera.y -= cameraSpeed;
+	if (App->collisions->debug) {
+		//Handle positive vertical movement
+		if (App->input->keys[SDL_SCANCODE_UP] == KEY_REPEAT)
+			camera.y -= cameraSpeed;
 
-	//Handle negative vertical movement
-	if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT)
-		camera.y += cameraSpeed;
+		//Handle negative vertical movement
+		if (App->input->keys[SDL_SCANCODE_DOWN] == KEY_REPEAT)
+			camera.y += cameraSpeed;
 
-	if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)
-		camera.x -= cameraSpeed;
-	if (camera.x < 0) camera.x = 0;
+		if (App->input->keys[SDL_SCANCODE_LEFT] == KEY_REPEAT)
+			camera.x -= cameraSpeed;
+		if (camera.x < 0) camera.x = 0;
 
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
-		camera.x += cameraSpeed;
+		if (App->input->keys[SDL_SCANCODE_RIGHT] == KEY_REPEAT)
+			camera.x += cameraSpeed;
+	}
 
 
 	return UpdateResult::UPDATE_CONTINUE;

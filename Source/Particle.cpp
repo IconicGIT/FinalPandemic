@@ -344,7 +344,7 @@ bool Particle::Update()
 
 			default:
 
-				//position += speed;
+				position += speed;
 
 			break;
 		}

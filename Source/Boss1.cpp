@@ -178,8 +178,15 @@ void Enemy_Boss01::Update()
 
 	if (movement == MovementStage::DEFEATED)
 	{
-		App->audio->PlayFx(bossDefeatedFX);
+		if (!App->scene->levelComplete) {
+
+			App->audio->PlayFx(bossDefeatedFX);
+			App->scene->levelComplete = true;
+		}
+
+
 		if (particleTimer <= 0) {
+
 			particleTimer = particleTimerReference;
 			for (int i = 0; i < iRandomRange(1, 3); i++)
 			{
@@ -261,7 +268,7 @@ void Enemy_Boss01::Update()
 	}
 
 
-	if (App->player->backTimer < -60) {
+	if (App->player->backTimer < -60 || App->scene->levelTimer <= 0) {
 		inmortal = false;
 		timeAlive = 0;
 		

@@ -366,7 +366,7 @@ bool ModuleLevel_2::Start()
 	bulletWall[44 ] = App->collisions->AddCollider({ 289, 980, 131, 48 }, Collider::Type::BULLET_WALL);
 	bulletWall[45 ] = App->collisions->AddCollider({ 0, 790, 269, 45 }, Collider::Type::BULLET_WALL);
 	
-	//App->audio->PlayMusic("Assets/Music/mission_2.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/mission_2.ogg", 1.0f);
 
 	// PowerUps
 
@@ -414,6 +414,7 @@ bool ModuleLevel_2::Start()
 
 	App->player->position.x = 400;
 	App->player->position.y = 3000;
+	App->player->canMoveCamera = true;
 
 	App->render->camera.x = 303 * SCREEN_SIZE;
 	App->render->camera.y = MAP_HEIGHT * SCREEN_SIZE - App->render->camera.h * SCREEN_SIZE;
@@ -443,9 +444,9 @@ UpdateResult ModuleLevel_2::Update()
 
 	if (counterMusic < 1 * repetition)
 	{
-		if (elapsedTime > 92 * repetition)
+		if (elapsedTime > 123 * repetition)
 		{
-			//App->audio->PlayMusic("Assets/Music/Mission_1_repeat.ogg", 1.0f);
+			App->audio->PlayMusic("Assets/Music/mission_2.ogg", 1.0f);
 			counterMusic++;
 			repetition++;
 		}
@@ -475,6 +476,15 @@ UpdateResult ModuleLevel_2::Update()
 	if (levelTimer > 0) levelTimer--;
 
 	App->player->levelTime = (float)levelTimer / 60;
+
+
+	//next level time
+
+	
+
+
+
+
 
 	return UpdateResult::UPDATE_CONTINUE;
 }
