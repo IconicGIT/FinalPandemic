@@ -14,7 +14,13 @@ This game is inspired by the action movies of the 80’s, it is a Run and Gun ga
 
 <p>&nbsp;</p>
 
-## Controls
+### Controls
+
+<iframe width="740" height="590" src="https://www.youtube.com/embed/yBFzOEv0snY" frameborder="0" allowfullscreen></iframe>
+
+<p>&nbsp;</p>
+
+### Controls
 ~~~~~~~~~~~~~~~
 
 Keyboard Player controls:
@@ -29,6 +35,7 @@ General controls:
 - EXIT GAME: ESC key
 - WIN INSTANT: I key
 - LOSE INSTANT: L key
+- INTRODUCE COIN: SHIFT key
 
 Gamepad:
 - MOVE: JOYSTIC AND D-PAD
