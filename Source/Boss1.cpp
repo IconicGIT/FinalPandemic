@@ -14,7 +14,7 @@
 Enemy_Boss01::Enemy_Boss01(int x, int y) : Enemy(x, y)
 {
 	float AnimSpeed = 0.05f;
-	
+	bossShotFX = App->audio->LoadFx("Assets/Fx/gun_shot02.wav");
 	BossIdleAnim.PushBack({ 0,0,128,158 });
 
 	BossShootingAnim.PushBack({ 0,0,128,158 });
@@ -60,7 +60,7 @@ void Enemy_Boss01::Update()
 {
 	////////////////////////////////////////////////////
 	path.Update();
-
+	
 	//playerPosition = (fPoint)App->player->position;
 	
 	float pushX;
@@ -208,28 +208,32 @@ void Enemy_Boss01::Update()
 				{
 
 				case 0:
+					App->audio->PlayFx(bossShotFX);
 					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 19, position.y + 106,0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 21, position.y + 107, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 23, position.y + 106, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 24, position.y + 107, 0, Collider::ENEMY_SHOT);
-
+					
+					App->audio->PlayFx(bossShotFX);
 					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 99, position.y + 106, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 101, position.y + 107, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 103, position.y + 106, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 105, position.y + 107, 0, Collider::ENEMY_SHOT);
-
+					
 					break;
 				case 1:
+					App->audio->PlayFx(bossShotFX);
 					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 19, position.y + 106, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 22, position.y + 107, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 23, position.y + 106, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletL, -1, position.x + 25, position.y + 107, 0, Collider::ENEMY_SHOT);
-
+					
+					App->audio->PlayFx(bossShotFX);
 					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 99, position.y + 106, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 102, position.y + 107, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 103, position.y + 106, 0, Collider::ENEMY_SHOT);
 					App->particles->AddParticle(App->particles->Boss1BulletR, -1, position.x + 105, position.y + 107, 0, Collider::ENEMY_SHOT);
-
+					
 					break;
 
 				default:
