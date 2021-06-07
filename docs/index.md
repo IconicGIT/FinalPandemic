@@ -37,9 +37,10 @@ General controls:
 
 Debug Controls:
 - GO DIRECT TO LEVEL --> Q key
-- SPWAN ENEMY --> E key
-- SPWAN BOSS --> B key
+- SPAWN ENEMY --> E key
+- SPAWN BOSS --> B key
 - SHOW COLLISIONS ON CAMERA --> F1 key
+- FREE CAMREA CONTROL (ARROWS) --> F1 key
 - HEAL PLAYER (by 1) --> H
 - DAMAGE PLAYER (by 1) --> G
 - WIN INSTANT --> I key
