@@ -16,7 +16,7 @@ This game is inspired by the action movies of the 80’s, it is a Run and Gun ga
 
 ### GAMEPLAY
 
-<iframe width="1080" height="720" src="https://youtu.be/fz9yPvX4ZoQ" frameborder="0" allowfullscreen></iframe>
+<iframe width="740" height="590" src="https://youtu.be/fz9yPvX4ZoQ" frameborder="0" allowfullscreen></iframe>
 
 <p>&nbsp;</p>
 
