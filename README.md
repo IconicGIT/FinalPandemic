@@ -28,7 +28,7 @@ GitHub project link: https://github.com/IconicGIT/FinalPandemic
 IN ORDER OF APPERANCE
 ~~~~~~~~~~~~~~~
 
-<img src="https://github.com/IconicGIT/FinalPandemic/blob/a01aeceb6546c90fb7fe63bdacd08d361794d725/Images/team_photo.JPG" width=700 align=middle>
+
 
 <p>&nbsp;</p>
 
