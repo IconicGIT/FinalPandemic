@@ -6,7 +6,7 @@ Final Pandemic is a group of four students coursing the first year Bachelor's de
 
 GitHub project link: https://github.com/IconicGIT/FinalPandemic
 
-
+<img src="https://github.com/IconicGIT/FinalPandemic/Images/Logo.JPG" width=700 align=middle>
 
 <p>&nbsp;</p>
 
