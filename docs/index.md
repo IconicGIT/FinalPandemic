@@ -77,4 +77,4 @@ Gamepad:
 - Management: **Brandon Arandia** [[ _IconicGIT_ ](https://github.com/IconicGIT)]:
   - Main Responsible of Final Pandemic's Mercs Team Management.
 
-![](team_photo.jfif)
+
